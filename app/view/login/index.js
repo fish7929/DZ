@@ -3,6 +3,9 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link, hashHistory } from 'react-router'
 
+import Header from '../../component/header'
+
+
 import * as RouterConst from '../../static/const/routerConst'
 import ErrorMessage from '../../static/const/errorMessage'
 
@@ -61,17 +64,21 @@ class Login extends React.Component{
     render(){
         let { username, password } = this.state
         return(
-            <div className="login-container">
-                <div>登录</div>
-                <div>
-                    <span>用户名:</span>
+            <div className="login-container container">
+                <Header title="登陆" isShowBack={false} />
+
+                <div className="input-user-div">
+                    <span className="username-icon"></span>
                     <input type="text" value={username} onChange={(e)=>this.onInputChange(e, "username")} />
                 </div>
-                <div>
-                    <span>密码:</span>
+                <div className="input-pw-div">
+                    <span className="password-icon"></span>
                     <input type="password" value={password} onChange={(e)=>this.onInputChange(e, "password")} />
                 </div>
-                <div><button onClick={()=>this.onLoginHandler()}>登录</button><button onClick={()=>hashHistory.goBack()}>返回</button></div>
+                <div className="btn-div"> 
+                    <button onClick={()=>this.onLoginHandler()}>微信登陆</button>
+                    <button onClick={()=>hashHistory.goBack()}>登陆</button>
+                </div>
             </div>
         )
     }

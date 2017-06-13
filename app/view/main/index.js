@@ -28,7 +28,7 @@ class App extends React.Component {
                     leave: 'default-leave',
                     leaveActive: this.props.location.action == 'PUSH'?'':'fadeOutRight'
                 }}
-                style={{overflowY: 'scroll', height: '100%', position: 'absolute',top: 0,width:'100%' }}
+                style={{ height: '100%', position: 'absolute',top: 0,width:'100%' }}
                 transitionEnterTimeout={500}
                 transitionLeaveTimeout={500}
                 >
