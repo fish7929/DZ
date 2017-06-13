@@ -1,0 +1,11 @@
+#node
+node_modules/**
+#compile
+build/**
+
+#git
+.git/
+
+.idea/
+*.log
+*.log.*
