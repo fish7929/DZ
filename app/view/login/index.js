@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link, hashHistory } from 'react-router'
 
+import Page from '../../component/page'
 import Header from '../../component/header'
 
 
@@ -64,7 +65,7 @@ class Login extends React.Component{
     render(){
         let { username, password } = this.state
         return(
-            <div className="login-container container">
+            <Page className="login-container">
                 <Header title="登陆" isShowBack={false} />
 
                 <div className="input-user-div">
@@ -79,7 +80,7 @@ class Login extends React.Component{
                     <button onClick={()=>this.onLoginHandler()}>微信登陆</button>
                     <button onClick={()=>hashHistory.goBack()}>登陆</button>
                 </div>
-            </div>
+            </Page>
         )
     }
 

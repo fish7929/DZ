@@ -10,7 +10,7 @@
 
     @media screen and (min-device-width: 414px) {
         body,html {
-            font-size: 15.456px;
+            font-size: $baseSize + px;
         }
     }
 }
@@ -18,7 +18,7 @@
 html, body{
     width: 100%;
     height: 100%;
-    // font-size: 20px;
+    font-size: $baseSize + px;
     color: #5c5c5c;
     overflow: hidden;
     @include adaptive;

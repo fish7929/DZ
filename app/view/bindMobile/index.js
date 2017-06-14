@@ -1,39 +1,71 @@
 import React, { PropTypes } from 'react'
 
+import Page from '../../component/page'
 import Header from '../../component/header'
 
+import './index.scss'
 
+const MaxCount = 60
 class BindMobile extends React.Component{
+
     constructor(props, context){
         super(props, context)
         this.state = {
-            mobile: ""
+            mobile: "",
+            code: "",
+            count: 0
         }
     }
 
     componentDidMount(){
+        this.setState({
+            mobile: "",
+            code: "",
+            count: 0
+        })
+    }
+
+    componentDidUpdate(){
+        let { count } = this.state
+        if(count >0 ){
+            setTimeout(()=>this.setState({count: count-1}), 1000)
+        } 
+    }
+
+    onMobileChange(e){
+
+    }
+
+    onCodeChange(e){
+
+    }
+
+    onCodeHandler(){
+        this.setState({count: MaxCount})
+    }
+
+    onBindHandler(){
         
     }
-    
 
     render(){
-        let {mobile} = this.state
+        let {mobile, code, count} = this.state
         return(
-            <div className="container bind-mobile-container">
+            <Page className="container bind-mobile-container">
                 <Header title="绑定手机号" isShowBack={false} />
                 <div className="input-mobile-div">
                     <span className="username-icon"></span>
-                    <input type="text" value={mobile} onChange={(e)=>this.onInputChange(e, "username")} />
+                    <input type="text" value={mobile} onChange={(e)=>this.onMobileChange(e)} placeholder="请输入手机号"  />
                 </div>
-                <div className="input-pw-div">
-                    <span className="password-icon"></span>
-                    <input type="password" value={password} onChange={(e)=>this.onInputChange(e, "password")} />
+                <div className="input-code-div">
+                    <span className="code-icon"></span>
+                    <input type="text" value={code} onChange={(e)=>this.onCodeChange(e)} placeholder="请输入验证码"  />
+                    <button onClick={()=>this.onCodeHandler()} disabled={count?true:false}>{count? count+"s" : "发送验证码"}</button>
                 </div>
                 <div className="btn-div"> 
-                    <button onClick={()=>this.onLoginHandler()}>微信登陆</button>
-                    <button onClick={()=>hashHistory.goBack()}>登陆</button>
+                    <button onClick={()=>this.onBindHandler()}>绑定手机</button>
                 </div>
-            </div>
+            </Page>
         )
     }
 }
