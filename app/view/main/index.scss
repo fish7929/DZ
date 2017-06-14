@@ -1,3 +1,19 @@
+@import '../../static/css/_variables.scss';
+@import '../../static/css/_mixins.scss';
+@import '../../static/css/reset.scss';
+// @include font-face('FZLTHJW--GB1-0', '../assets/font/FZLTHJW--GB1-0')
+@mixin adaptive {
+	@media screen and (max-device-width:320px) {
+        $factor:320/375;
+		font-size: ($baseSize*$factor)+px;
+	}
+
+    @media screen and (min-device-width: 414px) {
+        body,html {
+            font-size: 15.456px;
+        }
+    }
+}
 *{
     margin:0px;
     padding:0px;
@@ -18,13 +34,23 @@
 *::-webkit-scrollbar{
   width: 0
 }
-
+/*example 样例*/
+.example{
+    width: calc-rem(80);
+    height: calc-rem(80);
+    padding: calc-rem(80);
+    margin: calc-rem(80);
+    line-height: calc-rem(80);
+    border: calc-rem(2) solid #ccc;
+    border-radius: calc-rem(8);
+}
 html, body{
     width: 100%;
     height: 100%;
-    font-size: 20px;
+    // font-size: 20px;
     color: #5c5c5c;
     overflow: hidden;
+    @include adaptive;
 }
 
 .red{

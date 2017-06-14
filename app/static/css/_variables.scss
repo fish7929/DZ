@@ -1,0 +1,31 @@
+/**
+ * @component _variables.scss
+ * @description 全局的样式变了。
+ * @time 2017-03-27 11:00
+ * @author fishYu
+ **/
+$baseSize: 14; /*默认字体*/
+$ratio: 2; /*缩放比*/
+$factor: 320/375;  /*屏幕和设计稿的比例（750尺寸）*/
+$headerHeight: 80;  /*顶部的高度*/
+$topHeight: 80;
+
+$greyColor: #fff;  /*全局背景色*/
+$yellowColor: #F6A623;  /*黄色*/
+$btnColor: #FDDC60;  /*按钮没点击的颜色*/
+$borderRadius: 10; /*全局圆角大小*/
+$textColor: #5a5a5a; /*全局文字色*/
+$hintColor: #999;   /*提示文字颜色*/
+$tipColor: #57738c;  /*协议链接提示颜色*/
+$whiteColor: #fff;  /*白色*/
+$blackColor: #000;  /*白色*/
+$borderColor: #9d9d9d; /*通用边框颜色*/
+$opacityColor: rgba(8,8,8,.65);  /**带透明度颜色*/
+$bankColor: #e9cac4;  /**银行提示颜色**/
+$phoneColor: #b8c9cf;  /**电话颜色*/
+
+// $notFoundIcon : '../../assets/images/not-found.png'; /*打烊图片*/
+
+
+$commonBorder: .5px solid rgba(224,224,224, .9);
+
