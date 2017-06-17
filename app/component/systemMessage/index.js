@@ -34,25 +34,12 @@ class SystemMessage extends React.Component {
         return (
             <ul className="message-content-wrapper">
                 {this.state.list.map((item, index) => {
-                    let massageStatus = "";
-                    if (item.massageStatus == FIRST) {
-                        massageStatus = '未提交';
-                    } if (item.massageStatus == SECOND) {
-                        massageStatus = '已提交';
-                    } if (item.massageStatus == THREE) {
-                        massageStatus = '以解除';
-                    }
                     let readClass = item.MessageUserInfoPO[0] && item.MessageUserInfoPO[0].isread == FIRST ? 'message-read' : '';
-                    return (<li key={index} className={"alarm-message-item " + readClass}>
-                        <div className="alarm-message-left">
-                            <span className={"alarm-message-logo" + item.massageLevel}></span>
-                            <span className={"alarm-message-status" + item.massageStatus}>{massageStatus}</span>
-                        </div>
-                        <div className="alarm-message-right">
-                            <div>{item.title}</div>
-                            <div>{item.content}</div>
-                            <div><span>{item.createTime}</span><span>230.22</span></div>
-                        </div>
+                    let userInfo = "调度中心 - 张三";
+                    return (<li key={index} className={"system-message-item " + readClass}>
+                        <div><span>公告</span></div>
+                        <div>{item.title}</div>
+                        <div>{item.createTime}</div>
                     </li>)
                 })}
             </ul>

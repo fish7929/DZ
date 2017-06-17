@@ -6,9 +6,7 @@
  **/
 'use strict';
 import React, { PropTypes } from 'react';
-import AlarmMessageItem from '../alarmMessageItem'
-
-import './index.scss'
+import AlarmMessageItem from '../alarmMessageItem';
 
 class AlarmMessage extends React.Component {
     /**

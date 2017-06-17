@@ -22,6 +22,10 @@ class SiteMessage extends React.Component {
             list: this.props.data
         }
     }
+    
+    toMessageDetailHandler(e, id) {
+
+    }
     /**
      * DOM加载完成
      */
@@ -35,9 +39,11 @@ class SiteMessage extends React.Component {
             <ul className="message-content-wrapper">
                 {this.state.list.map((item, index) => {
                     let readClass = item.MessageUserInfoPO[0] && item.MessageUserInfoPO[0].isread == FIRST ? 'message-read' : '';
-                    return (<li key={index} className={"site-message-item " + readClass}>
+                    let userInfo = "调度中心 - 张三";
+                    return (<li key={index} className={"site-message-item " + readClass}
+                        onClick={(e) => this.toMessageDetailHandler(e, item.id)}>
                         <div>{item.title}</div>
-                        <div>{item.content}</div>
+                        <div>{userInfo}</div>
                         <div>{item.createTime}</div>
                     </li>)
                 })}

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { hashHistory } from 'react-router'
 
-import AlarmMessageItem from '../../../component/AlarmMessageItem'
+import AlarmMessageItem from '../../../component/alarmMessageItem'
 
 import * as RouterConst from '../../../static/const/routerConst'
 
