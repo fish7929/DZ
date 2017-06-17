@@ -11,7 +11,7 @@ $headerHeight: 80;  /*顶部的高度*/
 $topHeight: 80;
 
 $greyColor: #fff;  /*全局背景色*/
-$yellowColor: #F6A623;  /*黄色*/
+$yellowColor: #FE5A0B;  /*黄色*/
 $btnColor: #FDDC60;  /*按钮没点击的颜色*/
 $borderRadius: 10; /*全局圆角大小*/
 $textColor: #5a5a5a; /*全局文字色*/
@@ -24,7 +24,10 @@ $opacityColor: rgba(8,8,8,.65);  /**带透明度颜色*/
 $bankColor: #e9cac4;  /**银行提示颜色**/
 $phoneColor: #b8c9cf;  /**电话颜色*/
 
-// $notFoundIcon : '../../assets/images/not-found.png'; /*打烊图片*/
+$nextIcon : '../../static/images/next.png'; /*下一步图片*/
+$alarmIcon : '../../static/images/alarm.png'; /*警报消息图片*/
+$messageIcon : '../../static/images/message.png'; /*消息图片*/
+$systemIcon : '../../static/images/system.png'; /*系统消息图片*/
 
 
 $commonBorder: .5px solid rgba(224,224,224, .9);

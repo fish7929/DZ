@@ -4,6 +4,7 @@
  * @time 2017-03-30 12:50
  * @author fishYu
  **/
+export const ZERO = 0;
 export const FIRST = 1;   
 export const SECOND = 2;  
 export const THREE = 3;   

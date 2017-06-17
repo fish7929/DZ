@@ -25,7 +25,7 @@ var entry = {
 
 var loaders = [];
 loaders.push({
-    test: /\.js$/,
+    test: /\.js|.jsx$/,
     exclude: /node_modules/,
     loader: ['babel-loader'],
     // include: [path.join(__dirname, './')],
@@ -42,13 +42,13 @@ loaders.push({
   // test: /\.(png|jpg)$/,
   //loader: "file-loader?limit=1000&name=images/[hash:8].[name].[ext]",
   test: /\.(png|jpg|gif|svg)$/,
-　loader: 'url-loader?limit=1000&name=images/[hash:8].[name].[ext]'
+　loader: 'url-loader?limit=8096&name=images/[hash:8].[name].[ext]'
 });
 
 //字体
 loaders.push({
   test: /\.(woff|ttf)$/,
-　loader: 'url-loader?limit=1000&name=fonts/[hash:8].[name].[ext]'
+　loader: 'url-loader?limit=8096&name=fonts/[hash:8].[name].[ext]'
 });
 
 var plugins = [];
