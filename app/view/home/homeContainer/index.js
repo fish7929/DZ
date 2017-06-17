@@ -103,7 +103,11 @@ class HomeContianer extends React.Component {
                     <div className="notice-message no-wrap">与能者写奥斯卡的敬爱考虑时间阿斯兰的空间案例</div>
                 </div>
                 <div className="home-alarm-list">
+                    <div className="alarm-title-div">
+                        <span></span>报警消息
+                    </div>
                     {this.getAlarmItem()}
+                    <button className="btn-alarm-more">查看7条未读消息</button>
                 </div>
             </div>
         )

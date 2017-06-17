@@ -1,11 +1,7 @@
 @import '../../static/css/_mixins.scss';
 
 .home-page{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    height: calc(100% - #{calc-rem(98)}) !important;
     background:  #f5f5f5;
 
     .home-title-div{
@@ -21,6 +17,12 @@
             height: calc-rem(108);
             line-height: calc-rem(108);
         }
+    }
+
+    .home-main{
+        width: 100%;
+        height: calc(100% - #{calc-rem(148)});
+        overflow: auto;
     }
     
 }

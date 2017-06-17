@@ -96,4 +96,39 @@
             float: right;
         }
     }
+
+    .home-alarm-list{
+        margin-top: calc-rem(20);
+        padding-top: calc-rem(30);
+        background: #fff;
+
+        .alarm-title-div{
+            width: 100%;
+            height: calc-rem(45);
+            padding: 0 calc-rem(40);
+            display: flex;
+            align-items: center;
+            font-family: PingFangSC-Medium;
+            font-size: calc-rem(32);
+            color: #333333;
+            letter-spacing: calc-rem(1.53);
+
+            span{
+                width: calc-rem(6);
+                height: calc-rem(30);
+                display: inline-block;
+                background: #FE5A0B;
+                margin-right: calc-rem(20);
+            }
+        }
+
+        .btn-alarm-more{
+            width: 100%;
+            height: calc-rem(100);
+            background: #FFFFFF;
+            font-size: calc-rem(28);
+            color: #999999;
+            letter-spacing: calc-rem(1.34);
+        }
+    }
 }

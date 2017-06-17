@@ -70,7 +70,9 @@ class Home extends React.Component {
                 <div className="home-title-div">
                     <div className="home-title">光伏运维管理平台</div>
                 </div>
-                {this.getContentSection()}
+                <div className="home-main">
+                    {this.getContentSection()}
+                </div>
                 <HomeBottom tabIndex={1} onTabClick={(tab) => this.setState({ currentTab: parseInt(tab) })} />
             </Page>
         )

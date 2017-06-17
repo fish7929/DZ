@@ -57,4 +57,4 @@ AlarmMessageItem.PropTypes = {
     data: PropTypes.object.isRequired
 }
 
-export default AlarmMessageItem;
+export default AlarmMessageItem
