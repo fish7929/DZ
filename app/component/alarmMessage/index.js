@@ -6,7 +6,7 @@
  **/
 'use strict';
 import React, { PropTypes } from 'react';
-import { FIRST, SECOND, THREE } from '../../static/const/constants';
+import AlarmMessageItem from '../alarmMessageItem'
 
 import './index.scss'
 
@@ -33,28 +33,7 @@ class AlarmMessage extends React.Component {
     render() {
         return (
             <ul className="message-content-wrapper">
-                {this.state.list.map((item, index) => {
-                    let massageStatus = "";
-                    if (item.massageStatus == FIRST) {
-                        massageStatus = '未提交';
-                    } if (item.massageStatus == SECOND) {
-                        massageStatus = '已提交';
-                    } if (item.massageStatus == THREE) {
-                        massageStatus = '以解除';
-                    }
-                    let readClass = item.MessageUserInfoPO[0] && item.MessageUserInfoPO[0].isread == FIRST ? 'message-read' : '';
-                    return (<li key={index} className={"alarm-message-item " + readClass}>
-                        <div className="alarm-message-left">
-                            <span className={"alarm-message-logo" + item.massageLevel}></span>
-                            <span className={"alarm-message-status" + item.massageStatus}>{massageStatus}</span>
-                        </div>
-                        <div className="alarm-message-right">
-                            <div>{item.title}</div>
-                            <div>{item.content}</div>
-                            <div><span>{item.createTime}</span><span>230.22</span></div>
-                        </div>
-                    </li>)
-                })}
+                {this.state.list.map((item, index) => <AlarmMessageItem data={item} key={index} />)}
             </ul>
         )
     }
