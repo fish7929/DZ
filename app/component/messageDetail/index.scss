@@ -1,0 +1,49 @@
+@import '../../static/css/_mixins.scss';
+@import '../../static/css/_variables.scss';
+
+.message-detail-wrapper{
+    background: $whiteColor;
+    position: relative;
+    width: 100%;
+    height: -webkit-calc(100% - #{calc-rem($topHeight)});
+    height: calc(100% - #{calc-rem($topHeight)});
+    .message-detail-title{
+        width: 100%;
+        padding: calc-rem(30) 0;
+        text-align: center;
+        background: $whiteColor;
+        border-bottom: $commonBorder;
+        border-top: $commonBorder;
+        box-sizing: border-box;
+        div:first-child{
+            color: #333;
+            font-size: calc-rem(32);
+            margin-bottom: calc-rem(30); 
+        }
+        .message-detail-user-info{
+            color: #5b5b5b;
+            font-size: calc-rem(28);
+            margin-bottom: calc-rem(20);
+        }
+        div:last-child{
+            color: #999;
+            font-size: calc-rem(24);
+        }
+    }
+
+    .message-detail-content{
+        width: 100%;
+        padding: calc-rem(30) calc-rem(40);
+        background: $whiteColor;
+        box-sizing: border-box;
+        font-size: clac-rem(32);
+        letter-spacing: calc-rem(1.53);
+        div:first-child{
+            margin-bottom: calc-rem(30);
+        }
+        div:last-child{
+            line-height: calc-rem(44);
+        }
+    }
+
+}

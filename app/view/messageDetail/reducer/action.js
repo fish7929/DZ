@@ -15,7 +15,7 @@ import * as ActionType from './actionType';
  */
 function requestData(dataType) {
     return {
-        type: ActionType.REQUEST_MESSAGE_DATA,
+        type: ActionType.REQUEST_MESSAGE_DETAIL_DATA,
         dataType
     };
 }
@@ -27,19 +27,20 @@ function requestData(dataType) {
  */
 function receiveData(result) {
     return {
-        type: ActionType.RECEIVE_MESSAGE_DATA,
-        data: result.MessageSystemInfoPO
+        type: ActionType.RECEIVE_MESSAGE_DETAIL_DATA,
+        data: result
     };
 }
 
 /**
  * 请求远程数据
- * @param {number} type  消息数据类型， 1，2，3
+ * @param {string} id  消息id
+ * @param {number} type  消息数据类型， 1，2
  */
-export const fetchData = (type) => dispatch => {
+export const fetchData = (id, type) => dispatch => {
     dispatch(requestData(type));
     // let _url = "/pvmtsys/messageSystemInfo/getMassageByType/" + type;
-    let _url = "/app/mockup/message/messageData.json";
+    let _url = type == 1 ? "/app/mockup/message/siteMessageDetail.json" : "/app/mockup/message/systemMessageDetail.json";
     dispatch(utils.sendMsg(_url, null, "GET")).then(data => {
         dispatch(receiveData(data));
     })

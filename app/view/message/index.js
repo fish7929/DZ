@@ -16,6 +16,7 @@ import Header from '../../component/header';
 import AlarmMessage from '../../component/alarmMessage';
 import SiteMessage from '../../component/siteMessage';
 import SystemMessage from '../../component/systemMessage';
+import NoMessage from '../../component/noMessage';
 
 import { fetchData } from './reducer/action';
 
@@ -63,8 +64,8 @@ class Message extends React.Component {
         return (
             <Page className="login-container">
                 <Header title={_content.title} isShowBack={true} />
-                {list.length < 1 ? <div className="no-message-info"><span>暂无消息</span></div>
-                    : _content.content}
+                {list.length < 1 ? 
+                    <NoMessage msg="暂无消息"/>: _content.content}
             </Page>
         )
     }

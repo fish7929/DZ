@@ -7,6 +7,7 @@
 'use strict';
 import React, { PropTypes } from 'react';
 import { FIRST, SECOND, THREE } from '../../static/const/constants';
+import { hashHistory } from 'react-router';
 
 import './index.scss'
 
@@ -22,9 +23,15 @@ class SiteMessage extends React.Component {
             list: this.props.data
         }
     }
-    
+    /**
+     * 
+     * @param {object} e 事件对象
+     * @param {string} id 消息id
+     */
     toMessageDetailHandler(e, id) {
-
+        e.preventDefault();
+        e.stopPropagation();
+        hashHistory.push('messageDetail/' + id + '/1');
     }
     /**
      * DOM加载完成
