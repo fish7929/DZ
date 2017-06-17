@@ -14,6 +14,8 @@ import Page from '../../component/page';
 import Header from '../../component/header';
 
 import AlarmMessage from '../../component/alarmMessage';
+import SiteMessage from '../../component/siteMessage';
+import SystemMessage from '../../component/systemMessage';
 
 import { fetchData } from './reducer/action';
 
@@ -43,9 +45,11 @@ class Message extends React.Component {
                 break;
             case SECOND:
                 obj.title = "站内消息";
+                obj.content = <SiteMessage data={this.props.list} />
                 break;
             case THREE:
                 obj.title = "系统消息";
+                obj.content = <SystemMessage data={this.props.list} />
                 break;
         }
         return obj;
