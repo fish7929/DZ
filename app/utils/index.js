@@ -77,6 +77,19 @@ export function sendMsg(url, param, type = "GET",headers={}, repType="json"){
     )}
 }
 
+export const checkNumber = number =>{
+    let reg = /^[0-9]*$/;
+    if(!reg.test(number)) return false
+    return true
+}
+
+export const checkPhone = txt => {
+    let reg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+    if(!reg.test(txt)) return false
+        
+    return true
+}
+
 /**检测是否为邮箱 */
 export const checkEmail = email => {
     let reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/

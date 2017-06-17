@@ -54,11 +54,11 @@ class BindMobile extends React.Component{
             <Page className="container bind-mobile-container">
                 <Header title="绑定手机号" isShowBack={false} />
                 <div className="input-mobile-div">
-                    <span className="username-icon"></span>
+                    <span className="icon"></span>
                     <input type="text" value={mobile} onChange={(e)=>this.onMobileChange(e)} placeholder="请输入手机号"  />
                 </div>
                 <div className="input-code-div">
-                    <span className="code-icon"></span>
+                    <span className="icon"></span>
                     <input type="text" value={code} onChange={(e)=>this.onCodeChange(e)} placeholder="请输入验证码"  />
                     <button onClick={()=>this.onCodeHandler()} disabled={count?true:false}>{count? count+"s" : "发送验证码"}</button>
                 </div>
