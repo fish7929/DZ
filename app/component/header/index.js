@@ -21,7 +21,7 @@ class Header extends React.Component{
                 <div className="title-div">
                     {this.props.title}
                     {
-                        this.props.isShowBack ? <button className="btn_back" onClick={()=>hashHistory.goBack()}>返回</button> : ""
+                        this.props.isShowBack ? <button className="btn_back" onClick={()=>hashHistory.goBack()}></button> : ""
                     }
                 </div>
             </div>

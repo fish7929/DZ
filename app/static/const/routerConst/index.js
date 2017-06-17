@@ -11,3 +11,6 @@ export const ROUTER_BIND_MOBILE = ROUTER_ROOT + "/bindMobile"
 
 /**报警详情 */
 export const ROUTER_ALARM_DETAIL = ROUTER_ROOT + "/alarmDetail"
+
+/**消息页面 */
+export const ROUTER_MESSAGE = ROUTER_ROOT + "/message/:type"

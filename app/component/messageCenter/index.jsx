@@ -4,6 +4,7 @@
  * @time 2017-06-17 15:40
  * @author fishYu
  **/
+'use strict';
 import React, { PropTypes } from 'react';
 import { hashHistory } from 'react-router';
 

@@ -9,6 +9,7 @@ const Home = cb => require.ensure([], require => { cb(null, require('../view/hom
 const BindMobile = cb => require.ensure([], require => { cb(null, require('../view/bindMobile').default)}, "BindMobile")
 const AlarmDetail = cb => require.ensure([], require => { cb(null, require('../view/alarmDetail').default)}, "AlarmDetail")
 
+const Message = cb => require.ensure([], require => { cb(null, require('../view/message').default)}, "message")
 
 const Routers = {
 	path: RouterConst.ROUTER_HOME,
@@ -28,6 +29,10 @@ const Routers = {
 		{
 			path: RouterConst.ROUTER_ALARM_DETAIL,
 			getComponent(nextState, cb){ AlarmDetail(cb) },
+		},
+		{
+			path: RouterConst.ROUTER_MESSAGE,
+			getComponent(nextState, cb){ Message(cb) },
 		}
 	]
 }

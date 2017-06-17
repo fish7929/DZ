@@ -1,9 +1,10 @@
 @import '../../static/css/_mixins.scss';
+@import '../../static/css/_variables.scss';
 
 .header-container{
     width: 100%;
-    height: calc-rem(128);
-    padding-top: calc-rem(40);
+    height: calc-rem($topHeight);
+    padding-top: calc-rem($toolbarHeight);
     background: #fff;
 
     .title-div{
@@ -11,16 +12,19 @@
         width: 100%;
         height: 100%;
         position: relative;
-        line-height: calc-rem(88);
+        line-height: calc-rem($headerHeight);
         font-family: "PingFang-SC-Medium";
         color: #4A4A4A;
         font-size: calc-rem(32);
 
         .btn_back{
             position: absolute;
+            width: calc-rem(108);
             top: 0;
             left: 0;
             height: 100%;
+            background: url($backIcon) center no-repeat;
+            background-size: calc-rem(48); 
         }
 
     }

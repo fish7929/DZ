@@ -47,3 +47,27 @@
 .common-active:active{
     opacity: .8;
 }
+
+.no-message-info{
+    background: #f5f5f5;
+    position: relative;
+    width: 100%;
+    height: -webkit-calc(100% - #{calc-rem($topHeight)});
+    height: calc(100% - #{calc-rem($topHeight)});
+    span{
+        display: inline-block;
+        width: calc-rem(340);
+        height: calc-rem(340);
+        position: absolute;
+        border-radius: 100%;
+        text-align: center;
+        line-height: calc-rem(340); 
+        top: 50%;
+        left: 50%;
+        transform: -webkit-translate3d(-50%, -50%, 0);
+        transform: translate3d(-50%, -50%, 0);
+        background: rgba(216,216,216,.2);
+        color: #888;
+        font-size: calc-rem(32);
+    }
+}
