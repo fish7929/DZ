@@ -13,12 +13,6 @@ export default function update (state = initialState, action){
                 username: action.data.username,
                 isLogin: true
             }
-        case ActionType.USER_LOGIN_OUT:
-            return {
-                ...state,
-                username: "",
-                isLogin: false
-            }
         default:
             return state
     }

@@ -19,34 +19,13 @@ const receiveData = data => ({
  @password 密码
 */
 export const userLogin = (userName, password) => dispatch => {
-    let url = "/api/sys/v1/user/login"
+    let url = "/pvmtsys/user/api/login"
     let opt = {
         username: userName,
         password: password
     }
 
-    dispatch(utils.sendMsg(url, opt, "POST")).then(data => {
-        dispatch({
-            type: ActionType.INIT_USER_LOGIN,
-            data: data
-        })
-       hashHistory.push(RouterConst.ROUTER_HOME)
-    })
-}
-
-export const loginOut = () => dispatch => {
-    let url = "/api/sys/v1/user/loginOff"
-    dispatch(utils.sendMsg(url, null, "GET")).then(data => {
-        dispatch({
-            type: ActionType.USER_LOGIN_OUT,
-        })
-        hashHistory.push(RouterConst.ROUTER_LOGIN)
-    })
-}
-
-export const checkLogin = () => dispatch => {
-    let url = "/api/sys/v1/user"
-    dispatch(utils.sendMsg(url, null, "GET")).then(data => {
+    dispatch(utils.sendMsg(url, opt, "GET")).then(data => {
         dispatch({
             type: ActionType.INIT_USER_LOGIN,
             data: data

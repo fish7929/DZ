@@ -80,7 +80,7 @@ class Login extends React.Component{
                     <input type="password" value={password} onChange={(e)=>this.onPasswordChange(e)} placeholder="请输入密码" />
                 </div>
                 <div className="btn-div">
-                    <button onClick={()=>hashHistory.goBack()}>登陆</button>
+                    <button onClick={()=>this.onLoginHandler()}>登陆</button>
                     <button onClick={()=>this.onLoginHandler()}><span className="icon-wx" />微信登陆</button>
                 </div>
             </Page>
