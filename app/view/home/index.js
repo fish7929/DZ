@@ -6,35 +6,72 @@ import * as RouterConst from '../../static/const/routerConst'
 import Page from '../../component/page'
 import HomeBottom from '../../component/homeBottom'
 
+import HomeContainer from './homeContainer'
+//消息中心
+import MessageCenter from '../../component/messageCenter/index';
 
-import * as HomeConst from './reducer/const'
+import { ZERO, FIRST, SECOND, THREE } from '../../static/const/constants';
 
 import './index.scss'
 
-class Home extends React.Component{
-    constructor(props, context){
+const MessageCenterData = [
+    {
+        class: 'message-center-alarm',
+        numbers: 3,
+        hint: '报警消息',
+        url: '#'
+    }, {
+        class: 'message-center-site',
+        numbers: 0,
+        hint: '站内消息',
+        url: '#'
+    },{
+        class: 'message-center-system',
+        numbers: 99,
+        hint: '系统消息',
+        url: '#'
+    },];  //测试
+class Home extends React.Component {
+    constructor(props, context) {
         super(props, context)
+        this.state = {
+            currentTab: 0   //当前标签
+        }
     }
 
-    componentDidMount(){
-
+    componentDidMount() {
     }
 
-    getHomeTabs(){
-        return HomeConst.HOME_BTN_TABS.map((obj, index) => (
-            <div className="btn-tab-item">
-                <div className={obj.icon}></div>
-                <div>{obj.title}</div>
-            </div>
-        ))
+    /**
+     * 根据不同的标签获取中间内容
+     */
+    getContentSection() {
+        let component
+        switch (this.state.currentTab) {
+            case ZERO:
+                 component = <HomeContainer />
+                 break
+            case FIRST:
+                component = <button onClick={() => hashHistory.push(RouterConst.ROUTER_LOGIN)}>登录</button>
+                break
+            case SECOND:
+                component = <MessageCenter data={MessageCenterData}/>
+                break
+            case THREE:
+                component = <button onClick={() => hashHistory.push(RouterConst.ROUTER_LOGIN)}>登录</button>
+                break
+        }
+        return component
     }
 
-    render(){
-        return(
-            <Page className="home-container">
-                <button onClick={()=>hashHistory.push(RouterConst.ROUTER_LOGIN)}>光伏运维管理平台</button>
-                <div className="btn-tabs">{this.getHomeTabs()}</div>
-                <HomeBottom tabIndex={1} onTabClick={(tab)=>console.log(tab)} />
+    render() {
+        return (
+            <Page className="home-page">
+                <div className="home-title-div">
+                    <div className="home-title">光伏运维管理平台</div>
+                </div>
+                {this.getContentSection()}
+                <HomeBottom tabIndex={1} onTabClick={(tab) => this.setState({ currentTab: parseInt(tab) })} />
             </Page>
         )
     }

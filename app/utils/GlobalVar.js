@@ -13,5 +13,3 @@ Object.defineProperties((window || global), {
         }
     }
 });
-
-// window.iDevice = device;
