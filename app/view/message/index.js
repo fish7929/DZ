@@ -27,10 +27,6 @@ class Message extends React.Component {
         super(props, context)
         let type = this.props.params && this.props.params.type;  //类型 1报警 2站内信 3系统
         this.type = parseInt(type);
-        this.state = {
-            isFetching: this.props.isFetching,
-            list: this.props.list
-        }
     }
     /**
      * 根据路由不同获取不同对象
@@ -43,7 +39,7 @@ class Message extends React.Component {
         switch (this.type) {
             case FIRST:
                 obj.title = "报警消息";
-                obj.content = <AlarmMessage data={this.state.list} />
+                obj.content = <AlarmMessage data={this.props.list} />
                 break;
             case SECOND:
                 obj.title = "站内消息";
@@ -58,12 +54,12 @@ class Message extends React.Component {
      * 渲染
      */
     render() {
-        let { isFetching, list } = this.state;
+        let { isFetching, list } = this.props;
         let _content = this.getContent();
         return (
             <Page className="login-container">
                 <Header title={_content.title} isShowBack={true} />
-                {this.state.list.length < 1 ? <div className="no-message-info"><span>暂无消息</span></div>
+                {list.length < 1 ? <div className="no-message-info"><span>暂无消息</span></div>
                     : _content.content}
             </Page>
         )
@@ -78,10 +74,12 @@ class Message extends React.Component {
 
 }
 
-let mapStateToProps = state => ({
-    isFetching: state.messageData.isFetching,
-    list: state.messageData.list
-})
+let mapStateToProps = state => {
+    return ({
+        isFetching: state.messageData.isFetching,
+        list: state.messageData.list
+    });
+}
 
 let mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ fetchData }, dispatch)

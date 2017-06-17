@@ -1,7 +1,7 @@
 /**
- * @component AlarmMessage.jsx
- * @description 报警消息组件
- * @time 2017-06-17 15:40
+ * @component SiteMessage.jsx
+ * @description 站内消息组件
+ * @time 2017-06-17 21:40
  * @author fishYu
  **/
 'use strict';
@@ -10,7 +10,7 @@ import { FIRST, SECOND, THREE } from '../../static/const/constants';
 
 import './index.scss'
 
-class AlarmMessage extends React.Component {
+class SiteMessage extends React.Component {
     /**
      * 构造函数
      * @param {object} props 属性
@@ -61,8 +61,8 @@ class AlarmMessage extends React.Component {
 
 }
 
-AlarmMessage.PropTypes = {
+SiteMessage.PropTypes = {
     data: PropTypes.array.isRequired
 }
 
-export default AlarmMessage;
+export default SiteMessage;

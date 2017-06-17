@@ -61,7 +61,7 @@ export function sendMsg(url, param, type = "GET",headers={}, repType="json"){
             dispatch(fetchMsg(url, param, type, headers, repType))
             .then(data=>{
                 if(data.code === 0){
-                    resolve&&resolve(data.result || null)
+                    resolve&&resolve(data.result || data.data || null)
                 }else if(data.code === 200){
                     reject&&reject(data)
                     hashHistory.push(RouterConst.ROUTER_LOGIN)

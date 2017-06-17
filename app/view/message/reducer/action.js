@@ -27,8 +27,8 @@ function requestData(dataType) {
  */
 function receiveData(result) {
     return {
-        type: ActionType.REQUEST_MESSAGE_DATA,
-        data: result
+        type: ActionType.RECEIVE_MESSAGE_DATA,
+        data: result.MessageSystemInfoPO
     };
 }
 
@@ -41,6 +41,6 @@ export const fetchData = (type) => dispatch => {
     // let _url = "/pvmtsys/messageSystemInfo/getMassageByType/" + type;
     let _url = "/app/test/mockup/message/messageData.json";
     dispatch(utils.sendMsg(_url, null, "GET")).then(data => {
-        dispatch(receiveData(data))
+        dispatch(receiveData(data));
     })
 }

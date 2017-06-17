@@ -47,7 +47,14 @@
 .common-active:active{
     opacity: .8;
 }
-
+.message-content-wrapper{
+    width: 100%;
+    padding-top: calc-rem(20); 
+    height: -webkit-calc(100% - #{calc-rem($topHeight)});
+    height: calc(100% - #{calc-rem($topHeight)});
+    overflow-x: hidden;
+    overflow-y: auto; 
+}
 .no-message-info{
     background: #f5f5f5;
     position: relative;
