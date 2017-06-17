@@ -1,4 +1,6 @@
 const ErrorMessage = {
+    Error_Phone_Empty               : "手机号码不能为空",
+    Error_Phone_Invalid             : "手机号码格式不正确",
     Error_Email_Empty               : "邮箱地址不能为空",
     Error_Email_Invalid             : "邮箱地址格式不正确",
     Error_Password_Empty            : "密码不能为空",
