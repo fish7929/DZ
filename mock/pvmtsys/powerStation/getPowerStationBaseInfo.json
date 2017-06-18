@@ -1,0 +1,117 @@
+{
+    "code": 0,
+    "message": "ok",
+    "data": {
+        "powerStationList": [
+            {
+                "address": "测试内容hr79",
+                "id": 1,
+                "install_capacity": 77175,
+                "lat": 74174,
+                "lng": 45252,
+                "manager": "测试内容524o",
+                "name": "测试内容7bm3"
+            },
+                        {
+                "address": "测试内容hr79",
+                "id": 1,
+                "install_capacity": 77175,
+                "lat": 74174,
+                "lng": 45252,
+                "manager": "测试内容524o",
+                "name": "测试内容7bm3"
+            },
+                        {
+                "address": "测试内容hr79",
+                "id": 1,
+                "install_capacity": 77175,
+                "lat": 74174,
+                "lng": 45252,
+                "manager": "测试内容524o",
+                "name": "测试内容7bm3"
+            },
+                        {
+                "address": "测试内容hr79",
+                "id": 1,
+                "install_capacity": 77175,
+                "lat": 74174,
+                "lng": 45252,
+                "manager": "测试内容524o",
+                "name": "测试内容7bm3"
+            },
+                        {
+                "address": "测试内容hr79",
+                "id": 1,
+                "install_capacity": 77175,
+                "lat": 74174,
+                "lng": 45252,
+                "manager": "测试内容524o",
+                "name": "测试内容7bm3"
+            },
+                        {
+                "address": "测试内容hr79",
+                "id": 1,
+                "install_capacity": 77175,
+                "lat": 74174,
+                "lng": 45252,
+                "manager": "测试内容524o",
+                "name": "测试内容7bm3"
+            },
+                        {
+                "address": "测试内容hr79",
+                "id": 1,
+                "install_capacity": 77175,
+                "lat": 74174,
+                "lng": 45252,
+                "manager": "测试内容524o",
+                "name": "测试内容7bm3"
+            },
+                        {
+                "address": "测试内容hr79",
+                "id": 1,
+                "install_capacity": 77175,
+                "lat": 74174,
+                "lng": 45252,
+                "manager": "测试内容524o",
+                "name": "测试内容7bm3"
+            },
+                        {
+                "address": "测试内容hr79",
+                "id": 1,
+                "install_capacity": 77175,
+                "lat": 74174,
+                "lng": 45252,
+                "manager": "测试内容524o",
+                "name": "测试内容7bm3"
+            },
+                        {
+                "address": "测试内容hr79",
+                "id": 1,
+                "install_capacity": 77175,
+                "lat": 74174,
+                "lng": 45252,
+                "manager": "测试内容524o",
+                "name": "测试内容7bm3"
+            },
+                        {
+                "address": "测试内容hr79",
+                "id": 1,
+                "install_capacity": 77175,
+                "lat": 74174,
+                "lng": 45252,
+                "manager": "测试内容524o",
+                "name": "测试内容7bm3"
+            },
+                        {
+                "address": "测试内容hr79",
+                "id": 1,
+                "install_capacity": 77175,
+                "lat": 74174,
+                "lng": 45252,
+                "manager": "测试内容524o",
+                "name": "测试内容7bm3"
+            }
+            
+        ]
+    }
+}
