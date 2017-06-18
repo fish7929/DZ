@@ -8,6 +8,7 @@ const Login = cb => require.ensure([], require => { cb(null, require('../view/lo
 const Home = cb => require.ensure([], require => { cb(null, require('../view/home').default)}, "Home")
 const BindMobile = cb => require.ensure([], require => { cb(null, require('../view/bindMobile').default)}, "BindMobile")
 const AlarmDetail = cb => require.ensure([], require => { cb(null, require('../view/alarmDetail').default)}, "AlarmDetail")
+const RealTimeAlarm = cb => require.ensure([], require => { cb(null, require('../view/realTimeAlarm').default)}, "RealTimeAlarm")
 
 const Message = cb => require.ensure([], require => { cb(null, require('../view/message').default)}, "message")
 const MessageDetail = cb => require.ensure([], require => { cb(null, require('../view/messageDetail').default)}, "messageDetail")
@@ -25,6 +26,10 @@ const Routers = {
 		{
 			path: RouterConst.ROUTER_BIND_MOBILE,
 			getComponent(nextState, cb){ BindMobile(cb) },
+		},
+		{
+			path: RouterConst.ROUTER_REAL_TIME_ALARM,
+			getComponent(nextState, cb){ RealTimeAlarm(cb) }
 		},
 		{
 			path: RouterConst.ROUTER_ALARM_DETAIL,

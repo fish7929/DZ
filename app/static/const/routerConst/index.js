@@ -9,6 +9,9 @@ export const ROUTER_LOGIN = ROUTER_ROOT + "/login"
 /**绑定手机号 */
 export const ROUTER_BIND_MOBILE = ROUTER_ROOT + "/bindMobile"
 
+/**实时报警 */
+export const ROUTER_REAL_TIME_ALARM = ROUTER_ROOT + "/realTimeAlarm"
+
 /**报警详情 */
 export const ROUTER_ALARM_DETAIL = ROUTER_ROOT + "/alarmDetail"
 

@@ -62,7 +62,7 @@ class Message extends React.Component {
         let { isFetching, list } = this.props;
         let _content = this.getContent();
         return (
-            <Page className="login-container">
+            <Page className="message-container">
                 <Header title={_content.title} isShowBack={true} />
                 {list.length < 1 ? 
                     <NoMessage msg="暂无消息"/>: _content.content}

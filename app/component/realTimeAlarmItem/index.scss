@@ -1,0 +1,23 @@
+@import '../../static/css/_mixins.scss';
+
+.realTime-alarm-item{
+    width: 100%;
+    height: calc-rem(220);
+    display: flex;
+
+    .warning-bg{
+        width: calc-rem(10);
+        height: 100%;
+    }
+    .warning_1{
+        background-color: #E63C3C;
+    }
+
+    .warning_2{
+        background-color: #E63C3C
+    }
+
+    .warning_3{
+        background-color: #E63C3C
+    }
+}

@@ -18,9 +18,13 @@ class HomeContianer extends React.Component {
 
     }
 
+    onTabHandler(link){
+        hashHistory.push(link)
+    }
+
     getHomeTabs(){
         return HomeConst.HOME_BTN_TABS.map((obj, index) => (
-            <div className="btn-tab-item button" key={index}>
+            <div className="btn-tab-item button" key={index} onClick={()=>this.onTabHandler(obj.link)}>
                 <div className={obj.icon}></div>
                 <div className="tab-title">{obj.title}</div>
             </div>
@@ -102,17 +106,47 @@ class HomeContianer extends React.Component {
                     </div>
                     <div className="notice-message no-wrap">与能者写奥斯卡的敬爱考虑时间阿斯兰的空间案例</div>
                 </div>
-                <div className="home-alarm-list">
+                <div className="home-alarm-content">
                     <div className="home-list-title-div">
                         <span></span>报警消息
                     </div>
-                    {this.getAlarmItem()}
+                    <div className="home-alarm-list">{this.getAlarmItem()}</div>
                     <button className="btn-alarm-more">查看7条未读消息</button>
                 </div>
-                <div className="home-monitor-list">
+                <div className="home-monitor-content">
                     <div className="home-list-title-div">
                         <span></span>电站监控
                     </div>
+                    <div className="home-monitor-list"></div>
+                    <button className="btn-monitor-more">展开</button>
+                </div>
+
+                <div className="home-rp-content">
+                    <div className="home-list-title-div">
+                        <span></span>RP值监控
+                    </div>
+                    <div className="echart-div"></div>
+                </div>
+
+                <div className="home-alarm-fb-content">
+                    <div className="home-list-title-div">
+                        <span></span>报警分布
+                    </div>
+                    <div className="echart-div"></div>
+                </div>
+
+                <div className="home-order-content">
+                    <div className="home-list-title-div">
+                        <span></span>7天工单完成量
+                    </div>
+                    <div className="echart-div"></div>
+                </div>
+
+                <div className="home-fd-content">
+                    <div className="home-list-title-div">
+                        <span></span>电站发电情况
+                    </div>
+                    <div className="echart-div"></div>
                 </div>
             </div>
         )
