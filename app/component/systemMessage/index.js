@@ -31,7 +31,7 @@ class SystemMessage extends React.Component {
     toMessageDetailHandler(e, id) {
         e.preventDefault();
         e.stopPropagation();
-        hashHistory.push('messageDetail/' + id + '/2');
+        hashHistory.push('/messageDetail/' + id + '/2');
     }
     /**
      * DOM加载完成

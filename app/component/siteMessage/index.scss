@@ -2,6 +2,7 @@
 @import '../../static/css/_variables.scss';
 
 .site-message-item {
+    position: relative;
     width: 100%;
     height: calc-rem(195);
     padding: calc-rem(30) calc-rem(40);
@@ -9,6 +10,9 @@
     margin-bottom: calc-rem(20);
     box-sizing: border-box;
     box-shadow: inset 0 -1px 0 0 #EEEEEE;
+    .site-message-swipe{
+        width: 100%;
+        height: 100%;
         div{
             font-size: calc-rem(28);
             color: #5b5b5b;
@@ -27,5 +31,19 @@
             font-size: calc-rem(24);
             color: #999;
         }
+    }
+    .site-message-item-del{
+        position: absolute;
+        right:  calc-rem(-160);
+        top: 0;
+        display: inline-block;
+        width: calc-rem(160);
+        height: 100%;
+        background: #FC0B0B;
+        font-size: calc-rem(28);
+        color: $whiteColor;
+        text-align: center;
+        line-height: calc-rem(195);
+    }
 }
 

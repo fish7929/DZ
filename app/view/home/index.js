@@ -19,17 +19,17 @@ const MessageCenterData = [
         class: 'message-center-alarm',
         numbers: 3,
         hint: '报警消息',
-        url: 'message/1'
+        url: '/message/1'
     }, {
         class: 'message-center-site',
         numbers: 0,
         hint: '站内消息',
-        url: 'message/2'
+        url: '/message/2'
     },{
         class: 'message-center-system',
         numbers: 99,
         hint: '系统消息',
-        url: 'message/3'
+        url: '/message/3'
     },];  //测试
 class Home extends React.Component {
     constructor(props, context) {
