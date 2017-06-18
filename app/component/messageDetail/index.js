@@ -36,8 +36,8 @@ class CommonMessageDetail extends React.Component {
         return (
             <div className="message-detail-wrapper">
                 <div className="message-detail-title">
-                    <div>{_title}</div>
-                    {_userInfo ? <div className="message-detail-user-info">{_userInfo}</div> : null}
+                    <div className="no-wrap">{_title}</div>
+                    {_userInfo ? <div className="message-detail-user-info no-wrap">{_userInfo}</div> : null}
                     <div>{_time}</div>
                 </div>
                 <div className="message-detail-content">

@@ -43,8 +43,8 @@ class AlarmMessageItem extends React.Component {
                     <span className={"alarm-message-status" + data.massageStatus}>{massageStatus}</span>
                 </div>
                 <div className="alarm-message-right">
-                    <div>{data.title}</div>
-                    <div>{data.content}</div>
+                    <div className="no-wrap">{data.title}</div>
+                    <div className="no-wrap">{data.content}</div>
                     <div><span>{data.createTime}</span><span>230.22</span></div>
                 </div>
             </li>

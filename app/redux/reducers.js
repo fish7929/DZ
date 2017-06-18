@@ -6,3 +6,4 @@
 export loginReducer from '../view/login/reducer';
 export messageData from '../view/message/reducer';
 export messageDetail from '../view/messageDetail/reducer';
+export homeData from '../view/home/reducer';

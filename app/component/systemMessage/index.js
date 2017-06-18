@@ -46,11 +46,10 @@ class SystemMessage extends React.Component {
             <ul className="message-content-wrapper">
                 {this.state.list.map((item, index) => {
                     let readClass = item.MessageUserInfoPO[0] && item.MessageUserInfoPO[0].isread == FIRST ? 'message-read' : '';
-                    let userInfo = "调度中心 - 张三";
                     return (<li key={index} className={"system-message-item " + readClass}
                         onClick={(e) => this.toMessageDetailHandler(e, item.id)}>
                         <div><span>公告</span></div>
-                        <div>{item.title}</div>
+                        <div className="no-wrap">{item.title}</div>
                         <div>{item.createTime}</div>
                     </li>)
                 })}

@@ -1,0 +1,13 @@
+{
+    "code": 0,
+    "message": "ok",
+    "data": {
+        "IsReadCount": [
+            {
+                "alarmCount": 14452,
+                "letterCount": 56644,
+                "noticeCount": 37732
+            }
+        ]
+    }
+}

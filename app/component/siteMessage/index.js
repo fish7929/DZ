@@ -100,8 +100,8 @@ class SiteMessage extends React.Component {
                         <SwipeWrapper className="site-message-swipe"
                             onClick={(e) => this.toMessageDetailHandler(e, item.id)}
                             onSwipeLeft={() => this.onSwipeLeftHandler(_itemRef)} onSwipeRight={() => this.onSwipeRightHandler(_itemRef)}>
-                            <div>{item.title}</div>
-                            <div>{userInfo}</div>
+                            <div className="no-wrap">{item.title}</div>
+                            <div className="no-wrap">{userInfo}</div>
                             <div>{item.createTime}</div>
                         </SwipeWrapper>
                         <span className="site-message-item-del common-active" onClick={(e) => this.onDeleteSiteMessageHandler(e, item.id)}>删除</span>

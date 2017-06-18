@@ -1,0 +1,90 @@
+@import '../../static/css/_mixins.scss';
+@import '../../static/css/_variables.scss';
+@mixin work-order-common{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 calc-rem(40);
+    font-size: calc-rem(32);
+    color: #333;
+    border-bottom: $commonBorder;
+    background: $whiteColor;
+}
+.work-order-item{
+    width: 100%;
+    margin-bottom: calc-rem(20);
+    .work-order-number{
+        @include work-order-common;
+        height: calc-rem(90);
+        line-height: calc-rem(90);
+    }
+    .work-order-item-hint{
+       @include work-order-common;
+        height: calc-rem(100);
+        line-height: calc-rem(100);
+        font-size: calc-rem(24);
+        color: #666;
+        span{
+            float: right;
+            width: 68%;
+            height: 100%;
+            font-size: calc-rem(32);
+            color: #333;
+            text-align: right;
+        }
+    }
+    .work-order-item-logo{
+        height: calc-rem(80);
+        line-height: calc-rem(80);
+        border-bottom: $commonBorder;
+        margin-bottom: 0;
+        background: url($workOrderIcon) calc-rem(40) center no-repeat $whiteColor;
+        background-size: calc-rem(44); 
+        span{
+            float: right;
+            width: calc-rem(80);
+            margin-left: calc-rem(40);
+            height: calc-rem(40);
+            margin-top: calc-rem(20);
+            border-radius: calc-rem(20); 
+        }
+    }
+    .work-order-item-logo:last-child{
+        border-bottom: 0;
+    }
+    .work-order-item-submit{
+        width: 100%;
+        height: calc-rem(168);
+        text-align: center;
+        padding-top: calc-rem(30);
+        background: $whiteColor;
+        div{
+            display: block;
+            width: calc-rem(280);
+            height: calc-rem(68);
+            border: .5px solid #FE5A08;
+            color: #FE5A08;
+            font-size: calc-rem(32);
+            border-radius: calc-rem(34);
+            line-height:calc-rem(64); 
+            text-align: center;
+            margin: 0 auto;
+            margin-bottom: calc-rem(10);
+        }
+        span{
+            color: #999;
+            font-size: calc-rem(24);
+        }
+    }
+}
+.work-order-item-edit{
+    background: url($editIcon) center no-repeat;
+    background-size: calc-rem(80) calc-rem(40);  
+}
+.treated-icon{
+    background: url($treatedIcon) center no-repeat;
+    background-size: calc-rem(80) calc-rem(40);  
+}
+.untreated-icon{
+    background: url($untreatedIcon) center no-repeat;
+    background-size: calc-rem(80) calc-rem(40);    
+}

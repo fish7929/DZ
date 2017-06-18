@@ -1,0 +1,36 @@
+@import '../../../static/css/_variables.scss';
+@import '../../../static/css/_mixins.scss';
+
+.work-order-container{
+    width: 100%;
+    height: -webkit-clac(100% - #{calc-rem($topHeight)});
+    height: clac(100% - #{calc-rem($topHeight)});
+    position: relative;
+    .work-order-tabs{
+        width: 100%;
+        height: calc-rem(80);
+        line-height: calc-rem(80);
+        font-size: calc-rem(28);
+        box-sizing: border-box;
+        border-top: $commonBorder;
+        background: $whiteColor;
+        margin-bottom: calc-rem(20);
+        position: fixed;
+        z-index: 2;
+        span{
+            display: inline-block;
+            width: 50%;
+            text-align: center;
+            color: #4A4A4A;
+        }
+        .work-order-tab-selected{
+            color: #FE5A08;
+        }
+    }
+    .work-order-content{
+        position: absolute;
+        top: calc-rem(100);
+        width: 100%;
+        left: 0;
+    }
+}

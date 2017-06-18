@@ -1,0 +1,83 @@
+{
+    "code": 0,
+    "message": "ok",
+    "data": {
+        "workOrderInfo": [
+            {
+                "allocateTime": "2017-05-16 22:31:14",
+                "createTime": "2017-05-16 22:31:14",
+                "createUser": "张三",
+                "departureState": 1,   
+                "faultNum": 4, 
+                "faultState": 1,  
+                "maintenanceUser": 51268,  
+                "orderId": 13436,  
+                "orderNumber": 170321, 
+                "physicalState": 1,  
+                "powerstationId": 58838, 
+                "powerstationName": "江苏省镇江2.12MW分布式光伏电站",  
+                "state": 1 
+            },
+            {
+                "allocateTime": "2017-05-16 22:31:14",
+                "createTime": "2017-05-16 22:31:14",
+                "createUser": "张三",
+                "departureState": 1,   
+                "faultNum": 4,  
+                "faultState": 0,  
+                "maintenanceUser": 512682,  
+                "orderId": 134362,  
+                "orderNumber": 170322,  
+                "physicalState": 0,  
+                "powerstationId": 588382, 
+                "powerstationName": "江苏省镇江2.12MW分布式光伏电站2",  
+                "state": 1  
+            },
+            {
+                "allocateTime": "2017-05-16 22:31:14",
+                "createTime": "2017-05-16 22:31:14",
+                "createUser": "张三",
+                "departureState": 1,   
+                "faultNum": 2, 
+                "faultState": 0,  
+                "maintenanceUser": 512683,  
+                "orderId": 134363,  
+                "orderNumber": 170323,  
+                "physicalState": 1,  
+                "powerstationId": 588383,  
+                "powerstationName": "江苏省镇江2.12MW分布式光伏电站3",  
+                "state": 1  
+            },
+            {
+                "allocateTime": "2017-05-16 22:31:14",
+                "createTime": "2017-05-16 22:31:14",
+                "createUser": "张三",
+                "departureState": 1,   
+                "faultNum": 3,  
+                "faultState": 1,  
+                "maintenanceUser": 512684,  
+                "orderId": 134364,  
+                "orderNumber": 170324, 
+                "physicalState": 1,  
+                "powerstationId": 588384,  
+                "powerstationName": "江苏省镇江2.12MW分布式光伏电站4", 
+                "state": 1 
+            },
+            {
+                "allocateTime": "2017-05-16 22:31:14",
+                "createTime": "2017-05-16 22:31:14",
+                "createUser": "张三",
+                "departureState": 0,   
+                "faultNum": 2, 
+                "faultState": 0,  
+                "maintenanceUser": 512685,  
+                "orderId": 13436,  
+                "orderNumber": 170325, 
+                "physicalState": 0, 
+                "powerstationId": 588385,  
+                "powerstationName": "江苏省镇江2.12MW分布式光伏电站5", 
+                "state": 1
+            }
+        ]
+    }
+}

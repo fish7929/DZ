@@ -37,6 +37,13 @@ class MessageCenter extends React.Component {
      */
     componentDidMount() {
     }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.data) {
+            this.setState({
+                list: nextProps.data
+            });
+        }
+    }
     /**
      * 渲染
      */
@@ -46,7 +53,7 @@ class MessageCenter extends React.Component {
                 {this.state.list.map((item, index) =>
                     <li key={index} className={"common-item common-next common-active common-pseudo " + item.class}
                         onClick={(e) => this.toNextHandler(e, item.url)} data-hint={item.hint}>
-                        {item.numbers ? <span className="message-bubble">{item.numbers}</span> : null}
+                        {item.numbers ? <span className="message-bubble">{item.numbers > 99 ? '99+' : item.numbers}</span> : null}
                     </li>
                 )}
             </ul>
