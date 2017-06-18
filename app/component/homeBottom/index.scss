@@ -3,27 +3,92 @@
 .home-bottom-container{
     width: 100%;
     height: calc-rem(98);
-    position: fixed;
-    bottom: 0;
     background: #fff;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 calc-rem(40);
+    box-shadow: 0 -2px 2px 0 #EEEEEE;
 
-
-    .btn-item{
-        width: 25%;
+    .btn-div{
+        width: calc-rem(80);
         height: 100%;
+        padding-top: calc-rem(15);
         display: inline-block;
+        text-align: center;
+    }
+
+    .btn_item.selected{
+        span{
+            color: #EE7737 !important;    
+        }
     }
 
     .icon{
-        width: 100%;
-        height: 3rem;
+        margin: 0 auto;
+        width: calc-rem(50);
+        height: calc-rem(50);
     }
 
+    span{
+        margin-top: calc-rem(4);
+        font-size: calc-rem(20);
+        color: #333333;
+        letter-spacing: calc-rem(0.12);
+    }
 
-    .button{
-        width: 3rem;
-        height: 100%;
-        text-align: center;
-        margin: 0 auto;
+    .btn_home{
+        .icon{
+            background: url(./images/home.png) no-repeat center;
+            background-size: calc-rem(50);    
+        }
+    }
+
+    .btn_home.selected{
+        .icon{
+            background: url(./images/home-selected.png) no-repeat center;
+            background-size: calc-rem(50);
+        }
+    }
+
+    .btn_order{
+        .icon{
+            background: url(./images/order.png) no-repeat center;
+            background-size: calc-rem(50);
+        }
+    }
+
+    .btn_order.selected{
+        .icon{
+            background: url(./images/order-selected.png) no-repeat center;
+            background-size: calc-rem(50);    
+        }
+    }
+
+    .btn_message{
+        .icon{
+            background: url(./images/message.png) no-repeat center;
+            background-size: calc-rem(50);
+        }
+    }
+
+    .btn_message.selected{
+        .icon{
+            background: url(./images/message-selected.png) no-repeat center;
+            background-size: calc-rem(50);    
+        }
+    }
+
+    .btn_my{
+        .icon{
+            background: url(./images/my.png) no-repeat center;
+            background-size: calc-rem(50);
+        }
+    }
+
+    .btn_my.selected{
+        .icon{
+            background: url(./images/my-selected.png) no-repeat center;
+            background-size: calc-rem(50);
+        }
     }
 }

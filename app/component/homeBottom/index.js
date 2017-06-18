@@ -16,13 +16,14 @@ class HomeBottom extends React.Component{
     }
 
     getBtnClass(type, tabIndex){
+        console.log(type, tabIndex, tabIndex==type);
         return classnames({
-            button: true,
-            btn_home: type === 0 ? true : false,
-            btn_order: type === 1 ? true : false,
-            btn_message: type === 2 ? true : false,
-            btn_my: type === 3 ? true : false,
-            active: tabIndex === type ? true : false
+            btn_item: true,
+            btn_home: type === 0,
+            btn_order: type === 1,
+            btn_message: type === 2,
+            btn_my: type === 3,
+            selected: tabIndex === type
         })
     }
 
@@ -31,26 +32,26 @@ class HomeBottom extends React.Component{
 
         return(
             <div className="home-bottom-container">
-                <div className="btn-item">
-                    <div className={this.getBtnClass(0, tabIndex)} onClick={()=>onTabClick(0)}>
+                <div className="btn-div" onClick={()=>onTabClick(0)}>
+                    <div className={this.getBtnClass(0, tabIndex)}>
                         <div className="icon"></div>
                         <span>首页</span>
                     </div>
                 </div>
-                <div className="btn-item">
-                    <div className={this.getBtnClass(1, tabIndex)} onClick={()=>onTabClick(1)}>
+                <div className="btn-div" onClick={()=>onTabClick(1)}>
+                    <div className={this.getBtnClass(1, tabIndex)}>
                         <div className="icon"></div>
                         <span>工单</span>
                     </div>
                 </div>
-                <div className="btn-item">
-                    <div className={this.getBtnClass(2, tabIndex)} onClick={()=>onTabClick(2)}>
+                <div className="btn-div" onClick={()=>onTabClick(2)}>
+                    <div className={this.getBtnClass(2, tabIndex)}>
                         <div className="icon"></div>
                         <span>消息</span>
                     </div>
                 </div>
-                <div className="btn-item">
-                    <div className={this.getBtnClass(3, tabIndex)} onClick={()=>onTabClick(3)}>
+                <div className="btn-div" onClick={()=>onTabClick(3)}>
+                    <div className={this.getBtnClass(3, tabIndex)}>
                         <div className="icon"></div>
                         <span>我的</span>
                     </div>

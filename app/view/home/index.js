@@ -73,7 +73,7 @@ class Home extends React.Component {
                 <div className="home-main">
                     {this.getContentSection()}
                 </div>
-                <HomeBottom tabIndex={1} onTabClick={(tab) => this.setState({ currentTab: parseInt(tab) })} />
+                <HomeBottom tabIndex={this.state.currentTab} onTabClick={(tab) => this.setState({ currentTab: parseInt(tab) })} />
             </Page>
         )
     }

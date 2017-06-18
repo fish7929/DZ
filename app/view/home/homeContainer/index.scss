@@ -117,11 +117,13 @@
         }
     }
 
-    .home-alarm-list{
+    .home-alarm-content, .home-monitor-content, .home-rp-content, .home-alarm-fb-content, .home-order-content, .home-fd-content{
         margin-top: calc-rem(20);
         padding-top: calc-rem(30);
         background: #fff;
+    }
 
+    .home-alarm-content{
         .btn-alarm-more{
             width: 100%;
             height: calc-rem(100);
@@ -132,9 +134,14 @@
         }
     }
 
-    .home-monitor-list{
-        margin-top: calc-rem(20);
-        padding-top: calc-rem(30);
-        background: #fff;
+    .home-monitor-content{
+        .btn-monitor-more{
+            width: 100%;
+            height: calc-rem(100);
+            background: #FFFFFF;
+            font-size: calc-rem(28);
+            color: #999999;
+            letter-spacing: calc-rem(1.34);
+        }
     }
 }

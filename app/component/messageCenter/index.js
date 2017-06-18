@@ -6,7 +6,7 @@
  **/
 'use strict';
 import React, { PropTypes } from 'react';
-import { hashHistory } from 'react-router';
+import { hashHistory } from 'react-router'
 
 import './index.scss'
 
