@@ -12,7 +12,7 @@ export const HOME_BTN_TABS = [
     {
         icon: "icon-monitor",
         title: "电站监控",
-        link: ""
+        link: RouterConst.ROUTER_POWER_STATION_MONITOR
     },
     {
         icon: "icon-feedback",

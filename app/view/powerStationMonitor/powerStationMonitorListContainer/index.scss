@@ -1,0 +1,12 @@
+@import '../../../static/css/_mixins.scss';
+@import '../../../static/css/_variables.scss';
+
+.psm-list-container{
+    width: 100%;
+    height: calc(100% - #{calc-rem($topHeight)});
+    overflow: auto;
+
+    .psm-list-item{
+        margin-top: calc-rem(20);
+    }
+}

@@ -13,16 +13,16 @@ class RealTimeAlarmItem extends React.Component{
     render(){
         let { data } = this.props
         return(
-            <div className="realTime-alarm-item">
-                <div className="warning-bg"></div>
-                <div>
-                    <div></div>
-                    <div></div>
+            <div className="realTime-alarm-item" onClick={this.props.onClick}>
+                <div className={"warning-bg warning_" + data.alarmGrade}></div>
+                <div className="status-div">
+                    <div className={"icon alarm_level_"+data.alarmGrade}></div>
+                    <div className={"status-icon " + (data.status == 1 ? "submited" : "notsubmited")}></div>
                 </div>
-                <div>
-                    <div>江苏省神降师恒顺醋业分布式光伏电站</div>
-                    <div>直流电压过低</div>
-                    <div>2017-05-12 22:30:14</div>
+                <div className="txt-div">
+                    <div className="name-txt no-wrap">{data.plantName}</div>
+                    <div className="desc-txt no-wrap">{data.alarmMessage}</div>
+                    <div className="date-txt no-wrap">{data.alarmTime}</div>
                 </div>
             </div>
         )
@@ -30,7 +30,8 @@ class RealTimeAlarmItem extends React.Component{
 }
 
 RealTimeAlarmItem.PropTypes = {
-    data: PropTypes.object.isRequire
+    data: PropTypes.object.isRequire,
+    onClick: PropTypes.func
 }
 
 export default RealTimeAlarmItem

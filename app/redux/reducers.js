@@ -4,6 +4,9 @@
  */
 'use strict'
 export loginReducer from '../view/login/reducer';
+export realTimeAlarmReducer from '../view/realTimeAlarm/reducer'
+
+export powerStationMonitorReducer from '../view/powerStationMonitor/reducer'
 export messageData from '../view/message/reducer';
 export messageDetail from '../view/messageDetail/reducer';
 export homeData from '../view/home/reducer';
