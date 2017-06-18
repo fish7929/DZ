@@ -63,20 +63,20 @@ export const fetchData = (category, status = 0) => dispatch => {
     let _url = "";
     switch(category) {
         case ZERO:
-            _url = "/app/mockup/home/messageCenter.json";
+            _url = "/home/messageCenter";
             break;
         case FIRST:
             if(status == ZERO){
-                _url = "/app/mockup/home/workOrderInfo0.json";
+                _url = "/home/workOrderInfo0";
             }else if(status == FIRST){
-                _url = "/app/mockup/home/workOrderInfo1.json";
+                _url = "/home/workOrderInfo1";
             }
             break;
         case SECOND:
-            _url = "/app/mockup/home/messageCenter.json";
+            _url = "/home/messageCenter";
             break;
         case THREE:
-            _url = "/app/mockup/home/messageCenter.json";
+            _url = "/home/messageCenter";
             break;
     }
     dispatch(utils.sendMsg(_url, null, "GET")).then(data => {

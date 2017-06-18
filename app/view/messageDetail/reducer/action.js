@@ -40,7 +40,7 @@ function receiveData(result) {
 export const fetchData = (id, type) => dispatch => {
     dispatch(requestData(type));
     // let _url = "/pvmtsys/messageSystemInfo/getMassageByType/" + type;
-    let _url = type == 1 ? "/app/mockup/message/siteMessageDetail.json" : "/app/mockup/message/systemMessageDetail.json";
+    let _url = type == 1 ? "/message/siteMessageDetail" : "/message/systemMessageDetail";
     dispatch(utils.sendMsg(_url, null, "GET")).then(data => {
         dispatch(receiveData(data));
     })

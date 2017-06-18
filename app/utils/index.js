@@ -54,7 +54,7 @@ const fetchMsg = (url, param, type = "GET", headers={}, repType="json") => {
 export function sendMsg(url, param, type = "GET",headers={}, repType="json"){
 
     if(process.env.NODE_ENV == "develop"){
-        url = "/mock" + url +".json";
+        url = "/app/mockup" + url +".json";
     }
 
     return (dispatch, getState) => {
