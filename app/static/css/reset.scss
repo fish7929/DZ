@@ -87,6 +87,11 @@ input{
     outline : 0;
 }
 
+textarea{
+    outline: 0;
+    resize: none;
+}
+
 a{
     text-decoration:none;
 }

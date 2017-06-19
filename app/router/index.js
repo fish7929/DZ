@@ -12,6 +12,8 @@ const AlarmDetail = cb => require.ensure([], require => { cb(null, require('../v
 const AlarmSearch = cb => require.ensure([], require => { cb(null, require('../view/alarmSearch').default)}, "AlarmSearch")
 /**电站监控 */
 const PowerStationMonitor = cb => require.ensure([], require => { cb(null, require('../view/powerStationMonitor').default)}, "PowerStationMonitor")
+/**电站详情 */
+const PowerStationMonitorDetail = cb => require.ensure([], require => { cb(null, require('../view/powerStationMonitorDetail').default)}, "PowerStationMonitorDetail")
 
 const Message = cb => require.ensure([], require => { cb(null, require('../view/message').default)}, "message");
 const MessageDetail = cb => require.ensure([], require => { cb(null, require('../view/messageDetail').default)}, "messageDetail");
@@ -47,6 +49,10 @@ const Routers = {
 		{
 			path: RouterConst.ROUTER_POWER_STATION_MONITOR,
 			getComponent(nextState, cb){ PowerStationMonitor(cb) },
+		},
+		{
+			path: RouterConst.ROUTER_POWER_STATION_MONITOR_DETAIL + "/:id",
+			getComponent(nextState, cb){ PowerStationMonitorDetail(cb) },
 		},
 		{
 			path: RouterConst.ROUTER_MESSAGE + "/:type",

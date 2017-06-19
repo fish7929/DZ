@@ -21,6 +21,18 @@ export const Router_AlARM_SEARCH = ROUTER_ROOT + "/alarmSearch"
 /**电站监控 */
 export const ROUTER_POWER_STATION_MONITOR = ROUTER_ROOT + "/poweSM"
 
+/**电站详情 */
+export const ROUTER_POWER_STATION_MONITOR_DETAIL = ROUTER_ROOT + "/poweSMDetail"
+
+/**逆变器列表 */
+export const ROUTER_INVERTER_LIST = ROUTER_ROOT + "/inverter"
+
+/**逆变器详情 */
+export const ROUTER_INVERTER_DETAIL = ROUTER_ROOT + "/inverterDetail"
+
+/**电表列表 */
+export const ROUTER_AMMETER_LIST = ROUTER_ROOT + "/ammeter"
+
 /**消息页面 */
 export const ROUTER_MESSAGE = ROUTER_ROOT + "/message";
 /**消息详情页面 */

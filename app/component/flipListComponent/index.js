@@ -20,10 +20,13 @@ class FlipListComponent extends React.Component{
     }
 
     componentDidUpdate(){
-        let { isShow } = this.state
-        let _h = this.refs.flipList.offsetHeight
-        this.listHeight = _h > 0 ? _h : this.listHeight
-        this.refs.flipList.style.height = isShow ? this.listHeight + "px" : 0
+        setTimeout(()=>{
+            let { isShow } = this.state
+            let _h = this.refs.flipList.offsetHeight
+            console.log(_h);
+            this.listHeight = _h > 0 ? _h : this.listHeight
+            this.refs.flipList.style.height = isShow ? this.listHeight + "px" : 0
+        }, 10)
     }
 
     onClickHandler(){
