@@ -1,0 +1,179 @@
+{
+    "code": 0,
+    "message": "ok",
+    "data": {
+        "MessageSystemInfoPO": [
+            {
+                "MessageUserInfoPO": [
+                    {
+                        "isread": 0,
+                        "messageId": 30238,
+                        "updateTime": "2017-05-16 22:31:14",
+                        "userId": 43864
+                    }
+                ],
+                "content": "直流电压过低",
+                "createTime": "2017-05-16 22:31:14",
+                "forcedPush": 1,
+                "id": 87400,
+                "massageStatus": 1,
+                "massageLevel": 1,
+                "messageId": 80827,
+                "messageType": 2,
+                "title": "江苏省湛江市恒顺醋页分布式光伏电站"
+            },
+            {
+                "MessageUserInfoPO": [
+                    {
+                        "isread": 0,
+                        "messageId": 30238,
+                        "updateTime": "2017-05-16 22:31:14",
+                        "userId": 43864
+                    }
+                ],
+                "content": "直流电压过低",
+                "createTime": "2017-05-16 22:31:14",
+                "forcedPush": 1,
+                "id": 87401,
+                "massageStatus": 2,
+                "massageLevel": 2,
+                "messageId": 80827,
+                "messageType": 2,
+                "title": "江苏省湛江市恒顺醋页分布式光伏电站"
+            },
+            {
+                "MessageUserInfoPO": [
+                    {
+                        "isread": 1,
+                        "messageId": 30238,
+                        "updateTime": "2017-05-16 22:31:14",
+                        "userId": 43864
+                    }
+                ],
+                "content": "直流电压过低",
+                "createTime": "2017-05-16 22:31:14",
+                "forcedPush": 1,
+                "id": 87402,
+                "massageStatus": 3,
+                "massageLevel": 3,
+                "messageId": 80827,
+                "messageType": 2,
+                "title": "江苏省湛江市恒顺醋页分布式光伏电站"
+            },
+            {
+                "MessageUserInfoPO": [
+                    {
+                        "isread": 0,
+                        "messageId": 30238,
+                        "updateTime": "2017-05-16 22:31:14",
+                        "userId": 43864
+                    }
+                ],
+                "content": "直流电压过低",
+                "createTime": "2017-05-16 22:31:14",
+                "forcedPush": 1,
+                "id": 87403,
+                "massageStatus": 1,
+                "massageLevel": 2,
+                "messageId": 80827,
+                "messageType": 2,
+                "title": "江苏省湛江市恒顺醋页分布式光伏电站"
+            },
+            {
+                "MessageUserInfoPO": [
+                    {
+                        "isread": 0,
+                        "messageId": 30238,
+                        "updateTime": "2017-05-16 22:31:14",
+                        "userId": 43864
+                    }
+                ],
+                "content": "直流电压过低",
+                "createTime": "2017-05-16 22:31:14",
+                "forcedPush": 1,
+                "id": 87404,
+                "massageStatus": 1,
+                "massageLevel": 3,
+                "messageId": 80827,
+                "messageType": 2,
+                "title": "江苏省湛江市恒顺醋页分布式光伏电站"
+            },
+            {
+                "MessageUserInfoPO": [
+                    {
+                        "isread": 0,
+                        "messageId": 30238,
+                        "updateTime": "2017-05-16 22:31:14",
+                        "userId": 43864
+                    }
+                ],
+                "content": "直流电压过低",
+                "createTime": "2017-05-16 22:31:14",
+                "forcedPush": 1,
+                "id": 87405,
+                "massageStatus": 2,
+                "massageLevel": 2,
+                "messageId": 80827,
+                "messageType": 2,
+                "title": "江苏省湛江市恒顺醋页分布式光伏电站"
+            },
+            {
+                "MessageUserInfoPO": [
+                    {
+                        "isread": 1,
+                        "messageId": 30238,
+                        "updateTime": "2017-05-16 22:31:14",
+                        "userId": 43864
+                    }
+                ],
+                "content": "直流电压过低",
+                "createTime": "2017-05-16 22:31:14",
+                "forcedPush": 1,
+                "id": 87406,
+                "massageStatus": 3,
+                "massageLevel": 3,
+                "messageId": 80827,
+                "messageType": 2,
+                "title": "江苏省湛江市恒顺醋页分布式光伏电站"
+            },
+            {
+                "MessageUserInfoPO": [
+                    {
+                        "isread": 0,
+                        "messageId": 30238,
+                        "updateTime": "2017-05-16 22:31:14",
+                        "userId": 43864
+                    }
+                ],
+                "content": "直流电压过低",
+                "createTime": "2017-05-16 22:31:14",
+                "forcedPush": 1,
+                "id": 87407,
+                "massageStatus": 1,
+                "massageLevel": 2,
+                "messageId": 80827,
+                "messageType": 2,
+                "title": "江苏省湛江市恒顺醋页分布式光伏电站"
+            },
+            {
+                "MessageUserInfoPO": [
+                    {
+                        "isread": 0,
+                        "messageId": 30238,
+                        "updateTime": "2017-05-16 22:31:14",
+                        "userId": 43864
+                    }
+                ],
+                "content": "直流电压过低",
+                "createTime": "2017-05-16 22:31:14",
+                "forcedPush": 1,
+                "id": 87408,
+                "massageStatus": 1,
+                "massageLevel": 3,
+                "messageId": 80827,
+                "messageType": 2,
+                "title": "江苏省湛江市恒顺醋页分布式光伏电站"
+            }
+        ]
+    }
+}

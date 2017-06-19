@@ -1,6 +1,9 @@
 @import '../../static/css/_mixins.scss';
 @import '../../static/css/_variables.scss';
-
+.message-center-wrapper{
+    width: 100%;
+    padding-top: calc-rem(20);
+}
 .message-center-alarm{
     background: url($alarmIcon) calc-rem(40) center no-repeat $whiteColor;
     background-size: calc-rem(44);

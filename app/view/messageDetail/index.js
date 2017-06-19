@@ -65,7 +65,8 @@ class MessageDetail extends React.Component {
      * 加载完成
      */
     componentDidMount() {
-        this.props.fetchData(this.id, this.type);
+        let status = this.type == FIRST ? null : this.type;
+        this.props.fetchData(this.id, status);
     }
 
 }

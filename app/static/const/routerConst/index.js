@@ -22,6 +22,8 @@ export const Router_AlARM_SEARCH = ROUTER_ROOT + "/alarmSearch"
 export const ROUTER_POWER_STATION_MONITOR = ROUTER_ROOT + "/poweSM"
 
 /**消息页面 */
-export const ROUTER_MESSAGE = ROUTER_ROOT + "/message/:type";
+export const ROUTER_MESSAGE = ROUTER_ROOT + "/message";
 /**消息详情页面 */
-export const ROUTER_MESSAGE_DETAIL = ROUTER_ROOT + "/messageDetail/:id/:type"
+export const ROUTER_MESSAGE_DETAIL = ROUTER_ROOT + "/messageDetail";
+/**故障列表 */
+export const ROUTER_FAULT_LIST = ROUTER_ROOT + "/faultList"

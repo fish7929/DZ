@@ -13,8 +13,10 @@ const AlarmSearch = cb => require.ensure([], require => { cb(null, require('../v
 /**电站监控 */
 const PowerStationMonitor = cb => require.ensure([], require => { cb(null, require('../view/powerStationMonitor').default)}, "PowerStationMonitor")
 
-const Message = cb => require.ensure([], require => { cb(null, require('../view/message').default)}, "message")
-const MessageDetail = cb => require.ensure([], require => { cb(null, require('../view/messageDetail').default)}, "messageDetail")
+const Message = cb => require.ensure([], require => { cb(null, require('../view/message').default)}, "message");
+const MessageDetail = cb => require.ensure([], require => { cb(null, require('../view/messageDetail').default)}, "messageDetail");
+/**故障列表 */
+const FaultList = cb => require.ensure([], require => { cb(null, require('../view/faultList').default)}, "faultList")
 const Routers = {
 	path: RouterConst.ROUTER_HOME,
 	getComponent(nextState, cb){ App(cb) },
@@ -47,12 +49,16 @@ const Routers = {
 			getComponent(nextState, cb){ PowerStationMonitor(cb) },
 		},
 		{
-			path: RouterConst.ROUTER_MESSAGE,
+			path: RouterConst.ROUTER_MESSAGE + "/:type",
 			getComponent(nextState, cb){ Message(cb) },
 		},
 		{
-			path: RouterConst.ROUTER_MESSAGE_DETAIL,
+			path: RouterConst.ROUTER_MESSAGE_DETAIL + "/:id/:type",
 			getComponent(nextState, cb){ MessageDetail(cb) },
+		},
+		{
+			path: RouterConst.ROUTER_FAULT_LIST + "/:order/:param",
+			getComponent(nextState, cb){ FaultList(cb) },
 		}
 	]
 }

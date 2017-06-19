@@ -17,21 +17,6 @@
         height: calc-rem(90);
         line-height: calc-rem(90);
     }
-    .work-order-item-hint{
-       @include work-order-common;
-        height: calc-rem(100);
-        line-height: calc-rem(100);
-        font-size: calc-rem(24);
-        color: #666;
-        span{
-            float: right;
-            width: 68%;
-            height: 100%;
-            font-size: calc-rem(32);
-            color: #333;
-            text-align: right;
-        }
-    }
     .work-order-item-logo{
         height: calc-rem(80);
         line-height: calc-rem(80);

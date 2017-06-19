@@ -67,11 +67,7 @@ export const fetchData = (category, status = 0) => dispatch => {
             _url = Api.MessageCenter;
             break;
         case FIRST:
-            if(status == ZERO){
-                _url = Api.WorkOrderInfo0;
-            }else if(status == FIRST){
-                _url = Api.WorkOrderInfo1;
-            }
+            _url = Api.GetWorkOrdrDataByStatus(status);
             break;
         case SECOND:
             _url = Api.MessageCenter;

@@ -11,3 +11,4 @@ export powerStationMonitorReducer from '../view/powerStationMonitor/reducer'
 export messageData from '../view/message/reducer';
 export messageDetail from '../view/messageDetail/reducer';
 export homeData from '../view/home/reducer';
+export faultData from '../view/faultList/reducer';

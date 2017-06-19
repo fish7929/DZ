@@ -1,0 +1,63 @@
+/**
+ * @component index.scss
+ * @description 故障列表样式。
+ * @time 2017-06-19 23:30
+ * @author fishYu
+ **/
+@import '../../static/css/_mixins.scss';
+.fault-list-title{
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: calc-rem(20);
+    padding: calc-rem(30) calc-rem(40);
+    color: #333;
+    border-bottom: $commonBorder;
+    background: $whiteColor;
+    height: calc-rem(148);
+    font-size: calc-rem(24);
+    color: #666;
+    line-height: calc-rem(24);
+    span{
+        display: block;
+        width: 100%;
+        text-align: left;
+        font-size: calc-rem(32);
+        line-height: calc-rem(98);
+        color: #333;
+    }
+}
+.fault-pseudo{
+    &:before{
+        left: calc-rem(40);
+    }
+}
+
+.fault-item-logo{
+    height: calc-rem(80);
+    line-height: calc-rem(80);
+    border-bottom: $commonBorder;
+    margin-bottom: 0;
+    background: url($faultIcon) calc-rem(40) center no-repeat $whiteColor;
+    background-size: calc-rem(44); 
+    span{
+        float: right;
+        width: calc-rem(120);
+        margin-left: calc-rem(40);
+        height: calc-rem(40);
+        line-height: calc-rem(38);
+        margin-top: calc-rem(20);
+        font-size: calc-rem(12);
+        text-align: center;
+        border-radius: calc-rem(20); 
+    }
+}
+
+.fault-undispose{
+    color: rgb(250,90,8);
+    background-color: rgba(250,90,8, .2); 
+}
+
+.fault-dispose{
+    color: rgb(216,216,216);
+    background-color: rgba(216,216,216,.2);
+}

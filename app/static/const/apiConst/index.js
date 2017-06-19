@@ -1,21 +1,21 @@
 
 /**home api MessageCenter */
-export const MessageCenter = "/home/messageCenter"
+export const MessageCenter = "/pvmtsys/messageSystemInfo/getIsReadCount";
 
-/**home api workOrderInfo 0 */
-export const WorkOrderInfo0 = "/home/workOrderInfo0"
+/**home api GetWorkOrdrDataByStatus */
+export const GetWorkOrdrDataByStatus = (status) => "/pvmtsys/workOrderInfo/orderlist/" + status;
 
-/**home api workOrderInfo 1*/
-export const WorkOrderInfo1 = "/home/workOrderInfo1"
+/**MessageDetail api GetMessageDetailByIdAndStatus */
+export const GetMessageDetailByIdAndStatus = (id, status) => {
+    if(!status){
+        return "/pvmtsys/sender/readLetter/" + id;
+    }else {
+        return "/pvmtsys/noticeReader/queryNoticeOne/" + id + "/" + status;
+    } 
+}
 
-/**Message api getMessageByType */
-export const GetMessageByType = "/message/messageData"
-
-/**MessageDetail api SiteMessageDetail */
-export const SiteMessageDetail = "/message/siteMessageDetail"
-
-/**MessageDetail api SystemMessageDetail */
-export const SystemMessageDetail = "/message/systemMessageDetail"
+/**Message api GetMessageDataByType */
+export const GetMessageDataByType = (type) => "/pvmtsys/messageSystemInfo/getMassageByType/" + type;
 
 /**realTimeAlarm api  GetAlarmListByOption 
 @opt: {
@@ -26,3 +26,7 @@ export const GetAlarmListByOption = "/pvmtsys/alarmInfo/getAlarmList"
 
 /**AlarmDetail api GetAlarmDetailById + id */
 export const GetAlarmDetailById = "/pvmtsys/alarmInfo/getAlarmByid/"
+
+
+/**FaultList api GetFaultListByOrder + order */
+export const GetFaultListByOrder = (orderNumber) => "/pvmtsys/workOrderFault/faultList/" + orderNumber;

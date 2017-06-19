@@ -1,0 +1,9 @@
+{
+    "code": 0,
+    "message": "ok",
+    "data": [
+        {"faultId": 123456,"fault_message":"逆变器高温运行", "isSolve":0},
+        {"faultId": 123456,"fault_message":"逆变器高温运行", "isSolve":1},
+        {"faultId": 123456,"fault_message":"逆变器高温运行", "isSolve":0}
+    ]
+}

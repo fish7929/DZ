@@ -14,10 +14,10 @@ import * as Api from '../../../static/const/apiConst'
  * 获取远程数据
  * @param {number} dataType  数据类型， 1，2，3
  */
-function requestData(dataType) {
+function requestData(orderNumber) {
     return {
-        type: ActionType.REQUEST_MESSAGE_DATA,
-        dataType
+        type: ActionType.REQUEST_FAULT_DATA,
+        dataType: orderNumber
     };
 }
 
@@ -28,19 +28,18 @@ function requestData(dataType) {
  */
 function receiveData(result) {
     return {
-        type: ActionType.RECEIVE_MESSAGE_DATA,
-        data: result.MessageSystemInfoPO
+        type: ActionType.RECEIVE_FAULT_DATA,
+        data: result
     };
 }
 
 /**
  * 请求远程数据
- * @param {number} type  消息数据类型， 1，2，3
+ * @param {number} orderNumber  工单编号
  */
-export const fetchData = (type) => dispatch => {
-    dispatch(requestData(type));
-    // let _url = "/pvmtsys/messageSystemInfo/getMassageByType/" + type;
-    let _url = Api.GetMessageDataByType(type);
+export const fetchData = (orderNumber) => dispatch => {
+    dispatch(requestData(orderNumber));
+    let _url = Api.GetFaultListByOrder(orderNumber);
     dispatch(utils.sendMsg(_url, null, "GET")).then(data => {
         dispatch(receiveData(data));
     })

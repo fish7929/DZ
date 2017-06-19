@@ -49,7 +49,7 @@ class MessageCenter extends React.Component {
      */
     render() {
         return (
-            <ul>
+            <ul className="message-center-wrapper">
                 {this.state.list.map((item, index) =>
                     <li key={index} className={"common-item common-next common-active common-pseudo " + item.class}
                         onClick={(e) => this.toNextHandler(e, item.url)} data-hint={item.hint}>
