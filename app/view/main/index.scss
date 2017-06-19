@@ -32,6 +32,8 @@ html, body{
     top: 0;
     left: 0;
     background: #f5f5f5;
+    padding-top: calc-rem($topHeight);
+    overflow: auto;
 }
 
 .no-wrap{
@@ -46,4 +48,8 @@ html, body{
 
 input{
     padding: 0 calc-rem(10);
+}
+
+::placeholder{
+    color: #999999;
 }

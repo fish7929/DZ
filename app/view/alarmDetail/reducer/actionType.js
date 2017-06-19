@@ -1,0 +1,1 @@
+export const ALARM_DETAIL_INIT = "ALARM_DETAIL_INIT"

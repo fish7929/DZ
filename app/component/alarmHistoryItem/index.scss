@@ -1,0 +1,42 @@
+@import '../../static/css/_mixins.scss';
+
+.alarm-history-item{
+    width: calc(100% - #{calc-rem(40)});
+    height: calc-rem(145);
+    margin-left: calc-rem(40);
+    padding-right: calc-rem(40);
+    display: flex;
+    justify-content: space-between;
+
+    .left-div, .right-div{
+        display: inline-block;
+    }
+
+    .left-div{
+        padding-top: calc-rem(36);
+        .title-txt{
+            font-family: "PingFangSC-Medium";
+            font-size: calc-rem(32);
+            color: #333333;
+            letter-spacing: calc-rem(1.53);
+            line-height: calc-rem(32);
+        }
+
+        .date-txt{
+            margin-top: calc-rem(20);
+            padding-left: calc-rem(5);
+            font-size: calc-rem(24);
+            color: #999999;
+            letter-spacing: calc-rem(1.15);
+        }
+    }
+
+    .right-div{
+        font-weight: bold;
+        font-size: calc-rem(40);
+        color: #EE7737;
+        letter-spacing: calc-rem(1.91);
+        display: flex;
+        align-items: center;
+    }
+}

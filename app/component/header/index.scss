@@ -6,6 +6,9 @@
     height: calc-rem($topHeight);
     padding-top: calc-rem($toolbarHeight);
     background: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
 
     .title-div{
         text-align: center;

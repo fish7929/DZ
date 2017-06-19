@@ -3,7 +3,7 @@
  */
 import * as utils from '../../../utils'
 import * as ActionType from './actionType'
-
+import * as Api from '../../../static/const/apiConst'
 
 const receiveListData = (data) => ({
     type: ActionType.REAL_TIME_ALARM_LIST_INIT,
@@ -11,7 +11,7 @@ const receiveListData = (data) => ({
 })
 
 export const getAlarmList = (opt) => dispatch =>{
-    let url = "/pvmtsys/alarmInfo/getAlarmList"
+    let url = Api.GetAlarmListByOption
     dispatch(utils.sendMsg(url, opt, "GET")).then(data => dispatch(receiveListData(data)))
 }
 

@@ -4,6 +4,8 @@
  * @time 2017-06-18 20:40
  * @author fishYu
  **/
+export const HOME_CHANGE_TAB = "HOME_CHANGE_TAB"
+
 export const REQUEST_HOME_DATA = 'REQUEST_HOME_DATA';
 
 export const RECEIVE_HOME_CONTAINER_DATA = "RECEIVE_HOME_CONTAINER_DATA"; //首页

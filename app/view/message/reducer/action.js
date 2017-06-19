@@ -7,6 +7,7 @@
 
 import * as utils from '../../../utils';
 import * as ActionType from './actionType';
+import * as Api from '../../../static/const/apiConst'
 
 // 获取远程数据
 /**
@@ -39,7 +40,7 @@ function receiveData(result) {
 export const fetchData = (type) => dispatch => {
     dispatch(requestData(type));
     // let _url = "/pvmtsys/messageSystemInfo/getMassageByType/" + type;
-    let _url = "/message/messageData";
+    let _url = Api.GetMessageByType;
     dispatch(utils.sendMsg(_url, null, "GET")).then(data => {
         dispatch(receiveData(data));
     })

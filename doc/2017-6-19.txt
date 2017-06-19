@@ -1,0 +1,3 @@
+查看单个报警详情 http://124.205.52.126:846/pvmtsys/alarmInfo/getAlarmByid/{id}
+返回内容中没有plantName	电站名称	string
+电站信息 powerStationBaseInfo 返回的为什么是array 会存在多个？

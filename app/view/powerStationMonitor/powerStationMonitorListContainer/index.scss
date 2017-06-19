@@ -3,8 +3,7 @@
 
 .psm-list-container{
     width: 100%;
-    height: calc(100% - #{calc-rem($topHeight)});
-    overflow: auto;
+    height: 100%;
 
     .psm-list-item{
         margin-top: calc-rem(20);

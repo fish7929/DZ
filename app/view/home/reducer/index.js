@@ -7,6 +7,7 @@
 import * as ActionType from './actionType'
 
 const initialState = {
+    tabIndex: 0,
     isFetching: false, //是否正在加载
     homeContainerList: [],
     workOrderList: [],
@@ -16,6 +17,11 @@ const initialState = {
 
 export default function homeData(state = initialState, action) {
     switch (action.type) {
+        case ActionType.HOME_CHANGE_TAB:
+            return {
+                ...state,
+                tabIndex: action.data
+            }
         case ActionType.REQUEST_HOME_DATA:
             return Object.assign(
                 {},

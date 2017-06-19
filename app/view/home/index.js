@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import * as RouterConst from '../../static/const/routerConst'
 
 import Page from '../../component/page'
+import Header from '../../component/header'
 import HomeBottom from '../../component/homeBottom'
 
 import HomeContainer from './homeContainer'
@@ -16,23 +17,20 @@ import WorkOrder from './workOrder';  //工单
 
 import { ZERO, FIRST, SECOND, THREE } from '../../static/const/constants';
 
-import { fetchData } from './reducer/action';
+import { fetchData, changeHomeTabIndex } from './reducer/action';
 
 import './index.scss';
 
 class Home extends React.Component {
     constructor(props, context) {
         super(props, context)
-        this.state = {
-            currentTab: 1   //当前标签
-        }
     }
     /**
      * 加载完成
      */
     componentDidMount() {
         //加载默认数据
-        this.props.fetchData(this.state.currentTab);
+        this.props.fetchData(this.props.tabIndex);
     }
 
     /**
@@ -41,14 +39,14 @@ class Home extends React.Component {
      */
     reloadWorkOrderListHandler(status) {
         //重新加载工单数据,
-        this.props.fetchData(this.state.currentTab, status);
+        this.props.fetchData(this.props.tabIndex, status);
     }
     /**
      * 根据不同的标签获取中间内容
      */
     getContentSection() {
         let component;
-        switch (this.state.currentTab) {
+        switch (this.props.tabIndex) {
             case ZERO:
                  component = <HomeContainer />
                  break
@@ -70,19 +68,17 @@ class Home extends React.Component {
      * @param {number} tab 标签栏的值
      */
     changeTabHandler(tab) {
-        this.setState({ currentTab: parseInt(tab) });
+        this.props.changeHomeTabIndex(tab)
         this.props.fetchData(tab);
     }
     render() {
         return (
             <Page className="home-page">
-                <div className="home-title-div">
-                    <div className="home-title">光伏运维管理平台</div>
-                </div>
+                <Header title="光伏运维管理平台" />
                 <div className="home-main">
                     {this.getContentSection()}
                 </div>
-                <HomeBottom tabIndex={this.state.currentTab} onTabClick={(tab) => this.changeTabHandler(tab)} />
+                <HomeBottom tabIndex={this.props.tabIndex} onTabClick={(tab) => this.changeTabHandler(tab)} />
             </Page>
         )
     }
@@ -113,6 +109,7 @@ let mapStateToProps = state => {
         _messageCenterList.push(obj);
     }
     return ({
+        tabIndex: state.homeData.tabIndex,
         isFetching: state.homeData.isFetching,
         homeContainerList: state.homeData.homeContainerList,
         workOrderList: state.homeData.workOrderList,
@@ -122,7 +119,7 @@ let mapStateToProps = state => {
 }
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ fetchData }, dispatch)
+    return bindActionCreators({ fetchData, changeHomeTabIndex }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

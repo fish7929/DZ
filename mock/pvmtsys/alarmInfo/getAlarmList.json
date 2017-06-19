@@ -10,13 +10,13 @@
                 "id": 70831,
                 "plantName": "测试内容0wb6",
                 "status": 1,
-                "powerStationBaseInfo": [
+                "powerStationBaseInfo": 
                     {
                         "address": "测试内容3e87",
                         "id": 82584,
                         "name": "测试内容5561"
                     }
-                ]
+                
             },
             {
                 "alarmGrade": 2,
@@ -24,13 +24,12 @@
                 "alarmTime": "测试内容att5",
                 "id": 70831,
                 "plantName": "测试内容0wb6",
-                "powerStationBaseInfo": [
+                "powerStationBaseInfo": 
                     {
                         "address": "测试内容3e87",
                         "id": 82584,
                         "name": "测试内容5561"
                     }
-                ]
             },
             {
                 "alarmGrade": 3,
@@ -38,13 +37,12 @@
                 "alarmTime": "测试内容att5",
                 "id": 70831,
                 "plantName": "测试内容0wb6",
-                "powerStationBaseInfo": [
+                "powerStationBaseInfo": 
                     {
                         "address": "测试内容3e87",
                         "id": 82584,
                         "name": "测试内容5561"
                     }
-                ]
             }
         ],
         "count": 17066

@@ -8,6 +8,7 @@
 import * as utils from '../../../utils';
 import * as ActionType from './actionType';
 import { ZERO, FIRST, SECOND, THREE } from '../../../static/const/constants';
+import * as Api from '../../../static/const/apiConst'
 
 // 获取远程数据
 /**
@@ -63,23 +64,30 @@ export const fetchData = (category, status = 0) => dispatch => {
     let _url = "";
     switch(category) {
         case ZERO:
-            _url = "/home/messageCenter";
+            _url = Api.MessageCenter;
             break;
         case FIRST:
             if(status == ZERO){
-                _url = "/home/workOrderInfo0";
+                _url = Api.WorkOrderInfo0;
             }else if(status == FIRST){
-                _url = "/home/workOrderInfo1";
+                _url = Api.WorkOrderInfo1;
             }
             break;
         case SECOND:
-            _url = "/home/messageCenter";
+            _url = Api.MessageCenter;
             break;
         case THREE:
-            _url = "/home/messageCenter";
+            _url = Api.MessageCenter;
             break;
     }
     dispatch(utils.sendMsg(_url, null, "GET")).then(data => {
         dispatch(receiveData(data, category));
+    })
+}
+
+export const changeHomeTabIndex = index => dispatch => {
+    dispatch({
+        type: ActionType.HOME_CHANGE_TAB,
+        data: index
     })
 }

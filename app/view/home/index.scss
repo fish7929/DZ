@@ -1,28 +1,11 @@
 @import '../../static/css/_mixins.scss';
 
 .home-page{
-    height: calc(100% - #{calc-rem(98)}) !important;
     background:  #f5f5f5;
-
-    .home-title-div{
-        padding-top: calc-rem(40);
-        height: calc-rem(148);
-        text-align: center;
-        background: #fff;
-
-        .home-title{
-            font-family: "PingFang-SC-Medium";
-            font-size: calc-rem(32);
-            color: #333333;
-            height: calc-rem(108);
-            line-height: calc-rem(108);
-        }
-    }
 
     .home-main{
         width: 100%;
-        height: calc(100% - #{calc-rem(148)});
+        height: calc(100% - #{calc-rem(98)});
         overflow: auto;
     }
-    
 }

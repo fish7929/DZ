@@ -1,0 +1,40 @@
+{
+    "code": 0,
+    "message": "ok",
+    "data": {
+        "alarmGrade": 1,
+        "alarmInfoList": [
+            {
+                "createTime": "测试内容77h7",
+                "id": 67010,
+                "powerStationId": 14661,
+                "alarmGrade": "报警消息",
+                "alarmMessage": "报警时间"
+            }
+        ],
+        "alarmMessage": "报警消息",
+        "alarmTime": "2017-06-02",
+        "alarmType": 80438,
+        "attachmentList": [
+            {
+                "filename": "测试内容c3v2",
+                "filepath": "测试内容2x3q",
+                "filetype": "测试内容8p7s"
+            }
+        ],
+        "equipmentId": 74065,
+        "equipmentType": 66565,
+        "id": 1,
+        "powerStationBaseInfo": {
+            "address": "测试内容t122",
+            "id": 67153,
+            "lat": 43631,
+            "lng": 25223,
+            "manager": "测试内容8j0n",
+            "name": "测试内容j099"
+        },
+        "state": "说明",
+        "status": 0,
+        "userId": 53812
+    }
+}
