@@ -22,6 +22,15 @@ class AlarmDetail extends React.Component{
         this.props.getAlarmList(id)
     }
 
+    getHistoryItems(){
+        let { alarmData } = this.props
+        if(alarmData.alarmInfoList.length == 0){
+            return (<div className="power-no-history">该设备近3个月没有报警记录</div>)
+        }
+
+        return alarmData.alarmInfoList.map((obj, key) => <AlarmHistoryItem key={key} data={obj} />)
+    }
+
     render(){
         let { alarmData } = this.props
         return(
@@ -35,11 +44,7 @@ class AlarmDetail extends React.Component{
                 </div>
                 <div className="power-history-div">
                     <FlipListComponent title="本设备近3个月报警历史">
-                        <AlarmHistoryItem data={{}} />
-                        <AlarmHistoryItem data={{}} />
-                        <AlarmHistoryItem data={{}} />
-                        <AlarmHistoryItem data={{}} />
-                        <div className="power-no-history">该设备近3个月没有报警记录</div>
+                        {this.getHistoryItems()}
                     </FlipListComponent>
                 </div>
                 
@@ -53,7 +58,7 @@ class AlarmDetail extends React.Component{
                     <div className="media-content-div">
                         <div className="btn-media-result"></div>
                         <button className="btn-media"><span></span></button>
-                    </div><button ></button>
+                    </div>
                 </div>
 
                 <button className="btn-commit">提交</button>

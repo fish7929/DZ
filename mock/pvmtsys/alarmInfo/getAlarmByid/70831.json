@@ -5,11 +5,11 @@
         "alarmGrade": 1,
         "alarmInfoList": [
             {
-                "createTime": "测试内容77h7",
+                "createTime": "2017-05-06 12:10:10",
                 "id": 67010,
                 "powerStationId": 14661,
-                "alarmGrade": "报警消息",
-                "alarmMessage": "报警时间"
+                "alarmGrade": 1,
+                "alarmMessage": "报警消息"
             }
         ],
         "alarmMessage": "报警消息",

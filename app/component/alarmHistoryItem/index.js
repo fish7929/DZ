@@ -16,8 +16,8 @@ class AlarmHistory extends React.Component{
         return(
             <div className="alarm-history-item">
                 <div className="left-div">
-                    <div className="no-wrap title-txt">逆变器电压低</div>
-                    <div className="date-txt">2017-05-15 12:12:12</div>
+                    <div className="no-wrap title-txt">{data.alarmMessage}</div>
+                    <div className="date-txt">{data.createTime}</div>
                 </div>
                 <div className="right-div">89.43</div>
             </div>
