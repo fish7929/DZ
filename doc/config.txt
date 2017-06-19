@@ -1,2 +1,7 @@
+原型地址：
+https://v3.modao.cc/app/SJpmQKg0WPdYXwWtKWEzoauKGU3jUha#screen=sBCDFF36E9C1496304059564
+
+gitlab地址：git.chilunyc.com
+
 接口地址：http://test.yunengzhe.com:846/ 
 账号：waibao,密码：waibao
