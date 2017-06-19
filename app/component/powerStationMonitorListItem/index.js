@@ -9,7 +9,7 @@ class PowerStationMonitorListItem extends React.Component{
 
     render(){
         return(
-            <div className="psm-list-item">
+            <div className="psm-list-item" onClick={this.props.onClick}>
                 <div className="name-div">
                     <span className="icon"></span>
                     <span className="txt context-txt no-wrap" >江苏镇江市恒顺2.12MW分布式光伏电站</span>
@@ -29,7 +29,8 @@ class PowerStationMonitorListItem extends React.Component{
 }
 
 PowerStationMonitorListItem.PropTypes = {
-    data: PropTypes.object.isRequired
+    data: PropTypes.object.isRequired,
+    onClick: PropTypes.func
 }
 
 export default PowerStationMonitorListItem
