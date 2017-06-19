@@ -10,3 +10,7 @@ res/**
 .idea/
 *.log
 *.log.*
+.DS_Store
+**/.DS_Store
+~$api_bug.xlsx
+**/~$api_bug.xlsx
