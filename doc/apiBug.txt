@@ -1,3 +1,0 @@
-1.获取报警列表
-pvmtsys/alarmInfo/getAlarmList
-没有传第几页的参数,返回结果没有状态报警
