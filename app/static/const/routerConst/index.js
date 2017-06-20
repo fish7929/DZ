@@ -38,4 +38,6 @@ export const ROUTER_MESSAGE = ROUTER_ROOT + "/message";
 /**消息详情页面 */
 export const ROUTER_MESSAGE_DETAIL = ROUTER_ROOT + "/messageDetail";
 /**故障列表 */
-export const ROUTER_FAULT_LIST = ROUTER_ROOT + "/faultList"
+export const ROUTER_FAULT_LIST = ROUTER_ROOT + "/faultList";
+/**备品备件 */
+export const ROUTER_SPAREPART = ROUTER_ROOT + "/sparepart";

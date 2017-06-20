@@ -30,3 +30,7 @@ export const GetAlarmDetailById = "/pvmtsys/alarmInfo/getAlarmByid/"
 
 /**FaultList api GetFaultListByOrder + order */
 export const GetFaultListByOrder = (orderNumber) => "/pvmtsys/workOrderFault/faultList/" + orderNumber;
+
+/**Sparepart api GetSparepartDataByOrder + order */
+export const GetSparepartDataByOrder = (orderNumber) => "/pvmtsys/sparepartMapping/spareInfo/" + orderNumber;
+
