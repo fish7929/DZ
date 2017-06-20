@@ -1,0 +1,86 @@
+@import '../../static/css/_mixins.scss';
+
+.inverter-list-container{
+
+    .search-div{
+        width: 100%;
+        height: calc-rem(80);
+        background: #fff;
+        padding: calc-rem(10) calc-rem(26);
+        position: relative;
+        border-bottom: calc-rem(1) solid #eeeeee;
+
+        input {
+            padding: 0 calc-rem(50);
+            width: 100%;
+            height: 100%;
+            background: #F5F5F5;
+            border: calc-rem(1) solid #F5F5F5;
+            border-radius: calc-rem(4);
+            font-size: calc-rem(26);
+            color: #999999;
+        }
+
+        .search-icon{
+            position: absolute;
+            top: 0;
+            left: calc-rem(36);
+            width: calc-rem(32);
+            height: 100%;
+            background: url(../../static/images/input-search.png) no-repeat center;
+            background-size: calc-rem(32);
+        }
+    }
+
+    .tab-div{
+        background: #fff;
+        height: calc-rem(80);
+        padding: 0 calc-rem(40);
+        display: flex;
+        justify-content: space-between;
+
+        .tab-item{
+            width: 33.33%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+
+            span{
+                display: inline-block;
+                width: 100%;
+                height: calc-rem(40);
+                line-height: calc-rem(40);
+                border-right: calc-rem(1) solid #eee;
+                font-family: "PingFang-SC-Medium";
+                font-size: calc-rem(28);
+                color: #999999;
+                text-align: center;
+            }
+        }
+
+        .tab-item.selected{
+            span{
+                color: #FE5A08;
+            }
+        }
+
+        .tab-item:last-child{
+            span{
+                border-right: 0;
+            }
+        }
+    }
+
+    .inverter-list{
+        padding: calc-rem(20) calc-rem(40);
+        height: calc(100% - #{calc-rem(160)});
+        overflow: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .inverter-item{
+            margin-bottom: calc-rem(20);
+        }
+    }
+}

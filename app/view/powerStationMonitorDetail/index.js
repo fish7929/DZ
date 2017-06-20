@@ -1,9 +1,12 @@
 import React, { PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { hashHistory } from 'react-router'
 
 import Page from '../../component/page'
 import Header from '../../component/header'
+
+import * as RouterConst from '../../static/const/routerConst'
 
 import './index.scss'
 
@@ -70,9 +73,8 @@ class PowerStationMonitorDetail extends React.Component{
                         </div>
                     </div>
 
-                    <button className="psmD-btn">逆变器<span className="arrow-right"></span></button>
-
-                    <button className="psmD-btn">电表<span className="arrow-right"></span></button>
+                    <button className="psmD-btn" onClick={()=>hashHistory.push(RouterConst.ROUTER_INVERTER_LIST)}>逆变器<span className="arrow-right"></span></button>
+                    <button className="psmD-btn" onClick={()=>hashHistory.push(RouterConst.ROUTER_AMMETER_LIST)}>电表<span className="arrow-right"></span></button>
                 </div>
             </Page>
         )

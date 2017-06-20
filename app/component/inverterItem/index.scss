@@ -1,3 +1,77 @@
+@import '../../static/css/_mixins.scss';
+
 .inverter-item{
-    
+    width: calc(50% - #{calc-rem(10)});
+    background: #fff;
+
+    .inverter-header{
+        height: calc-rem(60);
+        border-bottom: calc-rem(1) solid #eee;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 calc-rem(14);
+        
+        .inverter-header-left{
+            display: flex;
+            align-items: center;
+
+            .inverter-icon{
+                display: inline-block;
+                width: calc-rem(34);
+                height: calc-rem(34);
+                background: url(../../static/images/inverter.png) no-repeat center;
+                background-size: calc-rem(34);
+                margin-right: calc-rem(6);
+            }
+
+            .inverter-title{
+                font-family: "PingFang-SC-Medium";
+                font-size: calc-rem(28);
+                color: #FE5A0B;
+                letter-spacing: calc-rem(1.34);
+            }
+        }
+
+        .inverter-status{
+            width: calc-rem(90);
+            height: calc-rem(40);
+        }
+
+        .inverter-status.status_0{
+            background: url(../../static/images/machine_halt.png) no-repeat center;
+            background-size: calc-rem(90) calc-rem(40);
+        }
+
+        .inverter-status.status_1{
+            background: url(../../static/images/communication_anomaly.png) no-repeat center;
+            background-size: calc-rem(90) calc-rem(40);
+        }
+    }
+
+    .inverter-content{
+        padding: calc-rem(14);
+
+        .info-item{
+            margin-top: calc-rem(5);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .txt1{
+                height: calc-rem(28);
+                font-size: calc-rem(20);
+                color: #999999;
+                letter-spacing: 0;
+            }
+
+            .txt2{
+                height: calc-rem(40);
+                font-family: "PingFang-SC-Medium";
+                font-size: calc-rem(28);
+                color: #333333;
+                letter-spacing: calc-rem(1.34);
+            }
+        }
+    }
 }

@@ -9,13 +9,17 @@ class InverterItem extends React.Component{
     }
 
     render(){
+        let { data, onClick } = this.props
+
         return(
-            <div className="inverter-item">
+            <div className="inverter-item" onClick={onClick}>
                 <div className="inverter-header">
-                    <div><span className="inverter-icon"></span>SW001</div>
-                    <div className="inverter-status"></div>
+                    <div className="inverter-header-left">
+                        <span className="inverter-icon"></span>
+                        <span className="inverter-title">SW001</span></div>
+                    <div className="inverter-status status_0"></div>
                 </div>
-                <div>
+                <div className="inverter-content">
                     <div className="info-item">
                         <span className="txt1">直流功率：</span>
                         <span className="txt2">2KW</span>
@@ -40,6 +44,11 @@ class InverterItem extends React.Component{
             </div>
         )
     }
+}
+
+InverterItem.PropTypes = {
+    data: PropTypes.object.isRequired,
+    onClick: PropTypes.func
 }
 
 export default InverterItem

@@ -14,6 +14,12 @@ const AlarmSearch = cb => require.ensure([], require => { cb(null, require('../v
 const PowerStationMonitor = cb => require.ensure([], require => { cb(null, require('../view/powerStationMonitor').default)}, "PowerStationMonitor")
 /**电站详情 */
 const PowerStationMonitorDetail = cb => require.ensure([], require => { cb(null, require('../view/powerStationMonitorDetail').default)}, "PowerStationMonitorDetail")
+/**逆变器列表 */
+const InverterList = cb => require.ensure([], require => { cb(null, require('../view/inverterList').default)}, "InverterList")
+/**逆变器详情 */
+const InverterDetail = cb => require.ensure([], require => { cb(null, require('../view/inverterDetail').default)}, "InverterDetail")
+/**电表列表 */
+const AmmeterList = cb => require.ensure([], require => { cb(null, require('../view/ammeterList').default)}, "AmmeterList")
 
 const Message = cb => require.ensure([], require => { cb(null, require('../view/message').default)}, "message");
 const MessageDetail = cb => require.ensure([], require => { cb(null, require('../view/messageDetail').default)}, "messageDetail");
@@ -53,6 +59,18 @@ const Routers = {
 		{
 			path: RouterConst.ROUTER_POWER_STATION_MONITOR_DETAIL + "/:id",
 			getComponent(nextState, cb){ PowerStationMonitorDetail(cb) },
+		},
+		{
+			path: RouterConst.ROUTER_INVERTER_LIST,
+			getComponent(nextState, cb){ InverterList(cb) },
+		},
+		{
+			path: RouterConst.ROUTER_INVERTER_DETAIL + "/:id",
+			getComponent(nextState, cb){ InverterDetail(cb) },
+		},
+		{
+			path: RouterConst.ROUTER_AMMETER_LIST,
+			getComponent(nextState, cb){ AmmeterList(cb) },
 		},
 		{
 			path: RouterConst.ROUTER_MESSAGE + "/:type",
