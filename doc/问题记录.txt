@@ -1,40 +1,46 @@
+﻿
+时间：2017-06-19 
+一、UI交互问题：
 
-ʱ�䣺2017-06-19 
-һ��UI�������⣺
-
-1. ��ҳ ȱ�ٵ�վ���ͼ�ꡢ����Сͼ��
-2. ��ҳ��վ��� �޷��鿴UI��ʶ
-3. ʵʱ��������ҳ ��������ʾЧ����ʲô���ӵ�
-4. ʵʱ��������ҳ ��վ�����������
-
-
-
-�����ӿ����⣺
-
-1��������Ϣ���ͻ�ȡ��Ϣ�Ľӿڣ�
-    1.1��ȱ�ٱ����ȼ��� Ч��ͼ�ϵ�230.22 ��Ӧ���ֶ�Ҳû��
-    1.2��վ����Ϣ��ȱ���û����ơ�
-
-2����ȡ�����б���pvmtsys/alarmInfo/getAlarmList ��
-UIͼ��index.html#artboard1
-
-���⣺
-a.���ؽ��û��״̬���� 
-b.�����б���ʱ��û��ѡ��״̬����ѯ	
+1. 首页 缺少电站监控图标、公告小图标
+2. 首页电站监控 无法查看UI标识
+3. 实时报警搜索页 搜索后显示效果是什么样子的
+4. 实时报警搜索页 电站名称如何添加
 
 
-3.����ӿڷ��ظ�ʽ��
+
+二、接口问题：
+
+1、根据消息类型获取消息的接口：
+    1.1、缺少报警等级， 效果图上的230.22 对应的字段也没有
+    1.2、站内消息，缺少用户名称。
+
+2、获取报警列表：pvmtsys/alarmInfo/getAlarmList ，
+UI图：index.html#artboard1
+
+问题：
+a.返回结果没有状态报警 
+b.请求列表的时候没有选择按状态来查询	
+
+
+3.建议接口返回格式：
 
 {	
-  code:������
-  message:������Ϣ
-  data:��������
+  code:返回码
+  message:返回信息
+  data:返回数据
 }
  
 ---------------------------------------
-ʱ�䣺2017-06-19 
-1.�鿴������������ /pvmtsys/alarmInfo/getAlarmByid/{id}
-����������û��plantName	��վ����	string
-���ص�alarmInfoList��û�� ��ֵ
-��վ��Ϣ powerStationBaseInfo ���ص�Ϊʲô��array ����ڶ����
+时间：2017-06-19 
+1.查看单个报警详情 /pvmtsys/alarmInfo/getAlarmByid/{id}
+返回内容中没有plantName	电站名称	string
+返回的alarmInfoList中没有 数值
+电站信息 powerStationBaseInfo 返回的为什么是array 会存在多个？
+
+---------------------------------------
+时间：2017-06-20 
+1.备品备件 /pvmtsys/sparepartMapping/spareInfo/{orderNum}
+缺少领用人姓名，  和 备注 字段， 
+以及 receivetype  number  对应多少类型， 分别显示什么内容， UI上是投资方保管。
 

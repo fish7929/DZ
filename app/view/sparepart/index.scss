@@ -1,0 +1,61 @@
+/**
+ * @component sparepart.scss
+ * @description 备件样式
+ * @time 2017-06-20 22:30
+ * @author fishYu
+ **/
+@import '../../static/css/_mixins.scss';
+@mixin common-sparepart{
+    padding: 0 calc-rem(40);
+    width: 100%;
+    height: calc-rem(100);
+    line-height: calc-rem(100);
+    font-weight: bold;
+    color: #333;
+    font-size: calc-rem(32);
+    background: $whiteColor;
+}
+.sparepart-title{
+    @include common-sparepart;
+    color: #FC5B0B;
+    font-size: calc-rem(36);
+    margin-top: calc-rem(20);
+}
+
+.sparepart-item{
+    width: 100%;
+    margin-top: calc-rem(20);
+}
+.sparepart-divide{
+    @include common-sparepart;
+    padding-right: 0;
+    border-bottom: $commonBorder; 
+    span{
+        float: right;
+        width: calc-rem(124);
+        height: 100%;
+        background: url($arrowIcon)  center no-repeat;
+        background-size: calc-rem(44);
+        transition : all 0.5s ease-in-out;
+    }
+    
+}
+.divide-off{
+    span{
+        transform:rotate(0);
+    }
+    & + .sparepart-detail-wrapper{
+        display: none;
+        transition : all 0.5s ease-in-out;
+    }
+}
+
+.divide-on{
+    span{
+        transform:rotate(180deg);
+    }
+    & + .sparepart-detail-wrapper{
+        display: block;
+        transition : all 0.5s ease-in-out;
+    }
+}

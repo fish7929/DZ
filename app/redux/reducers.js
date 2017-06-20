@@ -12,3 +12,4 @@ export messageData from '../view/message/reducer';
 export messageDetail from '../view/messageDetail/reducer';
 export homeData from '../view/home/reducer';
 export faultData from '../view/faultList/reducer';
+export sparepartData from '../view/sparepart/reducer';

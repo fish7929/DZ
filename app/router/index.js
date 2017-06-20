@@ -27,6 +27,8 @@ const Message = cb => require.ensure([], require => { cb(null, require('../view/
 const MessageDetail = cb => require.ensure([], require => { cb(null, require('../view/messageDetail').default)}, "messageDetail");
 /**故障列表 */
 const FaultList = cb => require.ensure([], require => { cb(null, require('../view/faultList').default)}, "faultList")
+/**备品备件 */
+const Sparepart = cb => require.ensure([], require => { cb(null, require('../view/sparepart').default)}, "sparepart")
 const Routers = {
 	path: RouterConst.ROUTER_HOME,
 	getComponent(nextState, cb){ App(cb) },
@@ -89,6 +91,10 @@ const Routers = {
 		{
 			path: RouterConst.ROUTER_FAULT_LIST + "/:order/:param",
 			getComponent(nextState, cb){ FaultList(cb) },
+		},
+		{
+			path: RouterConst.ROUTER_SPAREPART + "/:order",
+			getComponent(nextState, cb){ Sparepart(cb) },
 		}
 	]
 }

@@ -1,0 +1,72 @@
+{
+    "code": 0,
+    "message": "ok",
+    "data": [
+        {
+            "receivenum": 2,
+            "receivetype": 1, 
+            "receiveuser": 12345,
+            "receiveuserName": "张三",
+            "sparepartId" : "sadassfsd",
+            "sparepartName" : "光伏组件",
+            "specificationId" : 123456,
+            "specificationName": "多晶260Wp",
+            "comments": "无"
+        },
+        {
+            "receivenum": 2,
+            "receivetype": 1, 
+            "receiveuser": 12345,
+            "receiveuserName": "张三",
+            "sparepartId" : "sadassfsd",
+            "sparepartName" : "光伏组件",
+            "specificationId" : 123456,
+            "specificationName": "多晶260Wp",
+            "comments": "无"
+        },
+        {
+            "receivenum": 2,
+            "receivetype": 1, 
+            "receiveuser": 12345,
+            "receiveuserName": "张三",
+            "sparepartId" : "sadassfsd",
+            "sparepartName" : "光伏组件",
+            "specificationId" : 123456,
+            "specificationName": "多晶260Wp",
+            "comments": "无"
+        },
+        {
+            "receivenum": 2,
+            "receivetype": 1, 
+            "receiveuser": 12345,
+            "receiveuserName": "张三",
+            "sparepartId" : "sadassfsd",
+            "sparepartName" : "光伏组件",
+            "specificationId" : 123456,
+            "specificationName": "多晶260Wp",
+            "comments": "无"
+        },
+        {
+            "receivenum": 2,
+            "receivetype": 1, 
+            "receiveuser": 12345,
+            "receiveuserName": "张三",
+            "sparepartId" : "sadassfsd",
+            "sparepartName" : "光伏组件",
+            "specificationId" : 123456,
+            "specificationName": "多晶260Wp",
+            "comments": "无"
+        },
+        {
+            "receivenum": 2,
+            "receivetype": 1, 
+            "receiveuser": 12345,
+            "receiveuserName": "张三",
+            "sparepartId" : "sadassfsd",
+            "sparepartName" : "光伏组件",
+            "specificationId" : 123456,
+            "specificationName": "多晶260Wp",
+            "comments": "无"
+        }
+    ]
+}

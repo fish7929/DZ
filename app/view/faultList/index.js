@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 
 import Page from '../../component/page';
 import Header from '../../component/header';
-
+import { hashHistory } from 'react-router';
 import { fetchData } from './reducer/action';
 
 import './index.scss'
@@ -42,6 +42,9 @@ class FaultList extends React.Component {
     goToNextHandler(e, type) {
         e.preventDefault();
         e.stopPropagation();
+        if(type == FIRST){
+            hashHistory.push("/sparepart/" + this.order);
+        }
         console.log('goToNextHandler');
     }
     /**
