@@ -33,6 +33,18 @@ export const ROUTER_INVERTER_DETAIL = ROUTER_ROOT + "/inverterDetail"
 /**电表列表 */
 export const ROUTER_AMMETER_LIST = ROUTER_ROOT + "/ammeter"
 
+/**故障反馈 */
+export const ROUTER_FEEDBACK = ROUTER_ROOT + "/feedback"
+
+/**修改密码 */
+export const ROUTER_CHANGE_PASSWORD = ROUTER_ROOT + "/changePw"
+
+/**我的故障反馈 */
+export const ROUTER_MY_FEEDBACK = ROUTER_ROOT + "/myFeedback"
+
+/**消息推送设置 */
+export const ROUTER_MY_MESSAGE_SET = ROUTER_ROOT + "/myMessageSet"
+
 /**消息页面 */
 export const ROUTER_MESSAGE = ROUTER_ROOT + "/message";
 /**消息详情页面 */

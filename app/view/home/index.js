@@ -14,6 +14,8 @@ import HomeContainer from './homeContainer'
 import MessageCenter from '../../component/messageCenter/index';
 
 import WorkOrder from './workOrder';  //工单
+//我的
+import MyContainer from './myContainer'
 
 import { ZERO, FIRST, SECOND, THREE } from '../../static/const/constants';
 
@@ -58,7 +60,7 @@ class Home extends React.Component {
                 component = <MessageCenter data={this.props.messageCenterList}/>
                 break
             case THREE:
-                component = <button onClick={() => hashHistory.push(RouterConst.ROUTER_LOGIN)}>登录</button>
+                component = <MyContainer />
                 break
         }
         return component

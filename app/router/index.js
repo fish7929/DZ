@@ -20,6 +20,8 @@ const InverterList = cb => require.ensure([], require => { cb(null, require('../
 const InverterDetail = cb => require.ensure([], require => { cb(null, require('../view/inverterDetail').default)}, "InverterDetail")
 /**电表列表 */
 const AmmeterList = cb => require.ensure([], require => { cb(null, require('../view/ammeterList').default)}, "AmmeterList")
+/**故障反馈 */
+const Feedback = cb => require.ensure([], require => { cb(null, require('../view/feedback').default)}, "Feedback")
 
 const Message = cb => require.ensure([], require => { cb(null, require('../view/message').default)}, "message");
 const MessageDetail = cb => require.ensure([], require => { cb(null, require('../view/messageDetail').default)}, "messageDetail");
@@ -71,6 +73,10 @@ const Routers = {
 		{
 			path: RouterConst.ROUTER_AMMETER_LIST,
 			getComponent(nextState, cb){ AmmeterList(cb) },
+		},
+		{
+			path: RouterConst.ROUTER_FEEDBACK,
+			getComponent(nextState, cb){ Feedback(cb) },
 		},
 		{
 			path: RouterConst.ROUTER_MESSAGE + "/:type",

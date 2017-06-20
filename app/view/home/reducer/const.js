@@ -17,7 +17,7 @@ export const HOME_BTN_TABS = [
     {
         icon: "icon-feedback",
         title: "故障反馈",
-        link: ""
+        link: RouterConst.ROUTER_FEEDBACK
     },
     {
         icon: "icon-patrol",

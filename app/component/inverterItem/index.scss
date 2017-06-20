@@ -3,6 +3,8 @@
 .inverter-item{
     width: calc(50% - #{calc-rem(10)});
     background: #fff;
+    border: calc-rem(3) solid #EEEEEE;
+    border-radius: calc-rem(4);
 
     .inverter-header{
         height: calc-rem(60);
@@ -60,6 +62,7 @@
 
             .txt1{
                 height: calc-rem(28);
+                line-height: calc-rem(28);
                 font-size: calc-rem(20);
                 color: #999999;
                 letter-spacing: 0;
@@ -67,6 +70,7 @@
 
             .txt2{
                 height: calc-rem(40);
+                line-height: calc-rem(40);
                 font-family: "PingFang-SC-Medium";
                 font-size: calc-rem(28);
                 color: #333333;
