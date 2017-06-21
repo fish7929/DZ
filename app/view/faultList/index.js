@@ -44,6 +44,8 @@ class FaultList extends React.Component {
         e.stopPropagation();
         if(type == FIRST){
             hashHistory.push("/sparepart/" + this.order);
+        }else{
+            hashHistory.push("/thirdContact/" + this.order);
         }
         console.log('goToNextHandler');
     }

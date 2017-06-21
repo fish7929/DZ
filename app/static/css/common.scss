@@ -85,6 +85,7 @@
 
 .common-order-item-hint{
     width: 100%;
+    position: relative;
     box-sizing: border-box;
     padding: 0 calc-rem(40);
     color: #333;
@@ -95,7 +96,9 @@
     font-size: calc-rem(24);
     color: #666;
     span{
-        float: right;
+        position: absolute;
+        display: inline-block;
+        right: calc-rem(40);
         width: 68%;
         height: 100%;
         font-size: calc-rem(32);
@@ -108,4 +111,19 @@
     margin-bottom: calc-rem(20);
 }
 
+.margin-top-20{
+    margin-top: calc-rem(20);
+}
+
+.common-divide{
+    padding: 0 calc-rem(40);
+    width: 100%;
+    height: calc-rem(100);
+    line-height: calc-rem(100);
+    font-weight: bold;
+    color: #333;
+    font-size: calc-rem(32);
+    background: $whiteColor;
+    border-bottom: $commonBorder; 
+}
 

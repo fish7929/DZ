@@ -1,0 +1,38 @@
+{
+    "code": 0,
+    "message": "ok",
+    "data": [
+        {
+            "thirdCompany": "北京驭能者能源科技有线公司",
+            "thirdContact": "18844887242", 
+            "thirdIdentity": "其他",
+            "thirdPosition": "工程师",
+            "thirdUsername" : "王五",
+            "workcontent" : "联系北京驭能者能源科技有限公司的售后技术工程师，并且确认逆变器清灰是否需要他们公司派专人处理。"
+        },
+        {
+            "thirdCompany": "北京驭能者能源科技有线公司",
+            "thirdContact": "18844887242", 
+            "thirdIdentity": "其他",
+            "thirdPosition": "工程师",
+            "thirdUsername" : "王五",
+            "workcontent" : "联系北京驭能者能源科技有限公司的售后技术工程师，并且确认逆变器清灰是否需要他们公司派专人处理。"
+        },
+        {
+            "thirdCompany": "北京驭能者能源科技有线公司",
+            "thirdContact": "18844887242", 
+            "thirdIdentity": "其他",
+            "thirdPosition": "工程师",
+            "thirdUsername" : "王五",
+            "workcontent" : "联系北京驭能者能源科技有限公司的售后技术工程师，并且确认逆变器清灰是否需要他们公司派专人处理。"
+        },
+        {
+            "thirdCompany": "北京驭能者能源科技有线公司",
+            "thirdContact": "18844887242", 
+            "thirdIdentity": "其他",
+            "thirdPosition": "工程师",
+            "thirdUsername" : "王五",
+            "workcontent" : "联系北京驭能者能源科技有限公司的售后技术工程师，并且确认逆变器清灰是否需要他们公司派专人处理。"
+        }
+    ]
+}
