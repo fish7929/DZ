@@ -37,3 +37,6 @@ export const GetFaultListByOrder = (orderNumber) => "/pvmtsys/workOrderFault/fau
 /**Sparepart api GetSparepartDataByOrder + order */
 export const GetSparepartDataByOrder = (orderNumber) => "/pvmtsys/sparepartMapping/spareInfo/" + orderNumber;
 
+/**ThirdContact api GetThirdContactDataByOrder + order */
+export const GetThirdContactDataByOrder = (orderNumber) => "/pvmtsys/thirdContact/thirdContact/" + orderNumber;
+

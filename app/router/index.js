@@ -39,6 +39,9 @@ const MessageDetail = cb => require.ensure([], require => { cb(null, require('..
 const FaultList = cb => require.ensure([], require => { cb(null, require('../view/faultList').default)}, "faultList")
 /**备品备件 */
 const Sparepart = cb => require.ensure([], require => { cb(null, require('../view/sparepart').default)}, "sparepart")
+/**备品备件 */
+const ThirdContact = cb => require.ensure([], require => { cb(null, require('../view/thirdContact').default)}, "thirdContact")
+
 const Routers = {
 	path: RouterConst.ROUTER_HOME,
 	getComponent(nextState, cb){ App(cb) },
@@ -117,6 +120,10 @@ const Routers = {
 		{
 			path: RouterConst.ROUTER_SPAREPART + "/:order",
 			getComponent(nextState, cb){ Sparepart(cb) },
+		},
+		{
+			path: RouterConst.ROUTER_THIRD_CONTACT + "/:order",
+			getComponent(nextState, cb){ ThirdContact(cb) },
 		}
 	]
 }
