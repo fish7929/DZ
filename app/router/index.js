@@ -6,9 +6,13 @@ import * as RouterConst from '../static/const/routerConst'
 const App = cb => require.ensure([], require => { cb(null, require('../view/main').default)}, "App")
 const Login = cb => require.ensure([], require => { cb(null, require('../view/login').default)}, "Login")
 const Home = cb => require.ensure([], require => { cb(null, require('../view/home').default)}, "Home")
+/**绑定手机 */
 const BindMobile = cb => require.ensure([], require => { cb(null, require('../view/bindMobile').default)}, "BindMobile")
+/**实时警报 */
 const RealTimeAlarm = cb => require.ensure([], require => { cb(null, require('../view/realTimeAlarm').default)}, "RealTimeAlarm")
+/**报警详情 */
 const AlarmDetail = cb => require.ensure([], require => { cb(null, require('../view/alarmDetail').default)}, "AlarmDetail")
+/**报警搜索 */
 const AlarmSearch = cb => require.ensure([], require => { cb(null, require('../view/alarmSearch').default)}, "AlarmSearch")
 /**电站监控 */
 const PowerStationMonitor = cb => require.ensure([], require => { cb(null, require('../view/powerStationMonitor').default)}, "PowerStationMonitor")
@@ -22,6 +26,12 @@ const InverterDetail = cb => require.ensure([], require => { cb(null, require('.
 const AmmeterList = cb => require.ensure([], require => { cb(null, require('../view/ammeterList').default)}, "AmmeterList")
 /**故障反馈 */
 const Feedback = cb => require.ensure([], require => { cb(null, require('../view/feedback').default)}, "Feedback")
+/**修改密码 */
+const ChangePw = cb => require.ensure([], require => { cb(null, require('../view/changePw').default)}, "ChangePw")
+/**我的故障反馈 */
+const MyFeedback = cb => require.ensure([], require => { cb(null, require('../view/myFeedback').default)}, "MyFeedback")
+/**推送消息设置 */
+const MyMessageSet = cb => require.ensure([], require => { cb(null, require('../view/myMessageSet').default)}, "MyMessageSet")
 
 const Message = cb => require.ensure([], require => { cb(null, require('../view/message').default)}, "message");
 const MessageDetail = cb => require.ensure([], require => { cb(null, require('../view/messageDetail').default)}, "messageDetail");
@@ -79,6 +89,18 @@ const Routers = {
 		{
 			path: RouterConst.ROUTER_FEEDBACK,
 			getComponent(nextState, cb){ Feedback(cb) },
+		},
+		{
+			path: RouterConst.ROUTER_CHANGE_PASSWORD,
+			getComponent(nextState, cb){ ChangePw(cb) },
+		},
+		{
+			path: RouterConst.ROUTER_MY_FEEDBACK,
+			getComponent(nextState, cb){ MyFeedback(cb) },
+		},
+		{
+			path: RouterConst.ROUTER_MY_MESSAGE_SET,
+			getComponent(nextState, cb){ MyMessageSet(cb) },
 		},
 		{
 			path: RouterConst.ROUTER_MESSAGE + "/:type",

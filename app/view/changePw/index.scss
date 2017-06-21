@@ -1,0 +1,104 @@
+@import '../../static/css/_mixins.scss';
+
+.change-pw-container{
+
+    .main-div{
+        margin-top: calc-rem(20);
+        background: #fff;
+
+        .code-div{
+            height: calc-rem(100);
+            padding-left: calc-rem(40);
+            display: flex;
+            border-bottom: calc-rem(1) solid #eeeeee;
+
+            div{
+                width: calc(100% - #{calc-rem(260)});
+                height: 100%;
+                display: flex;
+                align-items: center;
+
+                span{
+                    display: inline-block;
+                    width: calc-rem(32);
+                    height: calc-rem(32);
+                    background: url(../../static/images/code.png) no-repeat center;
+                    background-size: calc-rem(32);
+                    margin-right: calc-rem(20);
+                }
+
+                input{
+                    width: calc(100% - #{calc-rem(52)});
+                }
+            }
+
+            button{
+                width: calc-rem(260);
+                height: 100%;
+                background: #FE5A08;
+                font-size: calc-rem(28);
+                color: #fff;
+            }
+
+            button:disabled{
+                background: #EFEFEF;
+                color: #999999;
+            }
+        }
+
+        .password-div{
+            height: calc-rem(100);
+            padding-left: calc-rem(40);
+
+            div{
+                height: 100%;
+                display: flex;
+                align-items: center;
+
+                span{
+                    display: inline-block;
+                    width: calc-rem(32);
+                    height: calc-rem(32);
+                    background: url(../../static/images/password.png) no-repeat center;
+                    background-size: calc-rem(32);
+                    margin-right: calc-rem(20);
+                }
+
+                input{
+                    width: calc(100% - #{calc-rem(52)});
+                }
+            }
+        }
+    }
+
+    .tip-div{
+        background: #FFFFFF;
+        position: absolute;
+        bottom: calc-rem(100);
+        left: 0;
+        width: 100%;
+        height: calc-rem(92);
+        line-height: calc-rem(92);
+        font-size: calc-rem(24);
+        color: #999999;
+        letter-spacing: calc-rem(1.15);
+        transition : all 1s ease-in-out;
+        opacity: 1;
+        text-align: center;
+    }
+
+    .btn-comfirm{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: calc-rem(100);
+        background: #FE5A08;
+        border-radius: calc-rem(4);
+        font-family: "PingFang-SC-Medium";
+        font-size: calc-rem(32);
+        color: #FFFFFF;
+    }
+
+}

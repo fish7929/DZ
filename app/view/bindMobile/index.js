@@ -51,7 +51,7 @@ class BindMobile extends React.Component{
     render(){
         let {mobile, code, count} = this.state
         return(
-            <Page className="container bind-mobile-container">
+            <Page className="bind-mobile-container">
                 <Header title="绑定手机号" isShowBack={false} />
                 <div className="input-mobile-div">
                     <span className="icon"></span>

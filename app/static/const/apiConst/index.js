@@ -27,6 +27,9 @@ export const GetAlarmListByOption = "/pvmtsys/alarmInfo/getAlarmList"
 /**AlarmDetail api GetAlarmDetailById + id */
 export const GetAlarmDetailById = "/pvmtsys/alarmInfo/getAlarmByid/"
 
+/**powerStationMonitor */
+export const GetPowerStationBaseInfo = "/pvmtsys/powerStation/getPowerStationBaseInfo"
+
 
 /**FaultList api GetFaultListByOrder + order */
 export const GetFaultListByOrder = (orderNumber) => "/pvmtsys/workOrderFault/faultList/" + orderNumber;

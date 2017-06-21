@@ -3,6 +3,7 @@
  */
 import * as utils from '../../../utils'
 import * as ActionType from './actionType'
+import * as Api from '../../../static/const/apiConst'
 
 
 const receiveListData = (data) => ({
@@ -11,6 +12,6 @@ const receiveListData = (data) => ({
 })
 
 export const getPSMList = () => dispatch =>{
-    let url = "/pvmtsys/powerStation/getPowerStationBaseInfo"
+    let url = Api.GetPowerStationBaseInfo
     dispatch(utils.sendMsg(url, {}, "GET")).then(data => dispatch(receiveListData(data.powerStationList || [])))
 }

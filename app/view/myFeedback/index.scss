@@ -1,0 +1,12 @@
+@import '../../static/css/_mixins.scss';
+
+.my-feedback-container{
+    .my-feedback-list{
+        height: 100%;
+        overflow: auto;
+
+        .my-feedback-item{
+            margin-top: calc-rem(20);
+        }
+    }
+}
