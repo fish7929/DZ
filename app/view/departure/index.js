@@ -1,7 +1,7 @@
 /**
  * @component index.js
- * @description 第三方联系界面
- * @time 2017-06-21 21:50
+ * @description 离场申请
+ * @time 2017-06-22 21:50
  * @author fishYu
  **/
 
@@ -14,18 +14,22 @@ import Page from '../../component/page';
 import Header from '../../component/header';
 import NoMessage from '../../component/noMessage';
 
+import UploadComponent from '../../component/uploadComponent';
+
 import { fetchData } from './reducer/action';
 
 import './index.scss'
 
 import { FIRST, SECOND, THREE } from '../../static/const/constants';
 
-class ThirdContact extends React.Component {
+class Departure extends React.Component {
 
     constructor(props, context) {
         super(props, context)
         let order = this.props.params && this.props.params.order;  //工单号
         this.order = parseInt(order);
+        let status = this.props.params && this.props.params.status;  //状态
+        this.status = parseInt(status);
     }
     /**
      * 根据路由不同获取不同对象
@@ -66,6 +70,7 @@ class ThirdContact extends React.Component {
                     工作内容概要
                 </div>
                 <div className="third-work-content">{item.workcontent}</div>
+                <UploadComponent type={this.status}/>
             </li>)
         });
         return (
@@ -82,7 +87,7 @@ class ThirdContact extends React.Component {
         let _content = this.getContent();
         return (
             <Page className="third-contact-container">
-                <Header title="第三方联系单" isShowBack={true} />
+                <Header title="离场申请" isShowBack={true} />
                 {list.length < 1 ?
                     <NoMessage msg="暂无信息" /> : _content}
             </Page>
@@ -100,8 +105,8 @@ class ThirdContact extends React.Component {
 
 let mapStateToProps = state => {
     return ({
-        isFetching: state.thirdContactData.isFetching,
-        list: state.thirdContactData.list
+        isFetching: state.departureData.isFetching,
+        list: state.departureData.list
     });
 }
 
@@ -109,4 +114,4 @@ let mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ fetchData }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ThirdContact)
+export default connect(mapStateToProps, mapDispatchToProps)(Departure)

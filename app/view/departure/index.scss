@@ -1,0 +1,15 @@
+/**
+ * @component index.scss
+ * @description 离场申请
+ * @time 2017-06-21 22:30
+ * @author fishYu
+ **/
+@import '../../static/css/_mixins.scss';
+.third-work-content{
+    width: 100%;
+    padding: 0 calc-rem(40);
+    color: #333;
+    font-size: calc-rem(32);
+    line-height: calc-rem(50);
+    background: $whiteColor;
+}

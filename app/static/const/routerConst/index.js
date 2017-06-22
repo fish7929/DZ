@@ -55,3 +55,5 @@ export const ROUTER_FAULT_LIST = ROUTER_ROOT + "/faultList";
 export const ROUTER_SPAREPART = ROUTER_ROOT + "/sparepart";
 /**备品备件 */
 export const ROUTER_THIRD_CONTACT = ROUTER_ROOT + "/thirdContact";
+/**离场申请 */
+export const ROUTER_DEPARTURE = ROUTER_ROOT + "/departure";

@@ -41,6 +41,8 @@ const FaultList = cb => require.ensure([], require => { cb(null, require('../vie
 const Sparepart = cb => require.ensure([], require => { cb(null, require('../view/sparepart').default)}, "sparepart")
 /**备品备件 */
 const ThirdContact = cb => require.ensure([], require => { cb(null, require('../view/thirdContact').default)}, "thirdContact")
+/**离场申请 */
+const Departure = cb => require.ensure([], require => { cb(null, require('../view/departure').default)}, "departure")
 
 const Routers = {
 	path: RouterConst.ROUTER_HOME,
@@ -124,6 +126,10 @@ const Routers = {
 		{
 			path: RouterConst.ROUTER_THIRD_CONTACT + "/:order",
 			getComponent(nextState, cb){ ThirdContact(cb) },
+		},
+		{
+			path: RouterConst.ROUTER_DEPARTURE + "/:order/:status",
+			getComponent(nextState, cb){ Departure(cb) },
 		}
 	]
 }

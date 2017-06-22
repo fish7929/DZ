@@ -39,9 +39,9 @@ class WorkOrderItem extends React.Component {
         e.preventDefault();
         e.stopPropagation();
         let { data } = this.props;
+        let order = data.orderNumber;
         switch(type){
-            case FIRST:
-                let order = data.orderNumber;
+            case FIRST:  //事故列表
                 let param = {
                     allocateTime: data.allocateTime,
                     powerstationName: data.powerstationName
@@ -49,11 +49,12 @@ class WorkOrderItem extends React.Component {
                 param = JSON.stringify(param);
                 hashHistory.push('/faultList/' + order + "/" + Base.myEncodeURIComponent(param));
                 break;
-            case SECOND:
+            case SECOND:  //电站体检
                 console.log(22222);
                 break;
-            case THREE:
+            case THREE: //离场申请
                 console.log(33333);
+                hashHistory.push('/departure/' + order + "/" + data.departureState);
                 break;
         }
     }

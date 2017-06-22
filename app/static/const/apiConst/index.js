@@ -40,3 +40,5 @@ export const GetSparepartDataByOrder = (orderNumber) => "/pvmtsys/sparepartMappi
 /**ThirdContact api GetThirdContactDataByOrder + order */
 export const GetThirdContactDataByOrder = (orderNumber) => "/pvmtsys/thirdContact/thirdContact/" + orderNumber;
 
+/**Departure api GetDepartureDataByOrder + order */
+export const GetDepartureDataByOrder = (orderNumber) => "/pvmtsys/thirdContact/thirdContact/" + orderNumber;
