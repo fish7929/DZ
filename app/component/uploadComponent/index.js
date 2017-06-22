@@ -79,13 +79,13 @@ class UploadComponent extends React.Component {
         let { type, photoHint, photos, explainHint, explain } = this.state
         let _disabled = type == 1 ? "upload-disabled" : ""; //0未处理，  1 已处理
         let _hint = type == 1 ? '附件' : photoHint;
-        let photoBtn = photos.length == 0 ? 'no-border' : '';
+        let photoBtn = photos.length == 0 ? 'upload-photo-btn-init' : '';
         return (
             <div className={"upload-component-wrapper " + _disabled}>
                 <div className="upload-explain-component">
                     <div className="upload-explain-hint">{explainHint}</div>
-                    {_disabled ? <textarea type="text" maxLength={200} disabled value={explain}></textarea> :
-                        <textarea type="text" maxLength={200} value={explain} ref='explain'
+                    {_disabled ? <textarea type="text" maxLength={50} disabled value={explain}></textarea> :
+                        <textarea type="text" maxLength={50} value={explain} ref='explain'
                             placeholder="请输入说明（可不填）" 
                             onChange={(e) => this.changeStateHandler(e, 'explain')}></textarea>}
                 </div>
@@ -127,7 +127,7 @@ UploadComponent.PropTypes = {
 }
 
 UploadComponent.defaultProps = {
-    photos: [TestPhoto, TestPhoto, TestPhoto, TestPhoto, TestPhoto, TestPhoto],
+    photos: [],
     photoHint: '上传附件',
     explain: '检查结论检查结论检查结论检查结论检查结论检查结论检查结论',
     explainHint: '说明'
