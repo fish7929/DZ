@@ -38,4 +38,9 @@
             }
         }
     }
+
+    .realTime-alarm-list{
+        height: calc(100% - #{calc-rem(80)});
+        overflow: auto;
+    }
 }

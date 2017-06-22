@@ -6,6 +6,7 @@ import { hashHistory } from 'react-router'
 import Page from '../../component/page'
 import Header from '../../component/header'
 import noMessage from '../../component/noMessage'
+import ScrollList from '../../component/scrollList'
 import RealTimeAlarmItem from '../../component/realTimeAlarmItem'
 
 import { getAlarmList, changeTabIndex } from './reducer/action'
@@ -49,7 +50,9 @@ class RealTimeAlarm extends React.Component{
                 <div className="tab-div">
                     {Const.TabList.map((obj, key)=><li key={key} onClick={()=>this.onTabHandler(obj.id)} className={obj.id==this.props.tabIndex ? "selected" : ""}><div>{obj.name}</div></li>)}
                 </div>
-                <div className="realTime-alarm-list">{this.getRealTimeAlarmItems()}</div>
+                <ScrollList className="realTime-alarm-list" onScroll={(page)=>console.log(page)} currentPage={0}>
+                    {this.getRealTimeAlarmItems()}
+                </ScrollList>
             </Page>
         )
     }
