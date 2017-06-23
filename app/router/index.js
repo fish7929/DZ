@@ -80,7 +80,7 @@ const Routers = {
 			getComponent(nextState, cb){ PowerStationMonitorDetail(cb) },
 		},
 		{
-			path: RouterConst.ROUTER_INVERTER_LIST,
+			path: RouterConst.ROUTER_INVERTER_LIST + "/:id",
 			getComponent(nextState, cb){ InverterList(cb) },
 		},
 		{

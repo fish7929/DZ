@@ -1,1 +1,4 @@
 export const PSM_LIST_INIT = "PSM_LIST_INIT"
+export const PSM_CHANGE_SHOW_TYPE = "PSM_CHANGE_SHOW_TYPE"
+export const SHOW_TYPE_MAP = "SHOW_TYPE_MAP"
+export const SHOW_TYPE_LIST = "SHOW_TYPE_LIST"

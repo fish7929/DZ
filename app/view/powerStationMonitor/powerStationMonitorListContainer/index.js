@@ -14,7 +14,6 @@ class PowerStationMonitorListContainer extends React.Component{
     }
 
     onItemHandler(id){
-        console.log("onItemHandler")
         hashHistory.push(RouterConst.ROUTER_POWER_STATION_MONITOR_DETAIL + "/" + id);
     }
 

@@ -11,7 +11,7 @@ const receiveData = (data) => ({
     data: data
 })
 
-export const getAlarmList = id => dispatch =>{
-    let url = Api.GetAlarmDetailById + id
+export const getAlarmList = (id, tabIndex) => dispatch =>{
+    let url = Api.GetAlarmDetailById(id)
     dispatch(utils.sendMsg(url, {}, "GET")).then(data => dispatch(receiveData(data)))
 }
