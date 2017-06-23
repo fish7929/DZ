@@ -13,6 +13,7 @@
     }
 
     .left-div{
+        width: calc(100% - #{calc-rem(180)});
         padding-top: calc-rem(36);
         .title-txt{
             font-family: "PingFangSC-Medium";
@@ -32,11 +33,13 @@
     }
 
     .right-div{
+        width: calc-rem(160);
         font-weight: bold;
         font-size: calc-rem(40);
         color: #EE7737;
         letter-spacing: calc-rem(1.91);
         display: flex;
         align-items: center;
+        justify-content: flex-end;
     }
 }

@@ -11,14 +11,14 @@ class RealTimeAlarmItem extends React.Component{
     }
 
     render(){
-        let { data } = this.props
-        console.log(data)
+        let { data, type } = this.props
+        //status 零:未提交 非零：已提交
         return(
             <div className="realTime-alarm-item" onClick={this.props.onClick}>
-                <div className={"warning-bg warning_" + data.alarmGrade}></div>
+                <div className={"warning-bg warning_" + data.alarmGrade + " " + type}></div>
                 <div className="status-div">
                     <div className={"icon alarm_level_"+data.alarmGrade}></div>
-                    <div className={"status-icon " + (data.status == 0 ? "notsubmited" : data.status == 1 ? "submited" : "")}></div>
+                    <div className={"status-icon " + (data.status == 0 ? "notsubmited" : "submited")}></div>
                 </div>
                 <div className="txt-div">
                     <div className="name-txt no-wrap">{data.powerStationBaseInfo.name}</div>
@@ -31,6 +31,7 @@ class RealTimeAlarmItem extends React.Component{
 }
 
 RealTimeAlarmItem.PropTypes = {
+    type: PropTypes.string,
     data: PropTypes.object.isRequire,
     onClick: PropTypes.func
 }

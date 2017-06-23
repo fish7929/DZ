@@ -3,7 +3,7 @@ import * as ActionType from './actionType'
 const initialState = {
     tabIndex: 0,
     alarmList: [],
-    total: 0
+    pageTotal: 0
 }
 
 export default function update (state = initialState, action){
@@ -11,8 +11,8 @@ export default function update (state = initialState, action){
         case ActionType.REAL_TIME_ALARM_LIST_INIT:
             return {
                 ...state,
-                alarmList: action.data.alarmInfoList,
-                total: action.data.count
+                alarmList: action.data.results,
+                pageTotal: action.data.pageCounts
             }
         case ActionType.REAL_TIME_ALARM_CHANGE_TAB:
             return {

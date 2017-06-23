@@ -26,7 +26,7 @@ class FlipListComponent extends React.Component{
             console.log(_h);
             this.listHeight = _h > 0 ? _h : this.listHeight
             this.refs.flipList.style.height = isShow ? this.listHeight + "px" : 0
-        }, 10)
+        }, 200)
     }
 
     onClickHandler(){

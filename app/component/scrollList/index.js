@@ -27,8 +27,9 @@ class ScrollList extends React.Component{
 
     onScrollHandler(e){
         var scrollTop = e.target.scrollTop || 0;
-        if(scrollTop + e.target.offsetHeight > e.target.scrollHeight - 50 && this.state.isLoading==false){
+        if(scrollTop + e.target.offsetHeight > e.target.scrollHeight - 50 && this.state.isLoading==false && this.props.currentPage < this.props.pageTotal){
             this.setState({isLoading: true})
+            console.log("onScrollHandler")
             this.props.onScroll && this.props.onScroll(this.props.currentPage+1);
         }
     }
@@ -45,7 +46,8 @@ class ScrollList extends React.Component{
 ScrollList.PropTypes = {
     className: PropTypes.string,
     onScroll : PropTypes.func,
-    currentPage: PropTypes.number
+    currentPage: PropTypes.number.isRequired,
+    pageTotal: PropTypes.number.isRequired,
 }
 
 export default ScrollList

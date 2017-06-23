@@ -10,9 +10,18 @@ const receiveListData = (data) => ({
     data: data
 })
 
-export const getAlarmList = (opt) => dispatch =>{
-    let url = Api.GetAlarmListByOption
-    dispatch(utils.sendMsg(url, opt, "GET")).then(data => dispatch(receiveListData(data)))
+export const getAlarmList = (opt) => (dispatch, getState) =>{
+    return new Promise((resolve, reject)=>{
+        let url = Api.GetAlarmListByOption
+        dispatch(utils.sendMsg(url, opt, "GET")).then(data =>{
+            let state = getState();
+            if(opt.page != 0){
+                data.results = state.realTimeAlarmReducer.alarmList.concat(data.results)
+            }
+            dispatch(receiveListData(data))
+            resolve&&resolve()
+        }, reject)
+    })
 }
 
 export const changeTabIndex = (index) => dispatch => {

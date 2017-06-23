@@ -1,54 +1,56 @@
 {
-    "code": 0,
-    "message": "ok",
     "data": {
-        "alarmGrade": 1,
-        "alarmInfoList": [
-            {
-                "createTime": "2017-05-06 12:10:10",
-                "id": 67010,
-                "powerStationId": 14661,
-                "alarmGrade": 1,
-                "alarmMessage": "报警消息"
-            },
-            {
-                "createTime": "2017-05-06 12:10:10",
-                "id": 67010,
-                "powerStationId": 14661,
-                "alarmGrade": 1,
-                "alarmMessage": "报警消息"
-            },
-            {
-                "createTime": "2017-05-06 12:10:10",
-                "id": 67010,
-                "powerStationId": 14661,
-                "alarmGrade": 1,
-                "alarmMessage": "报警消息"
-            }
-        ],
-        "alarmMessage": "报警消息",
-        "alarmTime": "2017-06-02",
-        "alarmType": 80438,
-        "attachmentList": [
-            {
-                "filename": "测试内容c3v2",
-                "filepath": "测试内容2x3q",
-                "filetype": "测试内容8p7s"
-            }
-        ],
-        "equipmentId": 74065,
-        "equipmentType": 66565,
-        "id": 1,
-        "powerStationBaseInfo": {
-            "address": "测试内容t122",
-            "id": 67153,
-            "lat": 43631,
-            "lng": 25223,
-            "manager": "测试内容8j0n",
-            "name": "测试内容j099"
-        },
-        "state": "说明",
-        "status": 0,
-        "userId": 53812
-    }
+        "AlarmInfoPO": {
+            "alarmGrade": 1,
+            "alarmInfoList": [
+                {
+                    "alarmGrade": 1,
+                    "alarmMessage": "测试内容alarmInfoList alarmMessage",
+                    "createTime": "2017-6-23 17:00",
+                    "id": 66227,
+                    "powerStationId": 72638
+                },
+                {
+                    "alarmGrade": 1,
+                    "alarmMessage": "测试内容alarmInfoList alarmMessage",
+                    "createTime": "2017-6-23 17:00",
+                    "id": 66227,
+                    "powerStationId": 72638
+                },
+                {
+                    "alarmGrade": 1,
+                    "alarmMessage": "测试内容alarmInfoList alarmMessage",
+                    "createTime": "2017-6-23 17:00",
+                    "id": 66227,
+                    "powerStationId": 72638
+                }
+            ],
+            "alarmMessage": "测试内容alarmMessage",
+            "alarmType": 80411,
+            "attachmentList": [
+                {
+                    "filename": "测试内容uxv1",
+                    "filepath": "测试内容pqfh",
+                    "filetype": "测试内容1bk8"
+                }
+            ],
+            "createTime": "2017-6-23 17:00",
+            "equipmentId": 30782,
+            "equipmentType": 37265,
+            "id": 10556,
+            "powerStationBaseInfo": 
+                {
+                    "address": "北京市朝阳区曙光西里6号楼",
+                    "id": 48862,
+                    "lat": 13777,
+                    "lng": 30163,
+                    "manager": "测试内容z8bn",
+                    "name": "测试内容yk7f"
+                }
+            ,
+            "status": 1
+        }
+    },
+    "message": "ok",
+    "code": 0
 }

@@ -36,10 +36,10 @@ class AlarmDetail extends React.Component{
         return(
             <Page className="alarm-detail-container">
                 <Header title="报警详情" isShowBack={true} />
-                <AlarmItem data={alarmData} />
+                <AlarmItem data={alarmData} type="detail" />
                 <div className="power-site-div">
                     <p className="power-title">电站位置</p>
-                    <p className="power-name">{alarmData.powerStationBaseInfo.name}</p>
+                    <p className="power-name">{alarmData.powerStationBaseInfo.address}</p>
                     <div className="power-map-div"></div>
                 </div>
                 <div className="power-history-div">
