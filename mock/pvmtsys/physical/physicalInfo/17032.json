@@ -1,0 +1,42 @@
+{
+    "code": 0,
+    "message": "ok",
+    "data": {
+        "examine": [
+            {
+                "checkupContent": ["现场组件局部是否有积灰、积沙；","现场是否有明显遮盖物遮挡组件；", "是否有明显热斑组件。"],
+                "checkupName": "热斑检查",
+                "id": 1234561
+            },
+            {
+                "checkupContent": ["现场组件局部是否有积灰、积沙；","现场是否有明显遮盖物遮挡组件；", "是否有明显热斑组件。"],
+                "checkupName": "气象站辐照仪擦洗",
+                "id": 1234562
+            },
+            {
+                "checkupContent": ["现场组件局部是否有积灰、积沙；","现场是否有明显遮盖物遮挡组件；", "是否有明显热斑组件。"],
+                "checkupName": "逆变器检查",
+                "id": 1234563
+            },
+            {
+                "checkupContent": ["现场组件局部是否有积灰、积沙；","现场是否有明显遮盖物遮挡组件；", "是否有明显热斑组件。"],
+                "checkupName": "组件检查",
+                "id": 1234564
+            }
+        ],
+        "physical": [
+            {
+                "examineId": 1234561,
+                "examineName": "热斑检查",
+                "explainInfo": "说明说明说明说明说明说明说明说明说明说明说明",
+                "id": 147,
+                "isSolve": 0,
+                "departureAccessory": [
+                    "../../static/images/test.png",
+                    "../../static/images/test.png",
+                    "../../static/images/test.png"
+                ]
+            }
+        ]
+    }
+}

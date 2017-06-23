@@ -43,6 +43,8 @@ const Sparepart = cb => require.ensure([], require => { cb(null, require('../vie
 const ThirdContact = cb => require.ensure([], require => { cb(null, require('../view/thirdContact').default)}, "thirdContact")
 /**离场申请 */
 const Departure = cb => require.ensure([], require => { cb(null, require('../view/departure').default)}, "departure")
+/**电站体检 */
+const Physical = cb => require.ensure([], require => { cb(null, require('../view/physical').default)}, "physical")
 
 const Routers = {
 	path: RouterConst.ROUTER_HOME,
@@ -130,7 +132,12 @@ const Routers = {
 		{
 			path: RouterConst.ROUTER_DEPARTURE + "/:order/:status",
 			getComponent(nextState, cb){ Departure(cb) },
+		},
+		{
+			path: RouterConst.ROUTER_PHYSICAL + "/:order/:status",
+			getComponent(nextState, cb){ Physical(cb) },
 		}
+		
 	]
 }
 
