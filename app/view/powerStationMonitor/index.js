@@ -7,6 +7,8 @@ import Header from '../../component/header'
 import PowerStationMonitorList from './powerStationMonitorListContainer'
 import PowerStationMonitorMap from './powerStationMonitorMapContainer'
 
+import * as ActionType from './reducer/actionType'
+
 import { getPSMList } from './reducer/action'
 
 class PowerStationMonitor extends React.Component{
@@ -19,20 +21,25 @@ class PowerStationMonitor extends React.Component{
     }
 
     render(){
+        let { data, showType } = this.props
         return(
             <Page className="psm-container">
                 <Header title="电站监控" isShowBack={true} />
-                <PowerStationMonitorList data={this.props.data} />
+                {
+                    showType==ActionType.SHOW_TYPE_LIST ? <PowerStationMonitorList data={this.props.data} /> : ""
+                }
             </Page>
         )
     }
 }
 
 PowerStationMonitor.PropTypes = {
+    showType: PropTypes.string.isRequired,
     data: PropTypes.array.isRequired,
 }
 
 let mapStateToProps = state => ({
+    showType: state.powerStationMonitorReducer.showType,
     data: state.powerStationMonitorReducer.list,
 })
 

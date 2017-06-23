@@ -16,29 +16,29 @@ class InverterItem extends React.Component{
                 <div className="inverter-header">
                     <div className="inverter-header-left">
                         <span className="inverter-icon"></span>
-                        <span className="inverter-title">SW001</span></div>
+                        <span className="inverter-title no-wrap">{data.serial_number}</span></div>
                     <div className="inverter-status status_0"></div>
                 </div>
                 <div className="inverter-content">
                     <div className="info-item">
                         <span className="txt1">直流功率：</span>
-                        <span className="txt2">2KW</span>
+                        <span className="txt2">{data.totalInputPower}KW</span>
                     </div>
                     <div className="info-item">
                         <span className="txt1">交流功率：</span>
-                        <span className="txt2">2KW</span>
+                        <span className="txt2">{data.ThreePhaseActivePower}KW</span>
                     </div>
                     <div className="info-item">
                         <span className="txt1">温度：</span>
-                        <span className="txt2">33℃</span>
+                        <span className="txt2">{data.Temperature}℃</span>
                     </div>
                     <div className="info-item">
                         <span className="txt1">当月发电量：</span>
-                        <span className="txt2">222KWh</span>
+                        <span className="txt2">{data.generationMonth}KWh</span>
                     </div>
                     <div className="info-item">
                         <span className="txt1">报警数量：</span>
-                        <span className="txt2">3</span>
+                        <span className="txt2">{data.alarms}</span>
                     </div>
                 </div>
             </div>

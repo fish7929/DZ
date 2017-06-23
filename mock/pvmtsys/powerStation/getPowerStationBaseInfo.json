@@ -1,117 +1,96 @@
 {
     "code": 0,
     "message": "ok",
-    "data": {
-        "powerStationList": [
-            {
-                "address": "测试内容hr79",
-                "id": 1,
-                "install_capacity": 77175,
-                "lat": 74174,
-                "lng": 45252,
-                "manager": "测试内容524o",
-                "name": "测试内容7bm3"
-            },
-                        {
-                "address": "测试内容hr79",
-                "id": 1,
-                "install_capacity": 77175,
-                "lat": 74174,
-                "lng": 45252,
-                "manager": "测试内容524o",
-                "name": "测试内容7bm3"
-            },
-                        {
-                "address": "测试内容hr79",
-                "id": 1,
-                "install_capacity": 77175,
-                "lat": 74174,
-                "lng": 45252,
-                "manager": "测试内容524o",
-                "name": "测试内容7bm3"
-            },
-                        {
-                "address": "测试内容hr79",
-                "id": 1,
-                "install_capacity": 77175,
-                "lat": 74174,
-                "lng": 45252,
-                "manager": "测试内容524o",
-                "name": "测试内容7bm3"
-            },
-                        {
-                "address": "测试内容hr79",
-                "id": 1,
-                "install_capacity": 77175,
-                "lat": 74174,
-                "lng": 45252,
-                "manager": "测试内容524o",
-                "name": "测试内容7bm3"
-            },
-                        {
-                "address": "测试内容hr79",
-                "id": 1,
-                "install_capacity": 77175,
-                "lat": 74174,
-                "lng": 45252,
-                "manager": "测试内容524o",
-                "name": "测试内容7bm3"
-            },
-                        {
-                "address": "测试内容hr79",
-                "id": 1,
-                "install_capacity": 77175,
-                "lat": 74174,
-                "lng": 45252,
-                "manager": "测试内容524o",
-                "name": "测试内容7bm3"
-            },
-                        {
-                "address": "测试内容hr79",
-                "id": 1,
-                "install_capacity": 77175,
-                "lat": 74174,
-                "lng": 45252,
-                "manager": "测试内容524o",
-                "name": "测试内容7bm3"
-            },
-                        {
-                "address": "测试内容hr79",
-                "id": 1,
-                "install_capacity": 77175,
-                "lat": 74174,
-                "lng": 45252,
-                "manager": "测试内容524o",
-                "name": "测试内容7bm3"
-            },
-                        {
-                "address": "测试内容hr79",
-                "id": 1,
-                "install_capacity": 77175,
-                "lat": 74174,
-                "lng": 45252,
-                "manager": "测试内容524o",
-                "name": "测试内容7bm3"
-            },
-                        {
-                "address": "测试内容hr79",
-                "id": 1,
-                "install_capacity": 77175,
-                "lat": 74174,
-                "lng": 45252,
-                "manager": "测试内容524o",
-                "name": "测试内容7bm3"
-            },
-                        {
-                "address": "测试内容hr79",
-                "id": 1,
-                "install_capacity": 77175,
-                "lat": 74174,
-                "lng": 45252,
-                "manager": "测试内容524o",
-                "name": "测试内容7bm3"
-            }
-            
-        ]
-    }
+    "data": [
+        {
+            "address": "江苏省镇江市汉东区大风路808号1",
+            "id": 1,
+            "install_capacity": 52586,
+            "lat": 74174,
+            "lng": 45252,
+            "manager": "张三1",
+            "name": "江苏镇江市恒顺2.12MW分布式光伏电站1"
+        },
+        {
+            "address": "江苏省镇江市汉东区大风路808号2",
+            "id": 1,
+            "install_capacity": 52586,
+            "lat": 74174,
+            "lng": 45252,
+            "manager": "张三2",
+            "name": "江苏镇江市恒顺2.12MW分布式光伏电站2"
+        },
+        {
+            "address": "江苏省镇江市汉东区大风路808号3",
+            "id": 1,
+            "install_capacity": 52586,
+            "lat": 74174,
+            "lng": 45252,
+            "manager": "张三3",
+            "name": "江苏镇江市恒顺2.12MW分布式光伏电站3"
+        },
+        {
+            "address": "江苏省镇江市汉东区大风路808号4",
+            "id": 1,
+            "install_capacity": 52586,
+            "lat": 74174,
+            "lng": 45252,
+            "manager": "张三4",
+            "name": "江苏镇江市恒顺2.12MW分布式光伏电站4"
+        },
+        {
+            "address": "江苏省镇江市汉东区大风路808号5",
+            "id": 1,
+            "install_capacity": 52586,
+            "lat": 74174,
+            "lng": 45252,
+            "manager": "张三5",
+            "name": "江苏镇江市恒顺2.12MW分布式光伏电站5"
+        },
+        {
+            "address": "江苏省镇江市汉东区大风路808号6",
+            "id": 1,
+            "install_capacity": 52586,
+            "lat": 74174,
+            "lng": 45252,
+            "manager": "张三6",
+            "name": "江苏镇江市恒顺2.12MW分布式光伏电站6"
+        },
+        {
+            "address": "江苏省镇江市汉东区大风路808号7",
+            "id": 1,
+            "install_capacity": 52586,
+            "lat": 74174,
+            "lng": 45252,
+            "manager": "张三7",
+            "name": "江苏镇江市恒顺2.12MW分布式光伏电站7"
+        },
+        {
+            "address": "江苏省镇江市汉东区大风路808号8",
+            "id": 1,
+            "install_capacity": 52586,
+            "lat": 74174,
+            "lng": 45252,
+            "manager": "张三8",
+            "name": "江苏镇江市恒顺2.12MW分布式光伏电站8"
+        },
+        {
+            "address": "江苏省镇江市汉东区大风路808号9",
+            "id": 1,
+            "install_capacity": 52586,
+            "lat": 74174,
+            "lng": 45252,
+            "manager": "张三9",
+            "name": "江苏镇江市恒顺2.12MW分布式光伏电站9"
+        },
+        {
+            "address": "江苏省镇江市汉东区大风路808号10",
+            "id": 1,
+            "install_capacity": 52586,
+            "lat": 74174,
+            "lng": 45252,
+            "manager": "张三10",
+            "name": "江苏镇江市恒顺2.12MW分布式光伏电站10"
+        }
+    ]
 }

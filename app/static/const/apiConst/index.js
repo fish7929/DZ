@@ -25,10 +25,14 @@ export const GetMessageDataByType = (type) => "/pvmtsys/messageSystemInfo/getMas
 export const GetAlarmListByOption = "/pvmtsys/alarmInfo/getAlarmList"
 
 /**AlarmDetail api GetAlarmDetailById + id */
-export const GetAlarmDetailById = "/pvmtsys/alarmInfo/getAlarmByid/"
+export const GetAlarmDetailById = id => "/pvmtsys/alarmInfo/getAlarmByid/" + id
 
-/**powerStationMonitor */
+/**powerStationMonitor 电站列表*/
 export const GetPowerStationBaseInfo = "/pvmtsys/powerStation/getPowerStationBaseInfo"
+/**powerStationDetails + /id 电站详情 */
+export const GetPowerStationDetail = id => "/pvmtsys/powerStation/powerStationDetails/" + id;
+/**inverterList 逆变器列表 */
+export const GetInverterInfo = powerStationId => "/pvmtsys/powerStation/getInverterInfo/" + powerStationId;
 
 
 /**FaultList api GetFaultListByOrder + order */
