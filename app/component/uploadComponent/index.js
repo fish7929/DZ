@@ -80,6 +80,7 @@ class UploadComponent extends React.Component {
         let _disabled = type == 1 ? "upload-disabled" : ""; //0未处理，  1 已处理
         let _hint = type == 1 ? '附件' : photoHint;
         let photoBtn = photos.length == 0 ? 'upload-photo-btn-init' : '';
+        console.log(_disabled, photos);
         return (
             <div className={"upload-component-wrapper " + _disabled}>
                 <div className="upload-explain-component">

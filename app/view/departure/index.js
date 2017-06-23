@@ -20,7 +20,7 @@ import { fetchData } from './reducer/action';
 
 import './index.scss'
 
-import { FIRST, SECOND, THREE } from '../../static/const/constants';
+import { ZERO, FIRST } from '../../static/const/constants';
 
 class Departure extends React.Component {
 
@@ -30,66 +30,85 @@ class Departure extends React.Component {
         this.order = parseInt(order);
         let status = this.props.params && this.props.params.status;  //状态
         this.status = parseInt(status);
+        this.state = {
+            list: this.props.list
+        }
     }
     /**
-     * 根据路由不同获取不同对象
+     * 
+     * @param {object} e 事件对象
+     * @param {number} id 检查项目ID
+     * @param {number} quali 质量检查0不合格就地解决，1 合格
      */
-    getContent() {
-        let { list } = this.props;
-        let component = null;
-        component = list.map((item, index) => {
-            return (<li key={index} className="margin-top-20">
-                <div className="common-divide">
-                    联系单内容
-                </div>
-                <div className="common-order-item-hint">
-                    是否需要联系第三方
-                    <span className="no-wrap">是</span>
-                </div>
-                <div className="common-order-item-hint">
-                    第三方身份
-                    <span className="no-wrap">{item.thirdIdentity}</span>
-                </div>
-                <div className="common-order-item-hint">
-                    接口人单位
-                    <span className="no-wrap">{item.thirdCompany}</span>
-                </div>
-                <div className="common-order-item-hint">
-                    接口人姓名
-                    <span className="no-wrap">{item.thirdUsername}</span>
-                </div>
-                <div className="common-order-item-hint">
-                    接口人职位
-                    <span className="no-wrap">{item.thirdPosition}</span>
-                </div>
-                <div className="common-order-item-hint">
-                    接口人联系方式
-                    <span className="no-wrap">{item.thirdContact}</span>
-                </div>
-                <div className="common-order-item-hint no-border">
-                    工作内容概要
-                </div>
-                <div className="third-work-content">{item.workcontent}</div>
-                <UploadComponent type={this.status}/>
-            </li>)
+    changeQualiHandler(e, id, quali) {
+        e.preventDefault();
+        e.stopPropagation();
+        let oldList = this.state.list;
+        let departureExamine = oldList.departureExamine;
+        departureExamine.forEach((examine, num) => {
+            if (examine.examineId == id) examine.isQualified = quali;
         });
-        return (
-            <ul>
-                {component}
-            </ul>
-        );
+        this.setState({ list: oldList });
+    }
+    /**
+     * 提交离场申请保存.
+     * @param {object} e 事件对象
+     */
+    onSaveHandler(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        let uploadComponent = this.refs.uploadComponent;
+        let upload = uploadComponent.getUploadContent();
+        let param = this.state.list;
+        param.conclusion = upload.explain;
+        param.departureAccessory = upload.photos;
+        console.log(param, 'tijiao');
+    }
+    /**
+     * 渲染内容
+     */
+    renderContentSection() {
+        let { list } = this.state; //结果不是数组
+        let component = null;
+        let departureExamine = list.departureExamine;
+        let conclusion = list.conclusion;
+        console.log(departureExamine, 899, list);
+        let departureAccessory = list.departureAccessory;  //附近 后续需要修改
+        return (<div className="margin-top-20">
+            <div className="common-divide">检查项目</div>
+            {departureExamine.map((examine, num) => {
+                let isQualified = examine.isQualified;
+                let lastClass = num == (departureExamine.length - 1) ? 'examine-item-last' : ''
+                return (<div className={"examine-item " + lastClass} key={num}>
+                    <div className="examine-item-title">{(num + 1) + "." + examine.examineName}</div>
+                    <span>
+                        {this.status == 0 ? <input type="radio" id={examine.examineId + ' ' + FIRST} name={examine.examineId} checked={isQualified == FIRST}
+                            onChange={(e) => this.changeQualiHandler(e, examine.examineId, FIRST)} />
+                            : <input type="radio" id={examine.examineId + ' ' + FIRST} name={examine.examineId} checked={isQualified == FIRST} disabled />}
+                        <label htmlFor={examine.examineId + ' ' + FIRST}>合格</label>
+                    </span>
+                    <span>
+                        {this.status == 0 ? <input type="radio" id={examine.examineId + ' ' + ZERO} name={examine.examineId} checked={isQualified == ZERO}
+                            onChange={(e) => this.changeQualiHandler(e, examine.examineId, ZERO)} />
+                            : <input type="radio" id={examine.examineId + ' ' + ZERO} name={examine.examineId} checked={isQualified == ZERO} disabled />}
+                        <label htmlFor={examine.examineId + ' ' + ZERO}>不合格就地解决</label>
+                    </span>
+                </div>)
+            })}
+            <UploadComponent ref="uploadComponent" type={this.status} photos={departureAccessory}
+                explain={conclusion} explainHint="检查结论" />
+            {this.status == 0 ? <div className="examine-save-wrapper"><div className="examine-save" onClick={(e) => this.onSaveHandler(e)}>保存</div></div> : null}
+        </div>)
     }
     /**
      * 渲染
      */
     render() {
-        let { isFetching, list } = this.props;
-        let _content = this.getContent();
+        let {  list } = this.state;
         return (
             <Page className="third-contact-container">
                 <Header title="离场申请" isShowBack={true} />
-                {list.length < 1 ?
-                    <NoMessage msg="暂无信息" /> : _content}
+                {Base.isEmptyObject(list) ? <NoMessage msg="暂无信息" /> : this.renderContentSection()}
             </Page>
         )
     }
@@ -99,6 +118,12 @@ class Departure extends React.Component {
      */
     componentDidMount() {
         this.props.fetchData(this.order);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps) {
+            this.setState({ list: nextProps.list });
+        }
     }
 
 }

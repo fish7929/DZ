@@ -1,0 +1,45 @@
+{
+    "code": 0,
+    "message": "ok",
+    "data": {
+        "conclusion": "检查结论检查结论检查结论检查结论检查结论检查结论检查结论",
+        "departureExamine": [
+            {
+                "examineId": 1234561,
+                "examineName": "现场卫生：现场无垃圾",
+                "id": 147,
+                "isQualified": 1
+            },
+            {
+                "examineId": 1234562,
+                "examineName": "现场卫生：现场无垃圾",
+                "id": 147,
+                "isQualified": 0
+            },
+            {
+                "examineId": 1234563,
+                "examineName": "现场卫生：现场无垃圾",
+                "id": 147,
+                "isQualified": 1
+            },
+            {
+                "examineId": 1234564,
+                "examineName": "现场卫生：现场无垃圾",
+                "id": 147,
+                "isQualified": 0
+            },
+            {
+                "examineId": 1234565,
+                "examineName": "现场卫生：现场无垃圾",
+                "id": 147,
+                "isQualified": 1
+            }
+        ],
+        "departureAccessory": [
+            "../../static/images/test.png",
+            "../../static/images/test.png",
+            "../../static/images/test.png"
+        ],
+        "orderNum": 17032
+    }
+}

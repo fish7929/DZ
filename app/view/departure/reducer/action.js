@@ -39,6 +39,7 @@ export const fetchData = (orderNumber) => dispatch => {
     dispatch(requestData(orderNumber));
     let _url = Api.GetDepartureDataByOrder(orderNumber);
     dispatch(utils.sendMsg(_url, null, "GET")).then(data => {
+        console.log(data, 789);
         dispatch(receiveData(data));
     })
 }
