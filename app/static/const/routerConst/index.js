@@ -60,3 +60,6 @@ export const ROUTER_DEPARTURE = ROUTER_ROOT + "/departure";
 
 /**电站体检 */
 export const ROUTER_PHYSICAL = ROUTER_ROOT + "/physical";
+
+/**故障详情*/
+export const ROUTER_FAULT_DETAIL = ROUTER_ROOT + "/faultDetail";

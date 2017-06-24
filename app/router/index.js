@@ -46,6 +46,10 @@ const Departure = cb => require.ensure([], require => { cb(null, require('../vie
 /**电站体检 */
 const Physical = cb => require.ensure([], require => { cb(null, require('../view/physical').default)}, "physical")
 
+/**故障处理反馈 */
+const FaultDetail = cb => require.ensure([], require => { cb(null, require('../view/faultDetail').default)}, "faultDetail")
+
+
 const Routers = {
 	path: RouterConst.ROUTER_HOME,
 	getComponent(nextState, cb){ App(cb) },
@@ -136,6 +140,10 @@ const Routers = {
 		{
 			path: RouterConst.ROUTER_PHYSICAL + "/:order/:status/:param",
 			getComponent(nextState, cb){ Physical(cb) },
+		},
+		{
+			path: RouterConst.ROUTER_FAULT_DETAIL + "/:id/:status/:param",
+			getComponent(nextState, cb){ FaultDetail(cb) },
 		}
 		
 	]
