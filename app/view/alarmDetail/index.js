@@ -10,6 +10,8 @@ import FlipListComponent from '../../component/flipListComponent'
 
 import { getAlarmList } from './reducer/action'
 
+import * as Api from '../../static/const/apiConst'
+
 import './index.scss'
 
 class AlarmDetail extends React.Component{
@@ -20,6 +22,9 @@ class AlarmDetail extends React.Component{
     componentDidMount(){
         let id = this.props.params.id
         this.props.getAlarmList(id)
+        Base.loadJs(Api.baiduApi, ()=> {
+            console.log("加载完成")
+        });
     }
 
     getHistoryItems(){

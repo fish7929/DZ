@@ -5,3 +5,6 @@ gitlab地址：git.chilunyc.com
 
 接口地址：http://test.yunengzhe.com:846/ 
 账号：waibao,密码：waibao
+
+
+http://api.map.baidu.com/api?v=2.0&ak=3j6qn3gMTZgGCzOegAxyF3wP

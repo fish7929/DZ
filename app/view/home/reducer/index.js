@@ -12,7 +12,10 @@ const initialState = {
     homeContainerList: [],
     workOrderList: [],
     messageCenterList: [],
-    personalCenterList: []
+    personalCenterList: [],
+
+    alarmList: [],
+    alarmCount: 0,
 }
 
 export default function homeData(state = initialState, action) {
@@ -64,6 +67,16 @@ export default function homeData(state = initialState, action) {
                     personalCenterList: action.data
                 }
             );
+        case ActionType.HOME_INIT_ALARM_LIST:
+            return {
+                ...state,
+                alarmList: action.data.results
+            }
+        case ActionType.HOME_INIT_ALARM_COUNT:
+            return {
+                ...state,
+                alarmCount: action.data.count
+            }
         default:
             return state
     }
