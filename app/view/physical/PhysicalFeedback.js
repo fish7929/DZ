@@ -160,17 +160,17 @@ class PhysicalFeedback extends React.Component {
         let { currentPhysical, type, currentFacility } = this.state;
         this.cancelFocus();
         if(!currentPhysical){
-            alert('请选择体检项目');
+            AppModal.toast('请选择体检项目');
             return;
         }else if(type == ZERO){  //上传调度中心
             if(!currentFacility){
-                alert('请选择设备名称');
+                AppModal.toast('请选择设备名称');
                 return;
             }else if(!this.state.facilityNumber){
-                alert('请输入设备编号');
+                AppModal.toast('请输入设备编号');
                 return;
             }else if(!this.state.faultLevel){
-                alert('请选择故障级别');
+                AppModal.toast('请选择故障级别');
                 return;
             }
         }
