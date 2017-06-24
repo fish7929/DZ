@@ -39,7 +39,7 @@ class UploadComponent extends React.Component {
         e.stopPropagation();
         //test 
         let oldPhotos = this.state.photos;
-        oldPhotos.push(TestPhoto);
+        oldPhotos.push({filepath:TestPhoto, filename: 'test'});
         this.setState({photos: oldPhotos});
     }
     /**
@@ -80,6 +80,7 @@ class UploadComponent extends React.Component {
         let _disabled = type == 1 ? "upload-disabled" : ""; //0未处理，  1 已处理
         let _hint = type == 1 ? '附件' : photoHint;
         let photoBtn = photos.length == 0 ? 'upload-photo-btn-init' : '';
+        console.log(_disabled, photos);
         return (
             <div className={"upload-component-wrapper " + _disabled}>
                 <div className="upload-explain-component">
@@ -96,7 +97,7 @@ class UploadComponent extends React.Component {
                     <ul className="upload-photo-content">
                         {photos.map((item, index) =>
                             <li key={index} className="upload-photo-item">
-                                <img src={item}/>
+                                <img src={item.filepath}/>
                                 {_disabled ? null : <span className="photo-close" 
                                 onClick={(e) => this.deletePhotoHandler(e, index)}></span>}
                             </li>
@@ -129,7 +130,7 @@ UploadComponent.PropTypes = {
 UploadComponent.defaultProps = {
     photos: [],
     photoHint: '上传附件',
-    explain: '检查结论检查结论检查结论检查结论检查结论检查结论检查结论',
+    explain: '',
     explainHint: '说明'
 }
 

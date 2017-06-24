@@ -11,15 +11,15 @@ const initialState = {
     list: {}
 }
 
-export default function departureData(state = initialState, action) {
+export default function physicalData(state = initialState, action) {
     switch (action.type) {
-        case ActionType.REQUEST_DEPARTURE_DATA:
+        case ActionType.REQUEST_PHYSICAL_DATA:
             return Object.assign(
                 {},
                 state,
                 { isFetching: true }
             );
-        case ActionType.RECEIVE_DEPARTURE_DATA:
+        case ActionType.RECEIVE_PHYSICAL_DATA:
             return Object.assign(
                 {},
                 state,

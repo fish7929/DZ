@@ -28,6 +28,7 @@ $phoneColor: #b8c9cf;  /**电话颜色*/
 $backIcon : '../../static/images/back.png'; /*返回图片*/
 $nextIcon : '../../static/images/next.png'; /*下一步图片*/
 $arrowIcon : '../../static/images/arrow.png'; /*警报消息图片*/
+$yellowarrowIcon : '../../static/images/yellow-arrow.png'; /*警报消息图片*/
 $alarmIcon : '../../static/images/alarm.png'; /*警报消息图片*/
 $messageIcon : '../../static/images/message.png'; /*消息图片*/
 $systemIcon : '../../static/images/system.png'; /*系统消息图片*/
@@ -45,6 +46,10 @@ $faultIcon : '../../static/images/fault.png'; /*故障列表*/
 
 $cameraIcon : '../../static/images/camera.png'; /*照相机*/
 $closeIcon : '../../static/images/close.png'; /*照相机*/
+
+$checkIcon : '../../static/images/selected.png'; /*选择*/
+
+$uncheckIcon : '../../static/images/circle.png'; /*未选择*/
 
 $commonBorder: .5px solid rgba(224,224,224, .9);
 

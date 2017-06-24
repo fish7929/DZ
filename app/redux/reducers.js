@@ -17,3 +17,4 @@ export faultData from '../view/faultList/reducer';
 export sparepartData from '../view/sparepart/reducer';
 export thirdContactData from '../view/thirdContact/reducer';
 export departureData from '../view/departure/reducer';
+export physicalData from '../view/physical/reducer';

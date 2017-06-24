@@ -50,7 +50,10 @@ class WorkOrderItem extends React.Component {
                 hashHistory.push('/faultList/' + order + "/" + Base.myEncodeURIComponent(param));
                 break;
             case SECOND:  //电站体检
-                console.log(22222);
+                let physicalParam = {
+                    stationName: data.powerstationName
+                };  
+                hashHistory.push('/physical/' + order + "/" + data.physicalState + "/" + Base.myEncodeURIComponent(physicalParam));
                 break;
             case THREE: //离场申请
                 console.log(33333);

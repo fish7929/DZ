@@ -15,7 +15,7 @@ import * as Api from '../../../static/const/apiConst'
  */
 function requestData(dataType) {
     return {
-        type: ActionType.REQUEST_DEPARTURE_DATA
+        type: ActionType.REQUEST_PHYSICAL_DATA
     };
 }
 
@@ -26,7 +26,7 @@ function requestData(dataType) {
  */
 function receiveData(result) {
     return {
-        type: ActionType.RECEIVE_DEPARTURE_DATA,
+        type: ActionType.RECEIVE_PHYSICAL_DATA,
         data: result
     };
 }
@@ -37,7 +37,7 @@ function receiveData(result) {
  */
 export const fetchData = (orderNumber) => dispatch => {
     dispatch(requestData(orderNumber));
-    let _url = Api.GetDepartureDataByOrder(orderNumber);
+    let _url = Api.GetPhysicalDataByOrder(orderNumber);
     dispatch(utils.sendMsg(_url, null, "GET")).then(data => {
         console.log(data, 789);
         dispatch(receiveData(data));
