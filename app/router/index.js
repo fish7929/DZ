@@ -134,7 +134,7 @@ const Routers = {
 			getComponent(nextState, cb){ Departure(cb) },
 		},
 		{
-			path: RouterConst.ROUTER_PHYSICAL + "/:order/:status",
+			path: RouterConst.ROUTER_PHYSICAL + "/:order/:status/:param",
 			getComponent(nextState, cb){ Physical(cb) },
 		}
 		

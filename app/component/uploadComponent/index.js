@@ -130,7 +130,7 @@ UploadComponent.PropTypes = {
 UploadComponent.defaultProps = {
     photos: [],
     photoHint: '上传附件',
-    explain: '检查结论检查结论检查结论检查结论检查结论检查结论检查结论',
+    explain: '',
     explainHint: '说明'
 }
 

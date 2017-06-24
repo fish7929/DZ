@@ -15,6 +15,7 @@ import Header from '../../component/header';
 import NoMessage from '../../component/noMessage';
 
 import UploadComponent from '../../component/uploadComponent';
+import PhysicalFeedback from './PhysicalFeedback';
 
 import { fetchData } from './reducer/action';
 
@@ -28,42 +29,42 @@ class Physical extends React.Component {
         super(props, context)
         let order = this.props.params && this.props.params.order;  //工单号
         this.order = parseInt(order);
-        let status = this.props.params && this.props.params.status;  //状态
+        let status = this.props.params && this.props.params.status;  //状态0 未处理， 1已处理
         this.status = parseInt(status);
+        let param = this.props.params && this.props.params.param;  //json对象
+        param = Base.myDecodeURIComponent(param);
+        this.param = {};
+        try {
+            this.param = JSON.parse(param);
+        } catch (e) {
+            console.log(e);
+        }
         this.state = {
             list: this.props.list,
-            isAdd: false,
+            isAdd: false,  // false
         }
     }
     /**
-     * 
+     * 点击完成体检
      * @param {object} e 事件对象
-     * @param {number} id 检查项目ID
-     * @param {number} quali 质量检查0不合格就地解决，1 合格
      */
-    changeQualiHandler(e, id, quali) {
+    onCompletedHandler(e) {
         e.preventDefault();
         e.stopPropagation();
-        let oldList = this.state.list;
-        let departureExamine = oldList.departureExamine;
-        departureExamine.forEach((examine, num) => {
-            if (examine.examineId == id) examine.isQualified = quali;
-        });
-        this.setState({ list: oldList });
+        console.log('完成');
     }
     /**
      * 提交离场申请保存.
      * @param {object} e 事件对象
      */
-    onSaveHandler(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        let uploadComponent = this.refs.uploadComponent;
-        let upload = uploadComponent.getUploadContent();
-        let param = this.state.list;
-        param.conclusion = upload.explain;
-        param.departureAccessory = upload.photos;
-        console.log(param, 'tijiao');
+    onSaveHandler(param) {
+        console.log(param, 'save');
+        let oldList = this.state.list;
+        oldList.physical.push(param);
+        this.setState({
+            isAdd: false,
+            list: oldList
+        });
     }
     /**
      * 开关显示详情
@@ -92,9 +93,9 @@ class Physical extends React.Component {
         let component = examine.map((item, index) => {
             let checkupContent = item.checkupContent;
             return (<div key={index} className="physical-examine-item">
-                <div className="physical-examine-title">{(index + 1) + "." + item.checkupName}</div>
+                <div className="physical-examine-title">{item.checkupName}</div>
                 {checkupContent.map((content, num) => <div key={num} className="physical-examine-content">
-                    {(num + 1) + "." + content}</div>)}
+                    {content}</div>)}
             </div>);
         })
         return (
@@ -119,16 +120,16 @@ class Physical extends React.Component {
             let isSolve = item.isSolve;  //问题反馈类型， 0 不合格上报调度中心， 1 不合格就地解决
             let departureAccessory = item.departureAccessory;  //todo
             let explainInfo = item.explainInfo;
-            let solve = isSolve == 0 ? '不合格上报调度中心' : '不合格就地解决';
+            let solve = isSolve == ZERO ? '不合格上报调度中心' : '不合格就地解决';
             return (<li key={index} className="physical-physical-item">
                 <div className="physical-physical-divide off">
-                    {(index + 1) + "." + item.examineName}
+                    {item.examineName}
                     <span onClick={(e) => this.toggleItemHandler(e)}></span>
                     <div className="physical-physical-hint" data-hint="问题反馈">{solve}</div>
                 </div>
                 <div className="physical-wrapper">
                     <UploadComponent ref="uploadComponent" type={1} photos={departureAccessory}
-                explain={explainInfo}/>
+                        explain={explainInfo} />
                 </div>
             </li>);
         })
@@ -138,34 +139,39 @@ class Physical extends React.Component {
             </ul>
         );
     }
-    addFeedbackHandler(e){
+    addFeedbackHandler(e) {
         e.preventDefault();
         e.stopPropagation();
-
+        this.setState({ isAdd: true });
     }
     /**
      * 渲染问题反馈内容
      */
     renderFeedbackSection() {
-    }
-    /**
-     * 渲染问题反馈内容
-     */
-    renderFeedbackSection() {
-        return null;
+        let { list, isAdd } = this.state;
+        let examine = list.examine;  //标准的体检
+        let physical = list.physical;  //已经添加过的，
+        let physicalId = physical.map((item) => item.examineId);
+        //todo 筛选出剩下的
+        let remain = examine.filter((item) => physicalId.indexOf(item.id) == -1);
+        return (
+            isAdd ? <PhysicalFeedback physicalList={remain} stationName={this.param.stationName || ''}
+                callBack={(param) => this.onSaveHandler(param)} /> : null
+        );
     }
     renderContentSection() {
-        return(
+        return (
             <div>
                 {this.renderExamineSection()}
                 {this.renderPhysicalSection()}
-                <div className="physical-feedback-wrapper">
+                {this.status == ZERO ? <div className="physical-feedback-wrapper">
                     <div className="physical-feedback" onClick={(e) => this.addFeedbackHandler(e)}>
                         添加问反馈
                     </div>
-                </div>
+                </div> : null}
                 {this.renderFeedbackSection()}
-                <div className="physical-save" onClick={(e) => this.onSaveHandler(e)}>完成体检</div>
+                {this.status == ZERO ? <div className="physical-save"
+                    onClick={(e) => this.onSaveHandler(e)}>完成体检</div> : null}
             </div>
         );
     }
