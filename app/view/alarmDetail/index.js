@@ -22,9 +22,11 @@ class AlarmDetail extends React.Component{
     componentDidMount(){
         let id = this.props.params.id
         this.props.getAlarmList(id)
-        Base.loadJs(Api.baiduApi, ()=> {
-            console.log("加载完成")
-        });
+        this.map = new BMap.Map("allMap")
+    }
+
+    componentWillUnmount(){
+        this.map = null;
     }
 
     getHistoryItems(){
@@ -38,6 +40,16 @@ class AlarmDetail extends React.Component{
 
     render(){
         let { alarmData } = this.props
+        if(alarmData.powerStationBaseInfo.lat && alarmData.powerStationBaseInfo.lng && this.map){
+            let point = new BMap.Point(alarmData.powerStationBaseInfo.lat, alarmData.powerStationBaseInfo.lng);
+            var myIcon = new BMap.Icon("http://api.map.baidu.com/img/markers.png", new BMap.Size(23, 25), {
+                offset: new BMap.Size(10, 25),
+                imageOffset: new BMap.Size(0, 0 - 0 * 25)
+            });
+            let marker = new BMap.Marker(point, {icon: myIcon});  // 创建标注
+	        this.map.addOverlay(marker);              // 将标注添加到地图中
+            this.map.centerAndZoom(point, 15);
+        }
         return(
             <Page className="alarm-detail-container">
                 <Header title="报警详情" isShowBack={true} />
@@ -45,7 +57,7 @@ class AlarmDetail extends React.Component{
                 <div className="power-site-div">
                     <p className="power-title">电站位置</p>
                     <p className="power-name">{alarmData.powerStationBaseInfo.address}</p>
-                    <div className="power-map-div"></div>
+                    <div id="allMap" className="power-map-div"></div>
                 </div>
                 <div className="power-history-div">
                     <FlipListComponent title="本设备近3个月报警历史">
