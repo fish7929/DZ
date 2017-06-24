@@ -35,10 +35,23 @@
                 "isQualified": 1
             }
         ],
-        "departureAccessory": [
-            "../../static/images/test.png",
-            "../../static/images/test.png",
-            "../../static/images/test.png"
+        "attachmentList": [
+            {
+                "fileName": "test",
+                "filepath": "../../static/images/test.png"
+            },
+            {
+                "fileName": "test",
+                "filepath": "../../static/images/test.png"
+            },
+            {
+                "fileName": "test",
+                "filepath": "../../static/images/test.png"
+            },
+            {
+                "fileName": "test",
+                "filepath": "../../static/images/test.png"
+            }
         ],
         "orderNum": 17032
     }

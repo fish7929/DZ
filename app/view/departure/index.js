@@ -61,7 +61,7 @@ class Departure extends React.Component {
         let upload = uploadComponent.getUploadContent();
         let param = this.state.list;
         param.conclusion = upload.explain;
-        param.departureAccessory = upload.photos;
+        param.attachmentList = upload.photos;
         console.log(param, 'tijiao');
     }
     /**
@@ -73,7 +73,7 @@ class Departure extends React.Component {
         let departureExamine = list.departureExamine;
         let conclusion = list.conclusion;
         console.log(departureExamine, 899, list);
-        let departureAccessory = list.departureAccessory;  //附近 后续需要修改
+        let attachmentList = list.attachmentList;  //附近 后续需要修改
         return (<div className="margin-top-20">
             <div className="common-divide">检查项目</div>
             {departureExamine.map((examine, num) => {
@@ -95,7 +95,7 @@ class Departure extends React.Component {
                     </span>
                 </div>)
             })}
-            <UploadComponent ref="uploadComponent" type={this.status} photos={departureAccessory}
+            <UploadComponent ref="uploadComponent" type={this.status} photos={attachmentList}
                 explain={conclusion} explainHint="检查结论" />
             {this.status == 0 ? <div className="examine-save-wrapper"><div className="examine-save" onClick={(e) => this.onSaveHandler(e)}>保存</div></div> : null}
         </div>)

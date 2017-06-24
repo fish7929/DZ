@@ -182,7 +182,7 @@ class PhysicalFeedback extends React.Component {
             examineName: currentPhysical.checkupName,
             isSolve: type,
             explainInfo: uploadObj.explain,
-            departureAccessory: uploadObj.photos,
+            attachmentList: uploadObj.photos,
             id: 147   //创建 的时候默认值
         };
         console.log(res, 999999);

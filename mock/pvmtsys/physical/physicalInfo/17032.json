@@ -31,10 +31,23 @@
                 "explainInfo": "说明说明说明说明说明说明说明说明说明说明说明",
                 "id": 147,
                 "isSolve": 0,
-                "departureAccessory": [
-                    "../../static/images/test.png",
-                    "../../static/images/test.png",
-                    "../../static/images/test.png"
+                "attachmentList": [
+                    {
+                        "fileName": "test",
+                        "filepath": "../../static/images/test.png"
+                    },
+                    {
+                        "fileName": "test",
+                        "filepath": "../../static/images/test.png"
+                    },
+                    {
+                        "fileName": "test",
+                        "filepath": "../../static/images/test.png"
+                    },
+                    {
+                        "fileName": "test",
+                        "filepath": "../../static/images/test.png"
+                    }
                 ]
             },
             {
@@ -43,10 +56,23 @@
                 "explainInfo": "说明说明说明说明说明说明说明说明说明说明说明",
                 "id": 1472,
                 "isSolve": 1,
-                "departureAccessory": [
-                    "../../static/images/test.png",
-                    "../../static/images/test.png",
-                    "../../static/images/test.png"
+                "attachmentList": [
+                    {
+                        "fileName": "test",
+                        "filepath": "../../static/images/test.png"
+                    },
+                    {
+                        "fileName": "test",
+                        "filepath": "../../static/images/test.png"
+                    },
+                    {
+                        "fileName": "test",
+                        "filepath": "../../static/images/test.png"
+                    },
+                    {
+                        "fileName": "test",
+                        "filepath": "../../static/images/test.png"
+                    }
                 ]
             }
         ]

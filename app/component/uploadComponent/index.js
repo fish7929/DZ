@@ -39,7 +39,7 @@ class UploadComponent extends React.Component {
         e.stopPropagation();
         //test 
         let oldPhotos = this.state.photos;
-        oldPhotos.push(TestPhoto);
+        oldPhotos.push({filepath:TestPhoto, filename: 'test'});
         this.setState({photos: oldPhotos});
     }
     /**
@@ -97,7 +97,7 @@ class UploadComponent extends React.Component {
                     <ul className="upload-photo-content">
                         {photos.map((item, index) =>
                             <li key={index} className="upload-photo-item">
-                                <img src={item}/>
+                                <img src={item.filepath}/>
                                 {_disabled ? null : <span className="photo-close" 
                                 onClick={(e) => this.deletePhotoHandler(e, index)}></span>}
                             </li>

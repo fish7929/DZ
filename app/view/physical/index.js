@@ -118,7 +118,7 @@ class Physical extends React.Component {
         let physical = list.physical;
         let component = physical.map((item, index) => {
             let isSolve = item.isSolve;  //问题反馈类型， 0 不合格上报调度中心， 1 不合格就地解决
-            let departureAccessory = item.departureAccessory;  //todo
+            let attachmentList = item.attachmentList;  //todo
             let explainInfo = item.explainInfo;
             let solve = isSolve == ZERO ? '不合格上报调度中心' : '不合格就地解决';
             return (<li key={index} className="physical-physical-item">
@@ -128,7 +128,7 @@ class Physical extends React.Component {
                     <div className="physical-physical-hint" data-hint="问题反馈">{solve}</div>
                 </div>
                 <div className="physical-wrapper">
-                    <UploadComponent ref="uploadComponent" type={1} photos={departureAccessory}
+                    <UploadComponent ref="uploadComponent" type={1} photos={attachmentList}
                         explain={explainInfo} />
                 </div>
             </li>);
