@@ -36,6 +36,18 @@
                     "../../static/images/test.png",
                     "../../static/images/test.png"
                 ]
+            },
+            {
+                "examineId": 1234562,
+                "examineName": "气象站辐照仪擦洗",
+                "explainInfo": "说明说明说明说明说明说明说明说明说明说明说明",
+                "id": 1472,
+                "isSolve": 1,
+                "departureAccessory": [
+                    "../../static/images/test.png",
+                    "../../static/images/test.png",
+                    "../../static/images/test.png"
+                ]
             }
         ]
     }

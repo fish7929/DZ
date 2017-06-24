@@ -1,82 +1,144 @@
 /**
  * @component index.scss
- * @description 离场申请
+ * @description 电站体检
  * @time 2017-06-21 22:30
  * @author fishYu
  **/
 @import '../../static/css/_mixins.scss';
-.third-work-content{
-    width: 100%;
-    padding: 0 calc-rem(40);
-    color: #333;
-    font-size: calc-rem(32);
-    line-height: calc-rem(50);
-    background: $whiteColor;
+@mixin common-physical{
+    position: absolute;
+    display: inline-block;
+    right: 0;
+    width: calc-rem(124);
+    height: 100%;
+    background: url($arrowIcon)  center no-repeat;
+    background-size: calc-rem(44);
+    transition : all 0.5s ease-in-out;
 }
-
-.examine-item{
-    width: 100%;
-    height: calc-rem(155);
-    border-bottom: $commonBorder;
-    background: $whiteColor;
+.physical-examine-divide{
+    position: relative;
     padding: 0 calc-rem(40);
-    .examine-item-title{
-        width: 100%;
-        height: calc-rem(65);
-        color: #5B5B5B;
-        font-size: calc-rem(28);
-        line-height: calc-rem(65);
-    }
+    width: 100%;
+    height: calc-rem(100);
+    line-height: calc-rem(100);
+    color: #FC5B0B;
+    background: $whiteColor;
+    font-weight: bold;
+    font-size: calc-rem(36);
+    margin-top: calc-rem(20);
     span{
-        display: inline-block;
-        width: 50%;
-        height: calc-rem(90);
-        line-height: calc-rem(90);
-        input[type="radio"]{
-            display: inline-block;
-            vertical-align: middle;
-            width: calc-rem(44);
-            height: 100%;
-            -webkit-appearance: none;
-            appearance: none;
-            outline: none;
-            background: url($uncheckIcon) center no-repeat;
-            background-size: calc-rem(44); 
+        @include common-physical;
+        background: url($yellowarrowIcon)  center no-repeat;
+        background-size: calc-rem(44);
+    }
+}
+.physical-examine-item{
+    border-top: $commonBorder;
+    width: 100%;
+    padding: calc-rem(30) calc-rem(40);
+    height: calc-rem(235);
+    box-sizing: border-box;
+    background: $whiteColor;
+    .physical-examine-title{
+        font-size: calc-rem(32);
+        color: #333;
+        line-height: calc-rem(32);
+        font-weight: bold;
+    }
+    .physical-examine-content{
+        font-size: calc-rem(28);
+        color: #5B5B5B;
+        line-height: calc-rem(32);
+        margin-top: calc-rem(20);
+    }
+}
+
+.physical-physical-item{
+    background: $whiteColor;
+    .physical-physical-divide{
+        position: relative;
+        border-bottom: $commonBorder;
+        height: calc-rem(155);
+        padding: calc-rem(30) calc-rem(40);
+        width: 100%;
+        font-size: calc-rem(32);
+        color: #333;
+        font-weight: bold;
+        span{
+            @include common-physical;
+            height: calc-rem(74);
+            top: 0;
         }
-        input[type="radio"]:checked{
-            background: url($checkIcon) center no-repeat;
-            background-size: calc-rem(44);
-        }
-        label{
-            width: -webkit-calc(100% - #{calc-rem(44)});
-            width: calc(100% - #{calc-rem(44)});
-            padding-left: calc-rem(20);
-            height: 100%;
+        .physical-physical-hint{
+            width: 100%;
+            height: calc-rem(90);
+            line-height: calc-rem(90);
             color: #333;
-            display: inline-block;
-            vertical-align: middle;
             font-size: calc-rem(32);
+            text-align: right;
+            font-weight: normal;
+            &:before{
+                position: absolute;
+                left: calc-rem(40);
+                content: attr(data-hint);
+                font-size: calc-rem(28);
+                color: #5B5B5B;
+            }
         }
     }
 }
 
-.examine-item-last{
-    border-bottom: 0;
-    margin-bottom: calc-rem(20);
+
+.physical-wrapper{
+    overflow: hidden;
+    transition : all 0.5s ease-in-out;
 }
-.examine-save-wrapper{
+.off{
+    span{
+        transform:rotate(0);
+    }
+    & + .physical-wrapper{
+        display: none;
+        transition : all 0.5s ease-in-out;
+    }
+}
+
+.on{
+    span{
+        transform:rotate(180deg);
+    }
+    & + .physical-wrapper{
+        display: block;
+        transition : all 0.5s ease-in-out;
+    }
+}
+
+
+.physical-feedback-wrapper{
     width: 100%;
     background: $whiteColor;
-    padding-bottom: calc-rem(30);
+    margin: calc-rem(20) 0;
+    padding: calc-rem(30) 0;
+    .physical-feedback{
+        width: calc-rem(260);
+        height: calc-rem(70);
+        margin: 0 auto;
+        color: #FE5A08;
+        font-size: calc-rem(32);
+        text-align: center;
+        line-height: calc-rem(68);
+        border: calc-rem(1) solid #FE5A08;
+        border-radius: calc-rem(32)
+    }
 }
-.examine-save{
-    width: calc-rem(260);
-    height: calc-rem(70);
-    margin: 0 auto;
-    color: #FE5A08;
+
+.physical-save{
+    width: 100%;
+    height: calc-rem(100);
+    line-height: calc-rem(100);
     font-size: calc-rem(32);
+    color: $whiteColor;
     text-align: center;
-    line-height: calc-rem(68);
-    border: calc-rem(1) solid #FE5A08;
-    border-radius: calc-rem(32)
+    background: #FE5A08 ;
 }
+

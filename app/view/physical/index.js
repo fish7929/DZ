@@ -31,7 +31,8 @@ class Physical extends React.Component {
         let status = this.props.params && this.props.params.status;  //状态
         this.status = parseInt(status);
         this.state = {
-            list: this.props.list
+            list: this.props.list,
+            isAdd: false,
         }
     }
     /**
@@ -98,62 +99,85 @@ class Physical extends React.Component {
         })
         return (
             <div>
-                <div className="physical-examine-divide">
+                <div className="physical-examine-divide off">
                     检查标准
                     <span onClick={(e) => this.toggleItemHandler(e)}></span>
                 </div>
-                <div className="physical-examine-wrapper">
+                <div className="physical-wrapper">
                     {component}
                 </div>
             </div>
         );
     }
     /**
-     * 渲染内容
+     * 渲染检查体检
      */
+    renderPhysicalSection() {
+        let { list } = this.state;
+        let physical = list.physical;
+        let component = physical.map((item, index) => {
+            let isSolve = item.isSolve;  //问题反馈类型， 0 不合格上报调度中心， 1 不合格就地解决
+            let departureAccessory = item.departureAccessory;  //todo
+            let explainInfo = item.explainInfo;
+            let solve = isSolve == 0 ? '不合格上报调度中心' : '不合格就地解决';
+            return (<li key={index} className="physical-physical-item">
+                <div className="physical-physical-divide off">
+                    {(index + 1) + "." + item.examineName}
+                    <span onClick={(e) => this.toggleItemHandler(e)}></span>
+                    <div className="physical-physical-hint" data-hint="问题反馈">{solve}</div>
+                </div>
+                <div className="physical-wrapper">
+                    <UploadComponent ref="uploadComponent" type={1} photos={departureAccessory}
+                explain={explainInfo}/>
+                </div>
+            </li>);
+        })
+        return (
+            <ul className="margin-top-20">
+                {component}
+            </ul>
+        );
+    }
+    addFeedbackHandler(e){
+        e.preventDefault();
+        e.stopPropagation();
+
+    }
+    /**
+     * 渲染问题反馈内容
+     */
+    renderFeedbackSection() {
+    }
+    /**
+     * 渲染问题反馈内容
+     */
+    renderFeedbackSection() {
+        return null;
+    }
     renderContentSection() {
-        let { list } = this.state; //结果不是数组
-        let component = null;
-        let departureExamine = list.departureExamine;
-        let conclusion = list.conclusion;
-        console.log(departureExamine, 899, list);
-        let departureAccessory = list.departureAccessory;  //附近 后续需要修改
-        return (<div className="margin-top-20">
-            <div className="common-divide">检查项目</div>
-            {departureExamine.map((examine, num) => {
-                let isQualified = examine.isQualified;
-                let lastClass = num == (departureExamine.length - 1) ? 'examine-item-last' : ''
-                return (<div className={"examine-item " + lastClass} key={num}>
-                    <div className="examine-item-title">{(num + 1) + "." + examine.examineName}</div>
-                    <span>
-                        {this.status == 0 ? <input type="radio" id={examine.examineId + ' ' + FIRST} name={examine.examineId} checked={isQualified == FIRST}
-                            onChange={(e) => this.changeQualiHandler(e, examine.examineId, FIRST)} />
-                            : <input type="radio" id={examine.examineId + ' ' + FIRST} name={examine.examineId} checked={isQualified == FIRST} disabled />}
-                        <label htmlFor={examine.examineId + ' ' + FIRST}>合格</label>
-                    </span>
-                    <span>
-                        {this.status == 0 ? <input type="radio" id={examine.examineId + ' ' + ZERO} name={examine.examineId} checked={isQualified == ZERO}
-                            onChange={(e) => this.changeQualiHandler(e, examine.examineId, ZERO)} />
-                            : <input type="radio" id={examine.examineId + ' ' + ZERO} name={examine.examineId} checked={isQualified == ZERO} disabled />}
-                        <label htmlFor={examine.examineId + ' ' + ZERO}>不合格就地解决</label>
-                    </span>
-                </div>)
-            })}
-            <UploadComponent ref="uploadComponent" type={this.status} photos={departureAccessory}
-                explain={conclusion} explainHint="检查结论" />
-            {this.status == 0 ? <div className="examine-save-wrapper"><div className="examine-save" onClick={(e) => this.onSaveHandler(e)}>保存</div></div> : null}
-        </div>)
+        return(
+            <div>
+                {this.renderExamineSection()}
+                {this.renderPhysicalSection()}
+                <div className="physical-feedback-wrapper">
+                    <div className="physical-feedback" onClick={(e) => this.addFeedbackHandler(e)}>
+                        添加问反馈
+                    </div>
+                </div>
+                {this.renderFeedbackSection()}
+                <div className="physical-save" onClick={(e) => this.onSaveHandler(e)}>完成体检</div>
+            </div>
+        );
     }
     /**
      * 渲染
      */
     render() {
         let { list } = this.state;
-        console.log(list, 7899);
         return (
             <Page className="third-contact-container">
                 <Header title="电站体检" isShowBack={true} />
-                {Base.isEmptyObject(list) ? <NoMessage msg="暂无信息" /> : this.renderExamineSection()}
+                {Base.isEmptyObject(list) ? <NoMessage msg="暂无信息" /> : this.renderContentSection()}
             </Page>
         )
     }
@@ -167,7 +191,7 @@ class Physical extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps) {
-            this.setState({ list: nextProps.list });
+            this.setState({ list: nextProps.list, isAdd: false });
         }
     }
 
