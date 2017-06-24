@@ -31,6 +31,8 @@ class Home extends React.Component {
      * 加载完成
      */
     componentDidMount() {
+        //测试
+        // AppModal.loading();
         //加载默认数据
         this.props.fetchData(this.props.tabIndex);
     }
