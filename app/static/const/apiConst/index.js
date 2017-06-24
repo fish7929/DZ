@@ -1,3 +1,4 @@
+export const baiduApi = "http://api.map.baidu.com/api?v=2.0&ak=3j6qn3gMTZgGCzOegAxyF3wP"
 
 /**home api MessageCenter */
 export const MessageCenter = "/pvmtsys/messageSystemInfo/getIsReadCount";
@@ -24,6 +25,9 @@ export const GetMessageDataByType = (type) => "/pvmtsys/messageSystemInfo/getMas
 */
 export const GetAlarmListByOption = "/pvmtsys/alarmInfo/getAlarmList"
 
+//获取未读报警消息数量
+export const GetAlarmCount = "/pvmtsys/alarmInfo/getNoReadCount"
+
 /**AlarmDetail api GetAlarmDetailById + id */
 export const GetAlarmDetailById = id => "/pvmtsys/alarmInfo/getAlarmByid/" + id
 
@@ -33,6 +37,8 @@ export const GetPowerStationBaseInfo = "/pvmtsys/powerStation/getPowerStationBas
 export const GetPowerStationDetail = id => "/pvmtsys/powerStation/powerStationDetails/" + id;
 /**inverterList 逆变器列表 */
 export const GetInverterInfo = powerStationId => "/pvmtsys/powerStation/getInverterInfo/" + powerStationId;
+/**inverterDetail 逆变器详情 */
+export const GetInverterDetail = inverterId =>  "/pvmtsys/inverter/getInverteInfo/" + inverterId
 
 
 /**FaultList api GetFaultListByOrder + order */

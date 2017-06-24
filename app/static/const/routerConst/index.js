@@ -47,6 +47,8 @@ export const ROUTER_MY_MESSAGE_SET = ROUTER_ROOT + "/myMessageSet"
 
 /**消息页面 */
 export const ROUTER_MESSAGE = ROUTER_ROOT + "/message";
+/**报警消息页面 */
+export const ROUTER_MESSAGE_ALARM = ROUTER_ROOT + "/message/1";
 /**消息详情页面 */
 export const ROUTER_MESSAGE_DETAIL = ROUTER_ROOT + "/messageDetail";
 /**故障列表 */

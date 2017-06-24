@@ -6,6 +6,7 @@
 
         "results": [
             {
+                "alarmValue": 200.20,
                 "alarmGrade": 1,
                 "alarmMessage": "测试内容消息111111",
                 "alarmTime": "2017-06-23 11:11:00",
@@ -21,6 +22,7 @@
                 
             },
             {
+                "alarmValue": 200.20,
                 "alarmGrade": 2,
                 "alarmMessage": "测试内容消息222222",
                 "alarmTime": "2017-06-23 11:11:00",
@@ -34,52 +36,12 @@
                     }
             },
             {
+                "alarmValue": 200.20,
                 "alarmGrade": 3,
                 "alarmMessage": "测试内容消息3333333",
                 "alarmTime": "2017-06-23 11:11:00",
                 "id": 70831,
                 "plantName": "plantName03",
-                "powerStationBaseInfo": 
-                    {
-                        "address": "测试内容3e87",
-                        "id": 82584,
-                        "name": "测试内容5561"
-                    }
-            },
-            {
-                "alarmGrade": 1,
-                "alarmMessage": "测试内容消息44444",
-                "alarmTime": "2017-06-23 11:11:00",
-                "id": 70831,
-                "plantName": "plantName04",
-                "status": 1,
-                "powerStationBaseInfo": 
-                {
-                    "address": "测试内容3e87",
-                    "id": 82584,
-                    "name": "测试内容5561"
-                }   
-                
-            },
-            {
-                "alarmGrade": 2,
-                "alarmMessage": "测试内容消息5555",
-                "alarmTime": "2017-06-23 11:11:00",
-                "id": 70831,
-                "plantName": "plantName05",
-                "powerStationBaseInfo": 
-                    {
-                        "address": "测试内容3e87",
-                        "id": 82584,
-                        "name": "测试内容5561"
-                    }
-            },
-            {
-                "alarmGrade": 3,
-                "alarmMessage": "测试内容消息666666",
-                "alarmTime": "2017-06-23 11:11:00",
-                "id": 70831,
-                "plantName": "plantName06",
                 "powerStationBaseInfo": 
                     {
                         "address": "测试内容3e87",
