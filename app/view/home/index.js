@@ -26,6 +26,13 @@ import './index.scss';
 class Home extends React.Component {
     constructor(props, context) {
         super(props, context)
+        //只是为了显示不同的标题
+        this.state = {
+            title: '光伏运维管理平台',  //Header组件标题
+            rightClass: '',
+            rightContent: '',
+            isShowRight: false
+        };
     }
     /**
      * 加载完成
@@ -36,7 +43,17 @@ class Home extends React.Component {
         //加载默认数据
         this.props.fetchData(this.props.tabIndex);
     }
-
+    /**
+     * 更新属性
+     */
+    componentWillReceiveProps(nextProps) {
+    }
+    /**
+     * 头部组件右边按钮点击事件
+     */
+    clickHeaderRightHandler() {
+        console.log('right click');
+    }
     /**
      * 根据状态重新加载工单数据,
      * @param {number} status 工单状态0， 1完成
@@ -52,14 +69,14 @@ class Home extends React.Component {
         let component;
         switch (this.props.tabIndex) {
             case ZERO:
-                 component = <HomeContainer />
-                 break
+                component = <HomeContainer />
+                break
             case FIRST:
-                component = <WorkOrder data={this.props.workOrderList} 
-                    onChange={(status) => this.reloadWorkOrderListHandler(status)}/>;
+                component = <WorkOrder data={this.props.workOrderList}
+                    onChange={(status) => this.reloadWorkOrderListHandler(status)} />;
                 break
             case SECOND:
-                component = <MessageCenter data={this.props.messageCenterList}/>
+                component = <MessageCenter data={this.props.messageCenterList} />
                 break
             case THREE:
                 component = <MyContainer />
@@ -72,13 +89,43 @@ class Home extends React.Component {
      * @param {number} tab 标签栏的值
      */
     changeTabHandler(tab) {
+        let _title = '光伏运维管理平台';
+        let _isShowRight = false;
+        let _rightContent = '';
+        let _rightClass = '';
+        switch (tab) {
+            case ZERO:
+                _title = '光伏运维管理平台';
+                break
+            case FIRST:
+                _title = '工单列表';
+                _isShowRight = true;
+                _rightContent = '2017.3-2017.6';
+                _rightClass = 'work-order-center-time';
+                break
+            case SECOND:
+                _title = '消息中心';
+                break
+            case THREE:
+                _title = '我的';
+                break
+        }
+        this.setState({
+            title: _title,  //Header组件标题
+            rightClass: _rightClass,
+            rightContent: _rightContent,
+            isShowRight: _isShowRight
+        });
         this.props.changeHomeTabIndex(tab)
         this.props.fetchData(tab);
     }
     render() {
+        let { title, isShowRight, rightClass, rightContent } = this.state;
         return (
             <Page className="home-page">
-                <Header title="光伏运维管理平台" />
+                <Header title={title} isShowRight={isShowRight}
+                    rightClass={rightClass} rightContent={rightContent}
+                    rightFn={() => this.clickHeaderRightHandler()} />
                 <div className="home-main">
                     {this.getContentSection()}
                 </div>
@@ -92,19 +139,19 @@ let mapStateToProps = state => {
     //处理消息中心数据
     let _messageCenterData = (state.homeData.messageCenterList)[0];
     let _messageCenterList = [];
-    for(let key in _messageCenterData){
+    for (let key in _messageCenterData) {
         let obj = {};
-        if(key.indexOf("alarm") > -1){
+        if (key.indexOf("alarm") > -1) {
             obj.class = 'message-center-alarm';
             obj.numbers = _messageCenterData[key];
             obj.hint = '报警消息';
             obj.url = '/message/1';
-        }else if(key.indexOf("letter") > -1){
+        } else if (key.indexOf("letter") > -1) {
             obj.class = 'message-center-site';
             obj.numbers = _messageCenterData[key];
             obj.hint = '站内消息';
             obj.url = '/message/2';
-        }else{
+        } else {
             obj.class = 'message-center-system';
             obj.numbers = _messageCenterData[key];
             obj.hint = '系统消息';
