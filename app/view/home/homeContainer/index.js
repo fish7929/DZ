@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { hashHistory } from 'react-router'
 
 import AlarmHomeItem from '../../../component/alarmHomeItem'
+import HomePowerItem from '../../../component/homePowerItem'
 
 import { getHomeData } from "../reducer/action"
 
@@ -68,7 +69,11 @@ class HomeContianer extends React.Component {
                     <div className="home-list-title-div">
                         <span></span>电站监控
                     </div>
-                    <div className="home-monitor-list"></div>
+                    <div className="home-monitor-list">
+                        <HomePowerItem data={{}} />
+                        <HomePowerItem data={{}} />
+                        <HomePowerItem data={{}} />
+                    </div>
                     <button className="btn-monitor-more">展开</button>
                 </div>
 

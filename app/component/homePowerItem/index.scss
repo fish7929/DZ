@@ -1,4 +1,98 @@
 @import '../../static/css/_mixins.scss';
 
 .home-power-item{
+    background: #FFFFFF;
+    border: calc-rem(3) solid #EEEEEE;
+    border-radius: calc-rem(6);
+    
+    .home-power-item-header{
+        height: calc-rem(80);
+        border-bottom: calc-rem(1) solid #eee;
+        padding: 0 calc-rem(20);
+        display: flex;
+        align-items: center;
+
+        .header-icon{
+           width: calc-rem(36);
+           height: calc-rem(36);
+           background: url(../../static/images/power_monitor.png) no-repeat center;
+           background-size: calc-rem(36);
+        }
+
+        .header-txt{
+            margin-left: calc-rem(6);
+            font-size: calc-rem(32);
+            color: #FE5A0B;
+            letter-spacing: calc-rem(1.53);
+            font-weight: bold;
+        }
+    }
+
+    .home-power-content{
+        padding: calc-rem(12) 0;
+
+        .zgl-div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .title-txt{
+                font-size: calc-rem(24);
+                color: #999999;
+            }
+
+            .value-txt{
+                margin-left: calc-rem(20);
+                height: calc-rem(84);
+                line-height: calc-rem(84);
+                font-size: calc-rem(60);
+                color: #FC5B0B;
+                letter-spacing: calc-rem(2.86);
+                font-weight: bolder;
+            }
+        }
+
+        .list-div{
+            display: flex;
+            align-items: center;
+            padding: calc-rem(30) 0;
+            position: relative;
+            justify-content: space-around;
+
+            .list-item{
+                width: calc(24% - #{calc-rem(1)});
+                height: calc-rem(85);
+                text-align: center;
+
+                div:nth-child(1){
+                    font-size: calc-rem(24);
+                    color: #999999;
+                    height: calc-rem(34);
+                    line-height: calc-rem(34);
+                }
+
+                div:nth-child(2){
+                    margin-top: calc-rem(6);
+                    font-size: calc-rem(32);
+                    color: #333333;
+                    letter-spacing: calc-rem(1.53);
+                    font-weight: bold;
+                    height: calc-rem(45);
+                    line-height: calc-rem(45);
+                }
+
+                div:nth-child(2).origin{
+                    color: #EE7737;
+                }
+            }
+
+            .item-line{
+                width: calc-rem(1);
+                height: calc-rem(60);
+                background: #eeeeee;
+            }
+        }
+
+
+    }
 }

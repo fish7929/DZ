@@ -69,7 +69,7 @@ export function sendMsg(url, param, type = "GET",headers={}, repType="json"){
             
             dispatch(fetchMsg(url, param, type, headers, repType))
             .then(data=>{
-                if(data.code === 1){
+                if(data.code === 0){
                     resolve&&resolve(data.result || data.data || null)
                 }else{
                     reject&&reject(data)

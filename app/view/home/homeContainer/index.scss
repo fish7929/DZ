@@ -148,6 +148,18 @@
     }
 
     .home-monitor-content{
+        .home-monitor-list{
+            padding: calc-rem(30) calc-rem(40);
+
+            .home-power-item{
+                margin-bottom: calc-rem(20);
+            }
+
+            .home-power-item:last-child{
+                margin-bottom: 0;
+            }
+        }
+
         .btn-monitor-more{
             width: 100%;
             height: calc-rem(100);
@@ -155,6 +167,7 @@
             font-size: calc-rem(28);
             color: #999999;
             letter-spacing: calc-rem(1.34);
+            border-top: calc-rem(1) solid #eeeeee;
         }
     }
 }
