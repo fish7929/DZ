@@ -54,3 +54,7 @@ export const GetThirdContactDataByOrder = (orderNumber) => "/pvmtsys/thirdContac
 export const GetDepartureDataByOrder = (orderNumber) => "/pvmtsys/departure/departureInfo/" + orderNumber;
 /**Physical api GetPhysicalDataByOrder + order */ 
 export const GetPhysicalDataByOrder = (orderNumber) => "/pvmtsys/physical/physicalInfo/" + orderNumber;
+
+
+/**FaultDetail api GetFaultDetailById + id */ 
+export const GetFaultDetailById = (id) => "/pvmtsys/faultInfo/getFaultInfo/" + id;

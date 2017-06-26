@@ -97,6 +97,15 @@
     }
 }
 
+.upload-photo-btn-span{
+    display: inline-block;
+    border-radius: 100%;
+    border: calc-rem(1) solid #FC5B0B;
+    box-sizing: border-box;
+    background: transparent; 
+    width: calc-rem(180);
+    height: calc-rem(180);
+}
 .upload-disabled{
     textarea, .upload-photo-content{
         border: 0 !important;

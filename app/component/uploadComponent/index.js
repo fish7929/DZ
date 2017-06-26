@@ -104,6 +104,7 @@ class UploadComponent extends React.Component {
                         )}
                         {_disabled ? null : <li key={photos.length} onClick={(e) => this.choosePhotoHandler(e)}
                             className={"upload-photo-item upload-photo-btn " + photoBtn}>
+                            <span className="upload-photo-btn-span xy-center"></span>
                         </li>}
                     </ul>
                 </div>

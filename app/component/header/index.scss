@@ -29,6 +29,13 @@
             background: url($backIcon) center no-repeat;
             background-size: calc-rem(48); 
         }
-
+        button:last-child{
+            position: absolute;
+            right: calc-rem(40);
+            top: 0;
+            height: 100%;
+            outline: none;
+            border: 0;
+        }
     }
 }
