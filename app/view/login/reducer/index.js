@@ -1,8 +1,11 @@
 import * as ActionType from './actionType'
 
 const initialState = {
-    isLogin: false,
-    username: ""
+    username: "",
+    nickname: "",
+    email: "",
+    mobile: "",
+    token: "",
 }
 
 export default function update (state = initialState, action){
@@ -11,7 +14,10 @@ export default function update (state = initialState, action){
             return {
                 ...state,
                 username: action.data.username,
-                isLogin: true
+                nickname: action.data.nickname,
+                token: action.data.token,
+                email: action.data.email,
+                mobile:action.data.mobile
             }
         default:
             return state

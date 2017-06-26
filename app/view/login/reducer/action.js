@@ -2,7 +2,6 @@
  * create by zhao at 2017/5/25
  */
 import { hashHistory } from 'react-router'
-import MD5 from 'MD5'
 
 import * as utils from '../../../utils'
 import * as ActionType from './actionType'
@@ -25,10 +24,12 @@ export const userLogin = (userName, password) => dispatch => {
         password: password
     }
 
-    dispatch(utils.sendMsg(url, opt, "GET")).then(data => {
+    dispatch(utils.sendMsg(url, opt, "POST")).then(data => {
         dispatch({
             type: ActionType.INIT_USER_LOGIN,
             data: data
         })
+
+        hashHistory.push(RouterConst.ROUTER_HOME)
     })
 }

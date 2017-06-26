@@ -23,7 +23,7 @@ const fetchMsg = (url, param, type = "GET", headers={}, repType="json") => {
             url +="?"+toExcString(param)
         }
 
-        headers = assignIn({}, {
+        headers = assignIn(headers, {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS"
@@ -52,22 +52,25 @@ const fetchMsg = (url, param, type = "GET", headers={}, repType="json") => {
  * @param {*} repType 
  */
 export function sendMsg(url, param, type = "GET",headers={}, repType="json"){
-
-    if(process.env.NODE_ENV == "develop"){
-        url = "/mock" + url +".json";
-    }
-
     return (dispatch, getState) => {
-        
+        let state = getState()
+        let token = state.loginReducer.token
+        if(process.env.NODE_ENV == "develop"){
+            // url = "/mock" + url +".json";
+            token = "DA58A5485E52B2A5DA3EA90F367A1636"
+        }
+        if(token){
+            headers = {
+                ...headers,
+                token
+            }
+        }
         return new Promise(function(resolve, reject){
             
             dispatch(fetchMsg(url, param, type, headers, repType))
             .then(data=>{
-                if(data.code === 0){
+                if(data.code === 1){
                     resolve&&resolve(data.result || data.data || null)
-                }else if(data.code === 200){
-                    reject&&reject(data)
-                    hashHistory.push(RouterConst.ROUTER_LOGIN)
                 }else{
                     reject&&reject(data)
                     Modal.error({

@@ -35,9 +35,9 @@ class Login extends React.Component{
 
     onPhoneChange(e){
         let value = e.currentTarget.value.replace(/\s/g,'')
-        if(checkNumber(value)){
+        // if(checkNumber(value)){
             this.setState({username: value})
-        }
+        // }
     }
 
     /**输入框改变事件 */
@@ -51,8 +51,8 @@ class Login extends React.Component{
         let { username, password } = this.state, msg=""
         if(username == ""){
             msg = ErrorMessage.Error_Phone_Empty
-        }else if(!checkPhone(username)){
-            msg = ErrorMessage.Error_Phone_Invalid
+        // }else if(!checkPhone(username)){
+            // msg = ErrorMessage.Error_Phone_Invalid
         }else if(password == ""){
             msg = ErrorMessage.Error_Password_Empty
         }else if(password.length < 5){
