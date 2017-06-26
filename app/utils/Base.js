@@ -301,5 +301,20 @@ module.exports = {
     getRandomArrayItem(arr) {
         var index = Math.floor(Math.random() * arr.length);
         return arr[index];
+    },
+    /**
+     * 动态加载JS
+     * @param {string} url  加载的js  url
+     * @param {function} callBack  加载完成的回调 default  null
+     */
+    loadJs(url, callBack = null) {
+        var head = document.getElementsByTagName("head")[0];
+        var script = document.createElement("script");
+        script.src = url;
+        script.type = "text/javascript";
+        head.appendChild(script);
+        script.onload = function(){
+            callBack&&callBack();
+        }
     }
 };

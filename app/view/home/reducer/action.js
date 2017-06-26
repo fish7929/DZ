@@ -53,6 +53,38 @@ function receiveData(result, category) {
     }
 }
 
+export const getHomeData = () => dispatch => {
+    getHomeAlarmList(dispatch)
+    getHomeAlarmCount(dispatch)
+}
+
+/**获取首页报警列表 */
+let getHomeAlarmList = dispatch => {
+    let url = Api.GetAlarmListByOption;
+    let opt = {
+        page: 0,
+        pagesize: 3,
+    }
+    dispatch(utils.sendMsg(url, opt, "GET")).then(data => {
+        dispatch({
+            type: ActionType.HOME_INIT_ALARM_LIST,
+            data: data
+        });
+    })
+}
+
+/**获取首页未读报警数量 */
+let getHomeAlarmCount = dispatch => {
+    let url = Api.GetAlarmCount;
+    dispatch(utils.sendMsg(url, {}, "GET")).then(data => {
+        dispatch({
+            type: ActionType.HOME_INIT_ALARM_COUNT,
+            data: data
+        });
+    })
+}
+
+
 /**
  * 请求远程数据
  * @param {number} category  消息数据类型， 0 首页信息，1 工单信息，2 消息信息，3 我的信息

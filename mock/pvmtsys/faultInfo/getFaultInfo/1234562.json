@@ -1,0 +1,37 @@
+{
+    "data": {
+        "alarmId": 12345,
+        "attachmentList": [
+            {
+                "fileName": "test",
+                "filepath": "../../static/images/test.png"
+            },
+            {
+                "fileName": "test",
+                "filepath": "../../static/images/test.png"
+            },
+            {
+                "fileName": "test",
+                "filepath": "../../static/images/test.png"
+            },
+            {
+                "fileName": "test",
+                "filepath": "../../static/images/test.png"
+            }
+        ],
+        "createTime": "2017-05-16 22:31:14",
+        "equipmentId": "SW-1263",
+        "equipmentType": "逆变器",
+        "faultGrade": 2,
+        "faultMessage": "逆变器电压过高 100.22",
+        "faultSource" : 2,
+        "faultStatus" : 1,
+        "id" : 1234562,
+        "powerStationId": 1472581,
+        "state": "查看异常逆变器的功率，温度和气象信息的历史数据",
+        "userId": 258369,
+        "userName": "李四"
+    },
+    "message": "ok",
+    "code": 0
+}

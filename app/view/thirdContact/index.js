@@ -62,7 +62,7 @@ class ThirdContact extends React.Component {
                     接口人联系方式
                     <span className="no-wrap">{item.thirdContact}</span>
                 </div>
-                <div className="common-order-item-hint">
+                <div className="common-order-item-hint no-border">
                     工作内容概要
                 </div>
                 <div className="third-work-content">{item.workcontent}</div>

@@ -6,6 +6,8 @@ import { hashHistory } from 'react-router'
 import Page from '../../component/page'
 import Header from '../../component/header'
 
+import { getPSMDetail } from './reducer/action'
+
 import * as RouterConst from '../../static/const/routerConst'
 
 import './index.scss'
@@ -15,45 +17,52 @@ class PowerStationMonitorDetail extends React.Component{
         super(props, context)
     }
 
+    componentDidMount(){
+        let id = this.props.params.id
+        this.props.getPSMDetail(id)
+    }
+
     render(){
+        let { data } = this.props
+        console.log(data)
         return (
             <Page className="psm-detail-container">
                 <Header title="电站详情" isShowBack={true} />
                 <div className="psm-detail-content">
-                    <div className="title-div">江苏省镇江市恒顺醋业2.12MW分布式光伏电站</div>
+                    <div className="title-div">{ data.powerStationName }</div>
                     <div className="power-info-div">
                         <div className="titleTxt">实时数据</div>
-                        <div className="desc-txt"><span className="txt1">总功率</span><span className="txt2">800.22KW</span></div>
+                        <div className="desc-txt"><span className="txt1">总功率</span><span className="txt2">{data.generatedActivePower}KW</span></div>
                         <div className="info-div">
                             <div className="info-table">
                                 <div className="table-td">
                                     <div className="table-item">
                                         <span className="title-txt">气温</span>
-                                        <span className="info-txt">25.4℃</span>
+                                        <span className="info-txt">{data.temperature}℃</span>
                                     </div>
                                     <div className="table-item-line"></div>
                                     <div className="table-item">
                                         <span className="title-txt">辐照度</span>
-                                        <span className="info-txt">200W/m2</span>
+                                        <span className="info-txt">{data.irradiance}W/m2</span>
                                     </div>
                                     <div className="table-item-line"></div>
                                     <div className="table-item">
                                         <span className="title-txt">风速</span>
-                                        <span className="info-txt">3m/s</span>
+                                        <span className="info-txt">{data.windSpeed}m/s</span>
                                     </div>
                                 </div>
                                 <div className="table-td">
                                     <div className="table-item">
                                         <span className="title-txt">PR值</span>
-                                        <span className="info-txt yellow">33</span>
+                                        <span className="info-txt yellow">{data.pr}</span>
                                     </div>
                                     <div className="table-item">
                                         <span className="title-txt">停机</span>
-                                        <span className="info-txt yellow">5台</span>
+                                        <span className="info-txt yellow">{data.stop}台</span>
                                     </div>
                                     <div className="table-item">
                                         <span className="title-txt">通讯异常</span>
-                                        <span className="info-txt yellow">3台</span>
+                                        <span className="info-txt yellow">{data.communicationAnomaly}台</span>
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +82,7 @@ class PowerStationMonitorDetail extends React.Component{
                         </div>
                     </div>
 
-                    <button className="psmD-btn" onClick={()=>hashHistory.push(RouterConst.ROUTER_INVERTER_LIST)}>逆变器<span className="arrow-right"></span></button>
+                    <button className="psmD-btn" onClick={()=>hashHistory.push(RouterConst.ROUTER_INVERTER_LIST+"/"+data.id)}>逆变器<span className="arrow-right"></span></button>
                     <button className="psmD-btn" onClick={()=>hashHistory.push(RouterConst.ROUTER_AMMETER_LIST)}>电表<span className="arrow-right"></span></button>
                 </div>
             </Page>
@@ -82,14 +91,15 @@ class PowerStationMonitorDetail extends React.Component{
 }
 
 PowerStationMonitorDetail.PropTypes = {
-
+    data: PropTypes.object.isRequired
 }
 
 let mapStateToProps = state => ({
+    data: state.psmDetailReducer.powerData
 })
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({  }, dispatch)
+    return bindActionCreators({ getPSMDetail }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PowerStationMonitorDetail)

@@ -47,8 +47,8 @@ loaders.push({
 
 //字体
 loaders.push({
-  test: /\.(woff|ttf)$/,
-　loader: 'url-loader?limit=8096&name=fonts/[hash:8].[name].[ext]'
+  test: /\.(woff|ttf|woff2|eot|svg)$/,
+　loader: 'url-loader?limit=40960&name=fonts/[hash:8].[name].[ext]'
 });
 
 var plugins = [];

@@ -17,6 +17,7 @@
         .inverter-header-left{
             display: flex;
             align-items: center;
+            width: calc(100% - #{calc-rem(90)});
 
             .inverter-icon{
                 display: inline-block;
@@ -28,6 +29,8 @@
             }
 
             .inverter-title{
+                display: inline-block;
+                width: calc(100% - #{calc-rem(40)});
                 font-family: "PingFang-SC-Medium";
                 font-size: calc-rem(28);
                 color: #FE5A0B;

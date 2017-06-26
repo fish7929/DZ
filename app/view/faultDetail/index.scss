@@ -1,0 +1,74 @@
+/**
+ * @component index.scss
+ * @description 电站体检
+ * @time 2017-06-21 22:30
+ * @author fishYu
+ **/
+@import '../../static/css/_mixins.scss';
+
+.fault-detail-name{
+    width: 100%;
+    margin: calc-rem(20) 0;
+    color: #FC5B0B;
+    font-size: calc-rem(36);
+    line-height: calc-rem(150);
+    font-weight: bold;
+    background: $whiteColor;
+    height: calc-rem(150);
+    padding: 0 calc-rem(40);
+}
+.deal-result{
+    height: calc-rem(85) !important;
+    line-height: calc-rem(85) !important;
+}
+.deal-result-select{
+    width: 100%;
+    height: calc-rem(100);
+    padding: 0 calc-rem(40);
+    line-height: calc-rem(100);
+    background: $whiteColor;
+    border-bottom: $commonBorder;
+    box-sizing: border-box;
+    label{
+        width: 50%;
+        display: inline-block;
+        height: 100%;
+        color: #333;
+        font-size: calc-rem(32);
+        vertical-align: middle;
+        input[type="radio"]{
+            display: inline-block;
+            vertical-align: middle;
+            width: calc-rem(44);
+            height: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            outline: none;
+            background: url($uncheckIcon) center no-repeat;
+            background-size: calc-rem(44); 
+            margin-right: calc-rem(20);
+        }
+        input[type="radio"]:checked{
+            background: url($checkIcon) center no-repeat;
+            background-size: calc-rem(44);
+        }
+    }
+}
+.fualt-save-wrapper{
+    width: 100%;
+    background: $whiteColor;
+    margin: calc-rem(20) 0;
+    padding: calc-rem(30) 0;
+    .fualt-save{
+        width: calc-rem(260);
+        height: calc-rem(70);
+        margin: 0 auto;
+        color: #FE5A08;
+        font-size: calc-rem(32);
+        text-align: center;
+        line-height: calc-rem(68);
+        border: calc-rem(1) solid #FE5A08;
+        border-radius: calc-rem(32)
+    }
+}
+

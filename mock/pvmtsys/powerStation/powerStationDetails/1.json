@@ -1,0 +1,36 @@
+{
+    "data": {
+        "InverterCounts": 50855,
+        "communicationAnomaly": 57672,
+        "faultCounts": 32272,
+        "faultOperation": 27844,
+        "faultSaved": 60483,
+        "generatedActivePower": 30704,
+        "generationDaily": 64544,
+        "generationDailyList": [
+            {
+                "generationDaily": 50447,
+                "time": 22308
+            }
+        ],
+        "humidity": 86081,
+        "id": 1,
+        "irradiance": 87420,
+        "lastPhysicalExaminationTime": 46112,
+        "physicalExaminationCounts": 32512,
+        "powerStationName": "江苏省镇江市恒顺醋业2.12MW分布式光伏电站",
+        "powerTime": {
+            "power": 38542,
+            "time": 24178
+        },
+        "pr": 20327,
+        "stop": 86357,
+        "temperature": 60350,
+        "temperatureofModules": 60707,
+        "totalAlarmsCounts": 40157,
+        "windDirection": 24884,
+        "windSpeed": 84841
+    },
+    "massage": "ok",
+    "code": 0
+}

@@ -42,9 +42,9 @@ class FaultList extends React.Component {
     goToNextHandler(e, type) {
         e.preventDefault();
         e.stopPropagation();
-        if(type == FIRST){
+        if (type == FIRST) {
             hashHistory.push("/sparepart/" + this.order);
-        }else{
+        } else {
             hashHistory.push("/thirdContact/" + this.order);
         }
         console.log('goToNextHandler');
@@ -54,11 +54,16 @@ class FaultList extends React.Component {
      * @param {object} e 事件对象
      * @param {number} faultId 事故ID
      * @param {number} type 类型，0 未解决， 1、以解决
+     * @param {string} faultMsg 故障消息
      */
-    showFaultDetailHandler(e, faultId, type) {
+    showFaultDetailHandler(e, faultId, type, faultMsg) {
         e.preventDefault();
         e.stopPropagation();
         console.log('showFaultDetailHandler');
+        let param = {
+            faultMsg: faultMsg
+        };
+        hashHistory.push("/faultDetail/" + faultId + '/' + type + '/' + Base.myEncodeURIComponent(param));
     }
     /**
      * 渲染
@@ -85,7 +90,7 @@ class FaultList extends React.Component {
                     let statusClass = item.isSolve == FIRST ? "fault-dispose" : "fault-undispose";
                     let statusHint = item.isSolve == FIRST ? "已处理" : "未处理";
                     return (<div key={index} className="common-item common-pseudo common-active fault-item-logo"
-                        data-hint={item.fault_message} onClick={(e) => this.showFaultDetailHandler(e, item.faultId, item.isSolve)}>
+                        data-hint={item.fault_message} onClick={(e) => this.showFaultDetailHandler(e, item.faultId, item.isSolve, item.fault_message)}>
                         <span className={statusClass}>{statusHint}</span>
                     </div>)
                 })}

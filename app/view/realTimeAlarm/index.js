@@ -6,6 +6,7 @@ import { hashHistory } from 'react-router'
 import Page from '../../component/page'
 import Header from '../../component/header'
 import noMessage from '../../component/noMessage'
+import ScrollList from '../../component/scrollList'
 import RealTimeAlarmItem from '../../component/realTimeAlarmItem'
 
 import { getAlarmList, changeTabIndex } from './reducer/action'
@@ -18,14 +19,32 @@ import './index.scss'
 class RealTimeAlarm extends React.Component{
     constructor(props, context){
         super(props, context)
+        this.state = {
+            currentPage: 0,
+            pagesize: 10
+        }
     }
 
     componentDidMount(){
-        this.props.getAlarmList()
+        this.onLoaderData(this.state.currentPage, this.props.tabIndex)
+    }
+
+    onLoaderData(currentPage, tabIndex){
+        let opt = {
+            page: currentPage,
+            pagesize: this.state.pagesize,
+            tabType: tabIndex
+        }
+        this.props.getAlarmList(opt).then(()=>{
+            this.setState({currentPage: currentPage})
+        })
     }
 
     onTabHandler(type){
-        this.props.changeTabIndex(type)
+        if(type != this.props.tabIndex){
+            this.props.changeTabIndex(type)
+            this.onLoaderData(0, type)
+        }
     }
 
     onItemHandler(id){
@@ -43,13 +62,18 @@ class RealTimeAlarm extends React.Component{
     }
 
     render(){
+        let { tabIndex, pageTotal} = this.props
+        let { currentPage } = this.state
+
         return(
             <Page className="realTime-alarm-container">
                 <Header title="实时报警" isShowBack={true} />
                 <div className="tab-div">
-                    {Const.TabList.map((obj, key)=><li key={key} onClick={()=>this.onTabHandler(obj.id)} className={obj.id==this.props.tabIndex ? "selected" : ""}><div>{obj.name}</div></li>)}
+                    {Const.TabList.map((obj, key)=><li key={key} onClick={()=>this.onTabHandler(obj.id)} className={obj.id==tabIndex ? "selected" : ""}><div>{obj.name}</div></li>)}
                 </div>
-                <div className="realTime-alarm-list">{this.getRealTimeAlarmItems()}</div>
+                <ScrollList className="realTime-alarm-list" onScroll={ page=>this.onLoaderData(page, tabIndex) } currentPage={ currentPage } pageTotal={ pageTotal }>
+                    {this.getRealTimeAlarmItems()}
+                </ScrollList>
             </Page>
         )
     }
@@ -58,13 +82,13 @@ class RealTimeAlarm extends React.Component{
 RealTimeAlarm.PropTypes = {
     tabIndex: PropTypes.number.isRequired,
     data: PropTypes.array.isRequired,
-    total: PropTypes.number.isRequired
+    pageTotal: PropTypes.number.isRequired
 }
 
 let mapStateToProps = state => ({
     tabIndex: state.realTimeAlarmReducer.tabIndex,
     data: state.realTimeAlarmReducer.alarmList,
-    total: state.realTimeAlarmReducer.total
+    pageTotal: state.realTimeAlarmReducer.pageTotal
 })
 
 let mapDispatchToProps = (dispatch) => {

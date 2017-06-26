@@ -1,3 +1,4 @@
+export const baiduApi = "http://api.map.baidu.com/api?v=2.0&ak=3j6qn3gMTZgGCzOegAxyF3wP"
 
 /**home api MessageCenter */
 export const MessageCenter = "/pvmtsys/messageSystemInfo/getIsReadCount";
@@ -24,11 +25,20 @@ export const GetMessageDataByType = (type) => "/pvmtsys/messageSystemInfo/getMas
 */
 export const GetAlarmListByOption = "/pvmtsys/alarmInfo/getAlarmList"
 
-/**AlarmDetail api GetAlarmDetailById + id */
-export const GetAlarmDetailById = "/pvmtsys/alarmInfo/getAlarmByid/"
+//获取未读报警消息数量
+export const GetAlarmCount = "/pvmtsys/alarmInfo/getNoReadCount"
 
-/**powerStationMonitor */
+/**AlarmDetail api GetAlarmDetailById + id */
+export const GetAlarmDetailById = id => "/pvmtsys/alarmInfo/getAlarmByid/" + id
+
+/**powerStationMonitor 电站列表*/
 export const GetPowerStationBaseInfo = "/pvmtsys/powerStation/getPowerStationBaseInfo"
+/**powerStationDetails + /id 电站详情 */
+export const GetPowerStationDetail = id => "/pvmtsys/powerStation/powerStationDetails/" + id;
+/**inverterList 逆变器列表 */
+export const GetInverterInfo = powerStationId => "/pvmtsys/powerStation/getInverterInfo/" + powerStationId;
+/**inverterDetail 逆变器详情 */
+export const GetInverterDetail = inverterId =>  "/pvmtsys/inverter/getInverteInfo/" + inverterId
 
 
 /**FaultList api GetFaultListByOrder + order */
@@ -40,3 +50,11 @@ export const GetSparepartDataByOrder = (orderNumber) => "/pvmtsys/sparepartMappi
 /**ThirdContact api GetThirdContactDataByOrder + order */
 export const GetThirdContactDataByOrder = (orderNumber) => "/pvmtsys/thirdContact/thirdContact/" + orderNumber;
 
+/**Departure api GetDepartureDataByOrder + order */ 
+export const GetDepartureDataByOrder = (orderNumber) => "/pvmtsys/departure/departureInfo/" + orderNumber;
+/**Physical api GetPhysicalDataByOrder + order */ 
+export const GetPhysicalDataByOrder = (orderNumber) => "/pvmtsys/physical/physicalInfo/" + orderNumber;
+
+
+/**FaultDetail api GetFaultDetailById + id */ 
+export const GetFaultDetailById = (id) => "/pvmtsys/faultInfo/getFaultInfo/" + id;

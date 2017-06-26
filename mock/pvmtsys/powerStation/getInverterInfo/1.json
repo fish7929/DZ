@@ -1,0 +1,103 @@
+{
+    "data": [
+        {
+            "Temperature": 61368,
+            "ThreePhaseActivePower": 80386,
+            "alarms": 44723,
+            "generationMonth": 24283,
+            "id": 60258,
+            "model": 14531,
+            "name": "测试内容7fq5",
+            "serial_number": "测试内容8p9p",
+            "totalInputPower": 70386
+        },
+        {
+            "Temperature": 61368,
+            "ThreePhaseActivePower": 80386,
+            "alarms": 44723,
+            "generationMonth": 24283,
+            "id": 60258,
+            "model": 14531,
+            "name": "测试内容7fq5",
+            "serial_number": "测试内容8p9p",
+            "totalInputPower": 70386
+        },
+        {
+            "Temperature": 61368,
+            "ThreePhaseActivePower": 80386,
+            "alarms": 44723,
+            "generationMonth": 24283,
+            "id": 60258,
+            "model": 14531,
+            "name": "测试内容7fq5",
+            "serial_number": "测试内容8p9p",
+            "totalInputPower": 70386
+        },
+        {
+            "Temperature": 61368,
+            "ThreePhaseActivePower": 80386,
+            "alarms": 44723,
+            "generationMonth": 24283,
+            "id": 60258,
+            "model": 14531,
+            "name": "测试内容7fq5",
+            "serial_number": "测试内容8p9p",
+            "totalInputPower": 70386
+        },
+        {
+            "Temperature": 61368,
+            "ThreePhaseActivePower": 80386,
+            "alarms": 44723,
+            "generationMonth": 24283,
+            "id": 60258,
+            "model": 14531,
+            "name": "测试内容7fq5",
+            "serial_number": "测试内容8p9p",
+            "totalInputPower": 70386
+        },
+        {
+            "Temperature": 61368,
+            "ThreePhaseActivePower": 80386,
+            "alarms": 44723,
+            "generationMonth": 24283,
+            "id": 60258,
+            "model": 14531,
+            "name": "测试内容7fq5",
+            "serial_number": "测试内容8p9p",
+            "totalInputPower": 70386
+        },
+        {
+            "Temperature": 61368,
+            "ThreePhaseActivePower": 80386,
+            "alarms": 44723,
+            "generationMonth": 24283,
+            "id": 60258,
+            "model": 14531,
+            "name": "测试内容7fq5",
+            "serial_number": "测试内容8p9p",
+            "totalInputPower": 70386
+        },{
+            "Temperature": 61368,
+            "ThreePhaseActivePower": 80386,
+            "alarms": 44723,
+            "generationMonth": 24283,
+            "id": 60258,
+            "model": 14531,
+            "name": "测试内容7fq5",
+            "serial_number": "测试内容8p9p",
+            "totalInputPower": 70386
+        },{
+            "Temperature": 61368,
+            "ThreePhaseActivePower": 80386,
+            "alarms": 44723,
+            "generationMonth": 24283,
+            "id": 60258,
+            "model": 14531,
+            "name": "测试内容7fq5",
+            "serial_number": "测试内容8p9p",
+            "totalInputPower": 70386
+        }
+    ],
+    "massage": "ok",
+    "code": 0
+}

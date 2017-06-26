@@ -1,0 +1,274 @@
+/**
+ * @component index.scss
+ * @description 电站体检
+ * @time 2017-06-21 22:30
+ * @author fishYu
+ **/
+@import '../../static/css/_mixins.scss';
+@mixin common-physical{
+    position: absolute;
+    display: inline-block;
+    right: 0;
+    width: calc-rem(124);
+    height: 100%;
+    background: url($arrowIcon)  center no-repeat;
+    background-size: calc-rem(44);
+    transition : all 0.5s ease-in-out;
+}
+.physical-examine-divide{
+    position: relative;
+    padding: 0 calc-rem(40);
+    width: 100%;
+    height: calc-rem(100);
+    line-height: calc-rem(100);
+    color: #FC5B0B;
+    background: $whiteColor;
+    font-weight: bold;
+    font-size: calc-rem(36);
+    margin-top: calc-rem(20);
+    span{
+        @include common-physical;
+        background: url($yellowarrowIcon)  center no-repeat;
+        background-size: calc-rem(44);
+    }
+}
+.physical-examine-item{
+    border-top: $commonBorder;
+    width: 100%;
+    padding: calc-rem(30) calc-rem(40);
+    height: calc-rem(235);
+    box-sizing: border-box;
+    background: $whiteColor;
+    .physical-examine-title{
+        font-size: calc-rem(32);
+        color: #333;
+        line-height: calc-rem(32);
+        font-weight: bold;
+    }
+    .physical-examine-content{
+        font-size: calc-rem(28);
+        color: #5B5B5B;
+        line-height: calc-rem(32);
+        margin-top: calc-rem(20);
+    }
+}
+
+.physical-physical-item{
+    background: $whiteColor;
+    .physical-physical-divide{
+        position: relative;
+        border-bottom: $commonBorder;
+        height: calc-rem(155);
+        padding: calc-rem(30) calc-rem(40);
+        width: 100%;
+        font-size: calc-rem(32);
+        color: #333;
+        font-weight: bold;
+        span{
+            @include common-physical;
+            height: calc-rem(74);
+            top: 0;
+        }
+        .physical-physical-hint{
+            width: 100%;
+            height: calc-rem(90);
+            line-height: calc-rem(90);
+            color: #333;
+            font-size: calc-rem(32);
+            text-align: right;
+            font-weight: normal;
+            &:before{
+                position: absolute;
+                left: calc-rem(40);
+                content: attr(data-hint);
+                font-size: calc-rem(28);
+                color: #5B5B5B;
+            }
+        }
+    }
+}
+
+
+.physical-wrapper{
+    overflow: hidden;
+    transition : all 0.5s ease-in-out;
+}
+.off{
+    span{
+        transform:rotate(0);
+    }
+    & + .physical-wrapper{
+        display: none;
+        transition : all 0.5s ease-in-out;
+    }
+}
+
+.on{
+    span{
+        transform:rotate(180deg);
+    }
+    & + .physical-wrapper{
+        display: block;
+        transition : all 0.5s ease-in-out;
+    }
+}
+
+
+.physical-feedback-wrapper{
+    width: 100%;
+    background: $whiteColor;
+    margin: calc-rem(20) 0;
+    padding: calc-rem(30) 0;
+    .physical-feedback{
+        width: calc-rem(260);
+        height: calc-rem(70);
+        margin: 0 auto;
+        color: #FE5A08;
+        font-size: calc-rem(32);
+        text-align: center;
+        line-height: calc-rem(68);
+        border: calc-rem(1) solid #FE5A08;
+        border-radius: calc-rem(32)
+    }
+}
+
+.physical-save{
+    width: 100%;
+    height: calc-rem(100);
+    line-height: calc-rem(100);
+    font-size: calc-rem(32);
+    color: $whiteColor;
+    text-align: center;
+    background: #FE5A08 ;
+}
+
+/**添加反馈的样式*/
+.physical-feedback-type-wrapper{
+    width: 100%;
+    padding: calc-rem(30) calc-rem(40) 0;
+    background: $whiteColor;
+    border-bottom: $commonBorder; 
+    .physical-feedback-name{
+        height: calc-rem(70);
+        line-height: calc-rem(70);
+        font-size: calc-rem(32);
+        color: #333;
+        background: url($nextIcon) right center no-repeat;
+        background-size: calc-rem(48);
+        font-weight: bold;
+        &:after{
+            position: absolute;
+            right: calc-rem(98);
+            content: attr(data-hint);
+            color: #999;
+            font-weight: normal;
+        }
+    }
+    .physical-feedback-type-content{
+        height: calc-rem(80);
+        line-height: calc-rem(80);
+        span{
+            width: 48%;
+            height: 100%;
+            text-align: center;
+            font-size: calc-rem(28);
+            color: #999;
+            border: $commonBorder;
+            float: right;
+        }
+        span:first-child{
+            float: left;
+        }
+        .physical-feedback-type-selected{
+            color: #FC5B0B;
+            border-color: #FC5B0B;
+        }
+    }
+    
+}
+.zero-wrapper{
+    padding: calc-rem(30) calc-rem(40);
+}
+
+.physical-feedback-common-hint{
+    width: 100%;
+    height: calc-rem(150);
+    font-size: calc-rem(32);
+    color: #333;
+    position: relative;
+    padding-top:  calc-rem(90);
+    background: $whiteColor; 
+    &:before{
+        position: absolute;
+        top: calc-rem(40);
+        content: attr(data-hint);
+        color:#5B5B5B;
+        font-size: calc-rem(28);
+    }
+}
+
+.facility-name{
+    position: relative;
+    padding: 0 calc-rem(40);
+    padding-top:  calc-rem(90);
+    border-bottom: $commonBorder; 
+    span{
+        position: absolute;
+        display: inline-block;
+        color: #FC5B0B;
+        top: 0;
+        height: calc-rem(100);
+        line-height: calc-rem(100);
+        right: calc-rem(40);
+        font-size: calc-rem(24);
+    }
+}
+
+.physical-feedback-common-item{
+    width: 100%;
+    height: calc-rem(100);
+    line-height: calc-rem(100);
+    background: $whiteColor;
+    border-bottom: $commonBorder;
+    font-size: calc-rem(28);
+    color: #5B5B5B;
+    padding: 0 calc-rem(40);
+    position: relative;
+    input[type="text"]{
+        width: 60%;
+        height: 100%;
+        float: right;
+        text-align: right;
+    }
+    .feedback-common-select{
+        position: absolute;
+        -webkit-appearance: none;
+        appearance: none;
+        outline: none;
+        left: calc-rem(40);
+        width: -webkit-calc(100% - #{calc-rem(80)});
+        width: calc(100% - #{calc-rem(80)});
+        height: 100%;
+        padding-left: 80%; 
+        // color: #999;
+        text-align: right;
+        background: url($arrowIcon) right center no-repeat transparent;
+        background-size: calc-rem(44);
+    }
+}
+
+.physical-feedback-select-hint{
+    &:after{
+        content: attr(data-hint);
+        color: #999;
+        font-size: calc-rem(28);
+        position: absolute;
+        right: calc-rem(80);
+    }
+}
+
+
+
+
+
+

@@ -5,4 +5,10 @@ gitlabµØÖ·£ºgit.chilunyc.com
 
 ½Ó¿ÚµØÖ·£ºhttp://test.yunengzhe.com:846/ 
 ÕËºÅ£ºwaibao,ÃÜÂë£ºwaibao
+<<<<<<< HEAD
 ²âÊÔÕËºÅ£º yw003 ÃÜÂë;123456
+=======
+
+
+http://api.map.baidu.com/api?v=2.0&ak=3j6qn3gMTZgGCzOegAxyF3wP
+>>>>>>> 57ca8492b2f40918aee4ba447cfffd73a3c4d25e

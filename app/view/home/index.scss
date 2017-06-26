@@ -9,3 +9,18 @@
         overflow: auto;
     }
 }
+
+/**
+*顶部右测样式
+*/
+.work-order-center-time{
+    font-size: calc-rem(24);
+    color: #4A4A4A;
+    background:rgba(216,216,216,.3);
+    width: calc-rem(210);
+    height: calc-rem(40) !important;
+    line-height: calc-rem(38);
+    border-radius: calc-rem(20);
+    text-align: center;
+    margin-top: calc-rem(22);
+}

@@ -41,6 +41,14 @@ const FaultList = cb => require.ensure([], require => { cb(null, require('../vie
 const Sparepart = cb => require.ensure([], require => { cb(null, require('../view/sparepart').default)}, "sparepart")
 /**备品备件 */
 const ThirdContact = cb => require.ensure([], require => { cb(null, require('../view/thirdContact').default)}, "thirdContact")
+/**离场申请 */
+const Departure = cb => require.ensure([], require => { cb(null, require('../view/departure').default)}, "departure")
+/**电站体检 */
+const Physical = cb => require.ensure([], require => { cb(null, require('../view/physical').default)}, "physical")
+
+/**故障处理反馈 */
+const FaultDetail = cb => require.ensure([], require => { cb(null, require('../view/faultDetail').default)}, "faultDetail")
+
 
 const Routers = {
 	path: RouterConst.ROUTER_HOME,
@@ -78,7 +86,7 @@ const Routers = {
 			getComponent(nextState, cb){ PowerStationMonitorDetail(cb) },
 		},
 		{
-			path: RouterConst.ROUTER_INVERTER_LIST,
+			path: RouterConst.ROUTER_INVERTER_LIST + "/:id",
 			getComponent(nextState, cb){ InverterList(cb) },
 		},
 		{
@@ -124,7 +132,20 @@ const Routers = {
 		{
 			path: RouterConst.ROUTER_THIRD_CONTACT + "/:order",
 			getComponent(nextState, cb){ ThirdContact(cb) },
+		},
+		{
+			path: RouterConst.ROUTER_DEPARTURE + "/:order/:status",
+			getComponent(nextState, cb){ Departure(cb) },
+		},
+		{
+			path: RouterConst.ROUTER_PHYSICAL + "/:order/:status/:param",
+			getComponent(nextState, cb){ Physical(cb) },
+		},
+		{
+			path: RouterConst.ROUTER_FAULT_DETAIL + "/:id/:status/:param",
+			getComponent(nextState, cb){ FaultDetail(cb) },
 		}
+		
 	]
 }
 

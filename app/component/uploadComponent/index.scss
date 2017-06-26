@@ -1,0 +1,140 @@
+/** 
+ * @component index.scss
+ * @description 通用的上传组件样式
+ * @time 2017-6-22 23:30
+ * @author fishYu
+ */
+@import '../../static/css/_mixins.scss';
+@mixin common-upload{
+    background-color: #FAFAFA;
+    border: calc-rem(1) solid #EEEEEE;
+    border-radius: calc-rem(12);
+    box-sizing: border-box;
+}
+
+@mixin common-upload-hint{
+    width: 100%;
+    height: calc-rem(90);
+    font-size: calc-rem(28);
+    color: #5B5B5B;
+    line-height: calc-rem(90);
+}
+.upload-component-wrapper{
+    width: 100%;
+    background-color: $whiteColor; 
+    .upload-explain-component{
+        width: 100%;
+        height: calc-rem(280);
+        padding: 0 calc-rem(40);
+        border-bottom: $commonBorder;
+        .upload-explain-hint{
+            @include common-upload-hint;
+        }
+        textarea{
+            width: 100%;
+            height: calc-rem(160);
+            outline: none;
+            resize: none;
+            padding: calc-rem(20) calc-rem(25); 
+            @include common-upload;
+            color: #5B5B5B;
+            font-size: calc-rem(28);
+            line-height: calc-rem(40);
+        }
+    }
+    .upload-photo-component{
+        width: 100%;
+        height: calc-rem(420);
+        padding: 0 calc-rem(40);
+        .upload-photo-hint{
+            @include common-upload-hint;
+            span{
+                display: inline-block;
+                margin-left: calc-rem(20);
+                font-size: calc-rem(24);
+                color: #999999;
+            }
+        }
+        .upload-photo-content{
+            width: 100%;
+            height: calc-rem(300);
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            @include common-upload;
+            .upload-photo-item{
+                position: relative;
+                width: calc-rem(240);
+                height: 100%;
+                margin-right: calc-rem(20);
+                display:inline-block;
+                @include common-upload;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    @include common-upload;
+                }
+                .photo-close{
+                    position: absolute;
+                    right: 0;
+                    width: calc-rem(52);
+                    height: calc-rem(52);
+                    background: url($closeIcon) center no-repeat rgba(255,255,255,.3);
+                    background-size: calc-rem(32); 
+                }
+            }
+            .upload-photo-btn{
+                background: url($cameraIcon) center no-repeat;
+                background-size: calc-rem(80) calc-rem(65); 
+            }
+
+            .upload-photo-btn-init{
+                margin: 0 auto;
+                display: block;
+                border: 0;
+            }
+        }
+    }
+}
+
+.upload-photo-btn-span{
+    display: inline-block;
+    border-radius: 100%;
+    border: calc-rem(1) solid #FC5B0B;
+    box-sizing: border-box;
+    background: transparent; 
+    width: calc-rem(180);
+    height: calc-rem(180);
+}
+.upload-disabled{
+    textarea, .upload-photo-content{
+        border: 0 !important;
+        background-color: $whiteColor !important;
+    }
+}
+/**
+*去掉滚动轴
+**/
+/* 设置滚动条的样式 */
+.upload-photo-content::-webkit-scrollbar {
+    width: 0;
+    display: none;
+}
+/* 滚动槽 */
+.upload-photo-content::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0);
+    box-shadow: inset 0 0 0px rgba(0,0,0,0);
+    border-radius: 0;
+}
+/* 滚动条滑块 */
+.upload-photo-content::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background: rgba(0,0,0,0);
+    -webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0);
+    box-shadow: inset 0 0 0px rgba(0,0,0,0);
+}
+
+.upload-photo-content::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255,0,0,0);
+}
+

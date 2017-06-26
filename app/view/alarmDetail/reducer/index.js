@@ -18,7 +18,7 @@ export default function update (state = initialState, action){
         case ActionType.ALARM_DETAIL_INIT:
             return {
                 ...state,
-                alarmData: action.data
+                alarmData: action.data.AlarmInfoPO
             }
         default:
             return state

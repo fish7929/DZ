@@ -1,0 +1,57 @@
+{
+    "data": {
+        "efficiency": 56476,
+        "generationDaily": 85805,
+        "generationGross": 30044,
+        "generationMonth": 87036,
+        "generationYear": 30633,
+        "level1": 74546,
+        "level2": 37087,
+        "level3": 81773,
+        "mppt": [
+            {
+                "key": "MTPPT1",
+                "value": "600V 20A"
+            },
+            {
+                "key": "MTPPT2",
+                "value": "601V 21A"
+            },
+            {
+                "key": "MTPPT3",
+                "value": "602V 22A"
+            }
+        ],
+        "phaseVoltageParam": [
+            {
+                "key": "A相",
+                "value": "380V 50HZ 25A"
+            },
+            {
+                "key": "B相",
+                "value": "380V 50HZ 25A"
+            },
+            {
+                "key": "C相",
+                "value": "380V 50HZ 25A"
+            }
+        ],
+        "powerTemperatureTime": [
+            {
+                "powerTemperature": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "time": 87671
+            }
+        ],
+        "temperature": 81038,
+        "threePhaseActivePower": 68858,
+        "totalInputPower": 34750
+    },
+    "message": "ok",
+    "code": 0
+}
