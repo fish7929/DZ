@@ -5,3 +5,4 @@ gitlab地址：git.chilunyc.com
 
 接口地址：http://test.yunengzhe.com:846/ 
 账号：waibao,密码：waibao
+测试账号： yw003 密码;123456
