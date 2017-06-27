@@ -2,8 +2,8 @@ var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
 
-var PORT = 8080;
-var HOST = '127.0.0.1';
+var PORT = process.env.PORT || 8080
+var HOST = process.env.HOST || '0.0.0.0'
 var args = process.argv;
 var hot = args.indexOf('--hot') > -1;
 var deploy = args.indexOf('--deploy') > -1;
