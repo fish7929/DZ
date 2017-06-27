@@ -21,7 +21,8 @@ new WebpackDevServer(webpack(config), {
   stats: {
     chunks: false,
     children: false,
-    colors: true
+    colors: true,
+    disableHostCheck: true
   },
   // Set this as true if you want to access dev server from arbitrary url.
   // This is handy if you are using a html5 router.
