@@ -23,7 +23,7 @@ new WebpackDevServer(webpack(config), {
     children: false,
     colors: true
   },
-  isableHostCheck: true,
+  disableHostCheck: true,
   public: process.env.PUBLIC || '0.0.0.0',
   // Set this as true if you want to access dev server from arbitrary url.
   // This is handy if you are using a html5 router.
