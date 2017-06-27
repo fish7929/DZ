@@ -10,8 +10,11 @@ const initialState = {
     tabIndex: 0,
     isFetching: false, //是否正在加载
     homeContainerList: [],
-    workOrderList: [],
-    messageCenterList: [],
+    workOrder: {
+        list: [],
+        total: 1
+    },
+    messageCenterList: {},
     personalCenterList: [],
 
     alarmList: [],
@@ -43,12 +46,15 @@ export default function homeData(state = initialState, action) {
                 }
             ); 
         case ActionType.RECEIVE_WORK_ORDER_DATA:  //工单
+            let _order = state.workOrder;
+            action.currentPage == 1 ? (_order.list = action.data) : _order.list.concat(action.data);
+            _order.total = action.total;
             return Object.assign(
                 {},
                 state,
                 {
                     isFetching: false, //是否正在加载
-                    workOrderList: action.data
+                    workOrder: _order
                 }
             );
         case ActionType.RECEIVE_MESSAGE_CENTER_DATA:  //消息中心

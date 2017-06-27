@@ -8,6 +8,7 @@
 import React, { PropTypes } from 'react';
 import { FIRST, SECOND, THREE } from '../../static/const/constants';
 import { hashHistory } from 'react-router';
+import ScrollList from '../scrollList';
 
 import './index.scss'
 
@@ -20,7 +21,8 @@ class SystemMessage extends React.Component {
     constructor(props, context) {
         super(props, context)
         this.state = {
-            list: this.props.data
+            list: this.props.data,
+            currentPage: 1
         }
     }
     /**
@@ -38,14 +40,25 @@ class SystemMessage extends React.Component {
      */
     componentDidMount() {
     }
+    onScrollHandler(page) {
+        //todo 可能存在隐患
+        this.setState({currentPage: page});
+        this.props.onScroll(page);
+    }
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            list: nextProps.data
+        });
+    }
     /**
      * 渲染
      */
     render() {
         return (
-            <ul className="message-content-wrapper">
+            // <ul className="message-content-wrapper">
+            <ScrollList className="message-content-wrapper" onScroll={ page=>this.onScrollHandler(page) } currentPage={ this.state.currentPage } pageTotal={ this.props.total }>
                 {this.state.list.map((item, index) => {
-                    let readClass = item.MessageUserInfoPO[0] && item.MessageUserInfoPO[0].isread == FIRST ? 'message-read' : '';
+                    let readClass = item.isread == FIRST ? 'message-read' : '';
                     return (<li key={index} className={"system-message-item " + readClass}
                         onClick={(e) => this.toMessageDetailHandler(e, item.id)}>
                         <div><span>公告</span></div>
@@ -53,14 +66,17 @@ class SystemMessage extends React.Component {
                         <div>{item.createTime}</div>
                     </li>)
                 })}
-            </ul>
+            </ScrollList>
+            // </ul>
         )
     }
 
 }
 
 SystemMessage.PropTypes = {
-    data: PropTypes.array.isRequired
+    total: PropTypes.number.isRequired,
+    data: PropTypes.array.isRequired,
+    onScroll: PropTypes.func.isRequired
 }
 
 export default SystemMessage;

@@ -28,7 +28,7 @@ function requestData(category) {
  * @param {any} result  返回的数据，可能是 array，json, text
  * @param {number} category  类别
  */
-function receiveData(result, category) {
+function receiveData(result, category, currentPage) {
     switch(category) {
         case ZERO:
             return {
@@ -38,12 +38,14 @@ function receiveData(result, category) {
         case FIRST:
             return {
                 type: ActionType.RECEIVE_WORK_ORDER_DATA,
-                data: result.workOrderInfo
+                data: result.results,
+                total: result.pageCounts,
+                currentPage: currentPage
             }
         case SECOND:
             return {
                 type: ActionType.RECEIVE_MESSAGE_CENTER_DATA,
-                data: result.IsReadCount
+                data: result
             }
         case THREE:
             return {
@@ -106,7 +108,7 @@ let getHomeWorkOrderCompletion = dispatch => {
  * @param {number} category  消息数据类型， 0 首页信息，1 工单信息，2 消息信息，3 我的信息
  * @param {number} status  状态类型，0, 1
  */
-export const fetchData = (category, status = 0) => dispatch => {
+export const fetchData = (category, status = 0, currentPage = 1) => dispatch => {
     dispatch(requestData(category));
     // let _url = "/pvmtsys/messageSystemInfo/getMassageByType/" + type;
     let _url = "";
@@ -124,8 +126,9 @@ export const fetchData = (category, status = 0) => dispatch => {
             _url = Api.MessageCenter;
             break;
     }
-    dispatch(utils.sendMsg(_url, null, "GET")).then(data => {
-        dispatch(receiveData(data, category));
+    let opt = category == FIRST ? {page: currentPage, pagesize: 10} : null;
+    dispatch(utils.sendMsg(_url, opt, "GET")).then(data => {
+        dispatch(receiveData(data, category, currentPage));
     })
 }
 

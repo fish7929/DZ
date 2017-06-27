@@ -3,6 +3,7 @@ import { hashHistory } from 'react-router';
 
 import { ZERO, FIRST } from '../../../static/const/constants';
 import WorkOrderItem from '../../../component/workOrderItem';
+import ScrollList from '../../../component/scrollList';
 import './index.scss';
 
 class WorkOrder extends React.Component {
@@ -10,7 +11,9 @@ class WorkOrder extends React.Component {
         super(props, context)
         this.state = {
             currentTab: 0,   //当前标签
-            list: this.props.data
+            list: this.props.data,
+            currentPage: 1
+
         }
     }
     /**
@@ -27,8 +30,14 @@ class WorkOrder extends React.Component {
     changeTabHandler(e, tab) {
         e.preventDefault();
         e.stopPropagation();
-        this.setState({ currentTab: tab });
-        this.props.onChange && this.props.onChange(tab);
+        let _currentPage = 1;
+        this.setState({ currentTab: tab, currentPage: _currentPage });
+        this.props.onChange && this.props.onChange(tab, _currentPage);
+    }
+    onScrollHandler(page) {
+        //todo 可能存在隐患
+        this.setState({currentPage: page});
+        this.props.onChange && this.props.onChange(this.state.currentTab, page);
     }
     render() {
         let { list, currentTab } = this.state;
@@ -41,9 +50,11 @@ class WorkOrder extends React.Component {
                     <span className={"common-active " + _class1} onClick={(e) => this.changeTabHandler(e, ZERO)}>未完成</span>
                     <span className={"common-active " + _class2} onClick={(e) => this.changeTabHandler(e, FIRST)}>已完成</span>
                 </div>
-                <ul className="work-order-content">
+                {/*<ul className="work-order-content">*/}
+                <ScrollList className="work-order-content" onScroll={ page=>this.onScrollHandler(page) } currentPage={ this.state.currentPage } pageTotal={ this.props.total }>
                     {list.map( (item, index) => <WorkOrderItem data={item} key={index} />)}
-                </ul>
+                {/*</ul>*/}
+                </ScrollList>
             </div>
         )
     }
@@ -58,6 +69,7 @@ class WorkOrder extends React.Component {
 }
 
 WorkOrder.PropTypes = {
+    total: PropTypes.number.isRequired,
     data: PropTypes.array.isRequired,
     onChange: PropTypes.func.isRequired
 }

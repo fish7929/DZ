@@ -49,8 +49,9 @@
 .message-content-wrapper{
     width: 100%;
     padding-top: calc-rem(20); 
-    height: -webkit-calc(100% - #{calc-rem($topHeight)});
-    height: calc(100% - #{calc-rem($topHeight)});
+    // height: -webkit-calc(100% - #{calc-rem($topHeight)});
+    // height: calc(100% - #{calc-rem($topHeight)});
+    height: 100%;
     overflow-x: hidden;
     overflow-y: auto; 
 }

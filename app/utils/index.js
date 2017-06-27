@@ -22,7 +22,6 @@ const fetchMsg = (url, param, type = "GET", headers={}, repType="json") => {
         if(type.toLocaleUpperCase()==="GET"&&size(param)>0){
             url +="?"+toExcString(param)
         }
-
         headers = assignIn(headers, {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -35,6 +34,7 @@ const fetchMsg = (url, param, type = "GET", headers={}, repType="json") => {
             body: type.toLocaleUpperCase()==="GET"?undefined:(repType=="json"?JSON.stringify(param):param)
         })  
         .then((res) => {
+            console.log(res, 88888);
             return res.json();
         })
         .then((data) => {
@@ -72,11 +72,9 @@ export function sendMsg(url, param, type = "GET",headers={}, repType="json"){
                 if(data.code === 0){
                     resolve&&resolve(data.result || data.data || null)
                 }else{
-                    reject&&reject(data)
-                    Modal.error({
-                        title: '提示',
-                        content: data.message,
-                    })
+                    // reject&&reject(data)
+                    resolve&&resolve(data);
+                    // AppModal.toast(data.message);
                 }
             })
         }

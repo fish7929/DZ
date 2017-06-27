@@ -34,12 +34,12 @@ class AlarmMessageItem extends React.Component {
         } if (data.massageStatus == THREE) {
             massageStatus = '以解除';
         }
-        let readClass = data.MessageUserInfoPO[0] && data.MessageUserInfoPO[0].isread == FIRST ? 'message-read' : '';
-
+        let readClass = data && data.isread == FIRST ? 'message-read' : '';
+        let level = data.massageLevel || 1;
         return (
             <li className={"alarm-message-item " + readClass}>
                 <div className="alarm-message-left">
-                    <span className={"alarm-message-logo" + data.massageLevel}></span>
+                    <span className={"alarm-message-logo" + level}></span>
                     <span className={"alarm-message-status" + data.massageStatus}>{massageStatus}</span>
                 </div>
                 <div className="alarm-message-right">

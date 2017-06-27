@@ -58,22 +58,23 @@ class Home extends React.Component {
      * 根据状态重新加载工单数据,
      * @param {number} status 工单状态0， 1完成
      */
-    reloadWorkOrderListHandler(status) {
+    reloadWorkOrderListHandler(status, currentPage) {
         //重新加载工单数据,
-        this.props.fetchData(this.props.tabIndex, status);
+        this.props.fetchData(this.props.tabIndex, status, currentPage);
     }
     /**
      * 根据不同的标签获取中间内容
      */
     getContentSection() {
         let component;
+        let{workOrder} = this.props;
         switch (this.props.tabIndex) {
             case ZERO:
                 component = <HomeContainer />
                 break
             case FIRST:
-                component = <WorkOrder data={this.props.workOrderList}
-                    onChange={(status) => this.reloadWorkOrderListHandler(status)} />;
+                component = <WorkOrder data={workOrder.list} total={workOrder.total}
+                    onChange={(status, page) => this.reloadWorkOrderListHandler(status, page)} />;
                 break
             case SECOND:
                 component = <MessageCenter data={this.props.messageCenterList} />
@@ -137,7 +138,7 @@ class Home extends React.Component {
 
 let mapStateToProps = state => {
     //处理消息中心数据
-    let _messageCenterData = (state.homeData.messageCenterList)[0];
+    let _messageCenterData = state.homeData.messageCenterList;
     let _messageCenterList = [];
     for (let key in _messageCenterData) {
         let obj = {};
@@ -163,7 +164,7 @@ let mapStateToProps = state => {
         tabIndex: state.homeData.tabIndex,
         isFetching: state.homeData.isFetching,
         homeContainerList: state.homeData.homeContainerList,
-        workOrderList: state.homeData.workOrderList,
+        workOrder: state.homeData.workOrder,
         messageCenterList: _messageCenterList,
         personalCenterList: state.homeData.personalCenterList,
     });

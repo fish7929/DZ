@@ -39,18 +39,22 @@ class Message extends React.Component {
             title: "",
             content: null
         };
+        let { list, total, fetchData } = this.props;
         switch (this.type) {
             case FIRST:
                 obj.title = "报警消息";
-                obj.content = <AlarmMessage data={this.props.list} />
+                obj.content = <AlarmMessage data={list}  total={total}
+                onScroll={(page) => fetchData(this.type, page)}/>
                 break;
             case SECOND:
                 obj.title = "站内消息";
-                obj.content = <SiteMessage data={this.props.list} />
+                obj.content = <SiteMessage data={list}  total={total}
+                onScroll={(page) => fetchData(this.type, page)} />
                 break;
             case THREE:
                 obj.title = "系统消息";
-                obj.content = <SystemMessage data={this.props.list} />
+                obj.content = <SystemMessage data={list}  total={total}
+                onScroll={(page) => fetchData(this.type, page)} />
                 break;
         }
         return obj;
@@ -82,7 +86,8 @@ class Message extends React.Component {
 let mapStateToProps = state => {
     return ({
         isFetching: state.messageData.isFetching,
-        list: state.messageData.list
+        list: state.messageData.list,
+        total:  state.messageData.total
     });
 }
 
