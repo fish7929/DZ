@@ -1,0 +1,37 @@
+stages:
+  - clean
+  - build
+  - deploy
+
+docker-rm-container:
+  script:   
+    - docker rm ynzh5 -f
+  allow_failure: true
+  only:
+    - master
+  stage: clean
+
+docker-rm-image:
+  script:   
+    - docker rmi ynzh5_wechat -f
+  allow_failure: true
+  only:
+    - master
+  stage: clean
+
+docker-build:
+  script:
+    - docker build -t ynzh5_wechat .
+    - docker run --name ynzh5 -d -p 9005:8080 --env PUBLIC=ynzh5.demo.chilunyc.com ynzh5_wechat 
+  only:
+    - master
+  stage: build
+
+
+nginx-setting:
+  script:
+    - cp host.nginx.conf /etc/nginx/sites-enabled/ynzh5_wechat.conf
+    - service nginx reload
+  only:
+    - master
+  stage: deploy
