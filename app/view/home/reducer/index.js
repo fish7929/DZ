@@ -16,6 +16,8 @@ const initialState = {
 
     alarmList: [],
     alarmCount: 0,
+    //7日工单完成量
+    workOrderCompletionList: []
 }
 
 export default function homeData(state = initialState, action) {
@@ -76,6 +78,11 @@ export default function homeData(state = initialState, action) {
             return {
                 ...state,
                 alarmCount: action.data.count
+            }
+        case ActionType.HOME_INIT_WORKORDER_COMPLETION:
+            return {
+                ...state,
+                workOrderCompletionList: action.data
             }
         default:
             return state

@@ -131,6 +131,11 @@
         margin-top: calc-rem(20);
         padding-top: calc-rem(30);
         background: #fff;
+
+        .rp-echart-div, .work-order-echart-div{
+            width: 100%;
+            height: calc-rem(630)
+        }
     }
 
     .home-alarm-content{
@@ -170,4 +175,5 @@
             border-top: calc-rem(1) solid #eeeeee;
         }
     }
+
 }

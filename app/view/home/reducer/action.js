@@ -60,7 +60,7 @@ export const getHomeData = () => dispatch => {
 
 /**获取首页报警列表 */
 let getHomeAlarmList = dispatch => {
-    let url = Api.GetAlarmListByOption;
+    let url = Api.GetAlarmListByOption();
     let opt = {
         page: 0,
         pagesize: 3,
@@ -75,11 +75,27 @@ let getHomeAlarmList = dispatch => {
 
 /**获取首页未读报警数量 */
 let getHomeAlarmCount = dispatch => {
-    let url = Api.GetAlarmCount;
+    let url = Api.GetAlarmCount()
     dispatch(utils.sendMsg(url, {}, "GET")).then(data => {
         dispatch({
             type: ActionType.HOME_INIT_ALARM_COUNT,
             data: data
+        });
+    })
+}
+
+/**获取七日工单完成量 */
+let getHomeWorkOrderCompletion = dispatch => {
+    let url = Api.GetWorkOrderCompletion()
+    dispatch(utils.sendMsg(url, {}, "GET")).then(data => {
+        dispatch({
+            type: ActionType.HOME_INIT_WORKORDER_COMPLETION,
+            data: data.map((obj, key)=>{
+                return {
+                    name: obj.time,
+                    value: obj.val
+                }
+            })
         });
     })
 }

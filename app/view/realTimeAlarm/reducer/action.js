@@ -12,7 +12,7 @@ const receiveListData = (data) => ({
 
 export const getAlarmList = (opt) => (dispatch, getState) =>{
     return new Promise((resolve, reject)=>{
-        let url = Api.GetAlarmListByOption
+        let url = Api.GetAlarmListByOption()
         dispatch(utils.sendMsg(url, opt, "GET")).then(data =>{
             let state = getState();
             if(opt.page != 0){

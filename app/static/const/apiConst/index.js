@@ -23,16 +23,16 @@ export const GetMessageDataByType = (type) => "/pvmtsys/messageSystemInfo/getMas
  
  }
 */
-export const GetAlarmListByOption = "/pvmtsys/alarmInfo/getAlarmList"
+export const GetAlarmListByOption = () => "/pvmtsys/alarmInfo/getAlarmList"
 
 //获取未读报警消息数量
-export const GetAlarmCount = "/pvmtsys/alarmInfo/getNoReadCount"
+export const GetAlarmCount = () => "/pvmtsys/alarmInfo/getNoReadCount"
 
 /**AlarmDetail api GetAlarmDetailById + id */
 export const GetAlarmDetailById = id => "/pvmtsys/alarmInfo/getAlarmByid/" + id
 
 /**powerStationMonitor 电站列表*/
-export const GetPowerStationBaseInfo = "/pvmtsys/powerStation/getPowerStationBaseInfo"
+export const GetPowerStationBaseInfo = () => "/pvmtsys/powerStation/getPowerStationBaseInfo"
 /**powerStationDetails + /id 电站详情 */
 export const GetPowerStationDetail = id => "/pvmtsys/powerStation/powerStationDetails/" + id;
 /**inverterList 逆变器列表 */
@@ -58,3 +58,6 @@ export const GetPhysicalDataByOrder = (orderNumber) => "/pvmtsys/physical/physic
 
 /**FaultDetail api GetFaultDetailById + id */ 
 export const GetFaultDetailById = (id) => "/pvmtsys/faultInfo/getFaultInfo/" + id;
+
+/**七日工单完成量 图表 */
+export const GetWorkOrderCompletion = () => '/pvmtsys/workOrderInfo/workOrderCompletion'

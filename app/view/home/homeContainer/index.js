@@ -5,6 +5,7 @@ import { hashHistory } from 'react-router'
 
 import AlarmHomeItem from '../../../component/alarmHomeItem'
 import HomePowerItem from '../../../component/homePowerItem'
+import ChartItem from '../../../component/chartItem'
 
 import { getHomeData } from "../reducer/action"
 
@@ -41,7 +42,7 @@ class HomeContianer extends React.Component {
     }
 
     render() {
-        let { alarmCount } = this.props
+        let { alarmCount, workOrderCompletionList } = this.props
 
         return (
             <div className="home-container">
@@ -79,9 +80,11 @@ class HomeContianer extends React.Component {
 
                 <div className="home-rp-content">
                     <div className="home-list-title-div">
-                        <span></span>RP值监控
+                        <span></span>PR值监控
                     </div>
-                    <div className="echart-div"></div>
+                    <div className="rp-echart-div">
+
+                    </div>
                 </div>
 
                 <div className="home-alarm-fb-content">
@@ -95,7 +98,9 @@ class HomeContianer extends React.Component {
                     <div className="home-list-title-div">
                         <span></span>7天工单完成量
                     </div>
-                    <div className="echart-div"></div>
+                    <div className="work-order-echart-div">
+                        <ChartItem data={workOrderCompletionList} />
+                    </div>
                 </div>
 
                 <div className="home-fd-content">
@@ -111,7 +116,8 @@ class HomeContianer extends React.Component {
 
 let mapStateToProps = state => ({
     alarmList: state.homeData.alarmList,
-    alarmCount: state.homeData.alarmCount
+    alarmCount: state.homeData.alarmCount,
+    workOrderCompletionList: state.homeData.workOrderCompletionList
 })
 
 let mapDispatchToProps = (dispatch) => {
