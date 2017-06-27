@@ -5,6 +5,8 @@
  */
 
 import React, {PropTypes} from 'react'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import { hashHistory } from 'react-router'
 
@@ -18,17 +20,18 @@ class MyContainer extends React.Component{
     }
 
     render(){
+        let { username, nickname, email, mobile } = this.props
         return(
             <div className="my-container">
                 <div className="user-info-header">
                     <div className="user-name-div">
                         <div className="left-div"><span className="icon personal"></span>姓名</div>
-                        <div className="right-div">张三</div>
+                        <div className="right-div">{nickname}</div>
                     </div>
                     <div className="user-info-div">
                         <div className="info-item">
                             <div className="left-div"><span className="icon account"></span>账号</div>
-                            <div className="right-div">18866668888</div>
+                            <div className="right-div">{username}</div>
                         </div>
                         <div className="info-item">
                             <div className="left-div"><span className="icon department"></span>部门</div>
@@ -36,7 +39,7 @@ class MyContainer extends React.Component{
                         </div>
                         <div className="info-item">
                             <div className="left-div"><span className="icon mobile"></span>联系</div>
-                            <div className="right-div">18866668888</div>
+                            <div className="right-div">{mobile}</div>
                         </div>
                     </div>
                 </div>
@@ -65,8 +68,15 @@ class MyContainer extends React.Component{
 
 }
 
-MyContainer.PropTypes = {
+let mapStateToProps = state => ({
+    username: state.loginReducer.username,
+    nickname: state.loginReducer.nickname,
+    email: state.loginReducer.email,
+    mobile: state.loginReducer.mobile,
+})
 
+let mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({  }, dispatch)
 }
 
-export default MyContainer
+export default connect(mapStateToProps, mapDispatchToProps)(MyContainer);

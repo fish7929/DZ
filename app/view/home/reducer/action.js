@@ -56,6 +56,7 @@ function receiveData(result, category) {
 export const getHomeData = () => dispatch => {
     getHomeAlarmList(dispatch)
     getHomeAlarmCount(dispatch)
+    getHomeWorkOrderCompletion(dispatch)
 }
 
 /**获取首页报警列表 */

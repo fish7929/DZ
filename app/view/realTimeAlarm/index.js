@@ -20,7 +20,7 @@ class RealTimeAlarm extends React.Component{
     constructor(props, context){
         super(props, context)
         this.state = {
-            currentPage: 0,
+            currentPage: 1,
             pagesize: 10
         }
     }
