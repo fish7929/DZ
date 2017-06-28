@@ -79,7 +79,7 @@ class FaultList extends React.Component {
                 </div>
                 <div className="common-order-item-hint margin-bottom-20">
                     分配时间
-                    <span className="no-wrap">{this.param.allocateTime}</span>
+                    <span className="no-wrap">{Base.formatTime(this.param.allocateTime, "yyyy-MM-dd HH:mm:ss")}</span>
                 </div>
                 <div className="common-item common-pseudo common-active common-next fault-pseudo "
                     data-hint='备品备件分配计划' onClick={(e) => this.goToNextHandler(e, FIRST)}></div>

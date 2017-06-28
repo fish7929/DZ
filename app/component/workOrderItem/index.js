@@ -76,7 +76,7 @@ class WorkOrderItem extends React.Component {
                 <div className="work-order-number">{"工单编号：" + data.orderNumber}</div>
                 <div className="common-order-item-hint">
                     分配时间
-                    <span className="no-wrap">{data.allocateTime}</span>
+                    <span className="no-wrap">{Base.formatTime(data.allocateTime, "yyyy-MM-dd HH:mm:ss")}</span>
                 </div>
                 <div className="common-order-item-hint">
                     电站名称

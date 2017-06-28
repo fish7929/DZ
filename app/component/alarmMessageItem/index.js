@@ -35,7 +35,7 @@ class AlarmMessageItem extends React.Component {
             massageStatus = '以解除';
         }
         let readClass = data && data.isread == FIRST ? 'message-read' : '';
-        let level = data.massageLevel || 1;
+        let level = data.alarmgrade || 1;
         return (
             <li className={"alarm-message-item " + readClass}>
                 <div className="alarm-message-left">

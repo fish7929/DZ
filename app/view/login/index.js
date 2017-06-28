@@ -55,7 +55,7 @@ class Login extends React.Component{
             // msg = ErrorMessage.Error_Phone_Invalid
         }else if(password == ""){
             msg = ErrorMessage.Error_Password_Empty
-        }else if(password.length < 5){
+        }else if(password.length < 3){ // 这只是123 5
             msg = ErrorMessage.Error_PassWord_Invalid
         }
         if(msg){
