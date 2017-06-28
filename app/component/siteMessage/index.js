@@ -10,6 +10,7 @@ import ReactDOM from 'react-dom';
 import { FIRST, SECOND, THREE } from '../../static/const/constants';
 import { hashHistory } from 'react-router';
 import SwipeWrapper from '../swipeWrapper';
+import ScrollList from '../scrollList';
 
 import './index.scss'
 
@@ -22,7 +23,8 @@ class SiteMessage extends React.Component {
     constructor(props, context) {
         super(props, context)
         this.state = {
-            list: this.props.data
+            list: this.props.data,
+            currentPage: 1
         }
     }
     /**
@@ -85,15 +87,26 @@ class SiteMessage extends React.Component {
     componentDidMount() {
         
     }
+    onScrollHandler(page) {
+        //todo 可能存在隐患
+        this.setState({currentPage: page});
+        this.props.onScroll(page);
+    }
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            list: nextProps.data
+        });
+    }
     /**
      * 渲染
      */
     render() {
         let { list } = this.state;
         return (
-            <ul className="message-content-wrapper">
+            // <ul className="message-content-wrapper" >
+            <ScrollList className="message-content-wrapper" onScroll={ page=>this.onScrollHandler(page) } currentPage={ this.state.currentPage } pageTotal={ this.props.total }>
                 {list.map((item, index) => {
-                    let readClass = item.MessageUserInfoPO[0] && item.MessageUserInfoPO[0].isread == FIRST ? 'message-read' : '';
+                    let readClass = item.isread == FIRST ? 'message-read' : '';
                     let userInfo = "调度中心 - 张三";
                     let _itemRef = item.id;
                     return (<li key={_itemRef} className={"site-message-item " + readClass} ref={_itemRef}>
@@ -107,14 +120,17 @@ class SiteMessage extends React.Component {
                         <span className="site-message-item-del common-active" onClick={(e) => this.onDeleteSiteMessageHandler(e, item.id)}>删除</span>
                     </li>)
                 })}
-            </ul>
+            </ScrollList>
+            // </ul>
         )
     }
 
 }
 
 SiteMessage.PropTypes = {
-    data: PropTypes.array.isRequired
+    total: PropTypes.number.isRequired,
+    data: PropTypes.array.isRequired,
+    onScroll: PropTypes.func.isRequired
 }
 
 export default SiteMessage;

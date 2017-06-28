@@ -10,16 +10,22 @@ const initialState = {
     tabIndex: 0,
     isFetching: false, //是否正在加载
     homeContainerList: [],
-    workOrderList: [],
-    messageCenterList: [],
+    workOrder: {
+        list: [],
+        total: 1
+    },
+    messageCenterList: {},
     personalCenterList: [],
 
+    //报警消息列表
     alarmList: [],
     alarmCount: 0,
     //7日工单完成量
     workOrderCompletionList: [],
     //公告列表
-    noticeList: []
+    noticeList: [],
+    //电站列表
+    psList: []
 }
 
 export default function homeData(state = initialState, action) {
@@ -45,12 +51,15 @@ export default function homeData(state = initialState, action) {
                 }
             ); 
         case ActionType.RECEIVE_WORK_ORDER_DATA:  //工单
+            let _order = state.workOrder;
+            action.currentPage == 1 ? (_order.list = action.data) : _order.list.concat(action.data);
+            _order.total = action.total;
             return Object.assign(
                 {},
                 state,
                 {
                     isFetching: false, //是否正在加载
-                    workOrderList: action.data
+                    workOrder: _order
                 }
             );
         case ActionType.RECEIVE_MESSAGE_CENTER_DATA:  //消息中心
@@ -79,7 +88,7 @@ export default function homeData(state = initialState, action) {
         case ActionType.HOME_INIT_ALARM_COUNT:
             return {
                 ...state,
-                alarmCount: action.data.count
+                alarmCount: action.data
             }
         case ActionType.HOME_INIT_WORKORDER_COMPLETION:
             return {
@@ -90,6 +99,13 @@ export default function homeData(state = initialState, action) {
             return {
                 ...state,
                 noticeList: action.data
+            }
+        case ActionType.HOME_INIT_USER_POWER_STATION:
+            return{
+                ...state,
+                psList: action.data.psList,
+                prList: action.data.prList,
+                fbList: action.data.fbList,
             }
         default:
             return state

@@ -42,7 +42,7 @@ class HomeContianer extends React.Component {
     }
 
     render() {
-        let { alarmCount, workOrderCompletionList } = this.props
+        let { alarmCount, workOrderCompletionList, psList } = this.props
 
         return (
             <div className="home-container">
@@ -71,9 +71,7 @@ class HomeContianer extends React.Component {
                         <span></span>电站监控
                     </div>
                     <div className="home-monitor-list">
-                        <HomePowerItem data={{}} />
-                        <HomePowerItem data={{}} />
-                        <HomePowerItem data={{}} />
+                        { psList.map((obj, key) => <HomePowerItem key={key} data={obj} />)}
                     </div>
                     <button className="btn-monitor-more">展开</button>
                 </div>
@@ -117,6 +115,7 @@ class HomeContianer extends React.Component {
 let mapStateToProps = state => ({
     alarmList: state.homeData.alarmList,
     alarmCount: state.homeData.alarmCount,
+    psList: state.homeData.psList,
     workOrderCompletionList: state.homeData.workOrderCompletionList
 })
 

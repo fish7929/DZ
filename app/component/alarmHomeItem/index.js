@@ -7,6 +7,7 @@
 'use strict';
 import React, { PropTypes } from 'react'
 
+import * as utils from '../../utils'
 import './index.scss'
 
 class AlarmHomeItem extends React.Component {
@@ -32,9 +33,9 @@ class AlarmHomeItem extends React.Component {
                 </div>
                 <div className="alarm-home-right">
                     <div className="txt-div">
-                        <div className="no-wrap title-txt">{data.powerStationBaseInfo.name}</div>
+                        <div className="no-wrap title-txt">{data.name}</div>
                         <div className="no-wrap content-txt">{data.alarmMessage}</div>
-                        <div className="no-wrap date-txt">{data.alarmTime}</div>
+                        <div className="no-wrap date-txt">{utils.formatDate(data.eventTime, "yyyy-MM-dd HH:mm:ss")}</div>
                     </div>
                     
                     <div className="value-div">{data.alarmValue}</div>

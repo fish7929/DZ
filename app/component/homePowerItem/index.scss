@@ -20,6 +20,7 @@
         }
 
         .header-txt{
+            width: calc(100% - #{calc-rem(42)});
             margin-left: calc-rem(6);
             font-size: calc-rem(32);
             color: #FE5A0B;
