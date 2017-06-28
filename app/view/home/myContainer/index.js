@@ -18,7 +18,7 @@ class MyContainer extends React.Component{
 
     render(){
         let user = Base.getLocalStorageObject("user")
-        let { username, nickname, email, mobile } = user
+        let { username, nickname, email, mobile, departmentName } = user
         return(
             <div className="my-container">
                 <div className="user-info-header">
@@ -33,7 +33,7 @@ class MyContainer extends React.Component{
                         </div>
                         <div className="info-item">
                             <div className="left-div"><span className="icon department"></span>部门</div>
-                            <div className="right-div">北京分公司运维部</div>
+                            <div className="right-div">{departmentName}</div>
                         </div>
                         <div className="info-item">
                             <div className="left-div"><span className="icon mobile"></span>联系</div>

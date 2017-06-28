@@ -6,6 +6,8 @@ export const MessageCenter = "/pvmtsys/messageSystemInfo/getIsReadCount";
 /**home api GetWorkOrdrDataByStatus */
 export const GetWorkOrdrDataByStatus = (status) => "/pvmtsys/workOrderInfo/orderlist/" + status;
 
+export const GetNoticeList = () => "/pvmtsys/noticeReader/queryNoticeList"
+
 /**MessageDetail api GetMessageDetailByIdAndStatus */
 export const GetMessageDetailByIdAndStatus = (id, status) => {
     if(!status){

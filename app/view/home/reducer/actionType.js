@@ -16,6 +16,8 @@ export const RECEIVE_PERSONAL_CENTER_DATA = "RECEIVE_PERSONAL_CENTER_DATA";  //�
 
 //首页报警列表
 export const HOME_INIT_ALARM_LIST = "HOME_INIT_ALARM_LIST"
+//首页公告
+export const HOME_INIT_NOTICE_LIST = "HOME_INIT_NOTICE_LIST"
 //首页未读报警数量
 export const HOME_INIT_ALARM_COUNT = "HOME_INIT_ALARM_COUNT"
 //首页7日工单完成量

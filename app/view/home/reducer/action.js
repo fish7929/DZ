@@ -57,6 +57,7 @@ export const getHomeData = () => dispatch => {
     getHomeAlarmList(dispatch)
     getHomeAlarmCount(dispatch)
     getHomeWorkOrderCompletion(dispatch)
+    getNoticeList(dispatch)
 }
 
 /**获取首页报警列表 */
@@ -69,6 +70,21 @@ let getHomeAlarmList = dispatch => {
     dispatch(utils.sendMsg(url, opt, "GET")).then(data => {
         dispatch({
             type: ActionType.HOME_INIT_ALARM_LIST,
+            data: data
+        });
+    })
+}
+
+/**获取首页公告 */
+let getNoticeList = dispatch => {
+    let url = Api.GetNoticeList()
+    let opt = {
+        page: 1,
+        pagesize: 5,
+    }
+    dispatch(utils.sendMsg(url, opt, "POST")).then(data => {
+        dispatch({
+            type: ActionType.HOME_INIT_NOTICE_LIST,
             data: data
         });
     })
