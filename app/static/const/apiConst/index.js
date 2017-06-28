@@ -61,3 +61,6 @@ export const GetFaultDetailById = (id) => "/pvmtsys/faultInfo/getFaultInfo/" + i
 
 /**七日工单完成量 图表 */
 export const GetWorkOrderCompletion = () => '/pvmtsys/workOrderInfo/workOrderCompletion'
+
+/**我的故障反馈列表 */
+export const GetUserFaultList = () => "/pvmtsys/faultInfo/getUserFaultList"

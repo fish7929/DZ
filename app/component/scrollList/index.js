@@ -5,7 +5,7 @@
  */
 
 import React, { PropTypes } from 'react'
-
+import './index.scss'
 
 class ScrollList extends React.Component{
     constructor(props, context){
@@ -29,7 +29,6 @@ class ScrollList extends React.Component{
         var scrollTop = e.target.scrollTop || 0;
         if(scrollTop + e.target.offsetHeight > e.target.scrollHeight - 50 && this.state.isLoading==false && this.props.currentPage < this.props.pageTotal){
             this.setState({isLoading: true})
-            console.log("onScrollHandler")
             this.props.onScroll && this.props.onScroll(this.props.currentPage+1);
         }
     }

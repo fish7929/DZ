@@ -7,7 +7,6 @@
 import React, {PropTypes} from 'react'
 
 import { hashHistory } from 'react-router'
-
 import * as RouterConst from '../../../static/const/routerConst'
 
 import './index.scss'
@@ -18,17 +17,19 @@ class MyContainer extends React.Component{
     }
 
     render(){
+        let user = Base.getLocalStorageObject("user")
+        let { username, nickname, email, mobile } = user
         return(
             <div className="my-container">
                 <div className="user-info-header">
                     <div className="user-name-div">
                         <div className="left-div"><span className="icon personal"></span>姓名</div>
-                        <div className="right-div">张三</div>
+                        <div className="right-div">{nickname}</div>
                     </div>
                     <div className="user-info-div">
                         <div className="info-item">
                             <div className="left-div"><span className="icon account"></span>账号</div>
-                            <div className="right-div">18866668888</div>
+                            <div className="right-div">{username}</div>
                         </div>
                         <div className="info-item">
                             <div className="left-div"><span className="icon department"></span>部门</div>
@@ -36,7 +37,7 @@ class MyContainer extends React.Component{
                         </div>
                         <div className="info-item">
                             <div className="left-div"><span className="icon mobile"></span>联系</div>
-                            <div className="right-div">18866668888</div>
+                            <div className="right-div">{mobile}</div>
                         </div>
                     </div>
                 </div>
@@ -62,10 +63,6 @@ class MyContainer extends React.Component{
             </div>
         )
     }
-
-}
-
-MyContainer.PropTypes = {
 
 }
 

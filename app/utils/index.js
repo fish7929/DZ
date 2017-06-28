@@ -52,24 +52,24 @@ const fetchMsg = (url, param, type = "GET", headers={}, repType="json") => {
  * @param {*} repType 
  */
 export function sendMsg(url, param, type = "GET",headers={}, repType="json"){
+    let user = Base.getLocalStorageObject("user")
+    let token = user.token
+    if(token){
+        //token = "DA58A5485E52B2A5DA3EA90F367A1636"
+        headers = {
+            ...headers,
+            fromType: 'app',
+            token
+        }
+    }
+
     return (dispatch, getState) => {
-        let state = getState()
-        let token = state.loginReducer.token
-        if(process.env.NODE_ENV == "develop"){
-            // url = "/mock" + url +".json";
-            token = "DA58A5485E52B2A5DA3EA90F367A1636"
-        }
-        if(token){
-            headers = {
-                ...headers,
-                token
-            }
-        }
+        
         return new Promise(function(resolve, reject){
             
             dispatch(fetchMsg(url, param, type, headers, repType))
             .then(data=>{
-                if(data.code === 0){
+                if(data.code === 1 || data.code === 0){
                     resolve&&resolve(data.result || data.data || null)
                 }else{
                     // reject&&reject(data)
