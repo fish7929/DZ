@@ -25,11 +25,7 @@ export const userLogin = (userName, password) => dispatch => {
     }
 
     dispatch(utils.sendMsg(url, opt, "POST")).then(data => {
-        dispatch({
-            type: ActionType.INIT_USER_LOGIN,
-            data: data
-        })
-
+        Base.setLocalStorageObject("user", data)
         hashHistory.push(RouterConst.ROUTER_HOME)
     })
 }

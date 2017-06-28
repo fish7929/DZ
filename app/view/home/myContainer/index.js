@@ -5,11 +5,8 @@
  */
 
 import React, {PropTypes} from 'react'
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 
 import { hashHistory } from 'react-router'
-
 import * as RouterConst from '../../../static/const/routerConst'
 
 import './index.scss'
@@ -20,7 +17,8 @@ class MyContainer extends React.Component{
     }
 
     render(){
-        let { username, nickname, email, mobile } = this.props
+        let user = Base.getLocalStorageObject("user")
+        let { username, nickname, email, mobile } = user
         return(
             <div className="my-container">
                 <div className="user-info-header">
@@ -68,15 +66,4 @@ class MyContainer extends React.Component{
 
 }
 
-let mapStateToProps = state => ({
-    username: state.loginReducer.username,
-    nickname: state.loginReducer.nickname,
-    email: state.loginReducer.email,
-    mobile: state.loginReducer.mobile,
-})
-
-let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({  }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MyContainer);
+export default MyContainer
