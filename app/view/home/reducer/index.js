@@ -25,7 +25,9 @@ const initialState = {
     //公告列表
     noticeList: [],
     //电站列表
-    psList: []
+    psList: [],
+
+    prList: []
 }
 
 export default function homeData(state = initialState, action) {
@@ -98,7 +100,7 @@ export default function homeData(state = initialState, action) {
         case ActionType.HOME_INIT_NOTICE_LIST:
             return {
                 ...state,
-                noticeList: action.data
+                noticeList: action.data.results
             }
         case ActionType.HOME_INIT_USER_POWER_STATION:
             return{

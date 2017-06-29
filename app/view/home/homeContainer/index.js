@@ -42,7 +42,7 @@ class HomeContianer extends React.Component {
     }
 
     render() {
-        let { alarmCount, workOrderCompletionList, psList } = this.props
+        let { alarmCount, workOrderCompletionList, psList, noticeList, prList } = this.props
 
         return (
             <div className="home-container">
@@ -52,7 +52,7 @@ class HomeContianer extends React.Component {
                         <span className="icon-notice"></span>
                         <span className="title-notice">公告</span>
                     </div>
-                    <div className="notice-message no-wrap">与能者写奥斯卡的敬爱考虑时间阿斯兰的空间案例</div>
+                    <div className="notice-message no-wrap">{noticeList.length > 0 ? noticeList[0].name : ""}</div>
                 </div>
                 <div className="home-alarm-content">
                     <div className="home-list-title-div">
@@ -81,7 +81,7 @@ class HomeContianer extends React.Component {
                         <span></span>PR值监控
                     </div>
                     <div className="rp-echart-div">
-
+                        <ChartItem data={prList} type="bar" />
                     </div>
                 </div>
 
@@ -89,7 +89,9 @@ class HomeContianer extends React.Component {
                     <div className="home-list-title-div">
                         <span></span>报警分布
                     </div>
-                    <div className="echart-div"></div>
+                    <div className="alarm-fb-echart-div">
+                        <ChartItem data={[]} type="pie" />
+                    </div>
                 </div>
 
                 <div className="home-order-content">
@@ -97,7 +99,7 @@ class HomeContianer extends React.Component {
                         <span></span>7天工单完成量
                     </div>
                     <div className="work-order-echart-div">
-                        <ChartItem data={workOrderCompletionList} />
+                        <ChartItem data={workOrderCompletionList} type="line" />
                     </div>
                 </div>
 
@@ -113,10 +115,12 @@ class HomeContianer extends React.Component {
 }
 
 let mapStateToProps = state => ({
+    noticeList: state.homeData.noticeList,
     alarmList: state.homeData.alarmList,
     alarmCount: state.homeData.alarmCount,
     psList: state.homeData.psList,
-    workOrderCompletionList: state.homeData.workOrderCompletionList
+    workOrderCompletionList: state.homeData.workOrderCompletionList,
+    prList: state.homeData.prList,
 })
 
 let mapDispatchToProps = (dispatch) => {

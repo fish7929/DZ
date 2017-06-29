@@ -1,8 +1,11 @@
 import React, { PropTypes } from "react"
 
 import ReactEcharts from 'echarts-for-react'
+import echarts from 'echarts'
 
 import './index.scss'
+
+const xLabel = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"]
 
 class ChartItem extends React.Component {
     constructor(props, context) {
@@ -49,9 +52,11 @@ class ChartItem extends React.Component {
             xAxis: {
                 data: data.map(obj=>obj.name),
                 axisLabel: {
-                    inside: true,
                     textStyle: {
                         color: '#000'
+                    },
+                    formatter: (value, index) => {
+                        return xLabel[index]
                     }
                 },
                 axisTick: {
@@ -60,7 +65,7 @@ class ChartItem extends React.Component {
                 axisLine: {
                     show: false
                 },
-                z: 10
+                z: 10,
             },
             yAxis: {
                 axisLine: {
@@ -72,6 +77,9 @@ class ChartItem extends React.Component {
                 axisLabel: {
                     textStyle: {
                         color: '#999'
+                    },
+                    formatter: (value, index) => {
+                        return value + "%"
                     }
                 }
             },
@@ -84,64 +92,137 @@ class ChartItem extends React.Component {
             series: [
                 { // For shadow
                     type: 'bar',
+                    barWidth: 50,
                     itemStyle: {
-                        normal: {color: 'rgba(0,0,0,0.05)'}
+                        normal: {color: '#D8E3EA'},
+                        emphasis: {color: '#D8E3EA'}
                     },
                     barGap:'-100%',
-                    barCategoryGap:'40%',
-                    data: [],
+                    // barCategoryGap:'50%',
+                    data: data.map(obj=>100),
                     animation: false
                 },
                 {
                     type: 'bar',
+                    barWidth: 50,
+                    barMinHeight: 5,
                     itemStyle: {
                         normal: {
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#83bff6'},
-                                    {offset: 0.5, color: '#188df0'},
-                                    {offset: 1, color: '#188df0'}
+                                    {offset: 0, color: '#87E2F8'},
+                                    {offset: 1, color: '#3899EB'}
                                 ]
                             )
                         },
-                        // emphasis: {
-                        //     color: new echarts.graphic.LinearGradient(
-                        //         0, 0, 0, 1,
-                        //         [
-                        //             {offset: 0, color: '#2378f7'},
-                        //             {offset: 0.7, color: '#2378f7'},
-                        //             {offset: 1, color: '#83bff6'}
-                        //         ]
-                        //     )
-                        // }
+                        emphasis: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#87E2F8'},
+                                    {offset: 1, color: '#3899EB'}
+                                ]
+                            )
+                        }
                     },
                     data: data.map(obj=>obj.value),
+                    // data: [80, 40]
                 }
             ],
             tooltip: {
                 trigger: 'axis',
                 axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                }
+                    type: 'shadow',        // 默认为直线，可选为：'line' | 'shadow'
+                    shadowStyle: {
+                        opacity:0
+                    }
+                },
+                position: function (pos, params, dom, rect, size) {
+                    // 鼠标在左侧时 tooltip 显示到右侧，鼠标在右侧时 tooltip 显示到左侧。
+                    var obj = {top: 60};
+                    obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+                    return obj;
+                },
+                formatter: '{b1}<br />{c1}%'
             },
             grid: {
-                // left: '5%',
-                // right: '5%',
-                // bottom: '5%',
-                // top: '5%',
+                left: '5%',
+                right: '5%',
+                bottom: '5%',
+                top: '5%',
                 containLabel: true
             }
         }
     }
 
+    getLineOption(data) {
+        return {
+            xAxis:  {
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                type: 'category',
+                boundaryGap: false,
+                data: data.map(obj => obj.name),
+                axisLabel: {
+                    formatter: (value)=>{
+                        return value.substring(value.length-2, value.length)
+                    }
+                }
+            },
+            yAxis: {
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                type: 'value',
+                axisLabel: {
+                    formatter: '{value}'
+                }
+            },
+            series: [
+                {
+                    type:'line',
+                    symbol: "none",
+                    smooth: true,
+                    data: data.map(obj=>obj.value),
+                    lineStyle: {
+                        normal: {
+                            color: "#F18905",
+                            width: 6,
+                            shadowColor: '#F08806',
+                            shadowBlur: 12,
+                            shadowOffsetY: 20,
+                        }
+                    }
+                }
+            ],
+            grid: {
+                left: '5%',
+                right: '5%',
+                bottom: '5%',
+                top: '5%',
+                containLabel: true
+            }
+        }
+
+    }
+
     render() {
-        let { title, data, type } = this.props, opts
-        let temp = data.filter(obj => obj.value != 0)
-        if(temp.length>0){
+        let { data, type } = this.props, opts
+        console.log(data)
+        if(data.length>0){
             if (type === "pie") {
-                data = temp
                 opts = this.getPieOption(data)
+            }
+            else if(type === "line"){
+                opts = this.getLineOption(data)
             }
             else {
                 opts = this.getBarOption(data)
@@ -158,7 +239,6 @@ class ChartItem extends React.Component {
 }
 
 ChartItem.PropTypes = {
-    title: PropTypes.string.isRequired,
     data: PropTypes.array,
     type: PropTypes.string
 }
