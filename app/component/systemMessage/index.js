@@ -62,8 +62,8 @@ class SystemMessage extends React.Component {
                     return (<li key={index} className={"system-message-item " + readClass}
                         onClick={(e) => this.toMessageDetailHandler(e, item.id)}>
                         <div><span>公告</span></div>
-                        <div className="no-wrap">{item.title}</div>
-                        <div>{item.createTime}</div>
+                        <div className="no-wrap">{item.content}</div>
+                        <div>{Base.formatTime(item.createTime, "yyyy-MM-dd HH:mm:ss")}</div>
                     </li>)
                 })}
             </ScrollList>

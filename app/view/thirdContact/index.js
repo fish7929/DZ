@@ -40,7 +40,7 @@ class ThirdContact extends React.Component {
                 </div>
                 <div className="common-order-item-hint">
                     是否需要联系第三方
-                    <span className="no-wrap">是</span>
+                    <span className="no-wrap">{item.isneedthird == FIRST ? '是' : '否'}</span>
                 </div>
                 <div className="common-order-item-hint">
                     第三方身份

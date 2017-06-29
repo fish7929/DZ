@@ -45,7 +45,7 @@ class AlarmMessageItem extends React.Component {
                 <div className="alarm-message-right">
                     <div className="no-wrap">{data.title}</div>
                     <div className="no-wrap">{data.content}</div>
-                    <div><span>{data.createTime}</span><span>230.22</span></div>
+                    <div><span>{Base.formatTime(data.createTime, "yyyy-MM-dd HH:mm:ss")}</span><span>230.22</span></div>
                 </div>
             </li>
         )

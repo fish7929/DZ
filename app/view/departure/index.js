@@ -88,9 +88,9 @@ class Departure extends React.Component {
                         <label htmlFor={examine.examineId + ' ' + FIRST}>合格</label>
                     </span>
                     <span>
-                        {this.status == 0 ? <input type="radio" id={examine.examineId + ' ' + ZERO} name={examine.examineId} checked={isQualified == ZERO}
+                        {this.status == 0 ? <input type="radio" id={examine.examineId + ' ' + ZERO} name={examine.examineId} checked={isQualified == ZERO || !isQualified}
                             onChange={(e) => this.changeQualiHandler(e, examine.examineId, ZERO)} />
-                            : <input type="radio" id={examine.examineId + ' ' + ZERO} name={examine.examineId} checked={isQualified == ZERO} disabled />}
+                            : <input type="radio" id={examine.examineId + ' ' + ZERO} name={examine.examineId} checked={isQualified == ZERO || !isQualified} disabled />}
                         <label htmlFor={examine.examineId + ' ' + ZERO}>不合格就地解决</label>
                     </span>
                 </div>)
@@ -104,7 +104,7 @@ class Departure extends React.Component {
      * 渲染
      */
     render() {
-        let {  list } = this.state;
+        let { list } = this.state;
         return (
             <Page className="third-contact-container">
                 <Header title="离场申请" isShowBack={true} />

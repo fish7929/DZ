@@ -107,7 +107,7 @@ class SiteMessage extends React.Component {
             <ScrollList className="message-content-wrapper" onScroll={ page=>this.onScrollHandler(page) } currentPage={ this.state.currentPage } pageTotal={ this.props.total }>
                 {list.map((item, index) => {
                     let readClass = item.isread == FIRST ? 'message-read' : '';
-                    let userInfo = "调度中心 - 张三";
+                    let userInfo = "调度中心 - " + item.addressUser;
                     let _itemRef = item.id;
                     return (<li key={_itemRef} className={"site-message-item " + readClass} ref={_itemRef}>
                         <SwipeWrapper className="site-message-swipe"
@@ -115,7 +115,7 @@ class SiteMessage extends React.Component {
                             onSwipeLeft={() => this.onSwipeLeftHandler(_itemRef)} onSwipeRight={() => this.onSwipeRightHandler(_itemRef)}>
                             <div className="no-wrap">{item.title}</div>
                             <div className="no-wrap">{userInfo}</div>
-                            <div>{item.createTime}</div>
+                            <div>{Base.formatTime(item.createTime, "yyyy-MM-dd HH:mm:ss")}</div>
                         </SwipeWrapper>
                         <span className="site-message-item-del common-active" onClick={(e) => this.onDeleteSiteMessageHandler(e, item.id)}>删除</span>
                     </li>)

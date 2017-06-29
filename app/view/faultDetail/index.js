@@ -86,24 +86,82 @@ class FaultDetail extends React.Component {
             </div>
         );
     }
+    renderMineDealSection() {
+        let { list } = this.state;
+        let photos = list.attachmentList || [];
+        let explain = list.state;
+        let result = list.solveResult;
+        let resultStr = result == FIRST ? "以解决" : '未解决';  //1 
+        return (
+            <div className="margin-bottom-20">
+                <div className="common-divide">我的处理结果</div>
+                <div className="common-order-item-hint">
+                    处理结果
+                    <span className="no-wrap">{resultStr}</span>
+                </div>
+                <UploadComponent type={FIRST} photos={photos} explain={explain} />
+            </div>
+        );
+    }
+    /**
+     * 
+     * @param {number } type 1 运维人员, 2调度人员
+     */
+    renderDealPersonnelSection(type) {
+        let { list } = this.state;
+        //运维人员
+        let solveList = list.solveList || [];
+        let solveTime = list.solveTime;
+        let solveName = list.solveName;
+        let solveInfo = list.dispatcherState;
+        //调度人员
+        let dispatcherList = list.dispatcherList || [];
+        let dispatcherTime = list.dispatcherTime;
+        let dispatcherName = list.dispatcherName;
+        let dispatcherInfo = list.dispatcherInfo;
+
+        let name = type == FIRST ? solveName : dispatcherName;
+        let nameHint = type == FIRST ? '维护人员' : '调度人员';
+        let time = type == FIRST ? Base.formatTime(solveTime, "yyyy-MM-dd HH:mm") :
+            Base.formatTime(dispatcherTime, "yyyy-MM-dd HH:mm");
+        let timeHint = type == FIRST ? '运维时间' : '调度时间';
+        let photos = type == FIRST ? solveList : dispatcherList;
+        let explain = type == FIRST ? solveInfo : dispatcherInfo;
+        //故障状态
+        let faultStatus = list.faultStatus;
+        let faultStatusStr = '未分配';  //0 的状态
+        if(faultStatus == FIRST){
+            faultStatusStr = '以分配';
+        }else if(faultStatus == SECOND){
+            faultStatusStr = '以解决';
+        }else if(faultStatus == THREE){
+            faultStatusStr = '未解决';
+        }
+        return (
+            <div>
+                {type == FIRST ? <div className="common-order-item-hint">
+                    故障状态<span className="no-wrap">{faultStatusStr}</span>
+                </div> : null}
+                <div className="common-order-item-hint">
+                    {nameHint}<span className="no-wrap">{name}</span>
+                </div>
+                <div className="common-order-item-hint">
+                    {timeHint}
+                    <span className="no-wrap">{time}</span>
+                </div>
+                <UploadComponent type={FIRST} photos={photos} explain={explain} />
+            </div>
+        );
+    }
     /**
      * 渲染故障详情
      */
     renderDetailSection() {
-        let { list } = this.state;
-        let attachmentList = list.attachmentList;
-        let state = list.state;
         return (
             <div>
                 <div className="common-divide">故障详情</div>
-                <div className="common-order-item-hint">
-                    维护人员<span className="no-wrap">{list.userName}</span>
-                </div>
-                <div className="common-order-item-hint">
-                    运维时间
-                    <span className="no-wrap">{list.createTime}</span>
-                </div>
-                <UploadComponent type={FIRST} photos={attachmentList} explain={state} />
+                {this.renderDealPersonnelSection(FIRST)}
+                {this.renderDealPersonnelSection(SECOND)}
             </div>
         );
     }
@@ -135,6 +193,7 @@ class FaultDetail extends React.Component {
             <div>
                 <div className="fault-detail-name">{this.param.faultMsg || ""}</div>
                 {this.renderBaseSection()}
+                {this.status == ZERO ? null : this.renderMineDealSection()}
                 {this.renderDetailSection()}
                 {this.status == ZERO ? this.renderDealResultSection() : null}
                 {this.status == ZERO ? <div className="fualt-save-wrapper">

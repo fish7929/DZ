@@ -100,9 +100,9 @@ class Home extends React.Component {
                 break
             case FIRST:
                 _title = '工单列表';
-                _isShowRight = true;
-                _rightContent = '2017.3-2017.6';
-                _rightClass = 'work-order-center-time';
+                // _isShowRight = true;
+                // _rightContent = '2017.3-2017.6';
+                // _rightClass = 'work-order-center-time';
                 break
             case SECOND:
                 _title = '消息中心';
