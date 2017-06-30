@@ -111,6 +111,10 @@ let getHomeAlarmCount = dispatch => {
  */
 let getUserPowerStation = dispatch => {
     let url = Api.GetUserPowerStation()
+    let opt = {
+        page: 1,
+        pageSize: 3
+    }
     dispatch(utils.sendMsg(url, {}, "POST")).then(data => {
         dispatch({
             type: ActionType.HOME_INIT_USER_POWER_STATION,

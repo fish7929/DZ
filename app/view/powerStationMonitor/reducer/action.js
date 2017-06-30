@@ -12,6 +12,6 @@ const receiveListData = (data) => ({
 })
 
 export const getPSMList = () => dispatch =>{
-    let url = Api.GetPowerStationBaseInfo()
-    dispatch(utils.sendMsg(url, {}, "GET")).then(data => dispatch(receiveListData(data || [])))
+    let url = Api.GetUserPowerStation()
+    dispatch(utils.sendMsg(url, {}, "POST")).then(data => dispatch(receiveListData(data || [])))
 }

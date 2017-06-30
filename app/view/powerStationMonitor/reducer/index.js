@@ -10,7 +10,7 @@ export default function update (state = initialState, action){
         case ActionType.PSM_LIST_INIT:
             return {
                 ...state,
-                list: action.data
+                list: action.data.rows
             }
         case ActionType.PSM_CHANGE_SHOW_TYPE:
             return{

@@ -19,7 +19,6 @@ class App extends React.Component {
     }
 
     render() {
-        console.log(this.props.location.action, "99999990000")
         return (
             <div>
                 <ReactCSSTransitionGroup component='div'

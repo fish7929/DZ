@@ -34,7 +34,6 @@ const fetchMsg = (url, param, type = "GET", headers={}, repType="json") => {
             body: type.toLocaleUpperCase()==="GET"?undefined:(repType=="json"?JSON.stringify(param):param)
         })  
         .then((res) => {
-            console.log(res, 88888);
             return res.json();
         })
         .then((data) => {

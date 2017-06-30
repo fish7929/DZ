@@ -1,6 +1,8 @@
 @import '../../static/css/_mixins.scss';
 
 .psm-detail-container{
+    height: 100%;
+    overflow: auto;
 
     .psm-detail-content{
         padding: calc-rem(20) 0;

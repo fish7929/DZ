@@ -16,7 +16,6 @@ class HomeBottom extends React.Component{
     }
 
     getBtnClass(type, tabIndex){
-        console.log(type, tabIndex, tabIndex==type);
         return classnames({
             btn_item: true,
             btn_home: type === 0,

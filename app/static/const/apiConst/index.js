@@ -33,9 +33,6 @@ export const GetAlarmCount = () => "/pvmtsys/alarmInfo/getNoReadCount"
 /**AlarmDetail api GetAlarmDetailById + id */
 export const GetAlarmDetailById = id => "/pvmtsys/alarmInfo/getAlarmByid/" + id
 
-/**powerStationMonitor 电站列表*/
-export const GetPowerStationBaseInfo = () => "/pvmtsys/powerStation/getPowerStationBaseInfo"
-
 /**获取用户电站列表 */
 export const GetUserPowerStation = () => "/pvmtsys/powerStation/getPowerStationInfo"
 /**powerStationDetails + /id 电站详情 */

@@ -27,7 +27,8 @@ const initialState = {
     //电站列表
     psList: [],
 
-    prList: []
+    prList: [],
+    fbList: []
 }
 
 export default function homeData(state = initialState, action) {

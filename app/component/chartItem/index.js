@@ -14,25 +14,51 @@ class ChartItem extends React.Component {
     }
 
     getPieOption(data) {
+        let {unitY} = this.props
+        data = data.filter((obj) => obj.value !== 0)
         return {
             series: [
                 {
                     type: 'pie',
-                    radius: [40, 100],
-                    center: ['50%', '40%'],
+                    radius: "50%",
+                    center: ['50%', '50%'],
                     roseType: 'area',
-                    data: data
+                    data: data,
+                    label: {
+                        normal: {
+                            textStyle: {
+                                color: '#0F3B65'
+                            }
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#c23531',
+                            shadowBlur: 200,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            lineStyle: {
+                                color: "#0F3B65"
+                            },
+                            smooth: 0.2,
+                            length: 10,
+                            length2: 20
+                        }
+                    },
                 }
             ],
-            color: this.colors,
-            tooltip: {
-                trigger: 'item',
-            },
-            legend: {
-                x: 'center',
-                y: 'bottom',
-                data: data.map(obj => obj.name)
-            },
+            //color: this.colors,
+            // tooltip: {
+            //     trigger: 'item',
+            // },
+            // legend: {
+            //     x: 'center',
+            //     y: 'bottom',
+            //     data: data.map(obj => obj.name)
+            // },
             xAxis: [
                 {
                     show: false
@@ -48,6 +74,9 @@ class ChartItem extends React.Component {
     }
 
     getBarOption(data) {
+        let {unitY, barBgColor, barColors} = this.props
+        barColors = barColors || ['#87E2F8', '#3899EB']
+        let colors = barColors.map((obj, index)=>({offset: index, color: obj}))
         return {
             xAxis: {
                 data: data.map(obj=>obj.name),
@@ -79,23 +108,17 @@ class ChartItem extends React.Component {
                         color: '#999'
                     },
                     formatter: (value, index) => {
-                        return value + "%"
+                        return value + (unitY || "")
                     }
                 }
             },
-            dataZoom: [
-                {
-                    type: 'inside'
-                }
-            ],
 
             series: [
                 { // For shadow
                     type: 'bar',
-                    barWidth: 50,
                     itemStyle: {
-                        normal: {color: '#D8E3EA'},
-                        emphasis: {color: '#D8E3EA'}
+                        normal: {color: barBgColor || '#D8E3EA'},
+                        emphasis: {color: barBgColor || '#D8E3EA'}
                     },
                     barGap:'-100%',
                     // barCategoryGap:'50%',
@@ -104,25 +127,18 @@ class ChartItem extends React.Component {
                 },
                 {
                     type: 'bar',
-                    barWidth: 50,
                     barMinHeight: 5,
                     itemStyle: {
                         normal: {
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
-                                [
-                                    {offset: 0, color: '#87E2F8'},
-                                    {offset: 1, color: '#3899EB'}
-                                ]
+                                colors
                             )
                         },
                         emphasis: {
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
-                                [
-                                    {offset: 0, color: '#87E2F8'},
-                                    {offset: 1, color: '#3899EB'}
-                                ]
+                                colors
                             )
                         }
                     },
@@ -144,7 +160,7 @@ class ChartItem extends React.Component {
                     obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
                     return obj;
                 },
-                formatter: '{b1}<br />{c1}%'
+                formatter: '{b1}<br />{c1}' + (unitY || "")
             },
             grid: {
                 left: '5%',
@@ -157,6 +173,7 @@ class ChartItem extends React.Component {
     }
 
     getLineOption(data) {
+        let { unitY, lineColor, shadowColor } = this.props
         return {
             xAxis:  {
                 axisLine: {
@@ -183,7 +200,7 @@ class ChartItem extends React.Component {
                 },
                 type: 'value',
                 axisLabel: {
-                    formatter: '{value}'
+                    formatter: '{value}' + (unitY || "")
                 }
             },
             series: [
@@ -194,9 +211,9 @@ class ChartItem extends React.Component {
                     data: data.map(obj=>obj.value),
                     lineStyle: {
                         normal: {
-                            color: "#F18905",
+                            color: lineColor || "#F18905",
                             width: 6,
-                            shadowColor: '#F08806',
+                            shadowColor: shadowColor || '#F08806',
                             shadowBlur: 12,
                             shadowOffsetY: 20,
                         }
@@ -216,7 +233,6 @@ class ChartItem extends React.Component {
 
     render() {
         let { data, type } = this.props, opts
-        console.log(data)
         if(data.length>0){
             if (type === "pie") {
                 opts = this.getPieOption(data)
@@ -240,7 +256,12 @@ class ChartItem extends React.Component {
 
 ChartItem.PropTypes = {
     data: PropTypes.array,
-    type: PropTypes.string
+    type: PropTypes.string,
+    unitY: PropTypes.string,
+    barBgColor: PropTypes.string,
+    barColors: PropTypes.array,
+    lineColor: PropTypes.string,
+    shadowColor: PropTypes.string,
 }
 
 export default ChartItem
