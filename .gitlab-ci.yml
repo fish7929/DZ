@@ -22,7 +22,7 @@ docker-rm-image:
 docker-build:
   script:
     - docker build -t ynzh5_wechat .
-    - docker run --name ynzh5 -d -p 9005:8080 --env PUBLIC=ynzh5.demo.chilunyc.com ynzh5_wechat 
+    - docker run --name ynzh5 -d -p 9005:8080 --restart=always --env PUBLIC=ynzh5.demo.chilunyc.com ynzh5_wechat 
   only:
     - master
   stage: build
