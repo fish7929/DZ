@@ -52,7 +52,10 @@ const fetchMsg = (url, param, type = "GET", headers={}, repType="json") => {
  */
 export function sendMsg(url, param, type = "GET",headers={}, repType="json"){
     let user = Base.getLocalStorageObject("user")
-    let token = user.token
+    let token = '';
+    if(user && user.hasOwnProperty('token')){
+        token = user.token;
+    }
     if(token){
         //token = "DA58A5485E52B2A5DA3EA90F367A1636"
         headers = {

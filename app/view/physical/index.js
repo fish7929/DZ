@@ -60,7 +60,10 @@ class Physical extends React.Component {
     onSaveHandler(param) {
         console.log(param, 'save');
         let oldList = this.state.list;
-        oldList.physical.push(param);
+        //对应项目增加一条反馈
+        let findItem = oldList.find((item, index) => item.id == param.id);
+        let obj = {isSolve: param.isSolve, explainInfo: param.explainInfo, attachmentList: param.attachmentList};
+        findItem.examineInfo.push(obj);
         this.setState({
             isAdd: false,
             list: oldList
@@ -89,11 +92,11 @@ class Physical extends React.Component {
      */
     renderExamineSection() {
         let { list } = this.state;
-        let examine = list.examine;
-        let component = examine.map((item, index) => {
+        let component = list.map((item, index) => {
             let checkupContent = item.checkupContent;
+            checkupContent = checkupContent.split(/(?:\r\n|\r|\n)/);
             return (<div key={index} className="physical-examine-item">
-                <div className="physical-examine-title">{item.checkupName}</div>
+                <div className="physical-examine-title">{item.examineId + "." + item.checkupName}</div>
                 {checkupContent.map((content, num) => <div key={num} className="physical-examine-content">
                     {content}</div>)}
             </div>);
@@ -115,26 +118,28 @@ class Physical extends React.Component {
      */
     renderPhysicalSection() {
         let { list } = this.state;
-        let physical = list.physical;
-        let component = physical.map((item, index) => {
-            let isSolve = item.isSolve;  //问题反馈类型， 0 不合格上报调度中心， 1 不合格就地解决
-            let attachmentList = item.attachmentList;  //todo
-            let explainInfo = item.explainInfo;
-            let solve = isSolve == ZERO ? '不合格上报调度中心' : '不合格就地解决';
-            return (<li key={index} className="physical-physical-item">
-                <div className="physical-physical-divide off">
-                    {item.examineName}
-                    <span onClick={(e) => this.toggleItemHandler(e)}></span>
-                    <div className="physical-physical-hint" data-hint="问题反馈">{solve}</div>
-                </div>
-                <div className="physical-wrapper">
-                    <UploadComponent ref="uploadComponent" type={1} photos={attachmentList}
-                        explain={explainInfo} />
-                </div>
-            </li>);
+        let component = list.map((item, index) => {
+            let physical = item.examineInfo;  //反馈的数组
+            return physical.map((explain, num) => {
+                let isSolve = explain.isSolve;  //问题反馈类型， 0 不合格上报调度中心， 1 不合格就地解决
+                let attachmentList = explain.attachmentList;  //todo
+                let explainInfo = explain.explainInfo;
+                let solve = isSolve == ZERO ? '不合格上报调度中心' : '不合格就地解决';
+                return (<li key={index +'' +  num} className="physical-physical-item margin-top-20">
+                    <div className="physical-physical-divide off">
+                        {item.examineId + "." + item.checkupName}
+                        <span onClick={(e) => this.toggleItemHandler(e)}></span>
+                        <div className="physical-physical-hint" data-hint="问题反馈">{solve}</div>
+                    </div>
+                    <div className="physical-wrapper">
+                        <UploadComponent ref="uploadComponent" type={1} photos={attachmentList}
+                            explain={explainInfo} />
+                    </div>
+                </li>);
+            })
         })
         return (
-            <ul className="margin-top-20">
+            <ul >
                 {component}
             </ul>
         );
@@ -149,13 +154,16 @@ class Physical extends React.Component {
      */
     renderFeedbackSection() {
         let { list, isAdd } = this.state;
-        let examine = list.examine;  //标准的体检
-        let physical = list.physical;  //已经添加过的，
-        let physicalId = physical.map((item) => item.examineId);
         //todo 筛选出剩下的
-        let remain = examine.filter((item) => physicalId.indexOf(item.id) == -1);
+        let filter = list.map((item, index) => {
+            let obj = {};
+            obj.id = item.id;
+            obj.examineId = item.examineId;
+            obj.checkupName = item.checkupName;
+            return obj;
+        });
         return (
-            isAdd ? <PhysicalFeedback physicalList={remain} stationName={this.param.stationName || ''}
+            isAdd ? <PhysicalFeedback physicalList={filter} stationName={this.param.stationName || ''}
                 callBack={(param) => this.onSaveHandler(param)} /> : null
         );
     }
@@ -171,7 +179,7 @@ class Physical extends React.Component {
                 </div> : null}
                 {this.renderFeedbackSection()}
                 {this.status == ZERO ? <div className="physical-save"
-                    onClick={(e) => this.onSaveHandler(e)}>完成体检</div> : null}
+                    onClick={(e) => this.onCompletedHandler(e)}>完成体检</div> : null}
             </div>
         );
     }

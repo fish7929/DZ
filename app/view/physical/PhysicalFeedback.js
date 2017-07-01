@@ -178,12 +178,10 @@ class PhysicalFeedback extends React.Component {
         let uploadComponentFeedback = this.refs.uploadComponentFeedback;
         let uploadObj = uploadComponentFeedback.getUploadContent();
         let res = {
-            examineId: currentPhysical.id,
-            examineName: currentPhysical.checkupName,
             isSolve: type,
             explainInfo: uploadObj.explain,
             attachmentList: uploadObj.photos,
-            id: 147   //创建 的时候默认值
+            id: currentPhysical.id   //创建 的时候默认值
         };
         console.log(res, 999999);
         this.props.callBack && this.props.callBack(res);
@@ -253,22 +251,27 @@ PhysicalFeedback.defaultProps = {
     facilityList: [   //测试设备名称数组
         {
             id: 1234561,
+            facilityId: 1,
             name: '逆变器1'
         },
         {
             id: 1234562,
+            facilityId: 2,
             name: '逆变器2'
         },
         {
             id: 1234563,
+            facilityId: 3,
             name: '逆变器3'
         },
         {
             id: 1234564,
+            facilityId: 4,
             name: '逆变器4'
         },
         {
             id: 1234565,
+            facilityId: 5,
             name: '逆变器5'
         }
     ],

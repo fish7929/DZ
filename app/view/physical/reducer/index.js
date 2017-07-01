@@ -8,7 +8,7 @@ import * as ActionType from './actionType'
 
 const initialState = {
     isFetching: false, //是否正在加载
-    list: {}
+    list: []
 }
 
 export default function physicalData(state = initialState, action) {

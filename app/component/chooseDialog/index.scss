@@ -30,6 +30,7 @@
     text-align: center;
     color: #FC5B0B;
     font-size: calc-rem(36);
+    border-bottom: $commonBorder;
  }
 .choose-dialog-item-wrapper{
     width: 100%;
@@ -46,7 +47,7 @@
     padding: 0 calc-rem(40);
     font-size:calc-rem(32);
     color: #4A4A4A;
-    border-top: $commonBorder;
+    border-bottom: $commonBorder;
     input[type="radio"]{
         float: right;
         vertical-align: middle;
