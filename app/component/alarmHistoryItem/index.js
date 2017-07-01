@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react'
 
+import * as utils from '../../utils'
+
 import './index.scss'
 
 class AlarmHistory extends React.Component{
@@ -17,9 +19,9 @@ class AlarmHistory extends React.Component{
             <div className="alarm-history-item">
                 <div className="left-div">
                     <div className="no-wrap title-txt">{data.alarmMessage}</div>
-                    <div className="date-txt">{data.createTime}</div>
+                    <div className="date-txt">{utils.formatDate(data.eventTime, "yyyy-MM-dd HH:mm:ss")}</div>
                 </div>
-                <div className="right-div">89.43</div>
+                <div className="right-div">{data.alarmValue}</div>
             </div>
         )
     }

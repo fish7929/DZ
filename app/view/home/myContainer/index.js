@@ -5,9 +5,13 @@
  */
 
 import React, {PropTypes} from 'react'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import { hashHistory } from 'react-router'
 import * as RouterConst from '../../../static/const/routerConst'
+
+import { getAppVersion } from "../reducer/action"
 
 import './index.scss'
 
@@ -16,9 +20,14 @@ class MyContainer extends React.Component{
         super(props, context)
     }
 
+    componentDidMount(){
+        this.props.getAppVersion()
+    }
+
     render(){
         let user = Base.getLocalStorageObject("user")
         let { username, nickname, email, mobile, departmentName } = user
+        let { appVersion } = this.props
         return(
             <div className="my-container">
                 <div className="user-info-header">
@@ -53,7 +62,7 @@ class MyContainer extends React.Component{
 
                 <div className="button-div">
                     <button onClick={()=>hashHistory.push(RouterConst.ROUTER_MY_MESSAGE_SET)}>推送消息</button>
-                    <div className="btn-div"><span>系统版本号</span><span>1.1.2</span></div>
+                    <div className="btn-div"><span>系统版本号</span><span>{appVersion}</span></div>
                 </div>
 
                 <div className="button-exit-div">
@@ -66,4 +75,12 @@ class MyContainer extends React.Component{
 
 }
 
-export default MyContainer
+let mapStateToProps = state => ({
+    appVersion: state.homeData.appVersion,
+})
+
+let mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ getAppVersion }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyContainer);

@@ -15,7 +15,7 @@ export const getAlarmList = (opt) => (dispatch, getState) =>{
         let url = Api.GetAlarmListByOption()
         dispatch(utils.sendMsg(url, opt, "GET")).then(data =>{
             let state = getState();
-            if(opt.page != 0){
+            if(opt.page != 1){
                 data.results = state.realTimeAlarmReducer.alarmList.concat(data.results)
             }
             dispatch(receiveListData(data))

@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react'
 
+import * as utils from '../../utils'
+
 import './index.scss'
 
 class RealTimeAlarmItem extends React.Component{
@@ -21,9 +23,9 @@ class RealTimeAlarmItem extends React.Component{
                     <div className={"status-icon " + (data.status == 0 ? "notsubmited" : "submited")}></div>
                 </div>
                 <div className="txt-div">
-                    <div className="name-txt no-wrap">{data.powerStationBaseInfo.name}</div>
+                    <div className="name-txt no-wrap">{data.name}</div>
                     <div className="desc-txt no-wrap">{data.alarmMessage}</div>
-                    <div className="date-txt no-wrap">{data.alarmTime}</div>
+                    <div className="date-txt no-wrap">{utils.formatDate(data.eventTime, "yyyy-MM-dd HH:mm:ss")}</div>
                 </div>
             </div>
         )

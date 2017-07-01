@@ -9,14 +9,11 @@ import * as Api from '../../../static/const/apiConst'
 
 
 const receiveListData = (data) => ({
-    type: ActionType.INIT_INVERTER_DETAIL,
-    data: {
-        ...data,
-        powerTemperatureTime: data.powerTemperatureTime ? data.powerTemperatureTime.map(obj => ({name: obj.time, value: obj.powerTemperature})) : []
-    }
+    type: ActionType.INIT_AMMETER_LIST,
+    data: data
 })
 
-export const getInverterDetail = (id) => dispatch =>{
-    let url = Api.GetInverterDetail(id)
+export const getAmmeterList = (id) => dispatch =>{
+    let url = Api.GetAmmeterList(id)
     dispatch(utils.sendMsg(url, {}, "GET")).then(data => dispatch(receiveListData(data)))
 }

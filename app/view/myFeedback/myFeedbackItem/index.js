@@ -6,6 +6,8 @@
 
 import React, {PropTypes} from 'react'
 
+import * as utils from '../../../utils'
+
 import './index.scss'
 
 
@@ -17,7 +19,7 @@ class MyFeedbackItem extends React.Component{
         return(
             <div className="my-feedback-item">
                 <div className="item-header">
-                    <span className="title-txt no-wrap">江苏省镇江市2.12MW分布式光伏电站</span>
+                    <span className="title-txt no-wrap">{data.powerStationBaseInfo.address}</span>
                     <span className="icon status_0"></span>
                 </div>
                 <div className="device-div">
@@ -27,7 +29,7 @@ class MyFeedbackItem extends React.Component{
                 <div className="info-div">
                     <span>{level}级</span>
                     <span>现场提交</span>
-                    <span className="date-txt">{data.createTime}</span>
+                    <span className="date-txt">{utils.formatDate(data.createTime, "yyyy-MM-dd HH:mm:ss")}</span>
                 </div>
             </div>
         )

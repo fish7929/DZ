@@ -82,7 +82,7 @@ let getNoticeList = dispatch => {
 let getHomeAlarmList = dispatch => {
     let url = Api.GetAlarmListByOption();
     let opt = {
-        page: 0,
+        page: 1,
         pagesize: 3,
     }
     dispatch(utils.sendMsg(url, opt, "GET")).then(data => {
@@ -181,5 +181,15 @@ export const changeHomeTabIndex = index => dispatch => {
     dispatch({
         type: ActionType.HOME_CHANGE_TAB,
         data: index
+    })
+}
+
+export const getAppVersion = () => dispatch => {
+    let url = Api.GetAppVersion()
+    dispatch(utils.sendMsg(url, {}, "GET")).then(data => {
+        dispatch({
+            type: ActionType.HOME_INIT_APP_VERSION,
+            data: data.version
+        });
     })
 }

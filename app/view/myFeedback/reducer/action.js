@@ -12,7 +12,7 @@ const receiveData = data => ({
 })
 
 
-export const getMyFeedbackList = (opt) => dispatch => {
+export const getMyFeedbackList = (opt) => (dispatch, getState) => {
     return new Promise((resolve, reject)=>{
         let url = Api.GetUserFaultList()
         dispatch(utils.sendMsg(url, opt, "GET")).then(data =>{
@@ -20,7 +20,7 @@ export const getMyFeedbackList = (opt) => dispatch => {
             if(opt.page != 0){
                 data.results = state.myFeedbackReducer.myFeedbackList.concat(data.results)
             }
-            dispatch(receiveListData(data))
+            dispatch(receiveData(data))
             resolve&&resolve()
         }, reject)
     })

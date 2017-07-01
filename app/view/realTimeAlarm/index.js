@@ -33,7 +33,7 @@ class RealTimeAlarm extends React.Component{
         let opt = {
             page: currentPage,
             pagesize: this.state.pagesize,
-            tabType: tabIndex
+            tabType: Const.TabList.find(obj => obj.id === tabIndex).value
         }
         this.props.getAlarmList(opt).then(()=>{
             this.setState({currentPage: currentPage})
@@ -43,7 +43,7 @@ class RealTimeAlarm extends React.Component{
     onTabHandler(type){
         if(type != this.props.tabIndex){
             this.props.changeTabIndex(type)
-            this.onLoaderData(0, type)
+            this.onLoaderData(1, type)
         }
     }
 

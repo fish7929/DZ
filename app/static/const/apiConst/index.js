@@ -38,10 +38,12 @@ export const GetUserPowerStation = () => "/pvmtsys/powerStation/getPowerStationI
 /**powerStationDetails + /id 电站详情 */
 export const GetPowerStationDetail = id => "/pvmtsys/powerStation/powerStationDetails/" + id;
 /**inverterList 逆变器列表 */
-export const GetInverterInfo = powerStationId => "/pvmtsys/powerStation/getInverterInfo/" + powerStationId;
+export const GetInverterInfo = () => "/pvmtsys/powerStation/getInverterInfo";
 /**inverterDetail 逆变器详情 */
 export const GetInverterDetail = inverterId =>  "/pvmtsys/inverter/getInverteInfo/" + inverterId
 
+/**电表列表 */
+export const GetAmmeterList = id => "/pvmtsys/powerStation/getAmmeterInfo/" + id
 
 /**FaultList api GetFaultListByOrder + order */
 export const GetFaultListByOrder = (orderNumber) => "/pvmtsys/workOrderFault/faultList/" + orderNumber;
@@ -66,3 +68,12 @@ export const GetWorkOrderCompletion = () => '/pvmtsys/workOrderInfo/workOrderCom
 
 /**我的故障反馈列表 */
 export const GetUserFaultList = () => "/pvmtsys/faultInfo/getUserFaultList"
+
+/**版本号 */
+export const GetAppVersion = () => "/pvmtsys/version/newVersion"
+
+/**获取我的消息状态 */
+export const GetMyMessageStatus = () => ""
+
+/**修改我的消息状态 */
+export const ChangeMyMessageStatus = () => "/pvmtsys/settingInfo/updateUserSetting"

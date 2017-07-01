@@ -14,7 +14,7 @@ import * as routerConst from '../../static/const/routerConst'
 
 import './index.scss'
 
-const InverterTabs = ["全部", "停机", "通讯异常"]
+const InverterTabs = [{name : "全部", id: 0, value: 0}, {name:"停机", id: 1, value: 0}, {name:"通讯异常", id: 2, value: 2}]
 
 class InverterList extends React.Component{
 
@@ -23,7 +23,7 @@ class InverterList extends React.Component{
     }
 
     componentDidMount(){
-        this.props.getInverterList(this.props.params.id, this.props.tabIndex)
+        this.sendData(this.props.tabIndex)
     }
 
     onItemClick(id){
@@ -33,8 +33,13 @@ class InverterList extends React.Component{
     onChangeTabIndex(tabIndex){
         if(tabIndex != this.props.tabIndex){
             this.props.changeTabIndex(tabIndex)
-            this.props.getInverterList(this.props.params.id, tabIndex)
+            this.sendData(tabIndex)
         }
+    }
+
+    sendData(tabIndex){
+        let obj = InverterTabs.find(obj => obj.id === tabIndex)
+        this.props.getInverterList(this.props.params.id, obj.value)
     }
 
     render(){
@@ -44,7 +49,7 @@ class InverterList extends React.Component{
                 <Header title="逆变器列表" isShowBack={true} />
                 <div className="search-div"><input type="text" placeholder="搜索"></input><span className="search-icon" /></div>
                 <div className="tab-div">
-                    {InverterTabs.map((obj,key)=><div key={key} className={"button tab-item " + (tabIndex == key ? "selected" : "")} onClick={()=>this.onChangeTabIndex(key)}><span>{obj}</span></div>)}
+                    {InverterTabs.map((obj,key)=><div key={key} className={"button tab-item " + (tabIndex == obj.id ? "selected" : "")} onClick={()=>this.onChangeTabIndex(obj.id)}><span>{obj.name}</span></div>)}
                 </div>
                 <div className="inverter-list">
                     { inverterList.map((obj, key) => <InverterItem key={key} data={obj} onClick={()=>this.onItemClick(obj.id)} />) }

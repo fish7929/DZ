@@ -83,8 +83,8 @@ class PowerStationMonitorDetail extends React.Component{
                         </div>
                     </div>
 
-                    <button className="psmD-btn" onClick={()=>hashHistory.push(RouterConst.ROUTER_INVERTER_LIST+"/"+data.id)}>逆变器<span className="arrow-right"></span></button>
-                    <button className="psmD-btn" onClick={()=>hashHistory.push(RouterConst.ROUTER_AMMETER_LIST)}>电表<span className="arrow-right"></span></button>
+                    <button className="psmD-btn" onClick={()=>hashHistory.push(RouterConst.ROUTER_INVERTER_LIST +"/"+data.id)}>逆变器<span className="arrow-right"></span></button>
+                    <button className="psmD-btn" onClick={()=>hashHistory.push(RouterConst.ROUTER_AMMETER_LIST +"/"+data.id)}>电表<span className="arrow-right"></span></button>
                 </div>
             </Page>
         )

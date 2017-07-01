@@ -28,7 +28,8 @@ const initialState = {
     psList: [],
 
     prList: [],
-    fbList: []
+    fbList: [],
+    appVersion: ""
 }
 
 export default function homeData(state = initialState, action) {
@@ -109,6 +110,11 @@ export default function homeData(state = initialState, action) {
                 psList: action.data.psList,
                 prList: action.data.prList,
                 fbList: action.data.fbList,
+            }
+        case ActionType.HOME_INIT_APP_VERSION:
+            return {
+                ...state,
+                appVersion: action.data
             }
         default:
             return state

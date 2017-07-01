@@ -94,7 +94,7 @@ const Routers = {
 			getComponent(nextState, cb){ InverterDetail(cb) },
 		},
 		{
-			path: RouterConst.ROUTER_AMMETER_LIST,
+			path: RouterConst.ROUTER_AMMETER_LIST + "/:id",
 			getComponent(nextState, cb){ AmmeterList(cb) },
 		},
 		{

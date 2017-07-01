@@ -11,6 +11,7 @@ import { connect } from 'react-redux'
 
 import Page from '../../component/page'
 import Header from '../../component/header'
+import ChartItem from '../../component/chartItem'
 
 import { getInverterDetail } from './reducer/action'
 
@@ -41,7 +42,7 @@ class InverterDetail extends React.Component{
         return(
             <Page className="inverter-detail-container">
                 <Header title="逆变器详情" isShowBack={true} />
-                <div className="header-div"><span>逆变器编号</span><span>SW001</span></div>
+                <div className="header-div"><span>逆变器编号</span><span>{data.serialNumber}</span></div>
                 <div className="alarm-div">
                     <div className="alarm-title">报警数量</div>
                     <div className="alarm-list">
@@ -57,32 +58,32 @@ class InverterDetail extends React.Component{
                         </div>
                         <div className="alarm-item">
                             <div className="alarm-icon alarm_3"></div>
-                            <div className="alarm-count">{data.level2}</div>
+                            <div className="alarm-count">{data.level3}</div>
                             <div className="alarm-level">Ⅲ级报警</div>
                         </div>
                     </div>
                 </div>
                 <div className="temperature-div">
                     <div className="temperature-title">逆变器功率-温度曲线</div>
-                    <div className="echart-div">
-
+                    <div className="temperature-echart-div">
+                        <ChartItem type="line" data={data.powerTemperatureTime} lineColor="#45A5ED" shadowColor="#45A6ED" />
                     </div>
                 </div>
                 <div className="table-div">
                     <div className="table-header">发电量</div>
                     <div className="info-div">
                         <div className="info-left">
-                            <span className="big-txt">{data.generationDaily}Kw/h</span>
+                            <span className="big-txt">{data.generationDaily.toFixed(2)}Kw/h</span>
                             <span className="normal-txt">当日发电量</span>
                         </div>
                         <div className="info-right">
                             <div className="right-item">
                                 <span className="txt-1">当月发电量</span>
-                                <span className="txt-2">{data.generationMonth}Kw/h</span>
+                                <span className="txt-2">{data.generationMonth.toFixed(2)}Kw/h</span>
                             </div>
                             <div className="right-item">
                                 <span className="txt-1">累计发电量</span>
-                                <span className="txt-2">{data.generationGross}Kw/h</span>
+                                <span className="txt-2">{data.generationGross.toFixed(2)}Kw/h</span>
                             </div>
                         </div>
                     </div>

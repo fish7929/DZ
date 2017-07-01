@@ -38,6 +38,7 @@
         padding: 0 calc-rem(40);
         display: flex;
         justify-content: space-between;
+        border-bottom: calc-rem(1) solid #eeeeee;
 
         .tab-item{
             width: 33.33%;

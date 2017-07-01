@@ -10,7 +10,9 @@ export powerStationMonitorReducer from '../view/powerStationMonitor/reducer'
 export psmDetailReducer from '../view/powerStationMonitorDetail/reducer'
 export inverterReducer from '../view/inverterList/reducer'
 export inverterDetailReducer from '../view/inverterDetail/reducer'
+export ammeterReducer from '../view/ammeterList/reducer'
 export myFeedbackReducer from '../view/myFeedback/reducer'
+export myMessageReducer from '../view/myMessageSet/reducer'
 export messageData from '../view/message/reducer';
 export messageDetail from '../view/messageDetail/reducer';
 export homeData from '../view/home/reducer';

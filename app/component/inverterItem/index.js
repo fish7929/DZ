@@ -22,19 +22,19 @@ class InverterItem extends React.Component{
                 <div className="inverter-content">
                     <div className="info-item">
                         <span className="txt1">直流功率：</span>
-                        <span className="txt2">{data.totalInputPower}KW</span>
+                        <span className="txt2">{data.totalInputPower ? data.totalInputPower.toFixed(3) : data.totalInputPower}KW</span>
                     </div>
                     <div className="info-item">
                         <span className="txt1">交流功率：</span>
-                        <span className="txt2">{data.ThreePhaseActivePower}KW</span>
+                        <span className="txt2">{data.threePhaseActivePower ? data.threePhaseActivePower.toFixed(3) : data.threePhaseActivePower}KW</span>
                     </div>
                     <div className="info-item">
                         <span className="txt1">温度：</span>
-                        <span className="txt2">{data.Temperature}℃</span>
+                        <span className="txt2">{data.temperature ? data.temperature.toFixed(3) : data.temperature}℃</span>
                     </div>
                     <div className="info-item">
                         <span className="txt1">当月发电量：</span>
-                        <span className="txt2">{data.generationMonth}KWh</span>
+                        <span className="txt2">{data.generationMonth ? data.generationMonth.toFixed(3) : data.generationMonth}KWh</span>
                     </div>
                     <div className="info-item">
                         <span className="txt1">报警数量：</span>

@@ -13,9 +13,13 @@ const receiveListData = (data) => ({
     data: data
 })
 
-export const getInverterList = (id) => dispatch =>{
-    let url = Api.GetInverterInfo(id)
-    dispatch(utils.sendMsg(url, {}, "GET")).then(data => dispatch(receiveListData(data || [])))
+export const getInverterList = (id, tabIndex) => dispatch =>{
+    let url = Api.GetInverterInfo()
+    let opt = {
+        powerStationId: id,
+        equipmentStatus: tabIndex
+    }
+    dispatch(utils.sendMsg(url, opt, "POST")).then(data => dispatch(receiveListData(data || [])))
 }
 
 export const changeTabIndex = tabIndex => dispatch => {
