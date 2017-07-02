@@ -15,3 +15,10 @@ export const getPSMList = () => dispatch =>{
     let url = Api.GetUserPowerStation()
     dispatch(utils.sendMsg(url, {}, "POST")).then(data => dispatch(receiveListData(data || [])))
 }
+
+export const changeShowType = (type) => dispatch =>{
+    dispatch({
+        type: ActionType.PSM_CHANGE_SHOW_TYPE,
+        data: type
+    })
+}

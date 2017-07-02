@@ -30,10 +30,13 @@ class RealTimeAlarm extends React.Component{
     }
 
     onLoaderData(currentPage, tabIndex){
+        let status = Const.TabList.find(obj => obj.id === tabIndex).value
         let opt = {
             page: currentPage,
             pagesize: this.state.pagesize,
-            tabType: Const.TabList.find(obj => obj.id === tabIndex).value
+        }
+        if(status !== null){
+            opt.status = status
         }
         this.props.getAlarmList(opt).then(()=>{
             this.setState({currentPage: currentPage})
@@ -67,7 +70,7 @@ class RealTimeAlarm extends React.Component{
 
         return(
             <Page className="realTime-alarm-container">
-                <Header title="实时报警" isShowBack={true} />
+                <Header title="实时报警" isShowBack={true} isShowRight={true} rightClass="btnSearch" rightFn={()=>hashHistory.push(RouterConst.Router_AlARM_SEARCH)} />
                 <div className="tab-div">
                     {Const.TabList.map((obj, key)=><li key={key} onClick={()=>this.onTabHandler(obj.id)} className={obj.id==tabIndex ? "selected" : ""}><div>{obj.name}</div></li>)}
                 </div>

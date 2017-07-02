@@ -25,7 +25,7 @@ export const changeMyMessageStatus = (type, value) => (dispatch, getState) => {
         threeAlarm: type === "threeAlarm" ? value : state.myMessageReducer.threeAlarm,
         twoAlarm: type === "twoAlarm" ? value : state.myMessageReducer.twoAlarm
     }
-    dispatch(utils.sendMsg(url, opt, "GET")).then(data => {
+    dispatch(utils.sendMsg(url, opt, "POST")).then(data => {
         if(data){
             dispatch(receiveData(opt))
         }

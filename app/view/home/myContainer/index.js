@@ -53,7 +53,7 @@ class MyContainer extends React.Component{
 
                 <div className="button-div">
                     <button onClick={()=>hashHistory.push(RouterConst.ROUTER_CHANGE_PASSWORD)}>修改密码</button>
-                    <button>绑定微信</button>
+                    {/*<button>绑定微信</button>*/}
                 </div>
 
                 <div className="button-div">

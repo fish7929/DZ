@@ -1,0 +1,12 @@
+@import '../../../static/css/_mixins.scss';
+@import '../../../static/css/_variables.scss';
+
+.psm-map-container{
+    width: 100%;
+    height: 100%;
+
+    .psm-map-div{
+        width: 100%;
+        height: 100%;
+    }
+}

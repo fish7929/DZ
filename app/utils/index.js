@@ -126,3 +126,17 @@ export const formatDate = (time, format) => {
     })
 }
 
+//百度地图获取坐标
+export const getCurrentPosition = () => {
+    return new Promise((resolve, reject) => {
+        let geolocation = new BMap.Geolocation()
+        geolocation.getCurrentPosition(function (r) {
+            if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                resolve && resolve(r)
+            }else{
+                reject && reject()
+            }
+        })
+            
+    })
+}

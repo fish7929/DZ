@@ -11,18 +11,27 @@ import FlipListComponent from '../../component/flipListComponent'
 import { getAlarmList } from './reducer/action'
 
 import * as Api from '../../static/const/apiConst'
+import * as utils from '../../utils'
 
 import './index.scss'
 
 class AlarmDetail extends React.Component{
     constructor(props, context){
         super(props, context)
+        this.state = {
+            mapIsReady: false
+        }
     }
 
     componentDidMount(){
         let id = this.props.params.id
         this.props.getAlarmList(id)
-        this.map = new BMap.Map("allMap")
+        utils.getCurrentPosition().then((r)=>{
+            this.map = new BMap.Map("allMap")
+            let p = new BMap.Point(r.point.lng, r.point.lat)
+            this.map.centerAndZoom(p, 15);
+            this.setState({mapIsReady: true})
+        })
     }
 
     componentWillUnmount(){
@@ -40,15 +49,15 @@ class AlarmDetail extends React.Component{
 
     render(){
         let { alarmData } = this.props
-        if(alarmData.powerStationBaseInfo.lat && alarmData.powerStationBaseInfo.lng && this.map){
-            let point = new BMap.Point(alarmData.powerStationBaseInfo.lat, alarmData.powerStationBaseInfo.lng);
+        if(alarmData.powerStationBaseInfo.lat && alarmData.powerStationBaseInfo.lng && this.state.mapIsReady){
+            this.map.clearOverlays()
+            let point = new BMap.Point(alarmData.powerStationBaseInfo.lng, alarmData.powerStationBaseInfo.lat);
             var myIcon = new BMap.Icon("http://api.map.baidu.com/img/markers.png", new BMap.Size(23, 25), {
                 offset: new BMap.Size(10, 25),
                 imageOffset: new BMap.Size(0, 0 - 0 * 25)
             });
             let marker = new BMap.Marker(point, {icon: myIcon});  // 创建标注
 	        this.map.addOverlay(marker);              // 将标注添加到地图中
-            this.map.centerAndZoom(point, 15);
         }
         return(
             <Page className="alarm-detail-container">

@@ -77,3 +77,6 @@ export const GetMyMessageStatus = () => ""
 
 /**修改我的消息状态 */
 export const ChangeMyMessageStatus = () => "/pvmtsys/settingInfo/updateUserSetting"
+
+/**获取电站设备类型 */
+export const GetPowerStationDeviceTypes = id => "/pvmtsys/powerStation/getEquipmentType/" + id

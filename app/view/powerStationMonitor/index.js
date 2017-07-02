@@ -9,7 +9,9 @@ import PowerStationMonitorMap from './powerStationMonitorMapContainer'
 
 import * as ActionType from './reducer/actionType'
 
-import { getPSMList } from './reducer/action'
+import { getPSMList, changeShowType } from './reducer/action'
+
+import './index.scss'
 
 class PowerStationMonitor extends React.Component{
     constructor(props, context){
@@ -20,14 +22,30 @@ class PowerStationMonitor extends React.Component{
         this.props.getPSMList()
     }
 
+    onHeaderRightHandler(){
+        let { showType } = this.props
+        let type = ActionType.SHOW_TYPE_LIST
+        if(showType == ActionType.SHOW_TYPE_LIST){
+            type = ActionType.SHOW_TYPE_MAP
+        }
+
+        this.props.changeShowType(type)
+    }
+
     render(){
         let { data, showType } = this.props
+        let component = "", rightClass = ""
+        if(showType == ActionType.SHOW_TYPE_LIST){
+            component = <PowerStationMonitorList data={this.props.data} />
+            rightClass = "psm-header-map"
+        }else{
+            component = <PowerStationMonitorMap data={this.props.data} />
+            rightClass = "psm-header-list"
+        }
         return(
             <Page className="psm-container">
-                <Header title="电站监控" isShowBack={true} />
-                {
-                    showType==ActionType.SHOW_TYPE_LIST ? <PowerStationMonitorList data={this.props.data} /> : ""
-                }
+                <Header title="电站监控" isShowBack={true} isShowRight={true} rightClass={rightClass} rightFn={()=>this.onHeaderRightHandler()} />
+                { component }
             </Page>
         )
     }
@@ -44,7 +62,7 @@ let mapStateToProps = state => ({
 })
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getPSMList }, dispatch)
+    return bindActionCreators({ getPSMList, changeShowType }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PowerStationMonitor)
