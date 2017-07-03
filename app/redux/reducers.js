@@ -14,6 +14,7 @@ export inverterDetailReducer from '../view/inverterDetail/reducer'
 export feedbackReducer from '../view/feedback/reducer'
 export ammeterReducer from '../view/ammeterList/reducer'
 export myFeedbackReducer from '../view/myFeedback/reducer'
+export myFeedbackDetailReducer from '../view/myFeedbackDetail/reducer'
 export myMessageReducer from '../view/myMessageSet/reducer'
 export messageData from '../view/message/reducer';
 export messageDetail from '../view/messageDetail/reducer';

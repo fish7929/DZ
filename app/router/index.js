@@ -30,6 +30,8 @@ const Feedback = cb => require.ensure([], require => { cb(null, require('../view
 const ChangePw = cb => require.ensure([], require => { cb(null, require('../view/changePw').default)}, "ChangePw")
 /**我的故障反馈 */
 const MyFeedback = cb => require.ensure([], require => { cb(null, require('../view/myFeedback').default)}, "MyFeedback")
+/**我的故障反馈详情 */
+const MyFeedbackDetail = cb => require.ensure([], require => { cb(null, require('../view/myFeedbackDetail').default)}, "MyFeedbackDetail")
 /**推送消息设置 */
 const MyMessageSet = cb => require.ensure([], require => { cb(null, require('../view/myMessageSet').default)}, "MyMessageSet")
 
@@ -108,6 +110,10 @@ const Routers = {
 		{
 			path: RouterConst.ROUTER_MY_FEEDBACK,
 			getComponent(nextState, cb){ MyFeedback(cb) },
+		},
+		{
+			path: RouterConst.ROUTER_MY_FEEDBACK_DETAIL + "/:id",
+			getComponent(nextState, cb){ MyFeedbackDetail(cb) },
 		},
 		{
 			path: RouterConst.ROUTER_MY_MESSAGE_SET,

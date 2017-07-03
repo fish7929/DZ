@@ -42,6 +42,9 @@ export const ROUTER_CHANGE_PASSWORD = ROUTER_ROOT + "/changePw"
 /**我的故障反馈 */
 export const ROUTER_MY_FEEDBACK = ROUTER_ROOT + "/myFeedback"
 
+/**我的故障反馈详情 */
+export const ROUTER_MY_FEEDBACK_DETAIL = ROUTER_ROOT + "/myFeedbackDetail"
+
 /**消息推送设置 */
 export const ROUTER_MY_MESSAGE_SET = ROUTER_ROOT + "/myMessageSet"
 

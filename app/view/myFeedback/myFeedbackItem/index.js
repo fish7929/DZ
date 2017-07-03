@@ -14,10 +14,10 @@ import './index.scss'
 class MyFeedbackItem extends React.Component{
 
     render(){
-        let {data} = this.props
+        let {data, onClick} = this.props
         let level = data.faultGrade === 1 ? "I" : data.faultGrade === 2 ? "II" : data.faultGrade === 3 ? "III" : ""
         return(
-            <div className="my-feedback-item">
+            <div className="my-feedback-item" onClick={onClick}>
                 <div className="item-header">
                     <span className="title-txt no-wrap">{data.powerStationBaseInfo.address}</span>
                     <span className="icon status_0"></span>
@@ -37,7 +37,8 @@ class MyFeedbackItem extends React.Component{
 }
 
 MyFeedbackItem.PropTypes = {
-    data: PropTypes.object.isRequired
+    data: PropTypes.object.isRequired,
+    onClick: PropTypes.func.isRequired
 }
 
 export default MyFeedbackItem

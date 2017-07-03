@@ -69,6 +69,8 @@ export const GetWorkOrderCompletion = () => '/pvmtsys/workOrderInfo/workOrderCom
 /**我的故障反馈列表 */
 export const GetUserFaultList = () => "/pvmtsys/faultInfo/getUserFaultList"
 
+export const getMyFeedbackDetail = id => "/pvmtsys/faultInfo/getFaultInfo/" + id
+
 /**版本号 */
 export const GetAppVersion = () => "/pvmtsys/version/newVersion"
 
