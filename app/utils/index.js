@@ -22,16 +22,19 @@ const fetchMsg = (url, param, type = "GET", headers={}, repType="json") => {
         if(type.toLocaleUpperCase()==="GET"&&size(param)>0){
             url +="?"+toExcString(param)
         }
-        headers = assignIn(headers, {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS"
-        });
+
+        if(repType == "json"){
+            headers = assignIn(headers, {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS"
+            })
+        }
         return fetch(url, {
             method: type.toLocaleUpperCase(),
             headers: headers,
             credentials: 'same-origin',
-            body: type.toLocaleUpperCase()==="GET"?undefined:(repType=="json"?JSON.stringify(param):param)
+            body: type.toLocaleUpperCase()==="GET"? undefined : (repType=="json" ? JSON.stringify(param):param)
         })  
         .then((res) => {
             return res.json();
@@ -72,7 +75,7 @@ export function sendMsg(url, param, type = "GET",headers={}, repType="json"){
             dispatch(fetchMsg(url, param, type, headers, repType))
             .then(data=>{
                 if(data.code === 1 || data.code === 0 || data.message){
-                    resolve&&resolve(data.result || data.data || null)
+                    resolve&&resolve(data.result || data.data || data.url || null)
                 }else{
                     // reject&&reject(data)
                     resolve&&resolve(data);

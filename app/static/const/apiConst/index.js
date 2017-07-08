@@ -82,3 +82,12 @@ export const ChangeMyMessageStatus = () => "/pvmtsys/settingInfo/updateUserSetti
 
 /**获取电站设备类型 */
 export const GetPowerStationDeviceTypes = id => "/pvmtsys/powerStation/getEquipmentType/" + id
+
+export const GetUploadApi = () => "/tools/file/upload"
+
+export const InsertFaultInfo = () => "/pvmtsys/faultInfo/insert"
+
+
+export const UserLogin = () => "/pvmtsys/user/api/login"
+
+export const UserChangePw = () => "pvmtsys/user/resetpsw"

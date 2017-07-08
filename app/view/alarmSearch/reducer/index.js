@@ -11,7 +11,7 @@ export default function update (state = initialState, action){
         case ActionType.INIT_ALARM_SEARCH_POWERSTATION:
             return {
                 ...state,
-                powerStations: action.data.rows
+                powerStations: action.data
             }
         case ActionType.INIT_ALARM_SEARCH_RESULT_DATA:
             return {

@@ -2,7 +2,7 @@ import * as ActionType from './actionType'
 
 const initialState = {
     powerStations: [],
-    deveiceTypes: []
+    deveiceTypes: [],
 }
 
 export default function update (state = initialState, action){
@@ -10,7 +10,7 @@ export default function update (state = initialState, action){
         case ActionType.INIT_FEEDBACK_POWER_STATION_LIST:
             return {
                 ...state,
-                powerStations: action.data.rows
+                powerStations: action.data
             }
         case ActionType.INIT_FEEDBACK_DEVICE_TYPES:
             return {

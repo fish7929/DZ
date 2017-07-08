@@ -6,6 +6,7 @@ import { hashHistory } from 'react-router'
 import * as utils from '../../../utils'
 import * as ActionType from './actionType'
 import * as RouterConst from '../../../static/const/routerConst'
+import * as Api from '../../../static/const/apiConst'
 
 const receiveData = data => ({
     type: ActionType.UPDATE_USER_LOGIN,
@@ -18,7 +19,7 @@ const receiveData = data => ({
  @password 密码
 */
 export const userLogin = (userName, password) => dispatch => {
-    let url = "/pvmtsys/user/api/login"
+    let url = Api.UserLogin()
     let opt = {
         username: userName,
         password: password

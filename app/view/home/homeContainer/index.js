@@ -42,7 +42,7 @@ class HomeContianer extends React.Component {
     }
 
     render() {
-        let { alarmCount, workOrderCompletionList, psList, noticeList, prList, fbList } = this.props
+        let { alarmCount, workOrderCompletionList, psList, noticeList, prList, fbList, fdList } = this.props
 
         return (
             <div className="home-container">
@@ -108,7 +108,7 @@ class HomeContianer extends React.Component {
                         <span></span>电站发电情况
                     </div>
                     <div className="fd-echart-div">
-                        <ChartItem data={[]} type="pie" />
+                        <ChartItem data={fdList} type="doubleBar" legend={["容量/kWp", "日发电量/kWh"]} />
                     </div>
                 </div>
             </div>
@@ -123,7 +123,8 @@ let mapStateToProps = state => ({
     psList: state.homeData.psList,
     workOrderCompletionList: state.homeData.workOrderCompletionList,
     prList: state.homeData.prList,
-    fbList: state.homeData.fbList
+    fbList: state.homeData.fbList,
+    fdList: state.homeData.fdList,
 })
 
 let mapDispatchToProps = (dispatch) => {

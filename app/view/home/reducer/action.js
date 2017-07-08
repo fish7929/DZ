@@ -119,11 +119,12 @@ let getUserPowerStation = dispatch => {
         dispatch({
             type: ActionType.HOME_INIT_USER_POWER_STATION,
             data: {
-                psList: data.rows.map(obj => { return { ...obj }}),
-                prList: data.rows.map(obj => { return {name: obj.name, value: obj.pr}}),
-                fbList: data.rows.map(obj => { return {name: obj.name, value: obj.alarms}}),
+                psList: data.map(obj => { return { ...obj }}),
+                prList: data.map(obj => { return {name: obj.name, value: obj.pr}}),
+                fbList: data.map(obj => { return {name: obj.name, value: obj.alarms}}),
+                fdList: data.map(obj => { return {name: obj.name, value: [obj.installCapacity, obj.generationDaily]}})
             }
-        });
+        })
     })
 }
 

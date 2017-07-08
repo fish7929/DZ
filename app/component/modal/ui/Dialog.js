@@ -38,11 +38,11 @@ class Dialog extends React.Component {
     renderScreenDialog() {
         let { buttons } = this.state;
         console.log(buttons, buttons.length);
-        let _buttonDom = buttons.length == 1 ? <div className='screen-dialog-button btn-active' onTouchTap={(e) => this.buttonClickHandler(e, buttons[0].callBack)}>{buttons[0].text}</div> :
+        let _buttonDom = buttons.length == 1 ? <div className='screen-dialog-button btn-active' onClick={(e) => this.buttonClickHandler(e, buttons[0].callBack)}>{buttons[0].text}</div> :
             (<div className='screen-dialog-button'>
                 {buttons.map((item, index) =>{
                     console.log(item, 888);
-                    return <span key={index} className='btn-active' onTouchTap={(e) => this.buttonClickHandler(e, item.callBack)}>{item.text}</span>
+                    return <span key={index} className='btn-active' onClick={(e) => this.buttonClickHandler(e, item.callBack)}>{item.text}</span>
                 })}
             </div>);
         let _titleDom = this.state.title ? (<div className='screen-dialog-title'>{this.state.title}</div>) : null;

@@ -6,11 +6,13 @@
 import React, { PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { hashHistory } from 'react-router'
 
 import Page from '../../component/page'
 import Header from '../../component/header'
+import LoadingMessage from '../../component/loadingMessage'
 
-import { getMyPowerStationList, getPowerStationDeviceTypes } from './reducer/action'
+import { getMyPowerStationList, getPowerStationDeviceTypes, uploadVideoFile, pushFeedbackMessage } from './reducer/action'
 
 import './index.scss'
 
@@ -23,19 +25,35 @@ class Feedback extends React.Component{
             deviceTypeId: "",
             deviceCode: "",
             alarmLevel: 1,
-            desc: ""
+            desc: "",
+            isUpload: false
         }
+        this.fileUrl = ""
     }
 
     componentDidMount(){
+        this.reset()
+        this.props.getMyPowerStationList()
+    }
+
+    reset(){
+        let powerStationId = "", deviceTypeId=""
+        if(this.props.powerStationList.length > 0){
+            powerStationId = this.props.powerStationList[0].id
+        }
+
+        if(this.props.deveiceTypes.length > 0){
+            deviceTypeId =  this.props.deveiceTypes[0].id
+        }
+
         this.setState({
-            powerStationId: "",
-            deviceTypeId: "",
+            powerStationId: powerStationId,
+            deviceTypeId: deviceTypeId,
             deviceCode: "",
             alarmLevel: 1,
-            desc: ""
+            desc: "",
+            isUpload: false
         })
-        this.props.getMyPowerStationList()
     }
 
     componentWillReceiveProps(nextProps){
@@ -57,8 +75,61 @@ class Feedback extends React.Component{
     onUploadVideo(e){
         let file = e.target.files[0];
         if(file){
-            
+            let data = new FormData()
+            data.append('fileDir', '/pvmtsSys/feedback/')
+            data.append('file', file)
+            this.setState({isUpload: true})
+            this.props.uploadVideoFile(data).then((d)=>{
+                this.fileUrl = d
+                this.setState({isUpload: false})
+            }, ()=>this.setState({isUpload: false}))
         }
+    }
+
+    onPushInfo(type){
+        let { powerStationId, deviceTypeId, deviceCode, alarmLevel, desc } = this.state
+        if(deviceCode == ""){
+            AppModal.toast('请输入设备编号');
+            return
+        }
+
+        if(this.fileUrl == ""){
+            AppModal.toast('请上传附件');
+            return
+        }
+
+        let lastIndex = this.fileUrl.lastIndexOf("/") + 1, 
+        filepath = this.fileUrl,
+        filename = this.fileUrl.substring(lastIndex, this.fileUrl.length - 1)
+        let opt = {
+            // equipmentId: 0,
+            equipmentNumber: deviceCode,
+            equipmentType: deviceTypeId,
+            faultGrade: alarmLevel,
+            faultMessage: desc,
+            powerStationId: powerStationId,
+            state: desc,
+            attachmentList: [
+                {
+                    filepath: filepath,
+                    filename:filename
+                }
+            ]
+        }
+        
+        this.props.pushFeedbackMessage(opt).then((data)=>{
+            if(data){
+                AppModal.alert("提交成功！", "", ()=>{
+                    if(type == 1){
+                        this.reset()
+                    }else{
+                        hashHistory.goBack()
+                    }
+                })
+            }else{
+                AppModal.toast('提交失败！');
+            }
+        })
     }
 
     render(){
@@ -105,16 +176,18 @@ class Feedback extends React.Component{
                             <div className="btn-media-result"></div>
                             <div className="btn-media">
                                 <span></span>
-                                <input className="inputFile" type="file" accept="video/*" onChange={(e)=>this.onUploadVideo(e)} />
+                                <input name="file" className="inputFile" type="file" accept="video/*" onChange={(e)=>this.onUploadVideo(e)} />
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div className="button-div">
-                    <button>提交</button>
-                    <button>提交并创建</button>
+                    <button onClick={()=>this.onPushInfo()}>提交</button>
+                    <button onClick={()=>this.onPushInfo(1)}>提交并创建</button>
                 </div>
+
+                { this.state.isUpload ? <LoadingMessage /> : "" }
             </Page>
         )
     }
@@ -126,7 +199,7 @@ let mapStateToProps = state => ({
 })
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getMyPowerStationList, getPowerStationDeviceTypes }, dispatch)
+    return bindActionCreators({ getMyPowerStationList, getPowerStationDeviceTypes, uploadVideoFile, pushFeedbackMessage }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feedback);

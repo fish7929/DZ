@@ -26,7 +26,7 @@ const initialState = {
     noticeList: [],
     //电站列表
     psList: [],
-
+    fdList: [],
     prList: [],
     fbList: [],
     appVersion: ""
@@ -110,6 +110,7 @@ export default function homeData(state = initialState, action) {
                 psList: action.data.psList,
                 prList: action.data.prList,
                 fbList: action.data.fbList,
+                fdList: action.data.fdList
             }
         case ActionType.HOME_INIT_APP_VERSION:
             return {

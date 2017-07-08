@@ -231,6 +231,77 @@ class ChartItem extends React.Component {
 
     }
 
+    getDoubleBarOption(){
+        let {unitY, barBgColor, barColors, legend, data} = this.props
+        barColors = barColors || ['#87E2F8', '#3899EB']
+        let colors = barColors.map((obj, index)=>({offset: index, color: obj}))
+        return {
+            xAxis: {
+                data: data.map(obj=>obj.name),
+                axisLabel: {
+                    textStyle: {
+                        color: '#000'
+                    },
+                    formatter: (value, index) => {
+                        return xLabel[index]
+                    }
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    show: false
+                },
+                z: 10,
+            },
+            yAxis: {
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: '#999'
+                    },
+                    formatter: (value, index) => {
+                        return value + (unitY || "")
+                    }
+                },
+                type : 'value'
+            },
+
+            series: legend.map((obj, index) => ({
+                name: obj,
+                type: 'bar',
+                barMinHeight: 5,
+                data: data.map(obj=>obj.value[index]),
+
+            })),
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow',        // 默认为直线，可选为：'line' | 'shadow'
+                },
+                position: function (pos, params, dom, rect, size) {
+                    // 鼠标在左侧时 tooltip 显示到右侧，鼠标在右侧时 tooltip 显示到左侧。
+                    var obj = {top: 60};
+                    obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+                    return obj;
+                },
+                // formatter: '{b1}<br />{c1}' + (unitY || "")
+            },
+            grid: {
+                left: '5%',
+                right: '5%',
+                bottom: '5%',
+                top: '5%',
+                containLabel: true
+            }
+        }
+    }
+
     render() {
         let { data, type } = this.props, opts
         if(data.length>0){
@@ -239,6 +310,9 @@ class ChartItem extends React.Component {
             }
             else if(type === "line"){
                 opts = this.getLineOption(data)
+            }
+            else if(type === "doubleBar"){
+                opts = this.getDoubleBarOption()
             }
             else {
                 opts = this.getBarOption(data)
@@ -262,6 +336,7 @@ ChartItem.PropTypes = {
     barColors: PropTypes.array,
     lineColor: PropTypes.string,
     shadowColor: PropTypes.string,
+    legend: PropTypes.array
 }
 
 export default ChartItem
