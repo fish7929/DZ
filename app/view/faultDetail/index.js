@@ -89,7 +89,7 @@ class FaultDetail extends React.Component {
     renderMineDealSection() {
         let { list } = this.state;
         let photos = list.attachmentList || [];
-        let explain = list.state;
+        let explain = list.state || '';
         let result = list.solveResult;
         let resultStr = result == FIRST ? "以解决" : '未解决';  //1 
         return (
@@ -99,7 +99,7 @@ class FaultDetail extends React.Component {
                     处理结果
                     <span className="no-wrap">{resultStr}</span>
                 </div>
-                <UploadComponent type={FIRST} photos={photos} explain={explain} />
+                <UploadComponent type={FIRST} photos={photos} explain={explain} uploadModule='faultdetail'/>
             </div>
         );
     }
@@ -113,12 +113,12 @@ class FaultDetail extends React.Component {
         let solveList = list.solveList || [];
         let solveTime = list.solveTime;
         let solveName = list.solveName;
-        let solveInfo = list.dispatcherState;
+        let solveInfo = list.dispatcherState || '';
         //调度人员
         let dispatcherList = list.dispatcherList || [];
         let dispatcherTime = list.dispatcherTime;
         let dispatcherName = list.dispatcherName;
-        let dispatcherInfo = list.dispatcherInfo;
+        let dispatcherInfo = list.dispatcherInfo || '';
 
         let name = type == FIRST ? solveName : dispatcherName;
         let nameHint = type == FIRST ? '维护人员' : '调度人员';
@@ -149,7 +149,7 @@ class FaultDetail extends React.Component {
                     {timeHint}
                     <span className="no-wrap">{time}</span>
                 </div>
-                <UploadComponent type={FIRST} photos={photos} explain={explain} />
+                <UploadComponent type={FIRST} photos={photos} explain={explain} uploadModule='faultdetail' />
             </div>
         );
     }

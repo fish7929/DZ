@@ -96,7 +96,7 @@ class Departure extends React.Component {
                 </div>)
             })}
             <UploadComponent ref="uploadComponent" type={this.status} photos={attachmentList}
-                explain={conclusion} explainHint="检查结论" />
+                explain={conclusion} explainHint="检查结论" uploadModule='departure'/>
             {this.status == 0 ? <div className="examine-save-wrapper"><div className="examine-save" onClick={(e) => this.onSaveHandler(e)}>保存</div></div> : null}
         </div>)
     }

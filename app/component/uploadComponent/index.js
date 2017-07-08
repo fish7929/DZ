@@ -1,17 +1,19 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import * as utils from '../../utils'
+import * as Api from '../../static/const/apiConst';
 
 import './index.scss'
-import TestPhoto from '../../static/images/test.png'; 
+import TestPhoto from '../../static/images/test.png';
 class UploadComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
             type: this.props.type,
             photoHint: this.props.photoHint,
-            photos: this.props.photos,
+            photos: this.props.photos || [],
             explainHint: this.props.explainHint,
-            explain: this.props.explain
+            explain: this.props.explain || ''
         }
     }
 
@@ -35,12 +37,25 @@ class UploadComponent extends React.Component {
      * @param {object} e 事件对象
      */
     choosePhotoHandler(e) {
-        e.preventDefault();
-        e.stopPropagation();
+        let file = e.target.files[0];
+        if (file) {
+            let data = new FormData()
+            data.append('fileDir', 'pvmtssys/' + this.props.uploadModule + '/')
+            data.append('file', file)
+            AppModal.loading();
+            let url = Api.GetUploadApi();
+            utils.fetchUtils(url, data, "POST", {}, "form").then((data) => {
+                AppModal.hide()
+                if (data && data.url) {
+                    let oldPhotos = this.state.photos;
+                    oldPhotos.push({ filepath: data.url, filename: file.name });
+                    this.setState({ photos: oldPhotos });
+                }
+
+            }).catch((e) => AppModal.hide());
+        }
         //test 
-        let oldPhotos = this.state.photos;
-        oldPhotos.push({filepath:TestPhoto, filename: 'test'});
-        this.setState({photos: oldPhotos});
+
     }
     /**
      * 删除单张照片
@@ -52,8 +67,8 @@ class UploadComponent extends React.Component {
         e.stopPropagation();
         //test 
         let oldPhotos = this.state.photos;
-        let newPhotos =  oldPhotos.filter((item, index) => index != key);
-        this.setState({photos: newPhotos});
+        let newPhotos = oldPhotos.filter((item, index) => index != key);
+        this.setState({ photos: newPhotos });
     }
     getUploadContent() {
         this.cancelFocus();
@@ -70,9 +85,9 @@ class UploadComponent extends React.Component {
         this.setState({
             type: nextProps.type,    //消息框类型
             photoHint: nextProps.photoHint,
-            photos: nextProps.photos,
+            photos: nextProps.photos || [],
             explainHint: nextProps.explainHint,
-            explain: nextProps.explain
+            explain: nextProps.explain || ""
         });
     }
     render() {
@@ -80,14 +95,13 @@ class UploadComponent extends React.Component {
         let _disabled = type == 1 ? "upload-disabled" : ""; //0未处理，  1 已处理
         let _hint = type == 1 ? '附件' : photoHint;
         let photoBtn = photos.length == 0 ? 'upload-photo-btn-init' : '';
-        console.log(_disabled, photos);
         return (
             <div className={"upload-component-wrapper " + _disabled}>
                 <div className="upload-explain-component">
                     <div className="upload-explain-hint">{explainHint}</div>
                     {_disabled ? <textarea type="text" maxLength={50} disabled value={explain}></textarea> :
                         <textarea type="text" maxLength={50} value={explain} ref='explain'
-                            placeholder="请输入说明（可不填）" 
+                            placeholder="请输入说明（可不填）"
                             onChange={(e) => this.changeStateHandler(e, 'explain')}></textarea>}
                 </div>
                 <div className="upload-photo-component">
@@ -97,13 +111,14 @@ class UploadComponent extends React.Component {
                     <ul className="upload-photo-content">
                         {photos.map((item, index) =>
                             <li key={index} className="upload-photo-item">
-                                <img src={item.filepath}/>
-                                {_disabled ? null : <span className="photo-close" 
-                                onClick={(e) => this.deletePhotoHandler(e, index)}></span>}
+                                <img src={item.filepath} />
+                                {_disabled ? null : <span className="photo-close"
+                                    onClick={(e) => this.deletePhotoHandler(e, index)}></span>}
                             </li>
                         )}
-                        {_disabled ? null : <li key={photos.length} onClick={(e) => this.choosePhotoHandler(e)}
+                        {_disabled ? null : <li key={photos.length}
                             className={"upload-photo-item upload-photo-btn " + photoBtn}>
+                            <input name="file" className="upload-inpu-file" type="file" accept="video/*,image/*" onChange={(e) => this.choosePhotoHandler(e)} />
                             <span className="upload-photo-btn-span xy-center"></span>
                         </li>}
                     </ul>
@@ -125,14 +140,16 @@ UploadComponent.PropTypes = {
     photoHint: PropTypes.string,
     photos: PropTypes.array,
     explainHint: PropTypes.string,
-    explain: PropTypes.string
+    explain: PropTypes.string,
+    uploadModule: PropTypes.string
 }
 
 UploadComponent.defaultProps = {
     photos: [],
     photoHint: '上传附件',
     explain: '',
-    explainHint: '说明'
+    explainHint: '说明',
+    uploadModule: 'physical'
 }
 
 export default UploadComponent;

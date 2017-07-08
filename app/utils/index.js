@@ -16,6 +16,51 @@ const toExcString = function(array,type={":":"=",",":"&"}){
     return result.substring(-1,result.length-1);
 }
 
+/**
+ * 获取和提交RESTful数据接口
+ * @param url 接口地址
+ * @param param  传输数据 如果contentType = "application/json"，data可以用Object或json string,其他类型data只能为string
+ * @param type  取数据type = "GET"，提交数据type = "POST"
+ * @param headers 头部额外配置
+ * @param dataType 成功返回数据的格式dataType= "json"或dataType= "text"等ajax支持的格式
+ */
+export function fetchUtils(url, param, type = "GET", headers = {}, dataType = "json") {
+    if(type.toLocaleUpperCase()==="GET"&&size(param)>0){
+        url +="?"+toExcString(param)
+    }
+    let user = Base.getLocalStorageObject("user")
+    let token = '';
+    if(user && user.hasOwnProperty('token')){
+        token = user.token;
+    }
+    if(token){
+        //token = "DA58A5485E52B2A5DA3EA90F367A1636"
+        headers = {
+            ...headers,
+            fromType: 'app',
+            token
+        }
+    }
+    if(dataType == "json"){
+        headers = assignIn(headers, {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS"
+        })
+    }
+    //TODO 可能需要在前面增加域名  Config.api
+    return fetch(url, {
+        method: type.toLocaleUpperCase(),
+        headers: headers,
+        credentials: 'same-origin',
+        body: type.toLocaleUpperCase() === "GET" ? undefined : (dataType == "json" ? JSON.stringify(param) : param)
+    })
+        .then((res) => res.json())
+        .then((data) => data)
+        .catch((error) => error)
+}
+
+
 const fetchMsg = (url, param, type = "GET", headers={}, repType="json") => {
     return (dispatch, getState) => {
 

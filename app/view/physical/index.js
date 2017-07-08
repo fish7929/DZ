@@ -133,7 +133,7 @@ class Physical extends React.Component {
                     </div>
                     <div className="physical-wrapper">
                         <UploadComponent ref="uploadComponent" type={1} photos={attachmentList}
-                            explain={explainInfo} />
+                            explain={explainInfo} uploadModule='physical'/>
                     </div>
                 </li>);
             })
@@ -147,7 +147,8 @@ class Physical extends React.Component {
     addFeedbackHandler(e) {
         e.preventDefault();
         e.stopPropagation();
-        this.setState({ isAdd: true });
+        let old = this.state.isAdd;
+        this.setState({ isAdd: !old });
     }
     /**
      * 渲染问题反馈内容
