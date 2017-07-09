@@ -13,7 +13,7 @@ export const GetMessageDetailByIdAndStatus = (id, status) => {
     if(!status){
         return "/pvmtsys/sender/readLetter/" + id;
     }else {
-        return "/pvmtsys/noticeReader/queryNoticeOne/" + id + "/" + status;
+        return "/pvmtsys/noticeReader/queryNoticeOne/" + id ;
     } 
 }
 
@@ -54,11 +54,15 @@ export const GetSparepartDataByOrder = (orderNumber) => "/pvmtsys/sparepartMappi
 /**ThirdContact api GetThirdContactDataByOrder + order */
 export const GetThirdContactDataByOrder = (orderNumber) => "/pvmtsys/thirdContact/thirdContact/" + orderNumber;
 
-/**Departure api GetDepartureDataByOrder + order */ 
+/**Departure 离场申请api GetDepartureDataByOrder + order */ 
 export const GetDepartureDataByOrder = (orderNumber) => "/pvmtsys/departure/departureInfo/" + orderNumber;
-/**Physical api GetPhysicalDataByOrder + order */ 
-export const GetPhysicalDataByOrder = (orderNumber) => "/pvmtsys/physical/physicalInfo/" + orderNumber;
+export const SaveDeparture = () => '/pvmtsys/departure/saveDeparture';
 
+/**Physical  电站体检api GetPhysicalDataByOrder + order */ 
+export const GetPhysicalDataByOrder = (orderNumber) => "/pvmtsys/physical/physicalInfo/" + orderNumber;
+//保存电站体检
+export const SavePhysicalExamine = () => '/pvmtsys/physical/editExamine';
+export const CompletedPhysicalByOrder = (orderNumber) => '/pvmtsys/workOrderInfo/physicalSubmit/' + orderNumber;
 
 /**FaultDetail api GetFaultDetailById + id */ 
 export const GetFaultDetailById = (id) => "/pvmtsys/faultInfo/getFaultInfo/" + id;

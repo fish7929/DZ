@@ -21,6 +21,8 @@ import { fetchData } from './reducer/action';
 import './index.scss'
 
 import { ZERO, FIRST } from '../../static/const/constants';
+import * as utils from '../../utils'
+import * as Api from '../../static/const/apiConst';
 
 class Departure extends React.Component {
 
@@ -63,6 +65,17 @@ class Departure extends React.Component {
         param.conclusion = upload.explain;
         param.attachmentList = upload.photos;
         console.log(param, 'tijiao');
+        AppModal.loading();
+        let url = Api.SaveDeparture();
+        utils.fetchUtils(url, param, "POST").then((res) => {
+            AppModal.hide()
+            if (res.data) {
+                AppModal.toast('提交成功');
+            }else{
+                AppModal.toast('提交失败');
+            }
+
+        }).catch((e) => AppModal.hide());
     }
     /**
      * 渲染内容
