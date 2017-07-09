@@ -20,7 +20,8 @@ import PhysicalFeedback from './PhysicalFeedback';
 import { fetchData } from './reducer/action';
 
 import './index.scss'
-
+import * as utils from '../../utils'
+import * as Api from '../../static/const/apiConst';
 import { ZERO, FIRST } from '../../static/const/constants';
 
 class Physical extends React.Component {
@@ -52,6 +53,17 @@ class Physical extends React.Component {
         e.preventDefault();
         e.stopPropagation();
         console.log('完成');
+        AppModal.loading();
+        let url = Api.CompletedPhysicalByOrder(this.order);
+        utils.fetchUtils(url, {'orderId': this.order}, "POST").then((res) => {
+            AppModal.hide()
+            if (res.data) {
+                AppModal.toast('提交成功');
+            }else{
+                AppModal.toast('提交失败');
+            }
+
+        }).catch((e) => AppModal.hide());
     }
     /**
      * 提交离场申请保存.
@@ -62,12 +74,45 @@ class Physical extends React.Component {
         let oldList = this.state.list;
         //对应项目增加一条反馈
         let findItem = oldList.find((item, index) => item.id == param.id);
-        let obj = {isSolve: param.isSolve, explainInfo: param.explainInfo, attachmentList: param.attachmentList};
-        findItem.examineInfo.push(obj);
-        this.setState({
-            isAdd: false,
-            list: oldList
-        });
+        AppModal.loading();
+        let url = Api.SavePhysicalExamine();
+        /**
+         *  { "id": 1, 
+         * "examineId": 1, 
+         * "isSolve": 0, 
+         * "explainInfo": " ", 
+         * "workorderNum": "2017060816222", 
+         * "fileInfo":[ { "filename":"1.txt", "filepath":"c:/upload" }, 
+         * { "filename":"2.txt", "filepath":"d:/upload" } ] 
+         * }
+         */
+        let opt = {
+            id: findItem.id,
+            workorderNum: findItem.workorderNum,
+            examineId: findItem.findItem,
+            isSolve: param.isSolve,
+            explainInfo: param.explainInfo,
+            fileInfo: param.attachmentList,
+        };
+
+        utils.fetchUtils(url, opt, "POST").then((res) => {
+            AppModal.hide()
+            if (res.data) {
+                let obj = {isSolve: param.isSolve, explainInfo: param.explainInfo, attachmentList: param.attachmentList};
+                findItem.examineInfo.push(obj);
+                console.log(obj, 88888);
+                this.setState({
+                    isAdd: false,
+                    list: oldList
+                });
+            }else{
+                AppModal.toast('保存失败');
+            }
+
+        }).catch((e) => AppModal.hide());
+
+        
+        
     }
     /**
      * 开关显示详情
