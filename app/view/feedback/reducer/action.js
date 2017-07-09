@@ -42,15 +42,6 @@ export const getPowerStationDeviceTypes = (id) => dispatch => {
     getDeviceType(id, dispatch)
 }
 
-export const uploadVideoFile = (opt) => dispatch => {
-    return new Promise((resolve, reject) => {
-        let url = Api.GetUploadApi()
-        dispatch(utils.sendMsg(url, opt, "POST", {}, "form")).then(data => {
-            resolve && resolve(data)
-        }, reject)
-    })
-}
-
 export const pushFeedbackMessage = opt => dispatch => {
     return new Promise((resolve, reject) => {
         let url = Api.InsertFaultInfo()

@@ -7,6 +7,7 @@ import Header from '../../component/header'
 import AlarmItem from '../../component/realTimeAlarmItem'
 import AlarmHistoryItem from '../../component/alarmHistoryItem'
 import FlipListComponent from '../../component/flipListComponent'
+import UploadComponent from '../../component/uploadComponent'
 
 import { getAlarmList } from './reducer/action'
 
@@ -75,19 +76,9 @@ class AlarmDetail extends React.Component{
                 </div>
                 
                 <div className="explain-div">
-                    <div className="explain-title">说明</div>
-                    <textarea className="explain-textarea" placeholder="请输入说明（可不填）" />
+                    <UploadComponent />
                 </div>
-
-                <div className="media-div">
-                    <div className="media-title-div">上传附件<span className="media-desc">视频拍摄长度小于30秒</span></div>
-                    <div className="media-content-div">
-                        <div className="btn-media-result"></div>
-                        <button className="btn-media"><span></span></button>
-                    </div>
-                </div>
-
-                <button className="btn-commit">提交</button>
+                {alarmData.status == 0 ? <button className="btn-commit">提交</button> : ""}
             </Page>
         )
     }

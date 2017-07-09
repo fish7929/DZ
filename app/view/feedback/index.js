@@ -10,6 +10,7 @@ import { hashHistory } from 'react-router'
 
 import Page from '../../component/page'
 import Header from '../../component/header'
+import UploadComponent from '../../component/uploadComponent'
 
 import { getMyPowerStationList, getPowerStationDeviceTypes, uploadVideoFile, pushFeedbackMessage } from './reducer/action'
 
@@ -24,9 +25,7 @@ class Feedback extends React.Component{
             deviceTypeId: "",
             deviceCode: "",
             alarmLevel: 1,
-            desc: "",
         }
-        this.fileUrl = ""
     }
 
     componentDidMount(){
@@ -49,7 +48,6 @@ class Feedback extends React.Component{
             deviceTypeId: deviceTypeId,
             deviceCode: "",
             alarmLevel: 1,
-            desc: ""
         })
     }
 
@@ -69,49 +67,25 @@ class Feedback extends React.Component{
         this.setState(state);       
     }
 
-    onUploadVideo(e){
-        let file = e.target.files[0];
-        if(file){
-            let data = new FormData()
-            data.append('fileDir', '/pvmtsSys/feedback/')
-            data.append('file', file)
-            AppModal.loading()
-            this.props.uploadVideoFile(data).then((d)=>{
-                this.fileUrl = d
-                AppModal.hide()
-            }, ()=>AppModal.hide())
-        }
-    }
-
     onPushInfo(type){
-        let { powerStationId, deviceTypeId, deviceCode, alarmLevel, desc } = this.state
+        let { powerStationId, deviceTypeId, deviceCode, alarmLevel } = this.state
         if(deviceCode == ""){
             AppModal.toast('请输入设备编号');
             return
         }
 
-        if(this.fileUrl == ""){
-            AppModal.toast('请上传附件');
-            return
-        }
+        let uploadComponent = this.refs.dealUploadComponent;
+        let uploadObj = uploadComponent.getUploadContent();
 
-        let lastIndex = this.fileUrl.lastIndexOf("/") + 1, 
-        filepath = this.fileUrl,
-        filename = this.fileUrl.substring(lastIndex, this.fileUrl.length - 1)
         let opt = {
             // equipmentId: 0,
             equipmentNumber: deviceCode,
             equipmentType: deviceTypeId,
             faultGrade: alarmLevel,
-            faultMessage: desc,
+            faultMessage: uploadObj.explain,
             powerStationId: powerStationId,
-            state: desc,
-            attachmentList: [
-                {
-                    filepath: filepath,
-                    filename:filename
-                }
-            ]
+            state: uploadObj.explain,
+            attachmentList: uploadObj.photos
         }
         
         this.props.pushFeedbackMessage(opt).then((data)=>{
@@ -163,20 +137,7 @@ class Feedback extends React.Component{
                             <option value="3">Ⅲ级报警</option>
                         </select>
                     </div>
-                    <div className="textarea-div">
-                        <div className="title-txt">说明</div>
-                        <textarea placeholder="请输入说明（可不填）" value={desc} onChange={(e)=>this.onChangeHandler(e, "desc")} />
-                    </div>
-                    <div className="media-div">
-                        <div className="media-title-div">上传附件<span className="media-desc">视频拍摄长度小于30秒</span></div>
-                        <div className="media-content-div">
-                            <div className="btn-media-result"></div>
-                            <div className="btn-media">
-                                <span></span>
-                                <input name="file" className="inputFile" type="file" accept="video/*" onChange={(e)=>this.onUploadVideo(e)} />
-                            </div>
-                        </div>
-                    </div>
+                    <UploadComponent ref="dealUploadComponent" type={0} uploadModule="feedback" />
                 </div>
 
                 <div className="button-div">
