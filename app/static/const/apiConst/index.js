@@ -13,7 +13,7 @@ export const GetMessageDetailByIdAndStatus = (id, status) => {
     if(!status){
         return "/pvmtsys/sender/readLetter/" + id;
     }else {
-        return "/pvmtsys/noticeReader/queryNoticeOne/" + id + "/" + status;
+        return "/pvmtsys/noticeReader/queryNoticeOne/" + id ;
     } 
 }
 
