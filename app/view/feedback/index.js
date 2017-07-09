@@ -10,7 +10,6 @@ import { hashHistory } from 'react-router'
 
 import Page from '../../component/page'
 import Header from '../../component/header'
-import LoadingMessage from '../../component/loadingMessage'
 
 import { getMyPowerStationList, getPowerStationDeviceTypes, uploadVideoFile, pushFeedbackMessage } from './reducer/action'
 
@@ -26,7 +25,6 @@ class Feedback extends React.Component{
             deviceCode: "",
             alarmLevel: 1,
             desc: "",
-            isUpload: false
         }
         this.fileUrl = ""
     }
@@ -51,8 +49,7 @@ class Feedback extends React.Component{
             deviceTypeId: deviceTypeId,
             deviceCode: "",
             alarmLevel: 1,
-            desc: "",
-            isUpload: false
+            desc: ""
         })
     }
 
@@ -78,11 +75,11 @@ class Feedback extends React.Component{
             let data = new FormData()
             data.append('fileDir', '/pvmtsSys/feedback/')
             data.append('file', file)
-            this.setState({isUpload: true})
+            AppModal.loading()
             this.props.uploadVideoFile(data).then((d)=>{
                 this.fileUrl = d
-                this.setState({isUpload: false})
-            }, ()=>this.setState({isUpload: false}))
+                AppModal.hide()
+            }, ()=>AppModal.hide())
         }
     }
 
@@ -186,8 +183,6 @@ class Feedback extends React.Component{
                     <button onClick={()=>this.onPushInfo()}>提交</button>
                     <button onClick={()=>this.onPushInfo(1)}>提交并创建</button>
                 </div>
-
-                { this.state.isUpload ? <LoadingMessage /> : "" }
             </Page>
         )
     }

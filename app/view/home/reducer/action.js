@@ -96,7 +96,7 @@ let getHomeAlarmList = dispatch => {
 /**获取首页未读报警数量 */
 let getHomeAlarmCount = dispatch => {
     let url = Api.GetAlarmCount()
-    dispatch(utils.sendMsg(url, {}, "GET")).then(data => {
+    dispatch(utils.sendMsg(url, {}, "POST")).then(data => {
         dispatch({
             type: ActionType.HOME_INIT_ALARM_COUNT,
             data: data
@@ -157,23 +157,26 @@ let getHomeWorkOrderCompletion = dispatch => {
 export const fetchData = (category, status = 0, currentPage = 1) => dispatch => {
     dispatch(requestData(category));
     // let _url = "/pvmtsys/messageSystemInfo/getMassageByType/" + type;
-    let _url = "";
+    let _url = "", method="GET";
     switch(category) {
         case ZERO:
             _url = Api.MessageCenter;
+            method = "POST"
             break;
         case FIRST:
             _url = Api.GetWorkOrdrDataByStatus(status);
             break;
         case SECOND:
             _url = Api.MessageCenter;
+            method = "POST"
             break;
         case THREE:
             _url = Api.MessageCenter;
+            method = "POST"
             break;
     }
     let opt = category == FIRST ? {page: currentPage, pagesize: 10} : null;
-    dispatch(utils.sendMsg(_url, opt, "GET")).then(data => {
+    dispatch(utils.sendMsg(_url, opt, method)).then(data => {
         dispatch(receiveData(data, category, currentPage));
     })
 }
