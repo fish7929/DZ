@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { hashHistory } from 'react-router'
 
 import Page from '../../component/page'
 import Header from '../../component/header'
@@ -9,7 +10,7 @@ import AlarmHistoryItem from '../../component/alarmHistoryItem'
 import FlipListComponent from '../../component/flipListComponent'
 import UploadComponent from '../../component/uploadComponent'
 
-import { getAlarmList } from './reducer/action'
+import { getAlarmList, pushAlarmInfo } from './reducer/action'
 
 import * as Api from '../../static/const/apiConst'
 import * as utils from '../../utils'
@@ -48,6 +49,27 @@ class AlarmDetail extends React.Component{
         return alarmData.alarmInfoList.map((obj, key) => <AlarmHistoryItem key={key} data={obj} />)
     }
 
+    onClickHandler(){
+        let { alarmData } = this.props
+
+        if(alarmData.id){
+            let uploadComponent = this.refs.dealUploadComponent;
+            let uploadObj = uploadComponent.getUploadContent();
+
+            let opt = {
+                id: alarmData.id,
+                status: 1,
+                state: uploadObj.explain,
+                attachmentList: uploadObj.photos
+            }
+            this.props.pushAlarmInfo(opt).then(()=>{
+                AppModal.alert("保存成功！", "", ()=>hashHistory.goBack())
+            }, ()=>{
+                AppModal.alert("保存失败！", "")
+            })
+        }
+    }
+
     render(){
         let { alarmData } = this.props
         if(alarmData.powerStationBaseInfo.lat && alarmData.powerStationBaseInfo.lng && this.state.mapIsReady){
@@ -60,6 +82,7 @@ class AlarmDetail extends React.Component{
             let marker = new BMap.Marker(point, {icon: myIcon});  // 创建标注
 	        this.map.addOverlay(marker);              // 将标注添加到地图中
         }
+        let _disabled = alarmData.status == 0 ? 0 : 1
         return(
             <Page className="alarm-detail-container">
                 <Header title="报警详情" isShowBack={true} />
@@ -76,9 +99,9 @@ class AlarmDetail extends React.Component{
                 </div>
                 
                 <div className="explain-div">
-                    <UploadComponent />
+                    <UploadComponent ref="dealUploadComponent" type={_disabled} uploadModule="alarmDetail" photos={alarmData.attachmentList} explain={alarmData.explain} />
                 </div>
-                {alarmData.status == 0 ? <button className="btn-commit">提交</button> : ""}
+                {_disabled == 0 ? <button className="btn-commit" onClick={()=>this.onClickHandler()}>提交</button> : ""}
             </Page>
         )
     }
@@ -93,7 +116,7 @@ let mapStateToProps = state => ({
 })
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getAlarmList }, dispatch)
+    return bindActionCreators({ getAlarmList, pushAlarmInfo }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AlarmDetail)

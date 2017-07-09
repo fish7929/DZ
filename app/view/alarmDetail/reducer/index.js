@@ -5,9 +5,11 @@ const initialState = {
         alarmGrade: 0,
         alarmMessage: "",
         alarmTime: "",
+        attachmentList: [],
         powerStationBaseInfo: {
             name: ""
         },
+        explain: "",
         alarmInfoList: [],
         status: 0
     }

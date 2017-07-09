@@ -6,6 +6,7 @@ import { hashHistory } from 'react-router'
 import AlarmHomeItem from '../../../component/alarmHomeItem'
 import HomePowerItem from '../../../component/homePowerItem'
 import ChartItem from '../../../component/chartItem'
+import Notice from '../../../component/notice'
 
 import { getHomeData } from "../reducer/action"
 
@@ -47,13 +48,7 @@ class HomeContianer extends React.Component {
         return (
             <div className="home-container">
                 <div className="btn-tabs">{this.getHomeTabs()}</div>
-                <div className="home-notice-div">
-                    <div className="notice-title-div">
-                        <span className="icon-notice"></span>
-                        <span className="title-notice">公告</span>
-                    </div>
-                    <div className="notice-message no-wrap">{noticeList.length > 0 ? noticeList[0].name : ""}</div>
-                </div>
+                <Notice data={noticeList} />
                 <div className="home-alarm-content">
                     <div className="home-list-title-div">
                         <span></span>报警消息
