@@ -108,7 +108,7 @@ class HomeContianer extends React.Component {
                         <span></span>电站发电情况
                     </div>
                     <div className="fd-echart-div">
-                        <ChartItem data={fdList} type="doubleBar" legend={["容量/kWp", "日发电量/kWh"]} />
+                        <ChartItem data={fdList} type="doubleBar" legend={["容量/kWp", "日发电量/kWh"]} barColors={["#F47D3A", "#E2B64A"]} />
                     </div>
                 </div>
             </div>

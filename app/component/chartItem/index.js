@@ -234,7 +234,6 @@ class ChartItem extends React.Component {
     getDoubleBarOption(){
         let {unitY, barBgColor, barColors, legend, data} = this.props
         barColors = barColors || ['#87E2F8', '#3899EB']
-        let colors = barColors.map((obj, index)=>({offset: index, color: obj}))
         return {
             xAxis: {
                 data: data.map(obj=>obj.name),
@@ -271,8 +270,10 @@ class ChartItem extends React.Component {
                 },
                 type : 'value'
             },
-
             series: legend.map((obj, index) => ({
+                itemStyle: {
+                    normal: {color: barColors[index]}
+                },
                 name: obj,
                 type: 'bar',
                 barMinHeight: 5,
