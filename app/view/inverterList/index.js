@@ -14,7 +14,7 @@ import * as routerConst from '../../static/const/routerConst'
 
 import './index.scss'
 
-const InverterTabs = [{name : "全部", id: 0, value: 0}, {name:"停机", id: 1, value: 0}, {name:"通讯异常", id: 2, value: 2}]
+const InverterTabs = [{name : "全部", id: 0, value: 0}, {name:"停机", id: 1, value: 1}, {name:"通讯异常", id: 2, value: 2}]
 
 class InverterList extends React.Component{
 
