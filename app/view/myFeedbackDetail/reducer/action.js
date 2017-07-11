@@ -13,5 +13,14 @@ const receiveData = (data) => ({
 
 export const getMyFeedbackDetail = (id) => dispatch =>{
     let url = Api.getMyFeedbackDetail(id)
-    dispatch(utils.sendMsg(url, {}, "GET")).then(data => dispatch(receiveData(data)))
+    dispatch(utils.sendMsg(url, {}, "GET")).then(data => {
+        url = Api.GetPowerStationDetail(data.powerStationId)
+        dispatch(utils.sendMsg(url, {}, "GET")).then(result => {
+            data = {
+                ...data,
+                powerStationName: result.name
+            }
+            dispatch(receiveData(data))
+        })
+    })
 }

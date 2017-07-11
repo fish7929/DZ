@@ -99,7 +99,7 @@ class AlarmDetail extends React.Component{
                 </div>
                 
                 <div className="explain-div">
-                    <UploadComponent ref="dealUploadComponent" type={_disabled} uploadModule="alarmDetail" photos={alarmData.attachmentList} explain={alarmData.explain} />
+                    <UploadComponent ref="dealUploadComponent" type={_disabled} uploadModule="alarmDetail" photos={alarmData.attachmentList} explain={alarmData.description || ""} />
                 </div>
                 {_disabled == 0 ? <button className="btn-commit" onClick={()=>this.onClickHandler()}>提交</button> : ""}
             </Page>

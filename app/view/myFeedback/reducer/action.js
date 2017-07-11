@@ -24,6 +24,4 @@ export const getMyFeedbackList = (opt) => (dispatch, getState) => {
             resolve&&resolve()
         }, reject)
     })
-    
-    
 }
