@@ -43,6 +43,7 @@ class Physical extends React.Component {
         this.state = {
             list: this.props.list,
             isAdd: false,  // false
+            facilityList: [] //设备名称列表
         }
     }
     /**
@@ -54,7 +55,7 @@ class Physical extends React.Component {
         e.stopPropagation();
         console.log('完成');
         AppModal.loading();
-        let url = Api.CompletedPhysicalByOrder(this.order);
+        let url = Api.CompletedPhysicalByOrder(this.order); //{'orderId': this.order}
         utils.fetchUtils(url, {'orderId': this.order}, "POST").then((res) => {
             AppModal.hide()
             if (res.data) {
@@ -199,7 +200,7 @@ class Physical extends React.Component {
      * 渲染问题反馈内容
      */
     renderFeedbackSection() {
-        let { list, isAdd } = this.state;
+        let { list, isAdd, facilityList } = this.state;
         //todo 筛选出剩下的
         let filter = list.map((item, index) => {
             let obj = {};
@@ -210,7 +211,7 @@ class Physical extends React.Component {
         });
         return (
             isAdd ? <PhysicalFeedback physicalList={filter} stationName={this.param.stationName || ''}
-                callBack={(param) => this.onSaveHandler(param)} /> : null
+                callBack={(param) => this.onSaveHandler(param)} facilityList={facilityList} /> : null
         );
     }
     renderContentSection() {
@@ -247,6 +248,12 @@ class Physical extends React.Component {
      */
     componentDidMount() {
         this.props.fetchData(this.order);
+        let url = Api.GetFacilityList(this.param.powerStationId);
+        utils.fetchUtils(url).then((res) => {
+            if (res.data) {
+                this.setState({ facilityList: res.data });
+            }
+        }).catch((e) => console.log(e, 77777));
     }
 
     componentWillReceiveProps(nextProps) {
