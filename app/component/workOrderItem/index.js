@@ -51,7 +51,8 @@ class WorkOrderItem extends React.Component {
                 break;
             case SECOND:  //电站体检
                 let physicalParam = {
-                    stationName: data.powerstationName
+                    stationName: data.powerstationName,
+                    powerstationId: data.powerstationId
                 };  
                 hashHistory.push('/physical/' + order + "/" + data.physicalState + "/" + Base.myEncodeURIComponent(physicalParam));
                 break;

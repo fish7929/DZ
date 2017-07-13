@@ -63,7 +63,7 @@ export const GetPhysicalDataByOrder = (orderNumber) => "/pvmtsys/physical/physic
 //保存电站体检
 export const SavePhysicalExamine = () => '/pvmtsys/physical/editExamine';
 export const CompletedPhysicalByOrder = (orderNumber) => '/pvmtsys/workOrderInfo/physicalSubmit/' + orderNumber;
-
+export const GetFacilityList = (powerStationId) => '/pvmtsys/powerStation/getEquipmentType/' + powerStationId;
 /**FaultDetail api GetFaultDetailById + id */ 
 export const GetFaultDetailById = (id) => "/pvmtsys/faultInfo/getFaultInfo/" + id;
 
