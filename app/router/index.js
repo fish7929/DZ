@@ -60,6 +60,10 @@ const Routers = {
 	},
 	childRoutes: [
 		{
+			path: RouterConst.ROUTER_HOME_TAB + '/:tab',
+			getComponent(nextState, cb){ Home(cb) },
+		},
+		{
 			path: RouterConst.ROUTER_LOGIN,
 			getComponent(nextState, cb){ Login(cb) },
 		},

@@ -1,7 +1,8 @@
 const ROUTER_ROOT = ""
 
 /**首页 */
-export const ROUTER_HOME = ROUTER_ROOT + "/"
+export const ROUTER_HOME = ROUTER_ROOT + "/";
+export const ROUTER_HOME_TAB = ROUTER_ROOT + "/home";
 
 /**登录 */
 export const ROUTER_LOGIN = ROUTER_ROOT + "/login"

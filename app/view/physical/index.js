@@ -18,7 +18,7 @@ import UploadComponent from '../../component/uploadComponent';
 import PhysicalFeedback from './PhysicalFeedback';
 
 import { fetchData } from './reducer/action';
-
+import { hashHistory } from 'react-router';
 import './index.scss'
 import * as utils from '../../utils'
 import * as Api from '../../static/const/apiConst';
@@ -56,10 +56,15 @@ class Physical extends React.Component {
         console.log('完成');
         AppModal.loading();
         let url = Api.CompletedPhysicalByOrder(this.order); //{'orderId': this.order}
+        
         utils.fetchUtils(url, {'orderId': this.order}, "POST").then((res) => {
             AppModal.hide()
             if (res.data) {
                 AppModal.toast('提交成功');
+                setTimeout(() => {
+                    AppModal.hide()
+                    hashHistory.push('/home/1')
+                }, 1000);
             }else{
                 AppModal.toast('提交失败');
             }
