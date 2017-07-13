@@ -24,6 +24,13 @@ class MyContainer extends React.Component{
         this.props.getAppVersion()
     }
 
+    onLoginOut(){
+        Base.setLocalStorageItem("user", "");
+        AppModal.confirm("是否退出？", "温馨提示", ()=>{
+            hashHistory.push(RouterConst.ROUTER_LOGIN);
+        })
+    }
+
     render(){
         let user = Base.getLocalStorageObject("user")
         let { username, nickname, email, mobile, departmentName } = user
@@ -66,7 +73,7 @@ class MyContainer extends React.Component{
                 </div>
 
                 <div className="button-exit-div">
-                    <button>退出当前账号</button>
+                    <button onClick={()=>this.onLoginOut()}>退出当前账号</button>
                 </div>
                 
             </div>

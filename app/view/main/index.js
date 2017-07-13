@@ -16,6 +16,18 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        this.checkLogin(this.props)
+    }
+
+    componentWillReceiveProps(nextProps){
+        this.checkLogin(nextProps)
+    }
+
+    checkLogin(props){
+        let user = Base.getLocalStorageItem("user")
+        if(!user && props.location.pathname != RouterConst.ROUTER_LOGIN){
+            hashHistory.push(RouterConst.ROUTER_LOGIN)
+        }
     }
 
     render() {
