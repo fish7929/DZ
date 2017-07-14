@@ -17,6 +17,10 @@ class ButtonSwitchIOS extends React.Component {
         }
     }
 
+    componentDidMount(nextProps){
+        this.setState({checked: this.props.checked})
+    }
+
     componentWillReceiveProps(nextProps){
         this.setState({checked: nextProps.checked})
     }

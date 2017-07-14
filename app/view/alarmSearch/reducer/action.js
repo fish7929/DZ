@@ -10,7 +10,7 @@ import * as Api from '../../../static/const/apiConst'
 
 const receiveListData = (data) => ({
     type: ActionType.INIT_ALARM_SEARCH_POWERSTATION,
-    data: data
+    data: data.results
 })
 
 export const getMyPowerStationList = () => dispatch =>{

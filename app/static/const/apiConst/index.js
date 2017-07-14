@@ -85,7 +85,7 @@ export const getMyFeedbackDetail = id => "/pvmtsys/faultInfo/getFaultInfo/" + id
 export const GetAppVersion = () => "/pvmtsys/version/newVersion"
 
 /**获取我的消息状态 */
-export const GetMyMessageStatus = () => ""
+export const GetMyMessageStatus = () => "/pvmtsys/settingInfo/getSetting"
 
 /**修改我的消息状态 */
 export const ChangeMyMessageStatus = () => "/pvmtsys/settingInfo/updateUserSetting"

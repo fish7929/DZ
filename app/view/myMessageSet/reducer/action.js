@@ -13,7 +13,7 @@ const receiveData = (data) => ({
 
 export const getMyMessageStatus = () => dispatch =>{
     let url = Api.GetMyMessageStatus()
-    dispatch(utils.sendMsg(url, {}, "GET")).then(data => dispatch(receiveData(data)))
+    dispatch(utils.sendMsg(url, {}, "POST")).then(data => dispatch(receiveData(data)))
 }
 
 export const changeMyMessageStatus = (type, value) => (dispatch, getState) => {

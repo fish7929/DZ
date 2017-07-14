@@ -28,7 +28,7 @@ class MyMessageSet extends React.Component{
     render(){
 
         let { letter, system, threeAlarm, twoAlarm } = this.props
-
+        console.log(letter, system, threeAlarm, twoAlarm)
         return(
             <Page className="my-message-set-container">
                 <Header title="推送消息" isShowBack={true} />
