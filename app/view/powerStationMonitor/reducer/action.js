@@ -13,7 +13,7 @@ const receiveListData = (data) => ({
 
 export const getPSMList = () => dispatch =>{
     let url = Api.GetUserPowerStation()
-    dispatch(utils.sendMsg(url, {}, "POST")).then(data => dispatch(receiveListData(data || [])))
+    dispatch(utils.sendMsg(url, {}, "POST")).then(data => dispatch(receiveListData(data.results || [])))
 }
 
 export const changeShowType = (type) => dispatch =>{

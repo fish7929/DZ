@@ -12,7 +12,7 @@ import Page from '../../component/page'
 import Header from '../../component/header'
 import UploadComponent from '../../component/uploadComponent'
 
-import { getMyPowerStationList, getPowerStationDeviceTypes, uploadVideoFile, pushFeedbackMessage } from './reducer/action'
+import { getMyPowerStationList, getPowerStationDeviceTypes, pushFeedbackMessage } from './reducer/action'
 
 import './index.scss'
 
@@ -155,7 +155,7 @@ let mapStateToProps = state => ({
 })
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getMyPowerStationList, getPowerStationDeviceTypes, uploadVideoFile, pushFeedbackMessage }, dispatch)
+    return bindActionCreators({ getMyPowerStationList, getPowerStationDeviceTypes, pushFeedbackMessage }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feedback);

@@ -39,7 +39,9 @@ class RealTimeAlarm extends React.Component{
             opt.status = status
         }
         this.props.getAlarmList(opt).then(()=>{
-            this.setState({currentPage: currentPage})
+            if(this){
+                this.setState({currentPage: currentPage})
+            }
         })
     }
 

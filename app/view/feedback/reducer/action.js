@@ -20,10 +20,10 @@ const receiveListData = (data) => ({
 export const getMyPowerStationList = () => dispatch =>{
     let url = Api.GetUserPowerStation()
     dispatch(utils.sendMsg(url, {}, "POST")).then(data => {
-        if(data.length > 0){
-            getDeviceType(data[0].id, dispatch)
+        if(data.results.length > 0){
+            getDeviceType(data.results[0].id, dispatch)
         }
-        dispatch(receiveListData(data))
+        dispatch(receiveListData(data.results))
     })
 }
 

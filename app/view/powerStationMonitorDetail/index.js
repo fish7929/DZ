@@ -55,7 +55,7 @@ class PowerStationMonitorDetail extends React.Component{
                                 <div className="table-td">
                                     <div className="table-item">
                                         <span className="title-txt">PR值</span>
-                                        <span className="info-txt yellow">{data.pr}</span>
+                                        <span className="info-txt yellow">{data.pr.toFixed(2)}</span>
                                     </div>
                                     <div className="table-item">
                                         <span className="title-txt">停机</span>
