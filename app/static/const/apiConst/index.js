@@ -16,7 +16,8 @@ export const GetMessageDetailByIdAndStatus = (id, status) => {
         return "/pvmtsys/noticeReader/queryNoticeOne/" + id ;
     } 
 }
-
+/*****删除消息 */
+export const DeleteSiteMessageById = (id) => "/pvmtsys/messageSystemInfo/deleteMessage/" + id;
 /**Message api GetMessageDataByType */
 export const GetMessageDataByType = (type) => "/pvmtsys/messageSystemInfo/getMassageByType/" + type;
 

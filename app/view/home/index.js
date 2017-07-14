@@ -26,6 +26,7 @@ import './index.scss';
 class Home extends React.Component {
     constructor(props, context) {
         super(props, context)
+        this.tab = this.props.params && this.props.params.tab;
         //只是为了显示不同的标题
         this.state = {
             title: '光伏运维管理平台',  //Header组件标题
@@ -41,7 +42,8 @@ class Home extends React.Component {
         //测试
         // AppModal.loading();
         //加载默认数据
-        this.props.fetchData(this.props.tabIndex);
+        let tab = this.tab != undefined ? parseInt(this.tab) : this.props.tabIndex;
+        this.props.fetchData(tab);
     }
     /**
      * 更新属性
@@ -122,6 +124,7 @@ class Home extends React.Component {
     }
     render() {
         let { title, isShowRight, rightClass, rightContent } = this.state;
+        let _current = this.tab != undefined ? parseInt(this.tab) : this.props.tabIndex;
         return (
             <Page className="home-page">
                 <Header title={title} isShowRight={isShowRight}
@@ -130,7 +133,7 @@ class Home extends React.Component {
                 <div className="home-main">
                     {this.getContentSection()}
                 </div>
-                <HomeBottom tabIndex={this.props.tabIndex} onTabClick={(tab) => this.changeTabHandler(tab)} />
+                <HomeBottom tabIndex={_current} onTabClick={(tab) => this.changeTabHandler(tab)} />
             </Page>
         )
     }
