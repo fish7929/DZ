@@ -6,10 +6,9 @@
  **/
 'use strict';
 import React, { PropTypes } from 'react';
-import { FIRST, SECOND, THREE } from '../../static/const/constants';
+import { FIRST,  SECOND, THREE } from '../../static/const/constants';  //
 import { hashHistory } from 'react-router';
 import './index.scss'
-
 class WorkOrderItem extends React.Component {
     constructor(props, context) {
         super(props, context)
@@ -24,11 +23,13 @@ class WorkOrderItem extends React.Component {
      * 提交事件处理
      * @param {object} e 事件对象 
      * @param {number} id 工单ID
+     * @param {string} number 工单号
      */
-    onSubmitHandler(e, id) {
+    onSubmitHandler(e, id, number) {
         e.preventDefault();
         e.stopPropagation();
         console.log('提交', id);
+        this.props.onSubmit && this.props.onSubmit(id, number);
     }
     /**
      * 提交事件处理
@@ -95,7 +96,7 @@ class WorkOrderItem extends React.Component {
                     {status == FIRST ? null : <div><span className="work-order-item-edit"></span><span className={departureState}></span></div>}
                 </div>
                 {status == FIRST ? null : <div className="work-order-item-submit">
-                    <div className="common-active" onClick={(e) => this.onSubmitHandler(e, data.orderId)}>提交</div>
+                    <div className="common-active" onClick={(e) => this.onSubmitHandler(e, data.orderId, data.orderNumber)}>提交</div>
                     <span>点击提交才算完成任务</span>
                 </div>}
             </li>
@@ -105,7 +106,8 @@ class WorkOrderItem extends React.Component {
 }
 
 WorkOrderItem.PropTypes = {
-    data: PropTypes.object.isRequired
+    data: PropTypes.object.isRequired,
+    onSubmit: PropTypes.func
 }
 
 export default WorkOrderItem

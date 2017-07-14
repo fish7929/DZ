@@ -5,6 +5,8 @@ export const MessageCenter = "/pvmtsys/messageSystemInfo/getIsReadCount";
 
 /**home api GetWorkOrdrDataByStatus */
 export const GetWorkOrdrDataByStatus = (status) => "/pvmtsys/workOrderInfo/orderlist/" + status;
+/***提交工单 */
+export const SubmitWorkOrdrByIdAndNumber = (orderId, orderNumber) => "/pvmtsys/workOrderInfo/orderSubmit/" + orderId + "/" + orderNumber;
 
 export const GetNoticeList = () => "/pvmtsys/noticeReader/queryNoticeList"
 
@@ -67,6 +69,9 @@ export const CompletedPhysicalByOrder = (orderNumber) => '/pvmtsys/workOrderInfo
 export const GetFacilityList = (powerStationId) => '/pvmtsys/powerStation/getEquipmentType/' + powerStationId;
 /**FaultDetail api GetFaultDetailById + id */ 
 export const GetFaultDetailById = (id) => "/pvmtsys/faultInfo/getFaultInfo/" + id;
+
+/***保存故障反馈处理信息 */ 
+export const SaveFaultSolve = () => "/pvmtsys/faultInfo/saveFaultSolve";
 
 /**七日工单完成量 图表 */
 export const GetWorkOrderCompletion = () => '/pvmtsys/workOrderInfo/workOrderCompletion'

@@ -17,16 +17,17 @@ import NoMessage from '../../component/noMessage';
 import UploadComponent from '../../component/uploadComponent';
 
 import { fetchData } from './reducer/action';
-
+import * as utils from '../../utils'
+import * as Api from '../../static/const/apiConst';
 import './index.scss'
-
+import { hashHistory } from 'react-router';
 import { ZERO, FIRST, SECOND, THREE } from '../../static/const/constants';
 
 class FaultDetail extends React.Component {
 
     constructor(props, context) {
         super(props, context)
-        let id = this.props.params && this.props.params.id;  //工单号
+        let id = this.props.params && this.props.params.id;  //故障ID
         this.id = parseInt(id);
         let status = this.props.params && this.props.params.status;  //状态0 未处理， 1已处理
         this.status = parseInt(status);
@@ -40,21 +41,56 @@ class FaultDetail extends React.Component {
         }
         this.state = {
             list: this.props.list,
-            isSolve: FIRST
+            isSolve: SECOND
         }
+    }
+    selectDealResultHandler(e, isSolve){
+        e.preventDefault();
+        e.stopPropagation();
+        this.setState({isSolve});
     }
     /**
      * 提交离场申请保存.
      * @param {object} e 事件对象
      */
-    onSaveHandler(param) {
-        console.log(param, 'save');
-        let oldList = this.state.list;
-        oldList.physical.push(param);
-        this.setState({
-            isAdd: false,
-            list: oldList
-        });
+    onSaveHandler(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        let { list } = this.state;
+        let uploadComponent = this.refs.dealUploadComponent;
+        let upload = uploadComponent.getUploadContent();
+        let opt = {
+            faultId: this.id,
+            solveId: list.solveId, //？？？？？是什么
+            solveResult: this.state.isSolve
+        }
+        opt.solveInfo = upload.explain;
+        opt.fileInfo = upload.photos;
+        console.log(opt, 'save');
+        /**
+         * faultId
+         * fileInfo		array<object>	
+            filename	文件名称	string	
+            filepath
+         *solveId	处理故障id
+         *solveInfo	处理说明
+         *solveResult	处理结果	number	2-已解决 3-未解决
+         */
+        let url = Api.SaveFaultSolve();
+        
+        utils.fetchUtils(url, opt, "POST").then((res) => {
+            AppModal.hide()
+            if (res.data) {
+                AppModal.toast('提交成功');
+                setTimeout(() => {
+                    AppModal.hide()
+                    hashHistory.goBack();
+                }, 1000);
+            }else{
+                AppModal.toast('提交失败');
+            }
+
+        }).catch((e) => AppModal.hide());
     }
     /**
      * 渲染基本信息
@@ -99,7 +135,8 @@ class FaultDetail extends React.Component {
                     处理结果
                     <span className="no-wrap">{resultStr}</span>
                 </div>
-                <UploadComponent type={FIRST} photos={photos} explain={explain} uploadModule='faultdetail'/>
+                <UploadComponent type={FIRST} photos={photos} explain={explain} 
+                ref="dealUploadComponent" uploadModule='faultdetail'/>
             </div>
         );
     }
@@ -149,7 +186,8 @@ class FaultDetail extends React.Component {
                     {timeHint}
                     <span className="no-wrap">{time}</span>
                 </div>
-                <UploadComponent type={FIRST} photos={photos} explain={explain} uploadModule='faultdetail' />
+                <UploadComponent type={FIRST} photos={photos} explain={explain} 
+                ref="dealUploadComponent" uploadModule='faultdetail' />
             </div>
         );
     }
@@ -175,11 +213,11 @@ class FaultDetail extends React.Component {
                 <div className="common-divide deal-result">处理结果</div>
                 <div className="deal-result-select">
                     <label htmlFor="dealResult1"><input type="radio" name="dealResult"
-                        id="dealResult1" checked={isSolve == FIRST} onChange={(e) => this.selectDealResultHandler(e, FIRST)} />
+                        id="dealResult1" checked={isSolve == SECOND} onChange={(e) => this.selectDealResultHandler(e, SECOND)} />
                         以解决
                     </label>
                     <label htmlFor="dealResult0"><input type="radio" name="dealResult"
-                        id="dealResult0" checked={isSolve == ZERO} onChange={(e) => this.selectDealResultHandler(e, ZERO)} />
+                        id="dealResult0" checked={isSolve == THREE} onChange={(e) => this.selectDealResultHandler(e, THREE)} />
                         未解决
                     </label>
                 </div>
@@ -226,7 +264,7 @@ class FaultDetail extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps) {
-            this.setState({ list: nextProps.list, isSolve: FIRST });
+            this.setState({ list: nextProps.list, isSolve: SECOND });
         }
     }
 

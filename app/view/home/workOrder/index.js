@@ -5,7 +5,8 @@ import { ZERO, FIRST } from '../../../static/const/constants';
 import WorkOrderItem from '../../../component/workOrderItem';
 import ScrollList from '../../../component/scrollList';
 import './index.scss';
-
+import * as utils from '../../../utils'
+import * as Api from '../../../static/const/apiConst';
 class WorkOrder extends React.Component {
     constructor(props, context) {
         super(props, context)
@@ -39,6 +40,21 @@ class WorkOrder extends React.Component {
         this.setState({currentPage: page});
         this.props.onChange && this.props.onChange(this.state.currentTab, page);
     }
+    onSubmitHandler(orderId, orderNumber){
+        let url = Api.SubmitWorkOrdrByIdAndNumber(orderId, orderNumber);
+        utils.fetchUtils(url, {'orderId': orderId, 'orderNumber': orderNumber}, "POST").then((res) => {
+            AppModal.hide()
+            if (res.data) {
+                AppModal.toast('提交成功');
+                let old = this.state.list;
+                let current = old.filter((item, index) => item.orderNumber != orderNumber );
+                this.setState({list: current});
+            }else{
+                AppModal.toast('提交失败');
+            }
+
+        }).catch((e) => AppModal.hide());
+    }
     render() {
         let { list, currentTab } = this.state;
         console.log(list, 9999);
@@ -52,7 +68,7 @@ class WorkOrder extends React.Component {
                 </div>
                 {/*<ul className="work-order-content">*/}
                 <ScrollList className="work-order-content" onScroll={ page=>this.onScrollHandler(page) } currentPage={ this.state.currentPage } pageTotal={ this.props.total }>
-                    {list.map( (item, index) => <WorkOrderItem data={item} key={index} />)}
+                    {list.map( (item, index) => <WorkOrderItem data={item} key={index} onSubmit={(orderId, orderNumber) => this.onSubmitHandler(orderId, orderNumber) } />)}
                 {/*</ul>*/}
                 </ScrollList>
             </div>
