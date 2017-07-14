@@ -55,9 +55,10 @@ class Physical extends React.Component {
         e.stopPropagation();
         console.log('完成');
         AppModal.loading();
-        let url = Api.CompletedPhysicalByOrder(this.order); //{'orderId': this.order}
+        let orderId = this.param.orderId;
+        let url = Api.CompletedPhysicalByOrder(orderId); //{'orderId': this.order}
         
-        utils.fetchUtils(url, {'orderId': this.order}, "POST").then((res) => {
+        utils.fetchUtils(url, {'orderId': orderId}, "POST").then((res) => {
             AppModal.hide()
             if (res.data) {
                 AppModal.toast('提交成功');

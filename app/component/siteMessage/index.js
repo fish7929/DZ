@@ -13,7 +13,8 @@ import SwipeWrapper from '../swipeWrapper';
 import ScrollList from '../scrollList';
 
 import './index.scss'
-
+import * as utils from '../../utils';
+import * as Api from '../../static/const/apiConst';
 class SiteMessage extends React.Component {
     /**
      * 构造函数
@@ -42,9 +43,9 @@ class SiteMessage extends React.Component {
      * @param {string} itemRef ref 值
      */
     onSwipeLeftHandler(itemRef) {
-        console.log('onSwipeLeftHandler');
+        console.log('onSwipeLeftHandler', itemRef);
         let messageItem = ReactDOM.findDOMNode(this.refs[itemRef]);
-        console.log(messageItem);
+        console.log(messageItem, "hahah");
         if (messageItem) {
             console.log(messageItem.style.transform);
             messageItem.style.transform = 'translateX(-' + (160 / 28) + 'rem)'
@@ -76,10 +77,21 @@ class SiteMessage extends React.Component {
         console.log('onDeleteSiteMessageHandler');
         //todo 去删除ID
         // /pvmtsys/messageSystemInfo/deleteMessage/{id}
+        let  url = Api.DeleteSiteMessageById(id);
+        utils.fetchUtils(url).then((res) => {
+            AppModal.hide()
+            if (res.data) {
+                AppModal.toast('删除成功');
+                let oldList = this.state.list;
+                let newList = oldList.filter((item, index) => item.id != id);
+                this.setState({list: newList});
+            }else{
+                AppModal.toast('删除失败');
+            }
+
+        }).catch((e) => AppModal.hide());
         
-        let oldList = this.state.list;
-        let newList = oldList.filter((item, index) => item.id != id);
-        this.setState({list: newList});
+        
     }
     /**
      * DOM加载完成

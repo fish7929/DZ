@@ -17,7 +17,7 @@ import NoMessage from '../../component/noMessage';
 import UploadComponent from '../../component/uploadComponent';
 
 import { fetchData } from './reducer/action';
-
+import { hashHistory } from 'react-router';
 import './index.scss'
 
 import { ZERO, FIRST } from '../../static/const/constants';
@@ -71,6 +71,10 @@ class Departure extends React.Component {
             AppModal.hide()
             if (res.data) {
                 AppModal.toast('提交成功');
+                setTimeout(() => {
+                    AppModal.hide()
+                    hashHistory.push('/home/1')
+                }, 1000);
             }else{
                 AppModal.toast('提交失败');
             }
