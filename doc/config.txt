@@ -9,3 +9,19 @@ gitlab地址：git.chilunyc.com
 测试账号： yw003 密码;123456
 
 http://api.map.baidu.com/api?v=2.0&ak=3j6qn3gMTZgGCzOegAxyF3wP
+
+124.205.52.126 端口：852
+账号：ynzftp
+密码：321321
+@平凡最浪漫 ftp服务器
+
+
+api地址：http://124.205.52.126:846/pvmtsys
+
+线上项目访问目录：http://www.yunengzhe.com/pvmts_app/files/
+微信登录接口：http://www.yunengzhe.com/wechat
+
+做成可配置
+
+微信开放平台：
+AppID：wx722e14d99d7758de

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html"  />
+ 
+ 
+    <title></title>
+    <script src="http://code.jquery.com/jquery-2.1.0.js"></script> 
+    <script type="text/javascript">
+		function GetRequest() {
+            var url = location.search; //获取url中"?"符后的字串
+            var theRequest = {};
+            if (url.indexOf("?") != -1) {  //从"?"开始获取字符串不等于-1
+                var str = url.substr(1);    //获取"?"号从1的位置开始后面的字符串赋值给str
+                strs = str.split("&");  //把获取到的字符串进行数组分割每一个"&"之后都成为一个数组赋值给strs
+                for (var i = 0; i < strs.length; i++) {     //循环数组长度
+                    theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);    //解码字符串strs[i]从中分割“=”的第一个数组赋值给theRequest变量
+                }
+            }
+            return theRequest;//getData
+        }
+ 
+         $(document).ready(function () {
+            var weixininfo = GetRequest()["weixinInfo"];
+				alert(weixininfo)
+		 });
+		 
+</script>
+		
+</head>
+<body>	<br />	<br />
+    <div> callback page</div>
+</body>
+</html>
