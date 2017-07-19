@@ -74,9 +74,9 @@
     select{
         padding-right: calc-rem(50);
         min-width: calc-rem(200);
-        height: 100%;
+        height: calc-rem(40);
         letter-spacing: calc-rem(1.53);
-        line-height: calc-rem(28);
+        line-height: calc-rem(40);
         font-size: calc-rem(32);
         color: #333333;
         border: 0;
