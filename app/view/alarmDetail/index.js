@@ -80,7 +80,11 @@ class AlarmDetail extends React.Component{
                 imageOffset: new BMap.Size(0, 0 - 0 * 25)
             });
             let marker = new BMap.Marker(point, {icon: myIcon});  // 创建标注
-	        this.map.addOverlay(marker);              // 将标注添加到地图中
+            this.map.addOverlay(marker);              // 将标注添加到地图中
+            this.map.disableDragging();
+            this.map.disableScrollWheelZoom();
+            this.map.disableDoubleClickZoom();
+            this.map.disablePinchToZoom();
         }
         let _disabled = alarmData.status == 0 ? 0 : 1
         return(

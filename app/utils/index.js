@@ -4,6 +4,7 @@
  * 工具类
  */
 'use strict'
+import 'whatwg-fetch';  // 可以引入fetch来进行Ajax
 import {size, each, assignIn} from "lodash";
 import { hashHistory } from 'react-router'
 import * as RouterConst from '../static/const/routerConst'
@@ -63,7 +64,6 @@ export function fetchUtils(url, param, type = "GET", headers = {}, dataType = "j
 
 const fetchMsg = (url, param, type = "GET", headers={}, repType="json") => {
     return (dispatch, getState) => {
-
         if(type.toLocaleUpperCase()==="GET"&&size(param)>0){
             url +="?"+toExcString(param)
         }
@@ -78,7 +78,7 @@ const fetchMsg = (url, param, type = "GET", headers={}, repType="json") => {
         return fetch(url, {
             method: type.toLocaleUpperCase(),
             headers: headers,
-            credentials: 'same-origin',
+            // credentials: 'same-origin',
             body: type.toLocaleUpperCase()==="GET"? undefined : (repType=="json" ? JSON.stringify(param):param)
         })  
         .then((res) => {
@@ -87,6 +87,7 @@ const fetchMsg = (url, param, type = "GET", headers={}, repType="json") => {
         .then((data) => {
             return data;
         })
+        .catch((error) => {console.log(error)})
     }
 }
 
@@ -112,11 +113,8 @@ export function sendMsg(url, param, type = "GET",headers={}, repType="json"){
             token
         }
     }
-
     return (dispatch, getState) => {
-        
         return new Promise(function(resolve, reject){
-            
             dispatch(fetchMsg(url, param, type, headers, repType))
             .then(data=>{
                 if(data.code === 1 || data.code === 0 || data.message){

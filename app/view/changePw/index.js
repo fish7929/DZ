@@ -62,10 +62,10 @@ class ChangePw extends React.Component{
 
                 <div className="main-div">
                     <div className="password-div">
-                        <div><span></span><input type="text" placeholder="请输入旧密码" value={oldPw} onChange={(e)=>this.onInputChange(e, "oldPw")} /></div>
+                        <div><span></span><input type="password" placeholder="请输入旧密码" value={oldPw} onChange={(e)=>this.onInputChange(e, "oldPw")} /></div>
                     </div>
                     <div className="password-div">
-                        <div><span></span><input type="text" placeholder="请输入新密码" value={newPw} onChange={(e)=>this.onInputChange(e, "newPw")} /></div>
+                        <div><span></span><input type="password" placeholder="请输入新密码" value={newPw} onChange={(e)=>this.onInputChange(e, "newPw")} /></div>
                     </div>
                 </div>
                 <button className="btn-comfirm" onClick={()=>this.onClickHandler()}>确认修改</button>

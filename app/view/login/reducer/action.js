@@ -24,8 +24,11 @@ export const userLogin = (userName, password) => dispatch => {
         username: userName,
         password: password
     }
-
     dispatch(utils.sendMsg(url, opt, "POST")).then(data => {
+        if(data == null){
+            AppModal.toast("登录失败，用户名密码错误！")
+            return
+        }
         Base.setLocalStorageObject("user", data)
         hashHistory.push(RouterConst.ROUTER_HOME)
     })

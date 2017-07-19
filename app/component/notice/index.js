@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react'
+import { hashHistory } from 'react-router'
 
 import Scroll from './scroll'
+
+import * as RouterConst from '../../static/const/routerConst'
 
 import './index.scss'
 
@@ -28,6 +31,13 @@ class Notice extends React.Component{
         }
     }
 
+    onItemClickHandler(e){
+        var target = e.target;
+        if(target.dataset.id){
+            hashHistory.push(RouterConst.ROUTER_MESSAGE_DETAIL + "/" + target.dataset.id + "/2")
+        }
+    }
+
     render(){
         let { data } = this.props
         return (
@@ -36,9 +46,9 @@ class Notice extends React.Component{
                     <span className="icon-notice"></span>
                     <span className="title-notice">公告</span>
                 </div>
-                <div id="myscroll" className="cls_container">
+                <div id="myscroll" className="cls_container" onClick={(e)=>this.onItemClickHandler(e)}>
                     <ul>
-                        {data.map((obj, index)=><li key={index} className="no-wrap">{obj.name}</li>)}
+                        {data.map((obj, index)=><li key={index} className="no-wrap" data-id={obj.id}>{obj.name}</li>)}
                     </ul>
                 </div>
             </div>
