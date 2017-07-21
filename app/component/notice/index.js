@@ -25,7 +25,7 @@ class Notice extends React.Component{
 
     componentDidUpdate(){
         let { data } = this.props
-        if(data.length && this.init){
+        if(data.length > 1 && this.init){
             this.myscroll.init("myscroll")
             this.init = false
         }
@@ -47,8 +47,9 @@ class Notice extends React.Component{
                     <span className="title-notice">公告</span>
                 </div>
                 <div id="myscroll" className="cls_container" onClick={(e)=>this.onItemClickHandler(e)}>
+
                     <ul>
-                        {data.map((obj, index)=><li key={index} className="no-wrap" data-id={obj.id}>{obj.name}</li>)}
+                        {data.length > 0 ? data.map((obj, index)=><li key={index} className="no-wrap" data-id={obj.id}>{obj.name}</li>) : <li>暂没有未读公告</li>}
                     </ul>
                 </div>
             </div>

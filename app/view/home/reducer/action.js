@@ -68,7 +68,7 @@ let getNoticeList = dispatch => {
     let url = Api.GetNoticeList()
     let opt = {
         page: 1,
-        pagesize: 5,
+        pagesize: 10,
     }
     dispatch(utils.sendMsg(url, opt, "POST")).then(data => {
         dispatch({

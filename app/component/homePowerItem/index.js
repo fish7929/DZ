@@ -11,7 +11,7 @@ class HomePowerItem extends React.Component{
     render(){
         let {data} = this.props
         return(
-            <div className="home-power-item">
+            <div className="home-power-item" onClick={this.props.onClick}>
                 <div className="home-power-item-header">
                     <div className="header-icon"></div>
                     <div className="header-txt no-wrap">{data.name}</div>
@@ -49,7 +49,8 @@ class HomePowerItem extends React.Component{
 }
 
 HomePowerItem.PropTypes = {
-    data: PropTypes.object.isRequired
+    data: PropTypes.object.isRequired,
+    onClick: PropTypes.func
 }
 
 

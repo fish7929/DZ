@@ -30,8 +30,7 @@ class AlarmDetail extends React.Component{
         this.props.getAlarmList(id)
         utils.getCurrentPosition().then((r)=>{
             this.map = new BMap.Map("allMap")
-            let p = new BMap.Point(r.point.lng, r.point.lat)
-            this.map.centerAndZoom(p, 15);
+            
             this.setState({mapIsReady: true})
         })
     }
@@ -85,6 +84,7 @@ class AlarmDetail extends React.Component{
             this.map.disableScrollWheelZoom();
             this.map.disableDoubleClickZoom();
             this.map.disablePinchToZoom();
+            this.map.centerAndZoom(point, 15);
         }
         let _disabled = alarmData.status == 0 ? 0 : 1
         return(
