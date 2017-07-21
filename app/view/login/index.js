@@ -65,6 +65,10 @@ class Login extends React.Component{
         this.props.userLogin(username, password)
     }
 
+    onWXLoginHandler(){
+        window.open("http://www.yunengzhe.com/wechat/login/weixin?redirect_uri=http://www.yunengzhe.com/pvmts_app/files/wxLogin.html","_self");
+    }
+
     render(){
         let { username, password } = this.state
         return(
@@ -81,7 +85,7 @@ class Login extends React.Component{
                 </div>
                 <div className="btn-div">
                     <button onClick={()=>this.onLoginHandler()}>登录</button>
-                    <button onClick={()=>this.onLoginHandler()}><span className="icon-wx" />微信登录</button>
+                    <button onClick={()=>this.onWXLoginHandler()}><span className="icon-wx" />微信登录</button>
                 </div>
             </Page>
         )
