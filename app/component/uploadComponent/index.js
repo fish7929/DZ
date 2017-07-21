@@ -11,13 +11,20 @@ class UploadComponent extends React.Component {
         this.state = {
             type: this.props.type,
             photoHint: this.props.photoHint,
-            photos: this.props.photos || [],
+            photos: this.props.photos ? [...this.props.photos] : [],
             explainHint: this.props.explainHint,
             explain: this.props.explain || ''
         }
     }
 
     componentDidMount() {
+        this.setState({
+            type: this.props.type,
+            photoHint: this.props.photoHint,
+            photos: this.props.photos ? [...this.props.photos] : [],
+            explainHint: this.props.explainHint,
+            explain: this.props.explain || ''
+        }, ()=>console.log(this.state))
     }
     /**
      * 修改状态
@@ -85,7 +92,7 @@ class UploadComponent extends React.Component {
         this.setState({
             type: nextProps.type,    //消息框类型
             photoHint: nextProps.photoHint,
-            photos: nextProps.photos || [],
+            photos: nextProps.photos ? [...nextProps.photos] : [],
             explainHint: nextProps.explainHint,
             explain: nextProps.explain || ""
         });
@@ -116,7 +123,7 @@ class UploadComponent extends React.Component {
                                     onClick={(e) => this.deletePhotoHandler(e, index)}></span>}
                             </li>
                         )}
-                        {_disabled ? null : <li key={photos.length}
+                        {_disabled || photos.length >=5 ? null : <li key={photos.length}
                             className={"upload-photo-item upload-photo-btn " + photoBtn}>
                             <input name="file" className="upload-inpu-file" type="file" accept="video/*,image/*" onChange={(e) => this.choosePhotoHandler(e)} />
                             <span className="upload-photo-btn-span xy-center"></span>

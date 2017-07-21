@@ -65,23 +65,27 @@ class Login extends React.Component{
         this.props.userLogin(username, password)
     }
 
+    onWXLoginHandler(){
+        window.open("http://www.yunengzhe.com/wechat/login/weixin?redirect_uri=http://www.yunengzhe.com/pvmts_app/files/wxLogin.html","_self");
+    }
+
     render(){
         let { username, password } = this.state
         return(
             <Page className="login-container">
-                <Header title="登陆" isShowBack={false} />
+                <Header title="登录" isShowBack={false} />
 
                 <div className="input-user-div">
                     <span className="icon"></span>
-                    <input type="text" value={username} onChange={(e)=>this.onPhoneChange(e)} placeholder="请输入手机号" />
+                    <input type="text"  className="ime-disabled" value={username} onChange={(e)=>this.onPhoneChange(e)} placeholder="请输入手机号" />
                 </div>
                 <div className="input-pw-div">
                     <span className="icon"></span>
                     <input type="password" value={password} onChange={(e)=>this.onPasswordChange(e)} placeholder="请输入密码" />
                 </div>
                 <div className="btn-div">
-                    <button onClick={()=>this.onLoginHandler()}>登陆</button>
-                    <button onClick={()=>this.onLoginHandler()}><span className="icon-wx" />微信登陆</button>
+                    <button onClick={()=>this.onLoginHandler()}>登录</button>
+                    <button onClick={()=>this.onWXLoginHandler()}><span className="icon-wx" />微信登录</button>
                 </div>
             </Page>
         )

@@ -102,7 +102,7 @@ export default function homeData(state = initialState, action) {
         case ActionType.HOME_INIT_NOTICE_LIST:
             return {
                 ...state,
-                noticeList: action.data.results
+                noticeList: action.data.results.filter(obj=>obj.type==0)
             }
         case ActionType.HOME_INIT_USER_POWER_STATION:
             return{

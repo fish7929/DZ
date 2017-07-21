@@ -81,12 +81,7 @@ class ChartItem extends React.Component {
             xAxis: {
                 data: data.map(obj=>obj.name),
                 axisLabel: {
-                    textStyle: {
-                        color: '#000'
-                    },
-                    formatter: (value, index) => {
-                        return xLabel[index]
-                    }
+                    show: false
                 },
                 axisTick: {
                     show: false
@@ -238,12 +233,7 @@ class ChartItem extends React.Component {
             xAxis: {
                 data: data.map(obj=>obj.name),
                 axisLabel: {
-                    textStyle: {
-                        color: '#000'
-                    },
-                    formatter: (value, index) => {
-                        return xLabel[index]
-                    }
+                    show: false
                 },
                 axisTick: {
                     show: false

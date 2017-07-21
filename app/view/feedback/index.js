@@ -74,6 +74,16 @@ class Feedback extends React.Component{
             return
         }
 
+        if(!powerStationId){
+            AppModal.toast('请选择电站名称');
+            return
+        }
+
+        if(!deviceTypeId){
+            AppModal.toast('请选择设备类型');
+            return
+        }
+
         let uploadComponent = this.refs.dealUploadComponent;
         let uploadObj = uploadComponent.getUploadContent();
 

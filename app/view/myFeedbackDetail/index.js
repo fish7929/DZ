@@ -79,13 +79,13 @@ class MyFeedbackDetail extends React.Component{
 
 let mapStateToProps = state => ({
     powerStationName: state.myFeedbackDetailReducer.powerStationName,
-    faultSource: state.myFeedbackDetailReducer.powerStationName,
-    faultStatus: state.myFeedbackDetailReducer.powerStationName,
-    faultGrade: state.myFeedbackDetailReducer.powerStationName,
-    equipmentType: state.myFeedbackDetailReducer.powerStationName,
-    faultMessage: state.myFeedbackDetailReducer.powerStationName,
-    state: state.myFeedbackDetailReducer.powerStationName,
-    attachmentList: state.myFeedbackDetailReducer.powerStationName,
+    faultSource: state.myFeedbackDetailReducer.faultSource,
+    faultStatus: state.myFeedbackDetailReducer.faultStatus,
+    faultGrade: state.myFeedbackDetailReducer.faultGrade,
+    equipmentType: state.myFeedbackDetailReducer.equipmentType,
+    faultMessage: state.myFeedbackDetailReducer.faultMessage,
+    state: state.myFeedbackDetailReducer.state,
+    attachmentList: state.myFeedbackDetailReducer.attachmentList,
 })
 
 let mapDispatchToProps = (dispatch) => {

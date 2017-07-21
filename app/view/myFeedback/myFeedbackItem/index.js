@@ -19,7 +19,7 @@ class MyFeedbackItem extends React.Component{
         return(
             <div className="my-feedback-item" onClick={onClick}>
                 <div className="item-header">
-                    <span className="title-txt no-wrap">{data.powerStationBaseInfo.address}</span>
+                    <span className="title-txt no-wrap">{data.powerStationBaseInfo.name}</span>
                     <span className="icon status_0"></span>
                 </div>
                 <div className="device-div">

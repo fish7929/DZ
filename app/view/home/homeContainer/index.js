@@ -14,10 +14,13 @@ import * as RouterConst from '../../../static/const/routerConst'
 import * as HomeConst from '../reducer/const'
 
 import './index.scss'
-
+const MaxPS = 4
 class HomeContianer extends React.Component {
     constructor(props, context) {
         super(props, context)
+        this.state = {
+            isShow: false,
+        }
     }
 
     componentDidMount() {
@@ -65,10 +68,21 @@ class HomeContianer extends React.Component {
                     <div className="home-list-title-div">
                         <span></span>电站监控
                     </div>
-                    <div className="home-monitor-list">
-                        { psList.map((obj, key) => <HomePowerItem key={key} data={obj} />)}
+                    <div ref="flipList" className="home-monitor-list">
+                        { psList.map((obj, key) => {
+                            if(this.state.isShow == false && key >= MaxPS){
+                                return ""
+                            }else{
+                                return <HomePowerItem key={key} data={obj} onClick={()=>hashHistory.push(RouterConst.ROUTER_POWER_STATION_MONITOR_DETAIL + "/" + obj.id)} />
+                            }
+                        })}
                     </div>
-                    <button className="btn-monitor-more">展开</button>
+                    { psList.length > MaxPS ? 
+                        this.state.isShow == false ? 
+                            <button className="btn-monitor-more" onClick={()=>this.setState({isShow: true})}>展开</button> 
+                            :  
+                            <button className="btn-monitor-more" onClick={()=>this.setState({isShow: false})}>收起</button> 
+                        : "" }
                 </div>
 
                 <div className="home-rp-content">

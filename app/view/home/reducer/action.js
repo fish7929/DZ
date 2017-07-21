@@ -68,7 +68,7 @@ let getNoticeList = dispatch => {
     let url = Api.GetNoticeList()
     let opt = {
         page: 1,
-        pagesize: 5,
+        pagesize: 10,
     }
     dispatch(utils.sendMsg(url, opt, "POST")).then(data => {
         dispatch({
@@ -119,10 +119,10 @@ let getUserPowerStation = dispatch => {
         dispatch({
             type: ActionType.HOME_INIT_USER_POWER_STATION,
             data: {
-                psList: data.results.map(obj => { return { ...obj }}),
-                prList: data.results.map(obj => { return {name: obj.name, value: obj.pr}}),
-                fbList: data.results.map(obj => { return {name: obj.name, value: obj.alarms}}),
-                fdList: data.results.map(obj => { return {name: obj.name, value: [obj.installCapacity, obj.generationDaily]}})
+                psList: data.map(obj => { return { ...obj }}),
+                prList: data.map(obj => { return {name: obj.name, value: obj.pr}}),
+                fbList: data.map(obj => { return {name: obj.name, value: obj.alarms}}),
+                fdList: data.map(obj => { return {name: obj.name, value: [obj.installCapacity, obj.generationDaily]}})
             }
         })
     })

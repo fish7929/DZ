@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html"  />
+ 
+ 
+    <title></title>
+    <script src="http://code.jquery.com/jquery-2.1.0.js"></script> 
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+ 
+		});
+ 
+		 function getMobileCode(){   
+			$.ajax({ 
+				 type: 'get', 
+				 url: "http://www.yunengzhe.com/wechat/login/weixin?redirect_uri=http://www.yunengzhe.com/pvmts_app/files/callback.html" ,  
+				 dataType: "json",
+				 success: function(obj){
+					alert("Data: " + obj );
+				
+				},error:function(e){
+				    alert(e);
+				}
+			});
+	  
+		}
+</script>
+		
+</head>
+<body>	<br />	<br /> 
+	 <input id="btnlogin_m" type="button" value="Î¢ÐÅµÇÂ¼--Î¢ÐÅÄÚ²¿ä¯ÀÀÆ÷ÊÚÈ¨" onclick="getMobileCode()"/>
+    <div id="contentDiv"></div>
+</body>
+</html>
