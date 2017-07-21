@@ -20,6 +20,9 @@ export const GetMessageDetailByIdAndStatus = (id, status) => {
 }
 /*****删除消息 */
 export const DeleteSiteMessageById = (id) => "/pvmtsys/messageSystemInfo/deleteMessage/" + id;
+// http://124.205.52.126:846/pvmtsys/messageSystemInfo/updateRead/{id}
+//修改消息状态
+export const ChangeMessageStatusById = (id) => "/pvmtsys/messageSystemInfo/updateRead/" + id;
 /**Message api GetMessageDataByType */
 export const GetMessageDataByType = (type) => "/pvmtsys/messageSystemInfo/getMassageByType/" + type;
 

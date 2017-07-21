@@ -158,7 +158,7 @@ class FaultDetail extends React.Component {
         let dispatcherInfo = list.dispatcherInfo || '';
 
         let name = type == FIRST ? solveName : dispatcherName;
-        let nameHint = type == FIRST ? '维护人员' : '调度人员';
+        let nameHint = type == FIRST ? '运维人员' : '调度人员';
         let time = type == FIRST ? Base.formatTime(solveTime, "yyyy-MM-dd HH:mm") :
             Base.formatTime(dispatcherTime, "yyyy-MM-dd HH:mm");
         let timeHint = type == FIRST ? '运维时间' : '调度时间';
