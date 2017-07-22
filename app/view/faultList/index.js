@@ -23,8 +23,8 @@ class FaultList extends React.Component {
 
     constructor(props, context) {
         super(props, context)
-        let order = this.props.params && this.props.params.order;  //工单号
-        this.order = parseInt(order);
+        this.order = this.props.params && this.props.params.order;  //工单号
+        // this.order = parseInt(order);
         let param = this.props.params && this.props.params.param;  //json对象
         param = Base.myDecodeURIComponent(param);
         this.param = {};

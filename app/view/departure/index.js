@@ -28,8 +28,8 @@ class Departure extends React.Component {
 
     constructor(props, context) {
         super(props, context)
-        let order = this.props.params && this.props.params.order;  //工单号
-        this.order = parseInt(order);
+        this.order = this.props.params && this.props.params.order;  //工单号
+        // this.order = parseInt(order);
         let status = this.props.params && this.props.params.status;  //状态
         this.status = parseInt(status);
         this.state = {

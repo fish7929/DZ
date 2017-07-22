@@ -102,11 +102,14 @@ class UploadComponent extends React.Component {
         let _disabled = type == 1 ? "upload-disabled" : ""; //0未处理，  1 已处理
         let _hint = type == 1 ? '附件' : photoHint;
         let photoBtn = photos.length == 0 ? 'upload-photo-btn-init' : '';
+        let noExplain =  type == 1 && !explain ? 'no-explain-style' : '';
+        explain =  type == 1 && !explain ? '无' : explain;
+        console.log(explain);
         return (
             <div className={"upload-component-wrapper " + _disabled}>
-                <div className="upload-explain-component">
+                <div className={"upload-explain-component " + noExplain}>
                     <div className="upload-explain-hint">{explainHint}</div>
-                    {_disabled ? <textarea type="text" maxLength={50} disabled value={explain}></textarea> :
+                    {_disabled ? <textarea type="text"  maxLength={50} disabled value={explain}></textarea> :
                         <textarea type="text" maxLength={50} value={explain} ref='explain'
                             placeholder="请输入说明（可不填）"
                             onChange={(e) => this.changeStateHandler(e, 'explain')}></textarea>}

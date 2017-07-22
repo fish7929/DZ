@@ -10,9 +10,14 @@ import * as Api from '../../../static/const/apiConst';
 class WorkOrder extends React.Component {
     constructor(props, context) {
         super(props, context)
+        let _list = this.props.data;
+        //按照创建时间排序  默认是未完成的
+        _list.sort(function(a,b){
+            return b.createTime - a.createTime;
+        });
         this.state = {
             currentTab: 0,   //当前标签
-            list: this.props.data,
+            list: _list,
             currentPage: 1
 
         }
@@ -55,15 +60,30 @@ class WorkOrder extends React.Component {
 
         }).catch((e) => AppModal.hide());
     }
+    /**
+     * 选择时间区间
+     * @param {object} e 事件对象
+     */
+    chooseTimeRange(e) {
+        // e.preventDefault();
+        e.stopPropagation();
+        //todo 选择时间区间
+        console.log('choose time');
+    }
     render() {
         let { list, currentTab } = this.state;
-        console.log(list, 9999);
         let _class1 = currentTab == ZERO ? 'work-order-tab-selected' : '';
         let _class2 = currentTab == FIRST ? 'work-order-tab-selected' : '';
+        let count = list.length;
         return (
             <div className="work-order-container">
+                 {currentTab == FIRST ?  <div className="work-order-filter" 
+                 onClick={(e) => this.chooseTimeRange(e)}>2017.4-2017.5</div> : null}
                 <div className="work-order-tabs">
-                    <span className={"common-active " + _class1} onClick={(e) => this.changeTabHandler(e, ZERO)}>未完成</span>
+                    <span className={"common-active " + _class1} onClick={(e) => this.changeTabHandler(e, ZERO)}>
+                        未完成
+                       {currentTab == ZERO ?  <i className="work-order-count-bubble">{count > 99 ? '99+' : count}</i> : null}
+                    </span>
                     <span className={"common-active " + _class2} onClick={(e) => this.changeTabHandler(e, FIRST)}>已完成</span>
                 </div>
                 {/*<ul className="work-order-content">*/}
@@ -77,8 +97,20 @@ class WorkOrder extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.data) {
+            let _list = nextProps.data;
+            if(this.state.currentTab == FIRST){
+                //按照分配时间降序排序  已完成的
+                _list.sort(function(a,b){
+                    return b.allocateTime - a.allocateTime;
+                });
+            }else{
+                //按照创建时间降序排序  默认是未完成的
+                _list.sort(function(a,b){
+                    return b.createTime - a.createTime;
+                });
+            }
             this.setState({
-                list: nextProps.data
+                list: _list
             });
         }
     }
