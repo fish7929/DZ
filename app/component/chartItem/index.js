@@ -149,12 +149,13 @@ class ChartItem extends React.Component {
                         opacity:0
                     }
                 },
-                position: function (pos, params, dom, rect, size) {
-                    // 鼠标在左侧时 tooltip 显示到右侧，鼠标在右侧时 tooltip 显示到左侧。
-                    var obj = {top: 60};
-                    obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
-                    return obj;
-                },
+                confine: true,
+                // position: function (pos, params, dom, rect, size) {
+                //     // 鼠标在左侧时 tooltip 显示到右侧，鼠标在右侧时 tooltip 显示到左侧。
+                //     var obj = {top: 60};
+                //     obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+                //     return obj;
+                // },
                 formatter: '{b1}<br />{c1}' + (unitY || "")
             },
             grid: {
@@ -230,6 +231,10 @@ class ChartItem extends React.Component {
         let {unitY, barBgColor, barColors, legend, data} = this.props
         barColors = barColors || ['#87E2F8', '#3899EB']
         return {
+            legend: {
+                data: legend,
+                bottom: 0
+            },
             xAxis: {
                 data: data.map(obj=>obj.name),
                 axisLabel: {
@@ -275,12 +280,13 @@ class ChartItem extends React.Component {
                 axisPointer: {            // 坐标轴指示器，坐标轴触发有效
                     type: 'shadow',        // 默认为直线，可选为：'line' | 'shadow'
                 },
-                position: function (pos, params, dom, rect, size) {
-                    // 鼠标在左侧时 tooltip 显示到右侧，鼠标在右侧时 tooltip 显示到左侧。
-                    var obj = {top: 60};
-                    obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
-                    return obj;
-                },
+                confine: true,
+                // position: function (pos, params, dom, rect, size) {
+                //     // 鼠标在左侧时 tooltip 显示到右侧，鼠标在右侧时 tooltip 显示到左侧。
+                //     var obj = {top: 60};
+                //     obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+                //     return obj;
+                // },
                 // formatter: '{b1}<br />{c1}' + (unitY || "")
             },
             grid: {
