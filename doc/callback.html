@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html"  />
  
  
     <title></title>
-    <script src="http://code.jquery.com/jquery-2.1.0.js"></script> 
+	<script src="base64.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.0.js"></script>  
+	
     <script type="text/javascript">
 		function GetRequest() {
             var url = location.search; //获取url中"?"符后的字串
@@ -22,13 +25,26 @@
  
          $(document).ready(function () {
             var weixininfo = GetRequest()["weixinInfo"];
-				alert(weixininfo)
+			try{
+			var userinfo=Base64.decode(weixininfo); 
+			alert(userinfo);
+			$("#info").html(userinfo);
+			}catch(e){
+				alert(e);
+			} 
 		 });
 		 
 </script>
 		
 </head>
-<body>	<br />	<br />
-    <div> callback page</div>
+<body>
+
+
+get user data success:
+
+<br />	<br />
+    <div id="info"> </div>
+<br />	<br />
+	
 </body>
 </html>
