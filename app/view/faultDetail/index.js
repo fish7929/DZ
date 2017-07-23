@@ -127,7 +127,7 @@ class FaultDetail extends React.Component {
         let photos = list.attachmentList || [];
         let explain = list.state || '';
         let result = list.solveResult;
-        let resultStr = result == FIRST ? "以解决" : '未解决';  //1 
+        let resultStr = result == FIRST ? "已解决" : '未解决';  //1 
         return (
             <div className="margin-bottom-20">
                 <div className="common-divide">我的处理结果</div>
@@ -158,7 +158,7 @@ class FaultDetail extends React.Component {
         let dispatcherInfo = list.dispatcherInfo || '';
 
         let name = type == FIRST ? solveName : dispatcherName;
-        let nameHint = type == FIRST ? '维护人员' : '调度人员';
+        let nameHint = type == FIRST ? '运维人员' : '调度人员';
         let time = type == FIRST ? Base.formatTime(solveTime, "yyyy-MM-dd HH:mm") :
             Base.formatTime(dispatcherTime, "yyyy-MM-dd HH:mm");
         let timeHint = type == FIRST ? '运维时间' : '调度时间';
@@ -170,7 +170,7 @@ class FaultDetail extends React.Component {
         if(faultStatus == FIRST){
             faultStatusStr = '以分配';
         }else if(faultStatus == SECOND){
-            faultStatusStr = '以解决';
+            faultStatusStr = '已解决';
         }else if(faultStatus == THREE){
             faultStatusStr = '未解决';
         }
@@ -214,7 +214,7 @@ class FaultDetail extends React.Component {
                 <div className="deal-result-select">
                     <label htmlFor="dealResult1"><input type="radio" name="dealResult"
                         id="dealResult1" checked={isSolve == SECOND} onChange={(e) => this.selectDealResultHandler(e, SECOND)} />
-                        以解决
+                        已解决
                     </label>
                     <label htmlFor="dealResult0"><input type="radio" name="dealResult"
                         id="dealResult0" checked={isSolve == THREE} onChange={(e) => this.selectDealResultHandler(e, THREE)} />

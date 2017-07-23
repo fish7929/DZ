@@ -28,8 +28,8 @@ class Physical extends React.Component {
 
     constructor(props, context) {
         super(props, context)
-        let order = this.props.params && this.props.params.order;  //工单号
-        this.order = parseInt(order);
+        this.order = this.props.params && this.props.params.order;  //工单号
+        // this.order = parseInt(order);
         let status = this.props.params && this.props.params.status;  //状态0 未处理， 1已处理
         this.status = parseInt(status);
         let param = this.props.params && this.props.params.param;  //json对象

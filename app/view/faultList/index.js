@@ -23,8 +23,8 @@ class FaultList extends React.Component {
 
     constructor(props, context) {
         super(props, context)
-        let order = this.props.params && this.props.params.order;  //工单号
-        this.order = parseInt(order);
+        this.order = this.props.params && this.props.params.order;  //工单号
+        // this.order = parseInt(order);
         let param = this.props.params && this.props.params.param;  //json对象
         param = Base.myDecodeURIComponent(param);
         this.param = {};
@@ -53,7 +53,7 @@ class FaultList extends React.Component {
      * 显示事故详情
      * @param {object} e 事件对象
      * @param {number} faultId 事故ID
-     * @param {number} type 类型，0 未解决， 1、以解决
+     * @param {number} type 类型，0 未解决， 1、已解决
      * @param {string} faultMsg 故障消息
      */
     showFaultDetailHandler(e, faultId, type, faultMsg) {

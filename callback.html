@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html"  />
+ 
+ 
+    <title></title>
+	<script src="base64.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.0.js"></script>  
+	
+    <script type="text/javascript">
+		function GetRequest() {
+            var url = location.search; //��ȡurl��"?"������ִ�
+            var theRequest = {};
+            if (url.indexOf("?") != -1) {  //��"?"��ʼ��ȡ�ַ���������-1
+                var str = url.substr(1);    //��ȡ"?"�Ŵ�1��λ�ÿ�ʼ������ַ�����ֵ��str
+                strs = str.split("&");  //�ѻ�ȡ�����ַ�����������ָ�ÿһ��"&"֮�󶼳�Ϊһ�����鸳ֵ��strs
+                for (var i = 0; i < strs.length; i++) {     //ѭ�����鳤��
+                    theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);    //�����ַ���strs[i]���зָ=���ĵ�һ�����鸳ֵ��theRequest����
+                }
+            }
+            return theRequest;//getData
+        }
+ 
+         $(document).ready(function () {
+            var weixininfo = GetRequest()["weixinInfo"];
+			try{
+			var userinfo=Base64.decode(weixininfo); 
+			alert(userinfo);
+			$("#info").html(userinfo);
+			}catch(e){
+				alert(e);
+			} 
+		 });
+		 
+</script>
+		
+</head>
+<body>
+
+
+get user data success:
+
+<br />	<br />
+    <div id="info"> </div>
+<br />	<br />
+	
+</body>
+</html>

@@ -24,8 +24,8 @@ class ThirdContact extends React.Component {
 
     constructor(props, context) {
         super(props, context)
-        let order = this.props.params && this.props.params.order;  //工单号
-        this.order = parseInt(order);
+        this.order = this.props.params && this.props.params.order;  //工单号
+        // this.order = parseInt(order);
     }
     /**
      * 根据路由不同获取不同对象

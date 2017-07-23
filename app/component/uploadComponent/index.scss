@@ -42,6 +42,12 @@
             line-height: calc-rem(40);
         }
     }
+    .upload-explain-component.no-explain-style{
+        height: calc-rem(200) !important;
+        textarea{
+            height: calc-rem(80) !important;
+        }
+    }
     .upload-photo-component{
         width: 100%;
         height: calc-rem(420);
@@ -120,6 +126,9 @@
     textarea, .upload-photo-content{
         // border: 0 !important;
         background-color: $whiteColor !important;
+    }
+    .no-explain-style{
+        height: calc-rem(80);
     }
 }
 /**

@@ -3,8 +3,8 @@
 
 .work-order-container{
     width: 100%;
-    height: -webkit-clac(100% - #{calc-rem($topHeight)});
-    height: clac(100% - #{calc-rem($topHeight)});
+    height: -webkit-calc(100% - #{calc-rem($topHeight)});
+    height: calc(100% - #{calc-rem($topHeight)});
     position: relative;
     .work-order-tabs{
         width: 100%;
@@ -34,3 +34,60 @@
         left: 0;
     }
 }
+
+.work-order-count-bubble{
+    position: absolute;
+    color: $whiteColor;
+    font-size: calc-rem(28);
+    display: inline-block;
+    line-height: calc-rem(56);
+    text-align: center;
+    width: calc-rem(56);
+    height: calc-rem(56);
+    background: $yellowColor;
+    border-radius: 100%;
+    margin-right: calc-rem(60);
+    font-style: normal;
+    top: calc-rem(12);
+    margin-left: calc-rem(20);
+}
+
+/****时间筛选器***/
+.work-order-filter{
+    position: fixed;
+    display: inline-block;
+    top: calc-rem(56);
+    right: calc-rem(30);
+    font-size: calc-rem(24);
+    padding: calc-rem(8) 0;
+    background:rgba(216,216,216,.3);
+    color: #4a4a4a;
+    z-index: 999;
+    border-radius: calc-rem(100);
+}
+.input-group{
+    width: calc-rem(120);
+    height: calc-rem(28);
+    input{
+        padding: 0;
+        margin: 0;
+        text-align: center;
+    }
+}
+.input-group+div{
+    top: calc-rem(80) !important;
+    right: calc-rem(-140) !important;
+    left: inherit !important;
+}
+.input-group:nth-of-type(2)+div{
+    right:0 !important;
+}
+.form-control{
+    width: 100%;
+    height: 100%;
+    font-size: calc-rem(24);
+    color: #4a4a4a;
+    background: transparent;
+}
+
+

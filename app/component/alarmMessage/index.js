@@ -31,6 +31,13 @@ class AlarmMessage extends React.Component {
         this.setState({currentPage: page});
         this.props.onScroll(page);
     }
+    setItemIsRead(id) {
+        let {list} = this.state;
+        let currentData = list.find((data, index) => data.id === id);
+        currentData.isread = 1;  //设置已读
+        this.setState({list: list});
+        AppModal.toast('该报警已解除');
+    }
     /**
      * 渲染
      */
@@ -38,7 +45,8 @@ class AlarmMessage extends React.Component {
         return (
             // <ul className="message-content-wrapper">
             <ScrollList className="message-content-wrapper" onScroll={ page=>this.onScrollHandler(page) } currentPage={ this.state.currentPage } pageTotal={ this.props.total }>
-                {this.state.list.map((item, index) => <AlarmMessageItem data={item} key={index} />)}
+                {this.state.list.map((item, index) => <AlarmMessageItem data={item} key={index} 
+                callBack={(id) => this.setItemIsRead(id)}/>)}
             </ScrollList>
             // </ul>
         )

@@ -6,7 +6,7 @@
  **/
 'use strict';
 import React, { PropTypes } from 'react';
-import { FIRST,  SECOND, THREE } from '../../static/const/constants';  //
+import { ZERO, FIRST,  SECOND, THREE } from '../../static/const/constants';  //
 import { hashHistory } from 'react-router';
 import './index.scss'
 class WorkOrderItem extends React.Component {
@@ -56,11 +56,11 @@ class WorkOrderItem extends React.Component {
                     powerstationId: data.powerstationId,
                     orderId: data.orderId
                 };  
-                hashHistory.push('/physical/' + order + "/" + data.physicalState + "/" + Base.myEncodeURIComponent(physicalParam));
+                hashHistory.push('/physical/' + order + "/" + data.state + "/" + Base.myEncodeURIComponent(physicalParam));
                 break;
             case THREE: //离场申请
                 console.log(33333);
-                hashHistory.push('/departure/' + order + "/" + data.departureState);
+                hashHistory.push('/departure/' + order + "/" + data.state);
                 break;
         }
     }
@@ -95,10 +95,10 @@ class WorkOrderItem extends React.Component {
                 <div className="common-item common-pseudo common-active work-order-item-logo" data-hint="离场申请" onClick={(e) => this.onEditTaskHandler(e, THREE)}>
                     {status == FIRST ? null : <div><span className="work-order-item-edit"></span><span className={departureState}></span></div>}
                 </div>
-                {status == FIRST ? null : <div className="work-order-item-submit">
+                {(status == ZERO && faultState == FIRST && physicalState == FIRST && departureState == FIRST) ? <div className="work-order-item-submit">
                     <div className="common-active" onClick={(e) => this.onSubmitHandler(e, data.orderId, data.orderNumber)}>提交</div>
                     <span>点击提交才算完成任务</span>
-                </div>}
+                </div> : null}
             </li>
         )
     }

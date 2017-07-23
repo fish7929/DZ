@@ -11,7 +11,6 @@ import { FIRST, SECOND, THREE } from '../../static/const/constants';
 import { hashHistory } from 'react-router';
 import SwipeWrapper from '../swipeWrapper';
 import ScrollList from '../scrollList';
-
 import './index.scss'
 import * as utils from '../../utils';
 import * as Api from '../../static/const/apiConst';
