@@ -36,9 +36,12 @@
 }
 
 .work-order-count-bubble{
-    position: absolute;
+    position: fixed;
+    z-index: 9999;
+    bottom: calc-rem(42);
+    left: calc-rem(294);
     color: $whiteColor;
-    font-size: calc-rem(28);
+    font-size: calc-rem(24);
     display: inline-block;
     line-height: calc-rem(56);
     text-align: center;
@@ -46,10 +49,7 @@
     height: calc-rem(56);
     background: $yellowColor;
     border-radius: 100%;
-    margin-right: calc-rem(60);
-    font-style: normal;
-    top: calc-rem(12);
-    margin-left: calc-rem(20);
+    pointer-events: none;
 }
 
 /****时间筛选器***/

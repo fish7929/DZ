@@ -130,6 +130,11 @@
     .no-explain-style{
         height: calc-rem(80);
     }
+    .no-photos-style{
+        height: calc-rem(80) !important;
+        padding-left: calc-rem(25);
+        padding-top: calc-rem(20);
+    }
 }
 /**
 *去掉滚动轴

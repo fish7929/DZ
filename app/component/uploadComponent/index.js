@@ -105,6 +105,7 @@ class UploadComponent extends React.Component {
         let noExplain =  type == 1 && !explain ? 'no-explain-style' : '';
         explain =  type == 1 && !explain ? '无' : explain;
         console.log(explain);
+        let noPhotos = (type == 1 && photos.length === 0) ? 'no-photos-style' : '';
         return (
             <div className={"upload-component-wrapper " + _disabled}>
                 <div className={"upload-explain-component " + noExplain}>
@@ -118,7 +119,7 @@ class UploadComponent extends React.Component {
                     <div className="upload-photo-hint">{_hint}
                         {_disabled ? null : <span>视频拍摄长度需小于30秒</span>}
                     </div>
-                    <ul className="upload-photo-content">
+                    <ul className={"upload-photo-content " + noPhotos}>
                         {photos.map((item, index) =>
                             <li key={index} className="upload-photo-item">
                                 <img src={item.filepath} />
@@ -131,6 +132,7 @@ class UploadComponent extends React.Component {
                             <input name="file" className="upload-inpu-file" type="file" accept="video/*,image/*" onChange={(e) => this.choosePhotoHandler(e)} />
                             <span className="upload-photo-btn-span xy-center"></span>
                         </li>}
+                        {_disabled && photos.length === 0 ? '无' : null}
                     </ul>
                 </div>
             </div>

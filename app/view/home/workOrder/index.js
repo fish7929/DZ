@@ -130,10 +130,10 @@ class WorkOrder extends React.Component {
                         selectMode={SELECTMODE.MONTH}
                         onChange={(month) => this.handleSelectMonth(month, 'toMonth')} />
                 </div> : null}
+                {(currentTab == ZERO && this.metaData.length > 0) ? <span className="work-order-count-bubble">{count > 99 ? '99+' : count}</span> : null}
                 <div className="work-order-tabs">
                     <span className={"common-active " + _class1} onClick={(e) => this.changeTabHandler(e, ZERO)}>
                         未完成
-                       {currentTab == ZERO ? <i className="work-order-count-bubble">{count > 99 ? '99+' : count}</i> : null}
                     </span>
                     <span className={"common-active " + _class2} onClick={(e) => this.changeTabHandler(e, FIRST)}>已完成</span>
                 </div>

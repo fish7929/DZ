@@ -23,30 +23,28 @@ class AlarmMessageItem extends React.Component {
     componentDidMount() {
         
     }
-    /**
-     * 
-     * @param {object} e 事件对象
-     * @param {string} id 消息id
-     * @param {number} status 消息类型
-     */
-    toMessageDetailHandler(e, id, status) {
-        // e.preventDefault();
-        e.stopPropagation();
-        let url = Api.ChangeMessageStatusById(id);
-        utils.fetchUtils(url).then((res) => {
-            console.log('更新消息状态失败',  res);
-            if(res && res.data){
-                if(status === THREE){
-                    this.props.callBack && this.props.callBack(id);
-                }else{
-                    console.log('/alarmDetail/' + id);
-                    hashHistory.push('/alarmDetail/' + id );
-                }
-            }
-        }).catch((e) => console.log(e));
-        
-        
-    }
+    // /**
+    //  * 
+    //  * @param {object} e 事件对象
+    //  * @param {string} id 消息id
+    //  * @param {number} status 消息类型
+    //  */
+    // toMessageDetailHandler(e, id, status) {
+    //     // e.preventDefault();
+    //     e.stopPropagation();
+    //     let url = Api.ChangeMessageStatusById(id);
+    //     utils.fetchUtils(url).then((res) => {
+    //         console.log('更新消息状态失败',  res);
+    //         if(res && res.data){
+    //             if(status === THREE){
+    //                 this.props.callBack && this.props.callBack(id);
+    //             }else{
+    //                 console.log('/alarmDetail/' + id);
+    //                 hashHistory.push('/alarmDetail/' + id );
+    //             }
+    //         }
+    //     }).catch((e) => console.log(e));
+    // }
     /**
      * 渲染
      */
@@ -63,7 +61,7 @@ class AlarmMessageItem extends React.Component {
         let readClass = data && data.isread == FIRST ? 'message-read' : '';
         let level = data.alarmgrade || 1;
         return (
-            <li className={"alarm-message-item " + readClass} onClick={(e) => this.toMessageDetailHandler(e, data.id, data.massageStatus)}>
+            <li className={"alarm-message-item " + readClass}>
                 <div className="alarm-message-left">
                     <span className={"alarm-message-logo" + level}></span>
                     <span className={"alarm-message-status" + data.massageStatus}>{massageStatus}</span>
@@ -80,8 +78,8 @@ class AlarmMessageItem extends React.Component {
 }
 
 AlarmMessageItem.PropTypes = {
-    data: PropTypes.object.isRequired,
-    callBack: PropTypes.func
+    data: PropTypes.object.isRequired
+    // callBack: PropTypes.func
 }
 
 export default AlarmMessageItem

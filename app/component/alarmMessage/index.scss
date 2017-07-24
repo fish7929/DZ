@@ -1,0 +1,21 @@
+@import '../../static/css/_mixins.scss';
+@import '../../static/css/_variables.scss';
+
+.alarm-message-swipe{
+    position: relative;
+    width: 100%;
+    height: calc-rem(220);
+    .alarm-message-item-del{
+        position: absolute;
+        right:  calc-rem(-160);
+        top: 0;
+        display: inline-block;
+        width: calc-rem(160);
+        height: 100%;
+        background: #FC0B0B;
+        font-size: calc-rem(28);
+        color: $whiteColor;
+        text-align: center;
+        line-height: calc-rem(195);
+    }
+}
