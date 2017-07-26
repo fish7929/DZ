@@ -3,6 +3,7 @@ import * as ActionType from './actionType'
 const initialState = {
     powerStations: [],
     deveiceTypes: [],
+    deveiceNumbers: []
 }
 
 export default function update (state = initialState, action){
@@ -16,6 +17,11 @@ export default function update (state = initialState, action){
             return {
                 ...state,
                 deveiceTypes: action.data
+            }
+        case ActionType.INIT_FEEDBACK_DEVICE_NUMBER:
+            return{
+                ...state,
+                deveiceNumbers: action.data
             }
         default:
             return state
