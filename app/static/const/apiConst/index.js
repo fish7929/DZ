@@ -107,3 +107,7 @@ export const UserChangePw = () => "pvmtsys/user/resetpsw"
 
 
 export const AffirmAlarm = () => "/pvmtsys/alarmInfo/affirm"
+
+export const getEquipmentBy = () => "/pvmtsys/pointInfo/getPowerStationEquipments.di"
+
+export const BindWEIXIN = () => "/pvmtsys/user/wechatBinding"

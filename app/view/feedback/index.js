@@ -12,7 +12,7 @@ import Page from '../../component/page'
 import Header from '../../component/header'
 import UploadComponent from '../../component/uploadComponent'
 
-import { getMyPowerStationList, getPowerStationDeviceTypes, pushFeedbackMessage } from './reducer/action'
+import { getMyPowerStationList, getPowerStationDeviceTypes, getPowerStationDeviceNumbers, pushFeedbackMessage } from './reducer/action'
 
 import './index.scss'
 
@@ -34,7 +34,7 @@ class Feedback extends React.Component{
     }
 
     reset(){
-        let powerStationId = "", deviceTypeId=""
+        let powerStationId = "", deviceTypeId="", deviceCode=""
         if(this.props.powerStationList.length > 0){
             powerStationId = this.props.powerStationList[0].id
         }
@@ -43,10 +43,14 @@ class Feedback extends React.Component{
             deviceTypeId =  this.props.deveiceTypes[0].id
         }
 
+        if(this.props.deveiceNumbers.length > 0){
+            deviceCode =  this.props.deveiceNumbers[0].id
+        }
+
         this.setState({
             powerStationId: powerStationId,
             deviceTypeId: deviceTypeId,
-            deviceCode: "",
+            deviceCode: deviceCode,
             alarmLevel: 1,
         })
     }
@@ -59,12 +63,24 @@ class Feedback extends React.Component{
         if(this.props.deveiceTypes.length != nextProps.deveiceTypes.length && this.state.deviceTypeId==""){
             this.setState({deviceTypeId: nextProps.deveiceTypes[0].id})
         }
+
+        if(this.props.deveiceNumbers.length != nextProps.deveiceNumbers.length && this.state.deviceCode==""){
+            this.setState({deviceCode: nextProps.deveiceNumbers[0].id})
+        }
     }
 
     onChangeHandler(e, type){
         let state = {}
         state[type] = e.target.value
-        this.setState(state);       
+        if(type == "powerStationId"){
+            state["deviceTypeId"] = ""
+            this.props.getPowerStationDeviceTypes(e.target.value);
+        }else if(type == "deviceTypeId"){
+            state["deviceCode"] = ""
+            this.props.getPowerStationDeviceNumbers(this.state.powerStationId, e.target.value);
+        }
+        
+        this.setState(state);
     }
 
     onPushInfo(type){
@@ -115,7 +131,7 @@ class Feedback extends React.Component{
 
     render(){
         let { powerStationId, deviceTypeId, deviceCode, alarmLevel, desc } = this.state
-        let { powerStationList, deveiceTypes } = this.props
+        let { powerStationList, deveiceTypes, deveiceNumbers } = this.props
 
         return(
             <Page className="feedback-container">
@@ -137,7 +153,9 @@ class Feedback extends React.Component{
                 <div className="feedback-main">
                     <div className="feedback-item">
                         <span>设备编号</span>
-                        <input type="text" placeholder="请输入设备编号" value={deviceCode} onChange={(e)=>this.onChangeHandler(e, "deviceCode")} />
+                        <select onChange={(e)=>this.onChangeHandler(e, "deviceCode")} defaultValue={deviceCode} >
+                            { deveiceNumbers.map((obj, index) => <option key={index} value={obj.id}>{obj.name}</option>) }
+                        </select>
                     </div>
                     <div className="feedback-item">
                         <span>故障级别</span>
@@ -162,10 +180,11 @@ class Feedback extends React.Component{
 let mapStateToProps = state => ({
     powerStationList: state.feedbackReducer.powerStations,
     deveiceTypes: state.feedbackReducer.deveiceTypes,
+    deveiceNumbers: state.feedbackReducer.deveiceNumbers,
 })
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getMyPowerStationList, getPowerStationDeviceTypes, pushFeedbackMessage }, dispatch)
+    return bindActionCreators({ getMyPowerStationList, getPowerStationDeviceTypes, getPowerStationDeviceNumbers, pushFeedbackMessage }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feedback);

@@ -22,6 +22,7 @@ export const getMyPowerStationList = () => dispatch =>{
     dispatch(utils.sendMsg(url, {}, "POST")).then(data => {
         if(data.length > 0){
             getDeviceType(data[0].id, dispatch)
+            
         }
         dispatch(receiveListData(data))
     })
@@ -35,11 +36,31 @@ const receiveDeviceType = data => ({
 
 const getDeviceType = (id, dispatch) => {
     let url = Api.GetPowerStationDeviceTypes(id)
-    dispatch(utils.sendMsg(url, {}, "GET")).then(data => dispatch(receiveDeviceType(data)))
+    dispatch(utils.sendMsg(url, {}, "GET")).then(data =>{
+        if(data.length > 0){
+            getDeviceNumbers(id, data[0].id, dispatch)
+        }
+        dispatch(receiveDeviceType(data))
+    })
 }
 
 export const getPowerStationDeviceTypes = (id) => dispatch => {
     getDeviceType(id, dispatch)
+}
+
+
+const receiveDeviceNumber = data => ({
+    type: ActionType.INIT_FEEDBACK_DEVICE_NUMBER,
+    data: data
+})
+
+const getDeviceNumbers = (powerStationId, deviceTypeId, dispatch) => {
+    let url = Api.getEquipmentBy()
+    dispatch(utils.sendMsg(url, {powerStationId:powerStationId,equipmentType: deviceTypeId}, "GET")).then(data => dispatch(receiveDeviceNumber(data)))
+}
+
+export const getPowerStationDeviceNumbers = (powerStationId, deviceTypeId) => dispatch =>{
+    getDeviceNumbers(powerStationId, deviceTypeId, dispatch)
 }
 
 export const pushFeedbackMessage = opt => dispatch => {
