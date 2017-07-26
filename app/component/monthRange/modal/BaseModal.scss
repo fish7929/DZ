@@ -1,0 +1,37 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom:0;
+  z-index: 1000;
+  background-color:rgba(0,0,0,0.2);
+  width: 100%;
+
+  .modal {
+    position: fixed;
+    top: calc(50% - 103px);
+    left: 40px;
+    bottom: 0;
+    right: 0;
+    z-index: 9001;
+    background-color: #fff;
+    width: calc(100% - 80px);
+    height: 206px;
+  }
+}
+
+.modal-transition-enter {
+  @include fadeIn;
+}
+
+.modal-transition-leave {
+  @include fadeOut;
+}
+
+.modal-transition-enter .modal {
+  @include transitionBottomToUpFn('260',calc(100% - 260px));
+}
+
+.modal-transition-leave .modal {
+  @include transitionUpToBottomFn('260',calc(100% - 260px));
+}

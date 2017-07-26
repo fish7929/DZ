@@ -7,7 +7,7 @@ import ScrollList from '../../../component/scrollList';
 import './index.scss';
 import * as utils from '../../../utils'
 import * as Api from '../../../static/const/apiConst';
-import { Datepicker, SELECTMODE } from 'datepicker-react';
+import MonthRange from '../../../component/monthRange';
 class WorkOrder extends React.Component {
     constructor(props, context) {
         super(props, context)
@@ -20,10 +20,13 @@ class WorkOrder extends React.Component {
             currentTab: 0,   //当前标签
             list: _list,
             currentPage: 1,
-            fromMonth: undefined,
-            toMonth: undefined
+
+            isShow: false,  //测试
+            isSelected: false,
+            month: []
         }
         this.metaData = _list || [];
+        this.defaultMonth = [];
     }
     /**
      * 加载完成
@@ -67,69 +70,82 @@ class WorkOrder extends React.Component {
      * 选择时间区间
      * @param {object} e 事件对象
      */
-    chooseTimeRange(e) {
+    showMonthRange(e) {
         // e.preventDefault();
         e.stopPropagation();
         //todo 选择时间区间
         console.log('choose time');
+        this.setState({isShow: true});
     }
-    handleSelectMonth(month, key) {
-        let obj = {};
-        obj[key] = month;
-        let _time = month._d.getTime();  //获取时间戳
-        let filter = this.state.list;
-        if (key === 'toMonth' && this.metaData.length > 0) {
-            //todo toMonth > fromMonth
-            let _fromMonth = this.state.fromMonth;
-            if (_fromMonth && month - _fromMonth > 0) {
-                let _fromTime = _fromMonth._d.getTime();
-                filter = this.metaData.filter((item, index) => (item.createTime >= _fromTime && item.createTime <= _time));
-            }
-        } else if (key === 'fromMonth' && this.metaData.length > 0) {
-            let _toMonth = this.state.toMonth;
-            console.log(_toMonth - month, 877777);
-            if (_toMonth && _toMonth - month > 0) {
-                let _toTime = _toMonth._d.getTime();
-                filter = this.metaData.filter((item, index) => (item.createTime >= _time && item.createTime <= _toTime));
-            }
+    handleChangeMonth(month) {
+        this.setState({ month: month });
+    }
+
+    closeMonthRange(month) {
+        if (month[0].year <= month[1].year && month[0].month <= month[1].month) {
+            this.defaultMonth = month;
+            this.setState({
+                month: month,
+                isSelected: true,
+                isShow: false,
+            });
+            this.filterListByMonth(month);
+        } else {
+            AppModal.toast('选择筛选月份不符合');
         }
+
+    }
+
+    cancelMonthRange() {
+        this.setState({isShow: true, month: this.defaultMonth});
+    }
+    filterListByMonth(month) {
+        let obj = {};
+        let filter = this.state.list;
+        if (this.metaData.length > 0) {
+            let fromMonth = new Date(month[0].year, month[0].month);
+            let toMonth = new Date(month[1].year, month[1].month);
+            let _fromTime = fromMonth.getTime();
+            let _toTime = toMonth.getTime();
+            filter = this.metaData.filter((item, index) => (item.createTime >= _fromTime && item.createTime <= _toTime));
+        } 
         obj['list'] = filter;
         this.setState(obj);
+    }
+    /**
+     * 获取省市区显示位置
+     */
+    getMonthHint() {
+        let hint = "选择时间";
+        if (this.state.isSelected) {
+            let names = this.state.month.map((item) => {
+                return item.year + '.' + item.month
+            });
+            hint = names.join('-');
+        }
+        return hint;
     }
     render() {
         let { list, currentTab, fromMonth, toMonth } = this.state;
         let _class1 = currentTab == ZERO ? 'work-order-tab-selected' : '';
         let _class2 = currentTab == FIRST ? 'work-order-tab-selected' : '';
         let count = list.length;
+        let _date = new Date();
+        let _year = _date.getFullYear();
+        let _month = _date.getMonth() + 1;
+        let hint = this.getMonthHint();
+        // && this.metaData.length > 0
         return (
             <div className="work-order-container">
-                {(currentTab == FIRST && this.metaData.length > 0) ? <div className="work-order-filter">
-                    <Datepicker
-                        placeholder="选择月"
-                        theme={{
-                            Calendar: {
-                                right: '0.2rem',
-                                left: 'inherit',
-                                position: 'absolute'
-                            }
-                        }}
-                        value={fromMonth}
-                        selectMode={SELECTMODE.MONTH}
-                        onChange={(month) => this.handleSelectMonth(month, 'fromMonth')} />
-                    ~
-                    <Datepicker
-                        placeholder="选择月"
-                        theme={{
-                            Calendar: {
-                                right: '5rem',
-                                left: 'inherit',
-                                position: 'absolute'
-                            }
-                        }}
-                        value={toMonth}
-                        selectMode={SELECTMODE.MONTH}
-                        onChange={(month) => this.handleSelectMonth(month, 'toMonth')} />
-                </div> : null}
+                <MonthRange
+                    range={{ min: { year: (_year - 1), month: _month }, max: { year: _year, month: _month } }}
+                    onCancel={this.cancelMonthRange.bind(this)}
+                    onConfirm={this.closeMonthRange.bind(this)}
+                    visible={this.state.isShow}
+                    onChange={this.handleChangeMonth.bind(this)}>
+                </MonthRange>
+                {(currentTab == FIRST) ?   
+                    <div className="work-order-filter" onClick={(e) => this.showMonthRange(e)}>{hint}</div> : null}
                 {(currentTab == ZERO && this.metaData.length > 0) ? <span className="work-order-count-bubble">{count > 99 ? '99+' : count}</span> : null}
                 <div className="work-order-tabs">
                     <span className={"common-active " + _class1} onClick={(e) => this.changeTabHandler(e, ZERO)}>
@@ -161,8 +177,12 @@ class WorkOrder extends React.Component {
                 });
             }
             this.metaData = _list;
+            this.defaultMonth = [];
             this.setState({
-                list: _list
+                list: _list,
+                month: [],
+                isSelected: false,
+                isShow: false  //测试
             });
         }
     }
