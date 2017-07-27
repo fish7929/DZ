@@ -26,22 +26,28 @@
          $(document).ready(function () {
             var weixininfo = GetRequest()["weixinInfo"];
 			try{
-                var userinfo=Base64.decode(weixininfo);
+                var userinfo = Base64.decode(weixininfo);
+                var d = JSON.parse(userinfo)
                 var opt = {
-                    wxopenid: userinfo.openid,
-                    wxunionid: userinfo.unionid
+                    wxopenId: d.openid,
+                    wxunionId: d.unionid
                 }
                 $.ajax({ 
                     type: 'POST', 
                     url: "/pvmtsys/user/mobileBinding" ,  
-                    dataType: "json",
-                    data: opt,
+                    dataType: "JSON",
+                    data: JSON.stringify(opt),
+                    contentType: "application/json",
                     success: function(obj){
-                        alert(11 + JSON.stringify(obj));
-                        $("#info").html("成功：" + JSON.stringify(obj));
+                        if(obj.code == 0){
+                            window.localStorage.setItem("weixinInfo", userinfo);
+                            window.location.href = "./index.html#/bindMobile"
+                        }else{
+                            window.localStorage.setItem("user", JSON.stringify(obj.data));
+                            window.location.href = "./index.html#/"
+                        }
                     },
                     error:function(e){
-                        alert(22 + JSON.stringify(e));
                         $("#info").html("失败: " + JSON.stringify(e));
                     }
                 });
