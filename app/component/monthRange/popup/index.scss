@@ -1,0 +1,30 @@
+
+.ui-popup-title {
+  height: 50px;
+  background: #fff;
+  padding: 0 10px;
+  line-height: 50px;
+  color: #333;
+  font-size: 16px;
+  text-align: center;
+
+  > span:first-child {
+    float: left;
+    font-size: 14px;
+    color: #999;
+  }
+
+  > span:last-child {
+    float: right;
+    font-size: 14px;
+    color: #FC5B0B;
+  }
+}
+
+.ui-popup-content {
+  height: 156px;
+  width: 100%;
+  overflow: hidden;
+  -webkit-overflow-scrolling : touch;
+}
+
