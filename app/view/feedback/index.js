@@ -154,7 +154,7 @@ class Feedback extends React.Component{
                     <div className="feedback-item">
                         <span>设备编号</span>
                         <select onChange={(e)=>this.onChangeHandler(e, "deviceCode")} defaultValue={deviceCode} >
-                            { deveiceNumbers.map((obj, index) => <option key={index} value={obj.id}>{obj.name}</option>) }
+                            { deveiceNumbers.map((obj, index) => <option key={index} value={obj.equipmentId}>{obj.equipmentcontainerName}</option>) }
                         </select>
                     </div>
                     <div className="feedback-item">

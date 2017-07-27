@@ -16,24 +16,34 @@ import './index.scss'
 class PowerStationMonitor extends React.Component{
     constructor(props, context){
         super(props, context)
+        this.state = {
+            showType: ActionType.SHOW_TYPE_LIST
+        }
+
     }
 
     componentDidMount(){
         this.props.getPSMList()
+        this.setState({
+            showType: ActionType.SHOW_TYPE_LIST
+        });
     }
 
     onHeaderRightHandler(){
-        let { showType } = this.props
+        let { showType } = this.state
         let type = ActionType.SHOW_TYPE_LIST
         if(showType == ActionType.SHOW_TYPE_LIST){
             type = ActionType.SHOW_TYPE_MAP
         }
-
-        this.props.changeShowType(type)
+        this.setState({
+            showType: type
+        });
+        // this.props.changeShowType(type)
     }
 
     render(){
-        let { data, showType } = this.props
+        let { showType } = this.state
+        let { data } = this.props
         let component = "", rightClass = ""
         if(showType == ActionType.SHOW_TYPE_LIST){
             component = <PowerStationMonitorList data={this.props.data} />

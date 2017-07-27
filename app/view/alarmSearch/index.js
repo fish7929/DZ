@@ -39,8 +39,8 @@ class AlarmSearch extends React.Component{
             alarmStatus: null,
             alarmMessage: "",
             alarmLevel: 1,
-            startTime: "",
-            endTime: "",
+            startTime: Base.formatTime(Date.now(), "yyyy-MM-dd"),
+            endTime: Base.formatTime(Date.now(), "yyyy-MM-dd"),
             currentPage: 1,
             pageSize: 10
         })
@@ -57,6 +57,26 @@ class AlarmSearch extends React.Component{
         let state = {}
         state[type] = e.target.value
         this.setState(state);       
+    }
+
+    onChangeDateHandler(e, type){
+        var startTime = "", endTime = "";
+        if(type == "startTime"){
+            startTime = new Date(e.target.value).getTime();
+            endTime = new Date(this.state.endTime).getTime();
+        }else{
+            startTime = new Date(this.state.startTime).getTime();
+            endTime = new Date(e.target.value).getTime();
+        }
+        console.log(startTime, endTime);
+        if(endTime < startTime){
+            AppModal.toast('结束时间不能早于开始时间');
+            return
+        }
+
+        let state = {}
+        state[type] = e.target.value
+        this.setState(state);
     }
 
     onSearchHandler(){
@@ -140,9 +160,9 @@ class AlarmSearch extends React.Component{
                             <div className="time-div">
                                 <span>报警时间范围</span>
                                 <div>
-                                    <input type="date" placeholder="起始时间" onChange={(e)=>this.onChangeHandler(e, "startTime")} defaultValue={startTime} />
+                                    <input type="date" placeholder="起始时间" onChange={(e)=>this.onChangeDateHandler(e, "startTime")} value={startTime} />
                                     <span>至</span>
-                                    <input type="date" placeholder="结束时间" onChange={(e)=>this.onChangeHandler(e, "endTime")} defaultValue={endTime} />
+                                    <input type="date" placeholder="结束时间" onChange={(e)=>this.onChangeDateHandler(e, "endTime")} value={endTime} />
                                 </div>
                             </div>
 
