@@ -89,7 +89,7 @@ class FaultList extends React.Component {
                 {faultList.map((item, index) => {
                     let statusClass = item.isSolve == FIRST ? "fault-dispose" : "fault-undispose";
                     let statusHint = item.isSolve == FIRST ? "已处理" : "未处理";
-                    return (<div key={index} className="common-item common-pseudo common-active fault-item-logo"
+                    return (<div key={index} className="common-item common-pseudo common-active fault-item-logo fault-item-pseudo"
                         data-hint={item.fault_message} onClick={(e) => this.showFaultDetailHandler(e, item.faultId, item.isSolve, item.fault_message)}>
                         <span className={statusClass}>{statusHint}</span>
                     </div>)

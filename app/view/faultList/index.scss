@@ -31,6 +31,14 @@
         left: calc-rem(40);
     }
 }
+.fault-item-pseudo{
+    &:before{
+        width: 55%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
 
 .fault-item-logo{
     height: calc-rem(80);

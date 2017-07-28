@@ -229,7 +229,7 @@ class FaultDetail extends React.Component {
         let { list } = this.state;
         return (
             <div>
-                <div className="fault-detail-name">{this.param.faultMsg || ""}</div>
+                <div className="fault-detail-name no-wrap">{this.param.faultMsg || ""}</div>
                 {this.renderBaseSection()}
                 {this.status == ZERO ? null : this.renderMineDealSection()}
                 {this.renderDetailSection()}
