@@ -227,7 +227,7 @@ class Physical extends React.Component {
                 {this.renderPhysicalSection()}
                 {this.status == ZERO ? <div className="physical-feedback-wrapper">
                     <div className="physical-feedback" onClick={(e) => this.addFeedbackHandler(e)}>
-                        添加问反馈
+                        添加问题反馈
                     </div>
                 </div> : null}
                 {this.renderFeedbackSection()}

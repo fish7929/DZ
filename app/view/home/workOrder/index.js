@@ -97,7 +97,7 @@ class WorkOrder extends React.Component {
     }
 
     cancelMonthRange() {
-        this.setState({isShow: true, month: this.defaultMonth});
+        this.setState({isShow: false, month: this.defaultMonth});
     }
     filterListByMonth(month) {
         let obj = {};
@@ -117,8 +117,9 @@ class WorkOrder extends React.Component {
      */
     getMonthHint() {
         let hint = "选择时间";
-        if (this.state.isSelected) {
-            let names = this.state.month.map((item) => {
+        let { month } = this.state;
+        if (this.state.isSelected && month.length > 0 ) {
+            let names = month.map((item) => {
                 return item.year + '.' + item.month
             });
             hint = names.join('-');

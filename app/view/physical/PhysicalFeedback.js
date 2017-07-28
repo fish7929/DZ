@@ -114,7 +114,7 @@ class PhysicalFeedback extends React.Component {
                     <span className={_typeSlected1} onClick={(e) => this.selectTypeHandler(e, FIRST)}>不合格就地解决</span>
                     <span className={_typeSlected0} onClick={(e) => this.selectTypeHandler(e, ZERO)}>不合格上报调度中心</span>
                 </div>
-                {type == ZERO ? <div className="physical-feedback-common-hint" data-hint="电站名称">{stationName}</div> : null}
+                {type == ZERO ? <div className="physical-feedback-common-hint no-wrap" data-hint="电站名称">{stationName}</div> : null}
             </div>
         );
     }
