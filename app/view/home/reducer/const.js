@@ -6,7 +6,7 @@ import * as RouterConst from '../../../static/const/routerConst'
 export const HOME_BTN_TABS = [
     {
         icon: "icon-alarm",
-        title: "实时警报",
+        title: "实时报警",
         link: RouterConst.ROUTER_REAL_TIME_ALARM
     },
     {

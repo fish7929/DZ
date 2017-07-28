@@ -59,6 +59,7 @@ class Login extends React.Component{
             msg = ErrorMessage.Error_PassWord_Invalid
         }
         if(msg){
+            AppModal.toast(msg)
             return
         }
 

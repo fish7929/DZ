@@ -4,6 +4,7 @@ var webpack = require('webpack');
 var WebpackMd5Hash = require('webpack-md5-hash');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var CleanPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // 项目根路径
 var ROOT_PATH = path.resolve(__dirname, './');
@@ -92,6 +93,11 @@ Object.keys(entry).forEach(function(name){
 //css单独打包
 // plugins.push(new ExtractTextPlugin("./css/[name].min.css"))
 plugins.push(new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' }));
+
+plugins.push(new CopyWebpackPlugin([
+            { from: ROOT_PATH + '/wxLogin.html', to: DIST_PATH + '/wxLogin.html' },
+            { from: ROOT_PATH + '/base64.min.js', to: DIST_PATH + '/base64.min.js' }
+        ]))
 
 var config = {
   devtool: 'source-map',
