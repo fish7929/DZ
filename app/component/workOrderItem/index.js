@@ -6,7 +6,7 @@
  **/
 'use strict';
 import React, { PropTypes } from 'react';
-import { ZERO, FIRST,  SECOND, THREE } from '../../static/const/constants';  //
+import { ZERO, FIRST, SECOND, THREE } from '../../static/const/constants';  //
 import { hashHistory } from 'react-router';
 import './index.scss'
 class WorkOrderItem extends React.Component {
@@ -41,7 +41,7 @@ class WorkOrderItem extends React.Component {
         e.stopPropagation();
         let { data } = this.props;
         let order = data.orderNumber;
-        switch(type){
+        switch (type) {
             case FIRST:  //事故列表
                 let param = {
                     allocateTime: data.allocateTime,
@@ -55,7 +55,7 @@ class WorkOrderItem extends React.Component {
                     stationName: data.powerstationName,
                     powerstationId: data.powerstationId,
                     orderId: data.orderId
-                };  
+                };
                 hashHistory.push('/physical/' + order + "/" + data.state + "/" + Base.myEncodeURIComponent(physicalParam));
                 break;
             case THREE: //离场申请
@@ -86,9 +86,9 @@ class WorkOrderItem extends React.Component {
                     <span className="no-wrap">{data.powerstationName}</span>
                 </div>
                 <div className="common-order-item-hint">任务列表</div>
-                <div className="common-item common-pseudo common-active work-order-item-logo" data-hint={_hint + data.faultNum} onClick={(e) => this.onEditTaskHandler(e, FIRST)}>
+                {data.faultNum > 0 ? <div className="common-item common-pseudo common-active work-order-item-logo" data-hint={_hint + data.faultNum} onClick={(e) => this.onEditTaskHandler(e, FIRST)}>
                     {status == FIRST ? null : <div><span className="work-order-item-edit"></span><span className={faultState}></span></div>}
-                </div>
+                </div> : null}
                 <div className="common-item common-pseudo common-active work-order-item-logo" data-hint="电站体检" onClick={(e) => this.onEditTaskHandler(e, SECOND)}>
                     {status == FIRST ? null : <div><span className="work-order-item-edit"></span><span className={physicalState}></span></div>}
                 </div>
