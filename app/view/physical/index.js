@@ -43,7 +43,8 @@ class Physical extends React.Component {
         this.state = {
             list: this.props.list,
             isAdd: false,  // false
-            facilityList: [] //设备名称列表
+            facilityList: [], //设备名称列表
+            facilityTypes: [] //设备编号
         }
     }
     /**
@@ -206,7 +207,7 @@ class Physical extends React.Component {
      * 渲染问题反馈内容
      */
     renderFeedbackSection() {
-        let { list, isAdd, facilityList } = this.state;
+        let { list, isAdd, facilityList, facilityTypes } = this.state;
         //todo 筛选出剩下的
         let filter = list.map((item, index) => {
             let obj = {};
@@ -217,7 +218,8 @@ class Physical extends React.Component {
         });
         return (
             isAdd ? <PhysicalFeedback physicalList={filter} stationName={this.param.stationName || ''}
-                callBack={(param) => this.onSaveHandler(param)} facilityList={facilityList} /> : null
+                callBack={(param) => this.onSaveHandler(param)} facilityList={facilityList} 
+                facilityTypes={facilityTypes} /> : null
         );
     }
     renderContentSection() {
@@ -254,10 +256,19 @@ class Physical extends React.Component {
      */
     componentDidMount() {
         this.props.fetchData(this.order);
-        let url = Api.GetFacilityList(this.param.powerStationId);
+        console.log(this.param);
+        let url = Api.GetFacilityList(this.param.powerstationId);
+        console.log(url, 852);
         utils.fetchUtils(url).then((res) => {
             if (res.data) {
                 this.setState({ facilityList: res.data });
+            }
+        }).catch((e) => console.log(e, 77777));
+
+        let _url = Api.getEquipmentBy();
+        utils.fetchUtils(_url, {powerStationId: this.param.powerstationId, equipmentType: 3}).then((res) => {
+            if (res.data) {
+                this.setState({ facilityTypes: res.data });
             }
         }).catch((e) => console.log(e, 77777));
     }

@@ -34,8 +34,9 @@ class Sparepart extends React.Component {
     toggleSparepartItemHandler(e) {
         e.preventDefault();
         e.stopPropagation();
-        let target = e.target;
-        let _parent = target.parentNode;
+        // let target = e.target;
+        // let _parent = target.parentNode;
+        let _parent = e.target;
         let _className = _parent.className;
         if(_className.indexOf('off') > -1){
             _className = _className.replace(/off/g, 'on');
@@ -53,9 +54,9 @@ class Sparepart extends React.Component {
         let component = null;
         component = list.map((item, index) => {
             return (<li key={index} className="sparepart-item">
-                <div className="sparepart-divide divide-off">
+                <div className="sparepart-divide divide-off" onClick={(e) => this.toggleSparepartItemHandler(e)}>
                     {"备件" + (index + 1)}
-                    <span onClick={(e) => this.toggleSparepartItemHandler(e)}></span>
+                    <span ></span>
                 </div>
                 <div className="sparepart-detail-wrapper">
                     <div className="common-order-item-hint">

@@ -125,16 +125,24 @@ class PhysicalFeedback extends React.Component {
         let { currentFacility, type, facilityNumber, faultLevel } = this.state;
         let _name = currentFacility ? currentFacility.name : '';
         let slectHint = faultLevel ? '' : 'physical-feedback-select-hint';
+        let {facilityTypes} = this.props;
+        let slectHint1 = facilityNumber ? '' : 'physical-feedback-select-hint';
         return (
             <div className="physical-feedback-dispatch-wrapper">
                 <div className="facility-name physical-feedback-common-hint" data-hint="设备名称">
                     {_name}
                     <span onClick={(e) => this.showChooseDialog(e, FIRST)} >添加选择 +</span>
                 </div>
-                <div className="physical-feedback-common-item">
+                <div className={"physical-feedback-common-item "} data-hint="请选择设备编号">
                     设备编号
-                    <input placeholder="请输入设备编号" type="text" value={facilityNumber} ref='facilityNumber'
-                        onChange={(e) => this.changeStateHandler(e, 'facilityNumber')} />
+                    {/* <input placeholder="请输入设备编号" type="text" value={facilityNumber} ref='facilityNumber'
+                        onChange={(e) => this.changeStateHandler(e, 'facilityNumber')} /> */}
+                    <select className='feedback-common-select facility-types-select' value={facilityNumber} onChange={(e) => this.changeStateHandler(e, 'facilityNumber')} >
+                        {facilityTypes.map((item, index) => {
+                            let val = item.equipmentId;
+                            return (<option value={val} key={val + '- '+ index} >{item.equipmentcontainerName}</option>);
+                        })}
+                    </select>
                 </div>
                 <div className={"physical-feedback-common-item " + slectHint} data-hint="请选择故障级别">
                     故障级别
@@ -230,10 +238,15 @@ class PhysicalFeedback extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        let _facilityNumber = '';
+        if(nextProps.facilityTypes && nextProps.facilityTypes.length > 0){
+            _facilityNumber = nextProps.facilityTypes[0] && nextProps.facilityTypes[0].equipmentId;
+        }
         if (nextProps) {
             this.setState({
                 type: FIRST,  // 就地解决， 0上报调度中心
-                stationName: nextProps.stationName  //上报调度中心  电站名称
+                stationName: nextProps.stationName,  //上报调度中心  电站名称
+                facilityNumber: _facilityNumber
             });
         }
     }
@@ -242,6 +255,7 @@ class PhysicalFeedback extends React.Component {
 PhysicalFeedback.PropTypes = {
     physicalList: PropTypes.array.isRequired,
     facilityList: PropTypes.array,
+    facilityTypes: PropTypes.array,
     stationName: PropTypes.string,
     callBack: PropTypes.func
 }
@@ -250,6 +264,7 @@ PhysicalFeedback.defaultProps = {
     physicalList: [],
     facilityList: [   //测试设备名称数组
     ],
+    facilityTypes: [], //设备编号数组
     stationName: '江苏省镇江市2.12MW分布式光伏电站'
 }
 

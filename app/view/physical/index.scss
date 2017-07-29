@@ -256,6 +256,9 @@
         background-size: calc-rem(44);
     }
 }
+.facility-types-select{
+    padding-left: 50% !important; 
+}
 
 .physical-feedback-select-hint{
     &:after{

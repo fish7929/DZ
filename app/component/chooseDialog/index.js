@@ -60,6 +60,7 @@ class ChooseDialog extends React.Component {
     chooseItemHandler(e, item) {
         e.preventDefault();
         e.stopPropagation();
+        console.log(7892, item);
         this.setState({ current: item });
     }
     renderItemSection() {
@@ -67,11 +68,13 @@ class ChooseDialog extends React.Component {
         let nameKey = type == ZERO ? 'checkupName' : 'name';
         // let prevKey = type == ZERO ? 'examineId' : 'facilityId';  //前缀
         let idKey = type == ZERO ? 'id' : 'id';
+        console.log(current, 8888);
         return (
             <div className="choose-dialog-item-wrapper">
                 {data.map((item, index) => {
                     let name = item[nameKey];
                     let id = item[idKey];
+                    console.log(item, id, 777777);
                     let prv = type == ZERO ? item['examineId'] : (index + 1 );
                     let _check = current ? current.id == id : false;
                     return (<label key={index} className="choose-dialog-item" htmlFor={id}>{prv + "." + name}

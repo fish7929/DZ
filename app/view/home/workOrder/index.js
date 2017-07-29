@@ -82,7 +82,7 @@ class WorkOrder extends React.Component {
     }
 
     closeMonthRange(month) {
-        if (month[0].year <= month[1].year && month[0].month <= month[1].month) {
+        if ((month[0].year == month[1].year && month[0].month <= month[1].month)  || month[0].year < month[1].year) {
             this.defaultMonth = month;
             this.setState({
                 month: month,
@@ -91,7 +91,7 @@ class WorkOrder extends React.Component {
             });
             this.filterListByMonth(month);
         } else {
-            AppModal.toast('选择筛选月份不符合');
+            AppModal.toast('结束时间不能早于开始时间');
         }
 
     }
@@ -118,7 +118,8 @@ class WorkOrder extends React.Component {
     getMonthHint() {
         let hint = "选择时间";
         let { month } = this.state;
-        if (this.state.isSelected && month.length > 0 ) {
+        console.log(month, 8999);
+        if (this.state.isSelected && month && month.length > 0 ) {
             let names = month.map((item) => {
                 return item.year + '.' + item.month
             });

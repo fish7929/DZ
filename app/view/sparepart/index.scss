@@ -37,6 +37,7 @@
         background: url($arrowIcon)  center no-repeat;
         background-size: calc-rem(44);
         transition : all 0.5s ease-in-out;
+        pointer-events: none;
     }
     
 }
