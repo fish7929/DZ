@@ -132,7 +132,7 @@ const Routers = {
 			getComponent(nextState, cb){ MessageDetail(cb) },
 		},
 		{
-			path: RouterConst.ROUTER_FAULT_LIST + "/:order/:param",
+			path: RouterConst.ROUTER_FAULT_LIST +  "/:order/:status/:param",
 			getComponent(nextState, cb){ FaultList(cb) },
 		},
 		{

@@ -25,6 +25,8 @@ class FaultList extends React.Component {
         super(props, context)
         this.order = this.props.params && this.props.params.order;  //工单号
         // this.order = parseInt(order);
+        let status = this.props.params && this.props.params.status;  //状态0 未处理， 1已处理
+        this.status = parseInt(status);
         let param = this.props.params && this.props.params.param;  //json对象
         param = Base.myDecodeURIComponent(param);
         this.param = {};
@@ -63,7 +65,9 @@ class FaultList extends React.Component {
         let param = {
             faultMsg: faultMsg
         };
-        hashHistory.push("/faultDetail/" + faultId + '/' + type + '/' + Base.myEncodeURIComponent(param));
+        // 不用故障状态， 而用工单状态
+        // hashHistory.push("/faultDetail/" + faultId + '/' + type + '/' + Base.myEncodeURIComponent(param));
+        hashHistory.push("/faultDetail/" + faultId + '/' + this.status + '/' + Base.myEncodeURIComponent(param));
     }
     /**
      * 渲染

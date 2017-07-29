@@ -48,7 +48,7 @@ class WorkOrderItem extends React.Component {
                     powerstationName: data.powerstationName
                 };
                 param = JSON.stringify(param);
-                hashHistory.push('/faultList/' + order + "/" + Base.myEncodeURIComponent(param));
+                hashHistory.push('/faultList/' + order + "/" + data.state + "/" + Base.myEncodeURIComponent(param));
                 break;
             case SECOND:  //电站体检
                 let physicalParam = {

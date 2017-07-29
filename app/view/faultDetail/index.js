@@ -155,7 +155,7 @@ class FaultDetail extends React.Component {
         let dispatcherList = list.dispatcherList || [];
         let dispatcherTime = list.dispatcherTime;
         let dispatcherName = list.dispatcherName;
-        let dispatcherInfo = list.dispatcherInfo || '';
+        let dispatcherInfo = list.solveInfo || '';
 
         let name = type == FIRST ? solveName : dispatcherName;
         let nameHint = type == FIRST ? '运维人员' : '调度人员';
@@ -208,6 +208,8 @@ class FaultDetail extends React.Component {
      */
     renderDealResultSection() {
         let { list, isSolve } = this.state;
+        let dispatcherList = list.dispatcherList || [];
+        let dispatcherInfo = list.solveInfo || '';
         return (
             <div className="margin-top-20">
                 <div className="common-divide deal-result">处理结果</div>
@@ -221,7 +223,7 @@ class FaultDetail extends React.Component {
                         未解决
                     </label>
                 </div>
-                <UploadComponent ref="dealUploadComponent" type={ZERO} />
+                <UploadComponent ref="dealUploadComponent" type={ZERO} photos={dispatcherList} explain={dispatcherInfo} />
             </div>
         );
     }
