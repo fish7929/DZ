@@ -9,4 +9,17 @@
         width: 100%;
         height: 100%;
     }
+
+    .baiduPopWin{
+        padding-top: calc-rem(50);
+        p{
+            line-height: calc-rem(40);
+        }
+    }
+
+    .baiduPopWin-p{
+        p{
+            line-height: calc-rem(40);
+        }
+    }
 }
