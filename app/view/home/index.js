@@ -50,7 +50,7 @@ class Home extends React.Component {
         //获取未完成工单的数量
         let url = Api.GetWorkOrdrDataByStatus(0);
         utils.fetchUtils(url, {page: 1, pagesize: 10}).then((res) => {
-            console.log(res, 88999999);
+            // console.log(res, 88999999);
             //设置未完成工单的数量
             if (res && res.hasOwnProperty('counts')) {
                 this.setState({ count: res.counts });
