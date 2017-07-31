@@ -27,6 +27,7 @@ class ScrollList extends React.Component{
 
     onScrollHandler(e){
         var scrollTop = e.target.scrollTop || 0;
+        console.log(this.state.isLoading, this.props.currentPage, this.props.pageTotal)
         if(scrollTop + e.target.offsetHeight > e.target.scrollHeight - 50 && this.state.isLoading==false && this.props.currentPage < this.props.pageTotal){
             this.setState({isLoading: true})
             this.props.onScroll && this.props.onScroll(this.props.currentPage+1);

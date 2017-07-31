@@ -3,40 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html"  />
- 
- 
-    <title></title>
-    <script src="http://code.jquery.com/jquery-2.1.0.js"></script> 
+	<title></title>
+	<script src="http://code.jquery.com/jquery-2.1.0.js"></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
- 
+			initWXSDK()
 		});
- 
-		 function getMobileCode(){   
-			$.ajax({ 
-				 type: 'get', 
-				 url: "http://www.yunengzhe.com/wechat/login/weixin?redirect_uri=http://www.yunengzhe.com/pvmts_app/files/callback.html" ,  
-				 dataType: "json",
-				 success: function(obj){
-					alert("Data: " + obj );
-				
-				},error:function(e){
-				    alert(e);
-				}
-			});
-	  
-		}
-		function toGo(){
-			window.open("http://www.yunengzhe.com/wechat/login/weixin?redirect_uri=http://www.yunengzhe.com/pvmts_app/files/callback.html","_self");
-		}
+
+
+		    /**
+     * 初始化微信JSSDK
+     * @param {string} authUri 认证的URL
+     * @param {function} callBack 初始化成功的回调函数
+     */
+    var initWXSDK = function(authUri, callBack) {
+        var pageurl = window.location.href.replace(window.location.hash, '');
+
+		var opt = {share_url: encodeURIComponent(pageurl)}
+		$.ajax({ 
+			type: 'POST', 
+			url: "/wechat/share/weixin.do" ,  
+			data: JSON.stringify(opt),
+			success: function(obj){
+				$("#info").html("success: " + JSON.stringify(obj));
+			},
+			error:function(e){
+				$("#info").html("失败: " + JSON.stringify(e));
+			}
+		});
+        // fetch(authUri, {
+        //     method: "POST",
+        //     credentials: 'same-origin',
+        //     body: JSON.stringify({ 'share_url': pageurl })
+        // })
+        //     .then((res) => {
+        //         return res.json();
+        //     })
+        //     .then((json) => {
+        //         if (json.status === 0) {
+        //             var auth = json.data;
+        //             wx.config({
+        //                 debug: false,
+        //                 appId: auth.appId,
+        //                 timestamp: auth.timestamp,
+        //                 nonceStr: auth.nonceStr,
+        //                 signature: auth.signature,
+        //                 jsApiList: ["scanQRCode"]
+        //             });
+        //             wx.ready(function () {
+        //                 window.weixinReady = true;
+        //                 alert("weixinReady")
+        //                 callBack && callBack();
+        //                 /*wx.hideMenuItems({
+        //                     menuList: [
+        //                         "menuItem:share:appMessage",
+        //                         "menuItem:share:timeline",
+        //                         "menuItem:share:qq",
+        //                         "menuItem:share:weiboApp",
+        //                         "menuItem:favorite",
+        //                         "menuItem:share:facebook",
+        //                         "menuItem:share:QZone",
+        //                         "menuItem:copyUrl",
+        //                         "menuItem:originPage",
+        //                         "menuItem:openWithQQBrowser",
+        //                         "menuItem:openWithSafari"
+        //                     ] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+        //                 });*/
+        //             });
+        //             wx.error(function (res) {
+        //                 alert("config信息验证失败")
+        //                 console.log("config信息验证失败" + res);
+        //             });
+        //         } else {
+        //             alert(json.msg)
+        //             console.log(json.msg);
+        //         }
+        //     })
+        //     .catch((msg) => {
+        //         alert("初始化微信SDK出错：")
+        //         console.log('初始化微信SDK出错：' + msg);
+        //     });
+    }
 </script>
 		
 </head>
 <body>	 
-	<br />	<br />  
-	 <input id="btnlogin_m" type="button" value="login" onclick="toGo()"/>
-	<br />	<br />  
-    <div id="contentDiv"></div>
+    <div id="info"></div>
 </body>
 </html>

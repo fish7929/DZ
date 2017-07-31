@@ -6,6 +6,7 @@ import {hashHistory} from 'react-router'
 
 import Page from '../../component/page'
 import Header from '../../component/header'
+import ScrollList from '../../component/scrollList';
 import InverterItem from '../../component/inverterItem'
 
 import { getInverterList, changeTabIndex } from './reducer/action'
@@ -20,10 +21,13 @@ class InverterList extends React.Component{
 
     constructor(props, context){
         super(props, context)
+        this.state = {
+            currentPage: 1,
+        }
     }
 
     componentDidMount(){
-        this.sendData(this.props.tabIndex)
+        this.sendData(this.props.tabIndex, 1)
     }
 
     onItemClick(id){
@@ -33,13 +37,17 @@ class InverterList extends React.Component{
     onChangeTabIndex(tabIndex){
         if(tabIndex != this.props.tabIndex){
             this.props.changeTabIndex(tabIndex)
-            this.sendData(tabIndex)
+            this.sendData(tabIndex, 1)
         }
     }
 
-    sendData(tabIndex){
+    sendData(tabIndex, page){
         let obj = InverterTabs.find(obj => obj.id === tabIndex)
-        this.props.getInverterList(this.props.params.id, obj.value)
+        this.props.getInverterList(this.props.params.id, obj.value, page).then(()=>{
+            if(this){
+                this.setState({ currentPage: page });
+            }
+        })
     }
 
     render(){
@@ -51,9 +59,9 @@ class InverterList extends React.Component{
                 <div className="tab-div">
                     {InverterTabs.map((obj,key)=><div key={key} className={"button tab-item " + (tabIndex == obj.id ? "selected" : "")} onClick={()=>this.onChangeTabIndex(obj.id)}><span>{obj.name}</span></div>)}
                 </div>
-                <div className="inverter-list">
+                <ScrollList className="inverter-list" onScroll={page => this.sendData(tabIndex, page)} currentPage={this.state.currentPage} pageTotal={this.props.total}>
                     { inverterList.map((obj, key) => <InverterItem key={key} data={obj} onClick={()=>this.onItemClick(obj.id)} />) }
-                </div>
+                </ScrollList>
             </Page>
         )
     }
@@ -62,11 +70,13 @@ class InverterList extends React.Component{
 InverterList.PropTypes = {
     tabIndex: PropTypes.number.isRequired,
     inverterList: PropTypes.array.isRequired,
+    total: PropTypes.number.isRequired,
 }
 
 let mapStateToProps = state => ({
     tabIndex: state.inverterReducer.tabIndex,
     inverterList: state.inverterReducer.inverterList,
+    total: state.inverterReducer.total
 })
 
 let mapDispatchToProps = (dispatch) => {

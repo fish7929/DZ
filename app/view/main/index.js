@@ -6,6 +6,7 @@ import { hashHistory } from 'react-router'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import * as RouterConst from '../../static/const/routerConst'
+import WeiXinUtils from '../../utils/WeiXinUtils'
 
 import './index.scss'
 import './animate.scss'
@@ -17,6 +18,11 @@ class App extends React.Component {
 
     componentDidMount() {
         this.checkLogin(this.props)
+
+        if(Base.isWeiXinPlatform()){
+            // var url = "http://www.yunengzhe.com/wechat/share/weixin.do"
+            // WeiXinUtils.initWXSDK(url)
+        }
     }
 
     componentWillReceiveProps(nextProps){
