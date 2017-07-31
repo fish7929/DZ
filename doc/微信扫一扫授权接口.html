@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF8">
+    <title></title>
+    <style type="text/css">
+        #container {
+            margin: 8px;
+        }
+
+        .param-table {
+            background: #E6E6E6;
+            border: 1px solid #FFF;
+            margin: 12px 0;
+            border-collapse: collapse;
+        }
+
+        .param-table th {
+            background: gray;
+            color: #FFF;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            border: 1px solid #FFF;
+        }
+
+        .param-table td {
+            border-collapse: collapse;
+            border: 1px solid #FFF;
+            font-size: 12px;
+        }
+
+        .param-table .th-name {
+            width: 140px;
+        }
+
+        .param-table .th-identifier {
+            width: 140px;
+        }
+
+        .param-table .th-type {
+            width: 100px;
+        }
+
+        .param-table .th-remark {
+            width: 200px;
+        }
+
+        .param-table .td-name {
+        }
+
+        .param-table .td-identifier {
+        }
+
+        .param-table .td-type {
+            color: #990000;
+        }
+
+        .param-table .td-remark {
+            color: #666;
+        }
+
+        .param-table .tr-level-1 {
+            background: #E6E6E6;
+        }
+
+        .param-table .tr-level-2 {
+            background: silver;
+        }
+
+        .param-table .tr-level-3 {
+            background: gray;
+        }
+
+        .param-table .tr-level-4 {
+            background: silver;
+        }
+
+        .param-table .tr-level-5 {
+            background: gray;
+        }
+
+        .param-table .tr-level-6 {
+            background: silver;
+        }
+
+        .param-table .tr-level-7 {
+            background: gray;
+        }
+
+        .param-table .tr-level-8 {
+            background: silver;
+        }
+
+        .param-table .tr-level-9 {
+            background: gray;
+        }
+
+        .param-table .tr-level-10 {
+            background: silver;
+        }
+
+        .param-table .tr-level-11 {
+            background: gray;
+        }
+
+        .param-table .tr-level-12 {
+            background: silver;
+        }
+
+        .param-table .tr-level-13 {
+            background: gray;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+            <div class="module">
+            <h1>1&nbsp;微信</h1>
+                            <div class="page">
+                    <h2>1.1&nbsp;微信登录授权</h2>
+                                            <div class="action">
+                            <h3>1.1.1&nbsp;申请用户授权</h3>
+
+                            <h3>Description</h3>
+
+                            <div></div>
+                            <h3>URL</h3>
+
+                            <div>http://www.yunengzhe.com/wechat/login/weixin?redirect_uri=uri地址</div>
+                            <h3>Request Param List</h3>
+                            <table class="param-table"><thead><th class="th-name">Name</th><th class="th-identifier">Identifier</th><th class="th-type">Type</th><th class="th-remark">Remark</th></thead><tr class="tr-level-1"><td class="td-name">用户授权后的回调地址</td><td class="td-identifier">redirect_uri</td><td class="td-type">string</td><td class="td-remark"></td></tr></table>
+                            <h3>Response Param List</h3>
+                            <table class="param-table"><thead><th class="th-name">Name</th><th class="th-identifier">Identifier</th><th class="th-type">Type</th><th class="th-remark">Remark</th></thead><tr class="tr-level-1"><td class="td-name">base64加密后的用户信息，和微信返回的完全相同</td><td class="td-identifier">weixininfo</td><td class="td-type">string</td><td class="td-remark">解密后数据：{&quot;openid&quot;:&quot;oUCQ0xJjOt3uuMAE3YKDoFLMcFW8&quot;,&quot;nickname&quot;:&quot;甜甜爸&quot;,&quot;sex&quot;:1,&quot;language&quot;:&quot;zh_CN&quot;,&quot;city&quot;:&quot;昌平&quot;,&quot;province&quot;:&quot;北京&quot;,&quot;country&quot;:&quot;中国&quot;,&quot;headimgurl&quot;:&quot;http:\/\/wx.qlogo.cn\/mmopen\/fGsVXoUj6AWqsHlLTy64JMf98IxGXZx0TDwtD6WYkgr0CbJApkqsicgbn10exuOaPJxv8W5xlpDWwesAzZ2rUylyRnG3Ie5Mz\/0&quot;,&quot;privilege&quot;:[],&quot;unionid&quot;:&quot;oRCUSw6oGWRSc4X8crEDLJeVzeL8&quot;}</td></tr></table>
+                        </div>
+                                    </div>
+                            <div class="page">
+                    <h2>1.2&nbsp;微信jsapi</h2>
+                                            <div class="action">
+                            <h3>1.2.1&nbsp;后台生成签名-用于分享-扫一扫等</h3>
+
+                            <h3>Description</h3>
+
+                            <div>注意是form请求</div>
+                            <h3>URL</h3>
+
+                            <div>http://www.yunengzhe.com/wechat/share/weixin.do</div>
+                            <h3>Request Param List</h3>
+                            <table class="param-table"><thead><th class="th-name">Name</th><th class="th-identifier">Identifier</th><th class="th-type">Type</th><th class="th-remark">Remark</th></thead><tr class="tr-level-1"><td class="td-name">当前页面地址-需要uri编码</td><td class="td-identifier">share_url</td><td class="td-type">string</td><td class="td-remark"></td></tr></table>
+                            <h3>Response Param List</h3>
+                            <table class="param-table"><thead><th class="th-name">Name</th><th class="th-identifier">Identifier</th><th class="th-type">Type</th><th class="th-remark">Remark</th></thead><tr class="tr-level-1"><td class="td-name"></td><td class="td-identifier">share</td><td class="td-type">object</td><td class="td-remark"></td></tr><tr class="tr-level-2"><td class="td-name">---</td><td class="td-identifier">appId</td><td class="td-type">string</td><td class="td-remark">@mock=wx1f751f5ec9263474</td></tr><tr class="tr-level-2"><td class="td-name">---时间戳</td><td class="td-identifier">timestamp</td><td class="td-type">string</td><td class="td-remark">@mock=1501468787</td></tr><tr class="tr-level-2"><td class="td-name">---请求时的url</td><td class="td-identifier">url</td><td class="td-type">string</td><td class="td-remark">@mock=http://www.yunengzhe.com/wechat/pvmeasure/measure/result?bestAlpha=37&yearUsableHour=1311.19&capacity=0.1&national_subsidy=0.75&national_subsidy_years=20&province_subsidy=0&province_subsidy_years=0&city_subsidy=0&city_subsidy_years=0&county_subsidy=0&county_subsidy_years=0&yearPower=0.01&investment=0.06&profit=0.1&cap_irr=9.97&saving_coal=0.04&saving_water=0&reducting_SO2=0&reducting_CO2=0.1&province=%25E5%258C%2597%25E4%25BA%25AC&measureType=%25E8%258D%2592%25E5%25B1%25B1%25E8%258D%2592%25E5%259D%25A1&areaForUse=1&buildtime=1&longLoadRate=1&electricPrice=1&selfuseValue=100</td></tr><tr class="tr-level-2"><td class="td-name">---签名</td><td class="td-identifier">signature</td><td class="td-type">string</td><td class="td-remark">@mock=40becd631db7efd2cb13246134c1413cb4acf924</td></tr><tr class="tr-level-2"><td class="td-name">---签名随机数</td><td class="td-identifier">nonceStr</td><td class="td-type">string</td><td class="td-remark">@mock=7ba1b767-66cd-4505-bfeb-dbfa139063c4</td></tr><tr class="tr-level-1"><td class="td-name"></td><td class="td-identifier">success</td><td class="td-type">boolean</td><td class="td-remark">@mock=true</td></tr></table>
+                        </div>
+                                    </div>
+                    </div>
+    </div>
+</body>
+</html>
