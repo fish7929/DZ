@@ -27,10 +27,11 @@ class HomeBottom extends React.Component{
     }
 
     render(){
-        let { tabIndex, onTabClick } = this.props
+        let { tabIndex, onTabClick, count } = this.props
 
         return(
             <div className="home-bottom-container">
+                {count > 0 ? <span className="home-bottom-count-bubble">{count > 99 ? '99+' : count}</span> : null}
                 <div className="btn-div" onClick={()=>onTabClick(0)}>
                     <div className={this.getBtnClass(0, tabIndex)}>
                         <div className="icon"></div>
@@ -62,7 +63,8 @@ class HomeBottom extends React.Component{
 
 HomeBottom.PropTypes = {
     tabIndex: PropTypes.number.isRequired,
-    onTabClick: PropTypes.func.isRequired
+    onTabClick: PropTypes.func.isRequired,
+    count: PropTypes.number.isRequired
 }
 
 export default HomeBottom

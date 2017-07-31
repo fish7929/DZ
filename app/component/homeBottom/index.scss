@@ -92,3 +92,21 @@
         }
     }
 }
+
+
+.home-bottom-count-bubble{
+    position: fixed;
+    z-index: 9999;
+    bottom: calc-rem(42);
+    left: calc-rem(294);
+    color: $whiteColor !important;
+    font-size: calc-rem(24);
+    display: inline-block;
+    line-height: calc-rem(56);
+    text-align: center;
+    width: calc-rem(56);
+    height: calc-rem(56);
+    background: $yellowColor;
+    border-radius: 100%;
+    pointer-events: none;
+}

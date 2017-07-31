@@ -131,7 +131,7 @@ class WorkOrder extends React.Component {
         let { list, currentTab, fromMonth, toMonth } = this.state;
         let _class1 = currentTab == ZERO ? 'work-order-tab-selected' : '';
         let _class2 = currentTab == FIRST ? 'work-order-tab-selected' : '';
-        let count = list.length;
+        // let count = list.length;
         let _date = new Date();
         let _year = _date.getFullYear();
         let _month = _date.getMonth() + 1;
@@ -148,7 +148,7 @@ class WorkOrder extends React.Component {
                 </MonthRange>
                 {(currentTab == FIRST) ?   
                     <div className="work-order-filter" onClick={(e) => this.showMonthRange(e)}>{hint}</div> : null}
-                {(currentTab == ZERO && this.metaData.length > 0) ? <span className="work-order-count-bubble">{count > 99 ? '99+' : count}</span> : null}
+                {/* {(currentTab == ZERO && this.metaData.length > 0) ? <span className="work-order-count-bubble">{count > 99 ? '99+' : count}</span> : null} */}
                 <div className="work-order-tabs">
                     <span className={"common-active " + _class1} onClick={(e) => this.changeTabHandler(e, ZERO)}>
                         未完成

@@ -22,6 +22,8 @@ import { ZERO, FIRST, SECOND, THREE } from '../../static/const/constants';
 import { fetchData, changeHomeTabIndex } from './reducer/action';
 
 import './index.scss';
+import * as utils from '../../utils'
+import * as Api from '../../static/const/apiConst';
 
 class Home extends React.Component {
     constructor(props, context) {
@@ -32,6 +34,7 @@ class Home extends React.Component {
             title: '光伏运维管理平台',  //Header组件标题
             rightClass: '',
             rightContent: '',
+            count: 0,   //显示底部未完成工单数量
             isShowRight: false
         };
     }
@@ -44,6 +47,15 @@ class Home extends React.Component {
         //加载默认数据
         let tab = this.tab != undefined ? parseInt(this.tab) : this.props.tabIndex;
         this.props.fetchData(tab);
+        //获取未完成工单的数量
+        let url = Api.GetWorkOrdrDataByStatus(0);
+        utils.fetchUtils(url, {page: 1, pagesize: 10}).then((res) => {
+            console.log(res, 88999999);
+            //设置未完成工单的数量
+            if (res && res.hasOwnProperty('counts')) {
+                this.setState({ count: res.counts });
+            }
+        }).catch((e) => console.log(e, 77777));
     }
     /**
      * 更新属性
@@ -123,7 +135,7 @@ class Home extends React.Component {
         this.props.fetchData(tab);
     }
     render() {
-        let { title, isShowRight, rightClass, rightContent } = this.state;
+        let { title, isShowRight, rightClass, rightContent, count } = this.state;
         let _current = this.tab != undefined ? parseInt(this.tab) : this.props.tabIndex;
         return (
             <Page className="home-page">
@@ -133,7 +145,7 @@ class Home extends React.Component {
                 <div className="home-main">
                     {this.getContentSection()}
                 </div>
-                <HomeBottom tabIndex={_current} onTabClick={(tab) => this.changeTabHandler(tab)} />
+                <HomeBottom tabIndex={_current} count={count} onTabClick={(tab) => this.changeTabHandler(tab)} />
             </Page>
         )
     }
