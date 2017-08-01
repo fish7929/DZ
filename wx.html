@@ -20,13 +20,31 @@
      */
     var initWXSDK = function(authUri, callBack) {
         var pageurl = window.location.href.replace(window.location.hash, '');
-
-		var opt = {share_url: encodeURIComponent(pageurl)}
+		var opt = {share_url: encodeURIComponent("http://www.yunengzhe.com/pvmts_app/files/wx.html")}
 		$.ajax({ 
 			type: 'POST', 
-			url: "/wechat/share/weixin.do" ,  
-			data: JSON.stringify(opt),
+			url: "http://www.yunengzhe.com/wechat/share/weixin.do" ,  
+			data: opt,
 			success: function(obj){
+                obj = JSON.parse(obj);
+                if(obj.share){
+                    wx.config({
+                        debug: true,
+                        appId: obj.share.appId,
+                        timestamp: obj.share.timestamp,
+                        nonceStr: obj.share.nonceStr,
+                        signature: obj.share.signature,
+                        jsApiList: ["scanQRCode"]
+                    });
+
+                    wx.ready(function () {
+                        window.weixinReady = true;
+                        alert("weixinReady")
+                    });
+                    wx.error(function (res) {
+                        alert("config信息验证失败")
+                    });
+                }
 				$("#info").html("success: " + JSON.stringify(obj));
 			},
 			error:function(e){
@@ -86,10 +104,24 @@
         //         console.log('初始化微信SDK出错：' + msg);
         //     });
     }
+
+    var onClickHandler = function(){
+        if(window.weixinReady){
+            wx.scanQRCode({
+                needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+                scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+                success: function (res) {
+                    var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                    alert(result)
+                }
+            });
+        }
+    }
 </script>
 		
 </head>
 <body>	 
     <div id="info"></div>
+    <button onclick="onClickHandler()">扫一扫</button>
 </body>
 </html>

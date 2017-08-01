@@ -13,6 +13,8 @@ import { getHomeData } from "../reducer/action"
 import * as RouterConst from '../../../static/const/routerConst'
 import * as HomeConst from '../reducer/const'
 
+import WeiXinUtils from '../../../utils/WeiXinUtils'
+
 import './index.scss'
 const MaxPS = 4
 class HomeContianer extends React.Component {
@@ -28,7 +30,19 @@ class HomeContianer extends React.Component {
     }
 
     onTabHandler(link){
-        hashHistory.push(link)
+        if(link){
+            hashHistory.push(link)
+        }else{
+            WeiXinUtils.scanQRCode().then(data=>{
+                if(data.indexOf("http") === 0){
+                    window.location.href = data;
+                }else{
+                    AppModal.toast(data);
+                }
+            }, ()=>{
+                AppModal.toast('微信未授权');
+            })
+        }
     }
 
     getHomeTabs(){

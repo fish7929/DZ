@@ -26,6 +26,7 @@ class ChartItem extends React.Component {
                     data: data,
                     label: {
                         normal: {
+                            show: false,
                             textStyle: {
                                 color: '#0F3B65'
                             }
@@ -54,11 +55,11 @@ class ChartItem extends React.Component {
             // tooltip: {
             //     trigger: 'item',
             // },
-            // legend: {
-            //     x: 'center',
-            //     y: 'bottom',
-            //     data: data.map(obj => obj.name)
-            // },
+            legend: {
+                x: 'center',
+                y: 'bottom',
+                data: data.map(obj => obj.name)
+            },
             xAxis: [
                 {
                     show: false
@@ -248,23 +249,44 @@ class ChartItem extends React.Component {
                 },
                 z: 10,
             },
-            yAxis: {
-                axisLine: {
-                    show: false
-                },
-                axisTick: {
-                    show: false
-                },
-                axisLabel: {
-                    textStyle: {
-                        color: '#999'
+            yAxis: [
+                {
+                    axisLine: {
+                        show: false
                     },
-                    formatter: (value, index) => {
-                        return value + (unitY || "")
-                    }
+                    axisTick: {
+                        show: false
+                    },
+                    axisLabel: {
+                        textStyle: {
+                            color: '#999'
+                        },
+                        formatter: (value, index) => {
+                            return value + "kwp"
+                        }
+                    },
+                    type : 'value',
+                    position: 'left'
                 },
-                type : 'value'
-            },
+                {
+                    axisLine: {
+                        show: false
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLabel: {
+                        textStyle: {
+                            color: '#999'
+                        },
+                        formatter: (value, index) => {
+                            return value + "kwh"
+                        }
+                    },
+                    type : 'value',
+                    position: 'right'
+                }
+            ],
             series: legend.map((obj, index) => ({
                 itemStyle: {
                     normal: {color: barColors[index]}
@@ -272,6 +294,7 @@ class ChartItem extends React.Component {
                 name: obj,
                 type: 'bar',
                 barMinHeight: 5,
+                yAxisIndex: index,
                 data: data.map(obj=>obj.value[index]),
 
             })),

@@ -36,6 +36,7 @@ const receiveDeviceType = data => ({
 
 const getDeviceType = (id, dispatch) => {
     let url = Api.GetPowerStationDeviceTypes(id)
+    receiveDeviceNumber([])
     dispatch(utils.sendMsg(url, {}, "GET")).then(data =>{
         if(data.length > 0){
             getDeviceNumbers(id, data[0].id, dispatch)

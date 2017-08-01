@@ -56,15 +56,15 @@ class Feedback extends React.Component{
     }
 
     componentWillReceiveProps(nextProps){
-        if(this.props.powerStationList.length != nextProps.powerStationList.length && this.state.powerStationId==""){
+        if(nextProps.powerStationList.length && this.props.powerStationList != nextProps.powerStationList && this.state.powerStationId==""){
             this.setState({powerStationId: nextProps.powerStationList[0].id})
         }
 
-        if(this.props.deveiceTypes.length != nextProps.deveiceTypes.length && this.state.deviceTypeId==""){
+        if(nextProps.deveiceTypes.length && this.props.deveiceTypes != nextProps.deveiceTypes && this.state.deviceTypeId==""){
             this.setState({deviceTypeId: nextProps.deveiceTypes[0].id})
         }
 
-        if(this.props.deveiceNumbers.length != nextProps.deveiceNumbers.length && this.state.deviceCode==""){
+        if(nextProps.deveiceNumbers.length && this.props.deveiceNumbers != nextProps.deveiceNumbers && this.state.deviceCode==""){
             this.setState({deviceCode: nextProps.deveiceNumbers[0].id})
         }
     }

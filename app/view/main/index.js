@@ -20,8 +20,8 @@ class App extends React.Component {
         this.checkLogin(this.props)
 
         if(Base.isWeiXinPlatform()){
-            // var url = "http://www.yunengzhe.com/wechat/share/weixin.do"
-            // WeiXinUtils.initWXSDK(url)
+            var url = "/wechat/share/weixin.do"
+            WeiXinUtils.initWXSDK(url)
         }
     }
 

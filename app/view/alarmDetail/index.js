@@ -71,7 +71,7 @@ class AlarmDetail extends React.Component{
 
     render(){
         let { alarmData } = this.props
-        if(alarmData.powerStationBaseInfo.lat && alarmData.powerStationBaseInfo.lng && this.state.mapIsReady){
+        if(alarmData && alarmData.powerStationBaseInfo.lat && alarmData.powerStationBaseInfo.lng && this.state.mapIsReady){
             this.map.clearOverlays()
             let point = new BMap.Point(alarmData.powerStationBaseInfo.lng, alarmData.powerStationBaseInfo.lat);
             var myIcon = new BMap.Icon("http://api.map.baidu.com/img/markers.png", new BMap.Size(23, 25), {

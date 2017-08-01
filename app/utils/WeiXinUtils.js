@@ -142,65 +142,65 @@ var WeiXinUtils = {
      */
     initWXSDK(authUri, callBack = null) {
         var pageurl = window.location.href.replace(window.location.hash, '');
-        // let headers = Object.assign({}, {
-        //     'Accept': 'application/json',
-        //     'Content-Type': 'application/json',
-        //     "Access-Control-Allow-Methods": "PUT,POST,GET,DELETE,OPTIONS"
-        // });
+        let data = new URLSearchParams();
+        data.set("share_url", encodeURIComponent(pageurl))
         fetch(authUri, {
             method: "POST",
-            headers: {},
-            credentials: 'same-origin',
-            body: JSON.stringify({ 'share_url': pageurl })
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+            },
+            body: data
         })
             .then((res) => {
                 return res.json();
             })
-            .then((json) => {
-                if (json.status === 0) {
-                    var auth = json.data;
+            .then((obj) => {
+                if(obj.share){
                     wx.config({
                         debug: false,
-                        appId: auth.appId,
-                        timestamp: auth.timestamp,
-                        nonceStr: auth.nonceStr,
-                        signature: auth.signature,
+                        appId: obj.share.appId,
+                        timestamp: obj.share.timestamp,
+                        nonceStr: obj.share.nonceStr,
+                        signature: obj.share.signature,
                         jsApiList: ["scanQRCode"]
                     });
+
                     wx.ready(function () {
                         window.weixinReady = true;
-                        alert("weixinReady")
-                        callBack && callBack();
-                        /*wx.hideMenuItems({
-                            menuList: [
-                                "menuItem:share:appMessage",
-                                "menuItem:share:timeline",
-                                "menuItem:share:qq",
-                                "menuItem:share:weiboApp",
-                                "menuItem:favorite",
-                                "menuItem:share:facebook",
-                                "menuItem:share:QZone",
-                                "menuItem:copyUrl",
-                                "menuItem:originPage",
-                                "menuItem:openWithQQBrowser",
-                                "menuItem:openWithSafari"
-                            ] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
-                        });*/
                     });
                     wx.error(function (res) {
-                        alert("config信息验证失败")
-                        console.log("config信息验证失败" + res);
+                        // alert("config信息验证失败")
                     });
-                } else {
-                    alert(json.msg)
-                    console.log(json.msg);
+                }
+                else {
+                    // alert("初始化微信SDK出错：")
                 }
             })
             .catch((msg) => {
-                alert("初始化微信SDK出错：")
+                // alert("初始化微信SDK出错：")
                 console.log('初始化微信SDK出错：' + msg);
             });
 
+    },
+
+    /**
+     * 调用扫一扫
+     */
+    scanQRCode(){
+        return new Promise((resolve, reject) => {
+            if(window.weixinReady){
+                wx.scanQRCode({
+                    needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+                    scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+                    success: function (res) {
+                        var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                        resolve(result)
+                    }
+                });
+            }else{
+                reject()
+            }
+        })
     }
 }
 
