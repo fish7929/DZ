@@ -140,6 +140,7 @@ class WorkOrder extends React.Component {
         return (
             <div className="work-order-container">
                 <MonthRange
+                    defaultValue={this.state.month} 
                     range={{ min: { year: (_year - 1), month: _month }, max: { year: _year, month: _month } }}
                     onCancel={this.cancelMonthRange.bind(this)}
                     onConfirm={this.closeMonthRange.bind(this)}
@@ -179,10 +180,10 @@ class WorkOrder extends React.Component {
                 });
             }
             this.metaData = _list;
-            this.defaultMonth = [];
+            // this.defaultMonth = [];
             this.setState({
                 list: _list,
-                month: [],
+                // month: [],
                 isSelected: false,
                 isShow: false  //测试
             });

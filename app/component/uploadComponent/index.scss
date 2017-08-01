@@ -130,8 +130,11 @@
     .no-explain-style{
         height: calc-rem(80);
     }
-    .no-photos-style{
-        height: calc-rem(80) !important;
+    .upload-photo-component.no-photos-style{
+        height: calc-rem(200)  !important;
+    }
+    .upload-photo-content.no-photos-style{
+        height: calc-rem(80)  !important;
         padding-left: calc-rem(25);
         padding-top: calc-rem(20);
     }

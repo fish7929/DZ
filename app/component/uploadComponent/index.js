@@ -115,7 +115,7 @@ class UploadComponent extends React.Component {
                             placeholder="请输入说明（可不填）"
                             onChange={(e) => this.changeStateHandler(e, 'explain')}></textarea>}
                 </div>
-                <div className="upload-photo-component">
+                <div className={"upload-photo-component " + noPhotos}>
                     <div className="upload-photo-hint">{_hint}
                         {_disabled ? null : <span>视频拍摄长度需小于30秒</span>}
                     </div>

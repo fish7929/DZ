@@ -114,9 +114,13 @@ class MonthRange extends React.Component {
         let yearArr = getYearArray(this.props.range);
         this.yearMonth = getDisplayYearMonth(yearArr);
         let _date = new Date();
-        this.defaultValue = this.props.defaultValue || [
+        let defaultVal = [
             {year: _date.getFullYear(), month: (_date.getMonth() - 1)},
         {year: _date.getFullYear(), month: _date.getMonth()}];
+        if(this.props.defaultValue && this.props.defaultValue.length > 0){
+            defaultVal = this.props.defaultValue;
+        }
+        this.defaultValue = defaultVal;
     }
     /**
      * 初始化值
@@ -184,6 +188,13 @@ class MonthRange extends React.Component {
                 /> 
             </Popup>
         </div>);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.defaultValue && nextProps.defaultValue.length > 0){
+            this.defaultValue = nextProps.defaultValue;
+        }
+        
     }
 }
 /**
