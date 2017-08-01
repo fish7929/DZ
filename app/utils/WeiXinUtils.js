@@ -142,16 +142,16 @@ var WeiXinUtils = {
      */
     initWXSDK(authUri, callBack = null) {
         var pageurl = window.location.href.replace(window.location.hash, '');
-        let headers = Object.assign({}, {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            "Access-Control-Allow-Methods": "PUT,POST,GET,DELETE,OPTIONS"
-        });
+        // let headers = Object.assign({}, {
+        //     'Accept': 'application/json',
+        //     'Content-Type': 'application/json',
+        //     "Access-Control-Allow-Methods": "PUT,POST,GET,DELETE,OPTIONS"
+        // });
         fetch(authUri, {
             method: "POST",
-            headers: headers,
+            headers: {},
             credentials: 'same-origin',
-            body: JSON.stringify({ 'pageurl': pageurl })
+            body: JSON.stringify({ 'share_url': pageurl })
         })
             .then((res) => {
                 return res.json();
@@ -165,10 +165,11 @@ var WeiXinUtils = {
                         timestamp: auth.timestamp,
                         nonceStr: auth.nonceStr,
                         signature: auth.signature,
-                        jsApiList: ['hideOptionMenu', 'chooseImage', 'uploadImage', 'downloadImage', 'previewImage', 'closeWindow', 'getLocation']
+                        jsApiList: ["scanQRCode"]
                     });
                     wx.ready(function () {
-                        wx.hideOptionMenu();
+                        window.weixinReady = true;
+                        alert("weixinReady")
                         callBack && callBack();
                         /*wx.hideMenuItems({
                             menuList: [
@@ -187,13 +188,16 @@ var WeiXinUtils = {
                         });*/
                     });
                     wx.error(function (res) {
+                        alert("config信息验证失败")
                         console.log("config信息验证失败" + res);
                     });
                 } else {
+                    alert(json.msg)
                     console.log(json.msg);
                 }
             })
             .catch((msg) => {
+                alert("初始化微信SDK出错：")
                 console.log('初始化微信SDK出错：' + msg);
             });
 

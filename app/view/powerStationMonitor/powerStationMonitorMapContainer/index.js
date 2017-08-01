@@ -27,7 +27,8 @@ class PowerStationMonitorMapContainer extends React.Component{
     }
 
      openWinInfo(content, e){
-        let opts = {  
+        let opts = {
+            enableCloseOnClick: false
         };
         var p = e.target;  
         var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);  

@@ -2,7 +2,8 @@ import * as ActionType from './actionType'
 
 const initialState = {
     tabIndex: 0,
-    inverterList: []
+    inverterList: [],
+    total: 0
 }
 
 export default function update (state = initialState, action){
@@ -10,7 +11,8 @@ export default function update (state = initialState, action){
         case ActionType.INVERTER_INIT_LIST:
             return {
                 ...state,
-                inverterList: action.data
+                inverterList: action.data.results,
+                total: action.data.pageCounts
             }
         case ActionType.INVERTER_CHANGE_TAB:
             return{
