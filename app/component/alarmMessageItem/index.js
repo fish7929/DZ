@@ -60,6 +60,7 @@ class AlarmMessageItem extends React.Component {
         }
         let readClass = data && data.isread == FIRST ? 'message-read' : '';
         let level = data.alarmgrade || 1;
+        let hint = data.alarmValue || '230.22';
         return (
             <li className={"alarm-message-item " + readClass}>
                 <div className="alarm-message-left">
@@ -69,7 +70,7 @@ class AlarmMessageItem extends React.Component {
                 <div className="alarm-message-right">
                     <div className="no-wrap">{data.title}</div>
                     <div className="no-wrap">{data.content}</div>
-                    <div><span>{Base.formatTime(data.createTime, "yyyy-MM-dd HH:mm:ss")}</span><span>230.22</span></div>
+                    <div><span>{Base.formatTime(data.createTime, "yyyy-MM-dd HH:mm:ss")}</span><span>{hint}</span></div>
                 </div>
             </li>
         )
