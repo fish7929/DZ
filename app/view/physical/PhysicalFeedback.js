@@ -74,7 +74,7 @@ class PhysicalFeedback extends React.Component {
         let _key = type == ZERO ? 'currentPhysical' : 'currentFacility';
         let obj = {};
         obj.isShowDialog = false;
-        if(data){
+        if (data) {
             obj[_key] = data;
         }
         this.setState(obj);
@@ -109,7 +109,7 @@ class PhysicalFeedback extends React.Component {
         let _wrapper = type == ZERO ? '' : 'zero-wrapper';
         return (
             <div className={"physical-feedback-type-wrapper " + _wrapper}>
-                <div className="physical-feedback-name" data-hint="选择"  onClick={(e) => this.showChooseDialog(e, ZERO)}>{_name}</div>
+                <div className="physical-feedback-name" data-hint="选择" onClick={(e) => this.showChooseDialog(e, ZERO)}>{_name}</div>
                 <div className="physical-feedback-type-content">
                     <span className={_typeSlected1} onClick={(e) => this.selectTypeHandler(e, FIRST)}>不合格就地解决</span>
                     <span className={_typeSlected0} onClick={(e) => this.selectTypeHandler(e, ZERO)}>不合格上报调度中心</span>
@@ -125,7 +125,7 @@ class PhysicalFeedback extends React.Component {
         let { currentFacility, type, facilityNumber, faultLevel } = this.state;
         let _name = currentFacility ? currentFacility.name : '';
         let slectHint = faultLevel ? '' : 'physical-feedback-select-hint';
-        let {facilityTypes} = this.props;
+        let { facilityTypes } = this.props;
         let slectHint1 = facilityNumber ? '' : 'physical-feedback-select-hint';
         return (
             <div className="physical-feedback-dispatch-wrapper">
@@ -140,7 +140,7 @@ class PhysicalFeedback extends React.Component {
                     <select className='feedback-common-select facility-types-select' value={facilityNumber} onChange={(e) => this.changeStateHandler(e, 'facilityNumber')} >
                         {facilityTypes.map((item, index) => {
                             let val = item.equipmentId;
-                            return (<option value={val} key={val + '- '+ index} >{item.equipmentcontainerName}</option>);
+                            return (<option value={val} key={val + '- ' + index} >{item.equipmentcontainerName}</option>);
                         })}
                     </select>
                 </div>
@@ -167,17 +167,17 @@ class PhysicalFeedback extends React.Component {
         e.stopPropagation();
         let { currentPhysical, type, currentFacility, facilityNumber, faultLevel } = this.state;
         this.cancelFocus();
-        if(!currentPhysical){
+        if (!currentPhysical) {
             AppModal.toast('请选择体检项目');
             return;
-        }else if(type == ZERO){  //上传调度中心
-            if(!currentFacility){
+        } else if (type == ZERO) {  //上传调度中心
+            if (!currentFacility) {
                 AppModal.toast('请选择设备名称');
                 return;
-            }else if(!facilityNumber){
+            } else if (!facilityNumber) {
                 AppModal.toast('请输入设备编号');
                 return;
-            }else if(!faultLevel){
+            } else if (!faultLevel) {
                 AppModal.toast('请选择故障级别');
                 return;
             }
@@ -196,12 +196,22 @@ state  	说明	string
          */
         let uploadComponentFeedback = this.refs.uploadComponentFeedback;
         let uploadObj = uploadComponentFeedback.getUploadContent();
-        let res = {
-            isSolve: type,
-            explainInfo: uploadObj.explain,
-            attachmentList: uploadObj.photos,
-            examineId: currentPhysical.examineId   //创建 的时候默认值
-        };
+        let res = {};
+        if (type == ZERO) {
+            res = {
+                isSolve: type,
+                explainInfo: uploadObj.explain,
+                attachmentList: uploadObj.photos,
+                examineId: currentPhysical.examineId   //创建 的时候默认值
+            };
+        } else if (type == FIRST) {
+            res = {
+                isSolve: type,
+                explainInfo: uploadObj.explain,
+                attachmentList: uploadObj.photos,
+                examineId: currentPhysical.examineId   //创建 的时候默认值
+            };
+        }
         console.log(res, 999999);
         this.props.callBack && this.props.callBack(res);
     }
@@ -250,7 +260,7 @@ state  	说明	string
 
     componentWillReceiveProps(nextProps) {
         let _facilityNumber = '';
-        if(nextProps.facilityTypes && nextProps.facilityTypes.length > 0){
+        if (nextProps.facilityTypes && nextProps.facilityTypes.length > 0) {
             _facilityNumber = nextProps.facilityTypes[0] && nextProps.facilityTypes[0].equipmentId;
         }
         if (nextProps) {
