@@ -74,8 +74,9 @@ export const GetFacilityList = (powerStationId) => '/pvmtsys/powerStation/getEqu
 export const GetFaultDetailById = (id) => "/pvmtsys/faultInfo/getFaultInfo/" + id;
 
 /***保存故障反馈处理信息 */ 
-export const SaveFaultSolve = () => "/pvmtsys/faultInfo/saveFaultSolve";
-
+export const SaveFaultSolve = () => "/pvmtsys/faultInfo/saveFaultSolve";  ///pvmtsys/faultInfo/insert
+/***添加故障信息 */ 
+export const insertFaultInfo = () => "/pvmtsys/faultInfo/insert";
 /**七日工单完成量 图表 */
 export const GetWorkOrderCompletion = () => '/pvmtsys/workOrderInfo/workOrderCompletion'
 

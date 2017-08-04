@@ -29,13 +29,15 @@ class Home extends React.Component {
     constructor(props, context) {
         super(props, context)
         this.tab = this.props.params && this.props.params.tab;
+        let tab = this.tab != undefined ? parseInt(this.tab) : this.props.tabIndex;
         //只是为了显示不同的标题
         this.state = {
             title: '光伏运维管理平台',  //Header组件标题
             rightClass: '',
             rightContent: '',
             count: 0,   //显示底部未完成工单数量
-            isShowRight: false
+            isShowRight: false,
+            currentTab: tab
         };
     }
     /**
@@ -61,6 +63,7 @@ class Home extends React.Component {
      * 更新属性
      */
     componentWillReceiveProps(nextProps) {
+        // this.setState({currentTab: nextProps.tabIndex});
     }
     /**
      * 头部组件右边按钮点击事件
@@ -81,8 +84,8 @@ class Home extends React.Component {
      */
     getContentSection() {
         let component;
-        let{workOrder} = this.props;
-        switch (this.props.tabIndex) {
+        let{workOrder} = this.props;  //this.props.tabIndex
+        switch (this.state.currentTab) {
             case ZERO:
                 component = <HomeContainer />
                 break
@@ -129,13 +132,14 @@ class Home extends React.Component {
             title: _title,  //Header组件标题
             rightClass: _rightClass,
             rightContent: _rightContent,
-            isShowRight: _isShowRight
+            isShowRight: _isShowRight,
+            currentTab: tab
         });
         this.props.changeHomeTabIndex(tab)
         this.props.fetchData(tab);
     }
     render() {
-        let { title, isShowRight, rightClass, rightContent, count } = this.state;
+        let { title, isShowRight, rightClass, rightContent, count, currentTab } = this.state;
         let _current = this.tab != undefined ? parseInt(this.tab) : this.props.tabIndex;
         return (
             <Page className="home-page">
@@ -145,7 +149,7 @@ class Home extends React.Component {
                 <div className="home-main">
                     {this.getContentSection()}
                 </div>
-                <HomeBottom tabIndex={_current} count={count} onTabClick={(tab) => this.changeTabHandler(tab)} />
+                <HomeBottom tabIndex={currentTab} count={count} onTabClick={(tab) => this.changeTabHandler(tab)} />
             </Page>
         )
     }

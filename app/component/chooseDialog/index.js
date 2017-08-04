@@ -68,15 +68,13 @@ class ChooseDialog extends React.Component {
         let nameKey = type == ZERO ? 'checkupName' : 'name';
         // let prevKey = type == ZERO ? 'examineId' : 'facilityId';  //前缀
         let idKey = type == ZERO ? 'examineId' : 'id';
-        console.log(current, 8888);
         return (
             <div className="choose-dialog-item-wrapper">
                 {data.map((item, index) => {
                     let name = item[nameKey];
                     let id = item[idKey];
-                    console.log(item, id, 777777);
                     let prv = type == ZERO ? item['examineId'] : (index + 1 );
-                    let _check = current ? current.id == id : false;
+                    let _check = current ? current[idKey] == id : false;
                     return (<label key={index} className="choose-dialog-item" htmlFor={id}>{prv + "." + name}
                         <input type="radio" checked={_check} id={id} name="chooseDialog"
                             onChange={(e) => this.chooseItemHandler(e, item)} /></label>)
@@ -121,13 +119,16 @@ class ChooseDialog extends React.Component {
      * 更新属性
      */
     componentWillReceiveProps(nextProps) {
-        this.setState({
+        let obj = {
             type: nextProps.type,    //消息框类型
             isShow: nextProps.isShow, //是否显示
             title: nextProps.title,    //提示框标题
-            data: nextProps.data,   //显示的内容
-            current: null
-        });
+            data: nextProps.data   //显示的内容
+        };
+        if(nextProps.type !== this.state.type){
+            obj.current = null;
+        }
+        this.setState(obj);
     }
     /**
      * 组件销毁的时候

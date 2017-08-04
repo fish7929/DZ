@@ -83,7 +83,7 @@ class Physical extends React.Component {
         //对应项目增加一条反馈
         let findItem = oldList.find((item, index) => item.examineId == param.examineId);
         AppModal.loading();
-        let url = Api.SavePhysicalExamine();
+        let url = param.isSolve == 1 ? Api.SavePhysicalExamine() : Api.insertFaultInfo();
         /**
          *  { "id": 1, 
          * "examineId": 1, 
@@ -94,6 +94,19 @@ class Physical extends React.Component {
          * { "filename":"2.txt", "filepath":"d:/upload" } ] 
          * }
          */
+
+         /**  /pvmtsys/faultInfo/insert
+         * 	attachmentList	附件信息	array<object>	
+    filename	文件名称	string	确认报警的时候上传 多个文件
+    filepath	文件路径	string	
+equipmentId	设备id	number	
+equipmentNumber	设备编号	string	
+equipmentType	设备类型	number	
+faultGrade	故障级别	number	
+faultMessage	故障原因	string	
+powerStationId	电站id	number	
+state  	说明	string
+         */
         let opt = {
             id: findItem.id,
             workorderNum: findItem.workorderNum,
@@ -102,6 +115,18 @@ class Physical extends React.Component {
             explainInfo: param.explainInfo,
             fileInfo: param.attachmentList,
         };
+        if(param.isSolve == 0){  
+            opt = {
+                faultGrade: param.faultGrade,
+                equipmentId: param.equipmentId,
+                equipmentNumber: parseInt(param.equipmentNumber),
+                equipmentType: param.equipmentType,
+                faultMessage: param.faultMessage,
+                state: param.explainInfo,
+                attachmentList: param.attachmentList,
+                powerStationId: this.param.powerstationId
+            };
+        }
 
         utils.fetchUtils(url, opt, "POST").then((res) => {
             AppModal.hide()

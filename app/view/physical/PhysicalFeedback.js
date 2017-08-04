@@ -182,24 +182,24 @@ class PhysicalFeedback extends React.Component {
                 return;
             }
         }
-        /**  /pvmtsys/faultInfo/insert
-         * 	attachmentList	附件信息	array<object>	
-    filename	文件名称	string	确认报警的时候上传 多个文件
-    filepath	文件路径	string	
-equipmentId	设备id	number	
-equipmentNumber	设备编号	string	
-equipmentType	设备类型	number	
-faultGrade	故障级别	number	
-faultMessage	故障原因	string	
-powerStationId	电站id	number	
-state  	说明	string
-         */
+        
         let uploadComponentFeedback = this.refs.uploadComponentFeedback;
         let uploadObj = uploadComponentFeedback.getUploadContent();
         let res = {};
-        if (type == ZERO) {
+        let level = 1;
+        if(faultLevel == 'Ⅱ'){
+            level = 2;
+        }else if(faultLevel == 'Ⅲ'){
+            level = 3;
+        }
+        if (type == ZERO) {  //上传调度中心
             res = {
                 isSolve: type,
+                faultGrade: level,
+                equipmentId: currentFacility.id,
+                equipmentNumber: facilityNumber,
+                equipmentType: 3,
+                faultMessage: '',
                 explainInfo: uploadObj.explain,
                 attachmentList: uploadObj.photos,
                 examineId: currentPhysical.examineId   //创建 的时候默认值
