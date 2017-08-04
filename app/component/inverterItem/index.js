@@ -10,14 +10,27 @@ class InverterItem extends React.Component{
 
     render(){
         let { data, onClick } = this.props
-
+        //equipmentStatus 1：正常运行 2：故障运行 3：正常停机 4：故障停机 5：通讯中断 6：其他
+        //@3、4、5其他都显示正常
+        let statusClass;
+        switch (data.equipmentStatus) {
+            case 3:
+            case 4:
+                statusClass = "status_1";
+                break;
+            case 5:
+                statusClass = "status_2";
+            default:
+                statusClass = ""
+                break;
+        }
         return(
             <div className="inverter-item" onClick={onClick}>
                 <div className="inverter-header">
                     <div className="inverter-header-left">
                         <span className="inverter-icon"></span>
                         <span className="inverter-title no-wrap">{data.serial_number}</span></div>
-                    <div className="inverter-status status_0"></div>
+                    <div className={"inverter-status "+statusClass}></div>
                 </div>
                 <div className="inverter-content">
                     <div className="info-item">

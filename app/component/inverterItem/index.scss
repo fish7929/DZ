@@ -43,12 +43,12 @@
             height: calc-rem(40);
         }
 
-        .inverter-status.status_0{
+        .inverter-status.status_1{
             background: url(../../static/images/machine_halt.png) no-repeat center;
             background-size: calc-rem(90) calc-rem(40);
         }
 
-        .inverter-status.status_1{
+        .inverter-status.status_2{
             background: url(../../static/images/communication_anomaly.png) no-repeat center;
             background-size: calc-rem(90) calc-rem(40);
         }

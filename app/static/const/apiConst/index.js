@@ -103,7 +103,7 @@ export const InsertFaultInfo = () => "/pvmtsys/faultInfo/insert"
 
 export const UserLogin = () => "/pvmtsys/user/api/login"
 
-export const UserChangePw = () => "pvmtsys/user/resetpsw"
+export const UserChangePw = () => "/pvmtsys/user/resetpsw"
 
 
 export const AffirmAlarm = () => "/pvmtsys/alarmInfo/affirm"
