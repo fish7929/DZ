@@ -81,7 +81,7 @@ class Physical extends React.Component {
         console.log(param, 'save');
         let oldList = this.state.list;
         //对应项目增加一条反馈
-        let findItem = oldList.find((item, index) => item.id == param.id);
+        let findItem = oldList.find((item, index) => item.examineId == param.examineId);
         AppModal.loading();
         let url = Api.SavePhysicalExamine();
         /**
@@ -97,7 +97,7 @@ class Physical extends React.Component {
         let opt = {
             id: findItem.id,
             workorderNum: findItem.workorderNum,
-            examineId: findItem.findItem,
+            examineId: findItem.examineId,
             isSolve: param.isSolve,
             explainInfo: param.explainInfo,
             fileInfo: param.attachmentList,

@@ -67,7 +67,7 @@ class ChooseDialog extends React.Component {
         let { type, data, current } = this.state;
         let nameKey = type == ZERO ? 'checkupName' : 'name';
         // let prevKey = type == ZERO ? 'examineId' : 'facilityId';  //前缀
-        let idKey = type == ZERO ? 'id' : 'id';
+        let idKey = type == ZERO ? 'examineId' : 'id';
         console.log(current, 8888);
         return (
             <div className="choose-dialog-item-wrapper">

@@ -69,9 +69,12 @@ class WorkOrderItem extends React.Component {
      */
     render() {
         let { data } = this.props;
-        let physicalState = data.physicalState == FIRST ? 'treated-icon' : 'untreated-icon';   //电站体检状态 1-已处理 0-未处理
-        let faultState = data.faultState == FIRST ? 'treated-icon' : 'untreated-icon';   //任务1处理状态 1-已处理 0-未处理
-        let departureState = data.departureState == FIRST ? 'treated-icon' : 'untreated-icon';   //离场申请状态 1-已处理 0-未处理
+        let _physicalState = data.physicalState;
+        let physicalState = _physicalState == FIRST ? 'treated-icon' : 'untreated-icon';   //电站体检状态 1-已处理 0-未处理 3不用处理
+        let _faultState = data.faultState;
+        let faultState = _faultState == FIRST ? 'treated-icon' : 'untreated-icon';   //任务1处理状态 1-已处理 0-未处理 3不用处理
+        let _departureState = data.departureState;
+        let departureState = _departureState == FIRST ? 'treated-icon' : 'untreated-icon';   //离场申请状态 1-已处理 0-未处理 3不用处理
         let status = data.state;
         let _hint = status == FIRST ? "已处理故障：" : "未处理故障：";
         return (
@@ -86,16 +89,16 @@ class WorkOrderItem extends React.Component {
                     <span className="no-wrap">{data.powerstationName}</span>
                 </div>
                 <div className="common-order-item-hint">任务列表</div>
-                {data.faultNum > 0 ? <div className="common-item common-pseudo common-active work-order-item-logo" data-hint={_hint + data.faultNum} onClick={(e) => this.onEditTaskHandler(e, FIRST)}>
+                {_faultState != 3 ? <div className="common-item common-pseudo common-active work-order-item-logo" data-hint={_hint + data.faultNum} onClick={(e) => this.onEditTaskHandler(e, FIRST)}>
                     {status == FIRST ? null : <div><span className="work-order-item-edit"></span><span className={faultState}></span></div>}
                 </div> : null}
-                <div className="common-item common-pseudo common-active work-order-item-logo" data-hint="电站体检" onClick={(e) => this.onEditTaskHandler(e, SECOND)}>
+                {physicalState != 3 ? <div className="common-item common-pseudo common-active work-order-item-logo" data-hint="电站体检" onClick={(e) => this.onEditTaskHandler(e, SECOND)}>
                     {status == FIRST ? null : <div><span className="work-order-item-edit"></span><span className={physicalState}></span></div>}
-                </div>
-                <div className="common-item common-pseudo common-active work-order-item-logo" data-hint="离场申请" onClick={(e) => this.onEditTaskHandler(e, THREE)}>
+                </div> : null}
+                {_departureState != 3 ? <div className="common-item common-pseudo common-active work-order-item-logo" data-hint="离场申请" onClick={(e) => this.onEditTaskHandler(e, THREE)}>
                     {status == FIRST ? null : <div><span className="work-order-item-edit"></span><span className={departureState}></span></div>}
-                </div>
-                {(status == ZERO && faultState == FIRST && physicalState == FIRST && departureState == FIRST) ? <div className="work-order-item-submit">
+                </div> : null}
+                {(status == ZERO && _faultState == FIRST && _physicalState == FIRST && _departureState == FIRST) ? <div className="work-order-item-submit">
                     <div className="common-active" onClick={(e) => this.onSubmitHandler(e, data.orderId, data.orderNumber)}>提交</div>
                     <span>点击提交才算完成任务</span>
                 </div> : null}

@@ -165,7 +165,7 @@ class PhysicalFeedback extends React.Component {
     onSaveHandler(e) {
         e.preventDefault();
         e.stopPropagation();
-        let { currentPhysical, type, currentFacility } = this.state;
+        let { currentPhysical, type, currentFacility, facilityNumber, faultLevel } = this.state;
         this.cancelFocus();
         if(!currentPhysical){
             AppModal.toast('请选择体检项目');
@@ -174,22 +174,33 @@ class PhysicalFeedback extends React.Component {
             if(!currentFacility){
                 AppModal.toast('请选择设备名称');
                 return;
-            }else if(!this.state.facilityNumber){
+            }else if(!facilityNumber){
                 AppModal.toast('请输入设备编号');
                 return;
-            }else if(!this.state.faultLevel){
+            }else if(!faultLevel){
                 AppModal.toast('请选择故障级别');
                 return;
             }
         }
-        
+        /**  /pvmtsys/faultInfo/insert
+         * 	attachmentList	附件信息	array<object>	
+    filename	文件名称	string	确认报警的时候上传 多个文件
+    filepath	文件路径	string	
+equipmentId	设备id	number	
+equipmentNumber	设备编号	string	
+equipmentType	设备类型	number	
+faultGrade	故障级别	number	
+faultMessage	故障原因	string	
+powerStationId	电站id	number	
+state  	说明	string
+         */
         let uploadComponentFeedback = this.refs.uploadComponentFeedback;
         let uploadObj = uploadComponentFeedback.getUploadContent();
         let res = {
             isSolve: type,
             explainInfo: uploadObj.explain,
             attachmentList: uploadObj.photos,
-            id: currentPhysical.id   //创建 的时候默认值
+            examineId: currentPhysical.examineId   //创建 的时候默认值
         };
         console.log(res, 999999);
         this.props.callBack && this.props.callBack(res);
