@@ -24,7 +24,8 @@ export const DeleteSiteMessageById = (id) => "/pvmtsys/messageSystemInfo/deleteM
 //修改消息状态
 export const ChangeMessageStatusById = (id) => "/pvmtsys/messageSystemInfo/updateRead/" + id;
 /**Message api GetMessageDataByType */
-export const GetMessageDataByType = (type) => "/pvmtsys/messageSystemInfo/getMassageByType/" + type;
+// export const GetMessageDataByType = (type) => "/pvmtsys/messageSystemInfo/getMassageByType/" + type;
+export const GetMessageDataByType = () => "/pvmtsys/messageSystemInfo/getMassageByType";
 
 /**realTimeAlarm api  GetAlarmListByOption 
 @opt: {

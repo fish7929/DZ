@@ -45,9 +45,11 @@ export const fetchData = (type, currentPage = 1) => dispatch => {
     //这里组分页查询，pagesize每页查询个数
     let _opt = {
         page: currentPage,
-        pagesize: 8  //test
+        pagesize: 8,  //test
+        massageType: type
     }
-    let _url = Api.GetMessageDataByType(type);
+    // let _url = Api.GetMessageDataByType(type);
+    let _url = Api.GetMessageDataByType();
     dispatch(utils.sendMsg(_url, _opt, "GET")).then(data => {
         dispatch(receiveData(data, currentPage));
     })
