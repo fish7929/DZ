@@ -20,7 +20,7 @@ class WorkOrder extends React.Component {
             currentTab: 0,   //当前标签
             list: _list,
             currentPage: 1,
-
+            total: this.props.total,
             isShow: false,  //测试
             isSelected: false,
             month: []
@@ -40,7 +40,7 @@ class WorkOrder extends React.Component {
      * @param {number} tab 标签栏的值
      */
     changeTabHandler(e, tab) {
-        e.preventDefault();
+        // e.preventDefault();
         e.stopPropagation();
         let _currentPage = 1;
         this.setState({ currentTab: tab, currentPage: _currentPage });
@@ -49,6 +49,7 @@ class WorkOrder extends React.Component {
     onScrollHandler(page) {
         //todo 可能存在隐患
         this.setState({ currentPage: page });
+        console.log(page, 75221666);
         this.props.onChange && this.props.onChange(this.state.currentTab, page);
     }
     onSubmitHandler(orderId, orderNumber) {
@@ -157,7 +158,7 @@ class WorkOrder extends React.Component {
                     <span className={"common-active " + _class2} onClick={(e) => this.changeTabHandler(e, FIRST)}>已完成</span>
                 </div>
                 {/*<ul className="work-order-content">*/}
-                <ScrollList className="work-order-content" onScroll={page => this.onScrollHandler(page)} currentPage={this.state.currentPage} pageTotal={this.props.total}>
+                <ScrollList className="work-order-content" onScroll={page => this.onScrollHandler(page)} currentPage={this.state.currentPage} pageTotal={this.state.total}>
                     {list.map((item, index) => <WorkOrderItem data={item} key={index} onSubmit={(orderId, orderNumber) => this.onSubmitHandler(orderId, orderNumber)} />)}
                     {/*</ul>*/}
                 </ScrollList>
@@ -183,6 +184,7 @@ class WorkOrder extends React.Component {
             // this.defaultMonth = [];
             this.setState({
                 list: _list,
+                total: nextProps.total,
                 // month: [],
                 isSelected: false,
                 isShow: false  //测试

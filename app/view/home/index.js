@@ -77,6 +77,7 @@ class Home extends React.Component {
      */
     reloadWorkOrderListHandler(status, currentPage) {
         //重新加载工单数据,
+        console.log(status, currentPage, 78996655);
         this.props.fetchData(this.props.tabIndex, status, currentPage);
     }
     /**
@@ -85,6 +86,7 @@ class Home extends React.Component {
     getContentSection() {
         let component;
         let{workOrder} = this.props;  //this.props.tabIndex
+            console.log(workOrder, 8899666);
         switch (this.state.currentTab) {
             case ZERO:
                 component = <HomeContainer />

@@ -26,7 +26,7 @@ class WorkOrderItem extends React.Component {
      * @param {string} number 工单号
      */
     onSubmitHandler(e, id, number) {
-        e.preventDefault();
+        // e.preventDefault();
         e.stopPropagation();
         console.log('提交', id);
         this.props.onSubmit && this.props.onSubmit(id, number);
@@ -37,7 +37,7 @@ class WorkOrderItem extends React.Component {
      * @param {number} type 工单任务类型, 1,2,3
      */
     onEditTaskHandler(e, type) {
-        e.preventDefault();
+        // e.preventDefault();
         e.stopPropagation();
         let { data } = this.props;
         let order = data.orderNumber;
@@ -98,7 +98,7 @@ class WorkOrderItem extends React.Component {
                 {_departureState != 3 ? <div className="common-item common-pseudo common-active work-order-item-logo" data-hint="离场申请" onClick={(e) => this.onEditTaskHandler(e, THREE)}>
                     {status == FIRST ? null : <div><span className="work-order-item-edit"></span><span className={departureState}></span></div>}
                 </div> : null}
-                {(status == ZERO && _faultState == FIRST && _physicalState == FIRST && _departureState == FIRST) ? <div className="work-order-item-submit">
+                {(status == ZERO && _faultState != ZERO && _physicalState != ZERO && _departureState != ZERO) ? <div className="work-order-item-submit">
                     <div className="common-active" onClick={(e) => this.onSubmitHandler(e, data.orderId, data.orderNumber)}>提交</div>
                     <span>点击提交才算完成任务</span>
                 </div> : null}
