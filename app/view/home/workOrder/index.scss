@@ -3,8 +3,8 @@
 
 .work-order-container{
     width: 100%;
-    height: -webkit-calc(100% - #{calc-rem($topHeight)});
-    height: calc(100% - #{calc-rem($topHeight)});
+    height: 100%;
+    // height: calc(100% - #{calc-rem($topHeight)});
     position: relative;
     .work-order-tabs{
         width: 100%;
@@ -32,6 +32,8 @@
         top: calc-rem(100);
         width: 100%;
         left: 0;
+        height: -webkit-calc(100% - #{calc-rem(100)});
+        height: calc(100% - #{calc-rem(100)});
     }
 }
 

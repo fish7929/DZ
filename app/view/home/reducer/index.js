@@ -56,8 +56,9 @@ export default function homeData(state = initialState, action) {
             ); 
         case ActionType.RECEIVE_WORK_ORDER_DATA:  //工单
             let _order = state.workOrder;
-            action.currentPage == 1 ? (_order.list = action.data) : _order.list.concat(action.data);
+            action.currentPage == 1 ? (_order.list = action.data) : _order.list = _order.list.concat(action.data);
             _order.total = action.total;
+            console.log(_order.list, 7523460);
             return Object.assign(
                 {},
                 state,

@@ -39,7 +39,7 @@ function receiveData(result, category, currentPage) {
             return {
                 type: ActionType.RECEIVE_WORK_ORDER_DATA,
                 data: result.results,
-                total: result.counts,
+                total: result.pageCounts,
                 currentPage: currentPage
             }
         case SECOND:
