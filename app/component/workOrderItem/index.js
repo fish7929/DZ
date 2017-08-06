@@ -77,6 +77,7 @@ class WorkOrderItem extends React.Component {
         let departureState = _departureState == FIRST ? 'treated-icon' : 'untreated-icon';   //离场申请状态 1-已处理 0-未处理 3不用处理
         let status = data.state;
         let _hint = status == FIRST ? "已处理故障：" : "未处理故障：";
+        let faultNum = data.faultNum || 0;
         return (
             <li className="work-order-item">
                 <div className="work-order-number">{"工单编号：" + data.orderNumber}</div>
@@ -89,7 +90,7 @@ class WorkOrderItem extends React.Component {
                     <span className="no-wrap">{data.powerstationName}</span>
                 </div>
                 <div className="common-order-item-hint">任务列表</div>
-                {_faultState != 3 ? <div className="common-item common-pseudo common-active work-order-item-logo" data-hint={_hint + data.faultNum} onClick={(e) => this.onEditTaskHandler(e, FIRST)}>
+                {_faultState != 3 ? <div className="common-item common-pseudo common-active work-order-item-logo" data-hint={_hint + faultNum} onClick={(e) => this.onEditTaskHandler(e, FIRST)}>
                     {status == FIRST ? null : <div><span className="work-order-item-edit"></span><span className={faultState}></span></div>}
                 </div> : null}
                 {physicalState != 3 ? <div className="common-item common-pseudo common-active work-order-item-logo" data-hint="电站体检" onClick={(e) => this.onEditTaskHandler(e, SECOND)}>
@@ -98,7 +99,7 @@ class WorkOrderItem extends React.Component {
                 {_departureState != 3 ? <div className="common-item common-pseudo common-active work-order-item-logo" data-hint="离场申请" onClick={(e) => this.onEditTaskHandler(e, THREE)}>
                     {status == FIRST ? null : <div><span className="work-order-item-edit"></span><span className={departureState}></span></div>}
                 </div> : null}
-                {(status == ZERO && _faultState != ZERO && _physicalState != ZERO && _departureState != ZERO) ? <div className="work-order-item-submit">
+                {(status == ZERO && ((_faultState == FIRST && faultNum == ZERO) || _faultState == 3) && _physicalState != ZERO && _departureState != ZERO) ? <div className="work-order-item-submit">
                     <div className="common-active" onClick={(e) => this.onSubmitHandler(e, data.orderId, data.orderNumber)}>提交</div>
                     <span>点击提交才算完成任务</span>
                 </div> : null}

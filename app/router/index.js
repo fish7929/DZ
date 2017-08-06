@@ -64,6 +64,10 @@ const Routers = {
 			getComponent(nextState, cb){ Home(cb) },
 		},
 		{
+			path: RouterConst.ROUTER_HOME_TAB + '/:tab/:type',
+			getComponent(nextState, cb){ Home(cb) },
+		},
+		{
 			path: RouterConst.ROUTER_LOGIN,
 			getComponent(nextState, cb){ Login(cb) },
 		},

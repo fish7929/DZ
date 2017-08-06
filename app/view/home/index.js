@@ -29,7 +29,12 @@ class Home extends React.Component {
     constructor(props, context) {
         super(props, context)
         this.tab = this.props.params && this.props.params.tab;
+        //工单的类型，0，为完成， 1、已完成
+        let type = this.props.params && this.props.params.type;
         let tab = this.tab != undefined ? parseInt(this.tab) : this.props.tabIndex;
+
+        this.type = type == undefined ? 0 :  parseInt(type);
+
         //只是为了显示不同的标题
         this.state = {
             title: '光伏运维管理平台',  //Header组件标题
@@ -48,7 +53,7 @@ class Home extends React.Component {
         // AppModal.loading();
         //加载默认数据
         let tab = this.tab != undefined ? parseInt(this.tab) : this.props.tabIndex;
-        this.props.fetchData(tab);
+        this.props.fetchData(tab, this.type);
         //获取未完成工单的数量
         let url = Api.GetWorkOrdrDataByStatus(0);
         utils.fetchUtils(url, {page: 1, pagesize: 10}).then((res) => {
@@ -92,7 +97,7 @@ class Home extends React.Component {
                 component = <HomeContainer />
                 break
             case FIRST:
-                component = <WorkOrder data={workOrder.list} total={workOrder.total}
+                component = <WorkOrder data={workOrder.list} total={workOrder.total} type={this.type} 
                     onChange={(status, page) => this.reloadWorkOrderListHandler(status, page)} />;
                 break
             case SECOND:

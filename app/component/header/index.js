@@ -24,12 +24,13 @@ class Header extends React.Component{
         this.props.rightFn && this.props.rightFn();
     }
     render(){
+        let {backFn} = this.props;
         return(
             <div className="header-container">
                 <div className="title-div">
                     {this.props.title}
                     {
-                        this.props.isShowBack ? <button className="btn_back" onClick={()=>hashHistory.goBack()}></button> : ""
+                        this.props.isShowBack ? <button className="btn_back" onClick={()=> backFn ? backFn() : hashHistory.goBack()}></button> : ""
                     }
                     {
                         this.props.isShowRight ? <button className={this.props.rightClass} onClick={(e)=>this.rightClickHandler(e)}>{this.props.rightContent}</button> : ""
@@ -43,6 +44,7 @@ class Header extends React.Component{
 Header.PropTypes = {
     title: PropTypes.string.isRequired,
     isShowBack: PropTypes.bool.isRequired,
+    backFn: PropTypes.func,
     isShowRight: PropTypes.bool,
     rightClass:  PropTypes.string,
     rightFn: PropTypes.func,

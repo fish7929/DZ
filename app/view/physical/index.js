@@ -270,7 +270,7 @@ state  	说明	string
         let { list } = this.state;
         return (
             <Page className="third-contact-container">
-                <Header title="电站体检" isShowBack={true} />
+                <Header title="电站体检" isShowBack={true} backFn={() => hashHistory.push('/home/1/'+this.status)}/>
                 {Base.isEmptyObject(list) ? <NoMessage msg="暂无信息" /> : this.renderContentSection()}
             </Page>
         )

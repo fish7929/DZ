@@ -76,7 +76,7 @@ class FaultList extends React.Component {
         let { isFetching, faultList } = this.props;
         return (
             <Page className="fault-list-container">
-                <Header title='故障列表' isShowBack={true} />
+                <Header title='故障列表' isShowBack={true} backFn={() => hashHistory.push('/home/1/'+this.status)}/>
                 <div className="fault-list-title">
                     电站名称
                     <span className="no-wrap">{this.param.powerstationName}</span>

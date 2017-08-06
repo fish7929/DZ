@@ -17,7 +17,7 @@ class WorkOrder extends React.Component {
             return b.createTime - a.createTime;
         });
         this.state = {
-            currentTab: 0,   //当前标签
+            currentTab: this.props.type,   //当前标签
             list: _list,
             currentPage: 1,
             total: this.props.total,
@@ -79,7 +79,7 @@ class WorkOrder extends React.Component {
         this.setState({isShow: true});
     }
     handleChangeMonth(month) {
-        this.setState({ month: month });
+        // this.setState({ month: month });
     }
 
     closeMonthRange(month) {
@@ -196,7 +196,8 @@ class WorkOrder extends React.Component {
 WorkOrder.PropTypes = {
     total: PropTypes.number.isRequired,
     data: PropTypes.array.isRequired,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
+    type: PropTypes.number.isRequired
 }
 
 export default WorkOrder;
