@@ -92,9 +92,9 @@ class UploadComponent extends React.Component {
         this.setState({
             type: nextProps.type,    //消息框类型
             photoHint: nextProps.photoHint,
-            photos: nextProps.photos ? [...nextProps.photos] : [],
+            // photos: nextProps.photos ? [...nextProps.photos] : [],
             explainHint: nextProps.explainHint,
-            explain: nextProps.explain || ""
+            // explain: nextProps.explain || ""
         });
     }
     render() {
