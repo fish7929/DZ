@@ -68,6 +68,7 @@ class ChooseDialog extends React.Component {
         let nameKey = type == ZERO ? 'checkupName' : 'name';
         // let prevKey = type == ZERO ? 'examineId' : 'facilityId';  //前缀
         let idKey = type == ZERO ? 'examineId' : 'id';
+        console.log(current, 78854566);
         return (
             <div className="choose-dialog-item-wrapper">
                 {data.map((item, index) => {
@@ -75,8 +76,10 @@ class ChooseDialog extends React.Component {
                     let id = item[idKey];
                     let prv = type == ZERO ? item['examineId'] : (index + 1 );
                     let _check = current ? current[idKey] == id : false;
+                    console.log(_check, 22222, idKey, id);
+                    let checkedClass = _check ? 'checked-dialog' : '';
                     return (<label key={index} className="choose-dialog-item" htmlFor={id}>{prv + "." + name}
-                        <input type="radio" checked={_check} id={id} name="chooseDialog"
+                        <input type="radio" className={checkedClass} checked ={_check} id={id} name="chooseDialog" 
                             onChange={(e) => this.chooseItemHandler(e, item)} /></label>)
                 })}
             </div>

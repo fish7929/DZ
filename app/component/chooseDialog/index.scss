@@ -59,10 +59,17 @@
         background: url($uncheckIcon) center no-repeat;
         background-size: calc-rem(44); 
     }
+    /*
     input[type="radio"]:checked{
         background: url($checkIcon) center no-repeat;
         background-size: calc-rem(44);
     }
+    */
+}
+
+.checked-dialog{
+    background: url($checkIcon) center no-repeat !important;
+    background-size: calc-rem(44) !important;
 }
  .choose-dialog-button{
      position: absolute;
