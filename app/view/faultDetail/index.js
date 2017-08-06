@@ -146,24 +146,25 @@ class FaultDetail extends React.Component {
      */
     renderDealPersonnelSection(type) {
         let { list } = this.state;
-        //运维人员
-        let solveList = list.solveList || [];
-        let solveTime = list.solveTime;
-        let solveName = list.solveName;
-        let solveInfo = list.dispatcherState || '';
+        //运维人员, 相当创建人员
+        let solveList = list.attachmentList || [];
+        let solveTime = list.createTime;
+        let solveName = list.createUsername;
+        let solveInfo = list.state || '';
         //调度人员
         let dispatcherList = list.dispatcherList || [];
         let dispatcherTime = list.dispatcherTime;
         let dispatcherName = list.dispatcherName;
-        let dispatcherInfo = list.solveInfo || '';
+        let dispatcherInfo = list.dispatcherState || '';
 
         let name = type == FIRST ? solveName : dispatcherName;
         let nameHint = type == FIRST ? '运维人员' : '调度人员';
         let time = type == FIRST ? Base.formatTime(solveTime, "yyyy-MM-dd HH:mm") :
             Base.formatTime(dispatcherTime, "yyyy-MM-dd HH:mm");
         let timeHint = type == FIRST ? '运维时间' : '调度时间';
-        let photos = type == FIRST ? solveList : dispatcherList;
-        let explain = type == FIRST ? solveInfo : dispatcherInfo;
+
+        let photos = list.solveList || [];   //处理人员
+        let explain = list.solveInfo || '';   //处理人员
         //故障状态
         let faultStatus = list.faultStatus;
         let faultStatusStr = '未分配';  //0 的状态
