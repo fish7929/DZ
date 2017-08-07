@@ -14,12 +14,13 @@ class RealTimeAlarmItem extends React.Component{
 
     render(){
         let { data, type } = this.props
+        let alarmGrade = data.alarmGrade < 3 ? data.alarmGrade : 3
         //status 零:未提交 非零：已提交
         return(
             <div className="realTime-alarm-item" onClick={this.props.onClick}>
-                <div className={"warning-bg warning_" + data.alarmGrade + " " + type}></div>
+                <div className={"warning-bg warning_" + alarmGrade + " " + type}></div>
                 <div className="status-div">
-                    <div className={"icon alarm_level_"+data.alarmGrade}></div>
+                    <div className={"icon alarm_level_"+alarmGrade}></div>
                     <div className={"status-icon " + (data.status == 0 ? "notsubmited" : "submited")}></div>
                 </div>
                 <div className="txt-div">

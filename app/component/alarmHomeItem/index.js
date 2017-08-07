@@ -25,11 +25,11 @@ class AlarmHomeItem extends React.Component {
      */
     render() {
         let { data } = this.props
-
+        let alarmGrade = data.alarmGrade <= 3 ? data.alarmGrade : 3;
         return (
             <li className="alarm-home-item" onClick={this.props.onClick}>
                 <div className="alarm-home-left">
-                    <span className={"icon icon_" + data.alarmGrade}></span>
+                    <span className={"icon icon_" + alarmGrade}></span>
                 </div>
                 <div className="alarm-home-right">
                     <div className="txt-div">

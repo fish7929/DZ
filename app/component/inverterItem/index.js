@@ -29,7 +29,7 @@ class InverterItem extends React.Component{
                 <div className="inverter-header">
                     <div className="inverter-header-left">
                         <span className="inverter-icon"></span>
-                        <span className="inverter-title no-wrap">{data.serial_number}</span></div>
+                        <span className="inverter-title no-wrap">{data.serialNumber}</span></div>
                     <div className={"inverter-status "+statusClass}></div>
                 </div>
                 <div className="inverter-content">

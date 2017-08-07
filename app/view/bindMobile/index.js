@@ -70,7 +70,7 @@ class BindMobile extends React.Component{
         let {mobile, code, count} = this.state
         return(
             <Page className="bind-mobile-container">
-                <Header title="绑定微信号" isShowBack={false} />
+                <Header title="绑定运维账号" isShowBack={false} />
                 <div className="input-mobile-div">
                     <span className="icon"></span>
                     <input type="text" value={mobile} onChange={(e)=>this.onMobileChange(e, "mobile")} placeholder="请输入账号"  />

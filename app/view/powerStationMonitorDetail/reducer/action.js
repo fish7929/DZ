@@ -12,7 +12,7 @@ const receiveListData = (data) => ({
     type: ActionType.PSM_DETAIL_INIT,
     data: {
         ...data,
-        generationDailyList: data.generationDailyList.map(obj=>({value: obj.value, name:utils.formatDate(obj.time, "yyyy-MM-dd")})),
+        generationDailyList: data.generationDailyList.sort((a, b)=>{return a.time >= b.time }).map(obj=>({value: obj.value, name:utils.formatDate(obj.time, "yyyy-MM-dd")})),
         powerTime: data.powerTime.map(obj=>({value: obj.value, name: obj.time}))
     }
 })

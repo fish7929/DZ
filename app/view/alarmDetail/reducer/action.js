@@ -13,7 +13,13 @@ const receiveData = (data) => ({
 
 export const getAlarmList = (id, tabIndex) => dispatch =>{
     let url = Api.GetAlarmDetailById(id)
-    dispatch(utils.sendMsg(url, {}, "GET")).then(data => dispatch(receiveData(data)))
+    dispatch(utils.sendMsg(url, {}, "GET")).then(data => {
+        if(data){
+            dispatch(receiveData(data))
+        }else{
+            AppModal.toast('系统异常');
+        }
+    })
 }
 
 export const pushAlarmInfo = opt => dispatch =>{
