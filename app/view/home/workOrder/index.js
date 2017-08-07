@@ -75,7 +75,7 @@ class WorkOrder extends React.Component {
         // e.preventDefault();
         e.stopPropagation();
         //todo 选择时间区间
-        console.log('choose time');
+        console.log('choose time', this.defaultMonth);
         this.setState({isShow: true});
     }
     handleChangeMonth(month) {
@@ -83,8 +83,9 @@ class WorkOrder extends React.Component {
     }
 
     closeMonthRange(month) {
+        console.log(this.defaultMonth, 88888);
         if ((month[0].year == month[1].year && month[0].month <= month[1].month)  || month[0].year < month[1].year) {
-            this.defaultMonth = month;
+            this.defaultMonth = month.concat();
             this.setState({
                 month: month,
                 isSelected: true,
@@ -98,6 +99,7 @@ class WorkOrder extends React.Component {
     }
 
     cancelMonthRange() {
+        console.log(this.defaultMonth, 9999999);
         this.setState({isShow: false, month: this.defaultMonth});
     }
     filterListByMonth(month) {
@@ -182,6 +184,7 @@ class WorkOrder extends React.Component {
             }
             this.metaData = _list;
             // this.defaultMonth = [];
+            console.log(this.defaultMonth, 44444);
             this.setState({
                 list: _list,
                 total: nextProps.total,

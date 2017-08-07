@@ -150,7 +150,7 @@ class MonthRange extends React.Component {
      */
     handleChangeFrom(from) {
         this.month[0] = from;
-        this.props.onChange(this.address);
+        this.props.onChange(this.month);
     }
 
     /**
