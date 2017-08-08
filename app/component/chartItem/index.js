@@ -170,8 +170,8 @@ class ChartItem extends React.Component {
     }
 
     getLineOption(data) {
-        let { unitY, lineColor, shadowColor } = this.props
-        return {
+        let { unitY, lineColor, shadowColor, dataZoom } = this.props;
+        let opt =  {
             xAxis:  {
                 axisLine: {
                     show: false
@@ -226,6 +226,26 @@ class ChartItem extends React.Component {
             }
         }
 
+        if(dataZoom){
+            opt.dataZoom = [
+                {
+                    show: false,
+                    realtime: true,
+                    start: 0,
+                    end: 20,
+                    zoomLock: true,
+                },
+                {
+                    type: 'inside',
+                    realtime: true,
+                    start: 0,
+                    end: 20,
+                    zoomLock: true,
+                }
+            ]
+        }
+  
+        return opt;
     }
 
     getDoubleBarOption(){
@@ -356,7 +376,8 @@ ChartItem.PropTypes = {
     barColors: PropTypes.array,
     lineColor: PropTypes.string,
     shadowColor: PropTypes.string,
-    legend: PropTypes.array
+    legend: PropTypes.array,
+    dataZoom: PropTypes.bottom
 }
 
 export default ChartItem

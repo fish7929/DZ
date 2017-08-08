@@ -13,7 +13,8 @@ class UploadComponent extends React.Component {
             photoHint: this.props.photoHint,
             photos: this.props.photos ? [...this.props.photos] : [],
             explainHint: this.props.explainHint,
-            explain: this.props.explain || ''
+            explain: this.props.explain || '',
+            isShowPhotoSelect: false
         }
     }
 
@@ -23,7 +24,8 @@ class UploadComponent extends React.Component {
             photoHint: this.props.photoHint,
             photos: this.props.photos ? [...this.props.photos] : [],
             explainHint: this.props.explainHint,
-            explain: this.props.explain || ''
+            explain: this.props.explain || '',
+            isShowPhotoSelect: false
         }, ()=>console.log(this.state))
     }
     /**
@@ -46,6 +48,7 @@ class UploadComponent extends React.Component {
     choosePhotoHandler(e) {
         let file = e.target.files[0];
         if (file) {
+            let state = {}
             let data = new FormData()
             data.append('fileDir', 'pvmtssys/' + this.props.uploadModule + '/')
             data.append('file', file)
@@ -56,8 +59,10 @@ class UploadComponent extends React.Component {
                 if (data && data.url) {
                     let oldPhotos = this.state.photos;
                     oldPhotos.push({ filepath: data.url, filename: file.name });
-                    this.setState({ photos: oldPhotos });
+                    state.photos = oldPhotos;
                 }
+                state.isShowPhotoSelect = false;
+                this.setState(state);
 
             }).catch((e) => AppModal.hide());
         }
@@ -97,6 +102,20 @@ class UploadComponent extends React.Component {
             // explain: nextProps.explain || ""
         });
     }
+
+    photoSelectComponent(){
+        return (
+            <div className="photo-select-container">
+                <div className="btns-div">
+                    <div className="inputBtn"><input type="file" accept="image/*" capture="camera" onChange={(e) => this.choosePhotoHandler(e)} />拍照</div>
+                    <div className="inputBtn"><input type="file" accept="video/*" capture="camcorder" onChange={(e) => this.choosePhotoHandler(e)} />摄像</div>
+                    <div className="inputBtn"><input type="file" accept="video/*,image/*" onChange={(e) => this.choosePhotoHandler(e)} />相册</div>
+                    <div className="inputBtn" onClick={()=>this.setState({isShowPhotoSelect: false})}>取消</div>
+                </div>
+            </div>
+        )
+    }
+
     render() {
         let { type, photoHint, photos, explainHint, explain } = this.state
         let _disabled = type == 1 ? "upload-disabled" : ""; //0未处理，  1 已处理
@@ -104,7 +123,6 @@ class UploadComponent extends React.Component {
         let photoBtn = photos.length == 0 ? 'upload-photo-btn-init' : '';
         let noExplain =  type == 1 && !explain ? 'no-explain-style' : '';
         explain =  type == 1 && !explain ? '无' : explain;
-        console.log(explain);
         let noPhotos = (type == 1 && photos.length === 0) ? 'no-photos-style' : '';
         return (
             <div className={"upload-component-wrapper " + _disabled}>
@@ -129,12 +147,13 @@ class UploadComponent extends React.Component {
                         )}
                         {_disabled || photos.length >=5 ? null : <li key={photos.length}
                             className={"upload-photo-item upload-photo-btn " + photoBtn}>
-                            <input name="file" className="upload-inpu-file" type="file" accept="video/*,image/*" onChange={(e) => this.choosePhotoHandler(e)} />
-                            <span className="upload-photo-btn-span xy-center"></span>
+                            <span className="upload-photo-btn-span xy-center" onClick={()=>this.setState({isShowPhotoSelect: true})}></span>
                         </li>}
                         {_disabled && photos.length === 0 ? '无' : null}
                     </ul>
                 </div>
+
+                { this.state.isShowPhotoSelect ? this.photoSelectComponent() : "" }
             </div>
         )
     }

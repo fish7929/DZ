@@ -33,18 +33,18 @@ class PowerStationMonitorDetail extends React.Component{
                     <div className="title-div">{ data.name }</div>
                     <div className="power-info-div">
                         <div className="titleTxt">实时数据</div>
-                        <div className="desc-txt"><span className="txt1">总功率</span><span className="txt2">{data.generatedActivePower}KW</span></div>
+                        <div className="desc-txt"><span className="txt1">总功率</span><span className="txt2">{data.generatedActivePower.toFixed(2)}KW</span></div>
                         <div className="info-div">
                             <div className="info-table">
                                 <div className="table-td">
                                     <div className="table-item">
                                         <span className="title-txt">气温</span>
-                                        <span className="info-txt">{data.temperature}℃</span>
+                                        <span className="info-txt">{data.temperature.toFixed(2)}℃</span>
                                     </div>
                                     <div className="table-item-line"></div>
                                     <div className="table-item">
                                         <span className="title-txt">辐照度</span>
-                                        <span className="info-txt">{data.irradiance}W/m2</span>
+                                        <span className="info-txt">{data.irradiance.toFixed(2)}W/m2</span>
                                     </div>
                                     <div className="table-item-line"></div>
                                     <div className="table-item">
@@ -79,7 +79,7 @@ class PowerStationMonitorDetail extends React.Component{
                     <div className="day-power-div">
                         <div className="day-power-title">日功率曲线</div>
                         <div className="echart-day-power">
-                            <ChartItem type="line" data={data.powerTime} unitY="Kw" lineColor="#D76662" shadowColor="#D76561" />
+                            <ChartItem type="line" data={data.powerTime} unitY="Kw" lineColor="#D76662" shadowColor="#D76561" dataZoom={true} />
                         </div>
                     </div>
 

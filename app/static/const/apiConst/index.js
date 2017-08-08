@@ -50,7 +50,7 @@ export const GetInverterInfo = () => "/pvmtsys/powerStation/getInverterInfo";
 export const GetInverterDetail = inverterId =>  "/pvmtsys/inverter/getInverteInfo/" + inverterId
 
 /**电表列表 */
-export const GetAmmeterList = id => "/pvmtsys/powerStation/getAmmeterInfo/" + id
+export const GetAmmeterList = id => "/pvmtsys/powerStation/getAmmeterInfo"
 
 /**FaultList api GetFaultListByOrder + order */
 export const GetFaultListByOrder = (orderNumber) => "/pvmtsys/workOrderFault/faultList/" + orderNumber;

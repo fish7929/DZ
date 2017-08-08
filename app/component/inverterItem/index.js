@@ -20,6 +20,7 @@ class InverterItem extends React.Component{
                 break;
             case 5:
                 statusClass = "status_2";
+                break;
             default:
                 statusClass = ""
                 break;

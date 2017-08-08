@@ -3,7 +3,7 @@
 .ammeter-list-container{
     .ammeter-list{
         padding: calc-rem(20) calc-rem(40);
-        height: 100%;
+        max-height: 100%;
         overflow: auto;
         display: flex;
         flex-wrap: wrap;

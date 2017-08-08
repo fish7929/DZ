@@ -12,7 +12,7 @@ const receiveListData = (data) => ({
     type: ActionType.INIT_INVERTER_DETAIL,
     data: {
         ...data,
-        powerTemperatureTime: data.powerTemperatureTime ? data.powerTemperatureTime.map(obj => ({name: obj.time, value: obj.powerTemperature})) : []
+        powerTemperatureTime: data.powerTemperatureTime ? data.powerTemperatureTime.sort((a, b)=>{return a.time >= b.time }).map(obj => ({name: utils.formatDate(obj.time, "MM-dd HH"), value: obj.temperature})) : []
     }
 })
 

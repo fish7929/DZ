@@ -66,7 +66,7 @@ class InverterDetail extends React.Component{
                 <div className="temperature-div">
                     <div className="temperature-title">逆变器功率-温度曲线</div>
                     <div className="temperature-echart-div">
-                        <ChartItem type="line" data={data.powerTemperatureTime} lineColor="#45A5ED" shadowColor="#45A6ED" />
+                        <ChartItem type="line" data={data.powerTemperatureTime} lineColor="#45A5ED" shadowColor="#45A6ED" dataZoom={true} />
                     </div>
                 </div>
                 <div className="table-div">
