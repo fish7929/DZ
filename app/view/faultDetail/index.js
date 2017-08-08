@@ -81,13 +81,14 @@ class FaultDetail extends React.Component {
         utils.fetchUtils(url, opt, "POST").then((res) => {
             AppModal.hide()
             if (res.data) {
-                AppModal.toast('提交成功');
+                AppModal.toast('保存成功');
                 setTimeout(() => {
                     AppModal.hide()
                     hashHistory.goBack();
                 }, 1000);
             }else{
-                AppModal.toast('提交失败');
+                let msg = res.message || '保存失败';
+                AppModal.toast(msg);
             }
 
         }).catch((e) => AppModal.hide());
