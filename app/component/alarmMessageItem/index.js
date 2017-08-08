@@ -60,7 +60,7 @@ class AlarmMessageItem extends React.Component {
         }
         let readClass = data && data.isread == FIRST ? 'message-read' : '';
         let level = data.alarmgrade || 1;
-        let hint = data.messageData ? data.messageData.alarmValue : '230.22';
+        let hint = data.alarmMessageData ? data.alarmMessageData.alarmValue : '230.22';
         return (
             <li className={"alarm-message-item " + readClass}>
                 <div className="alarm-message-left">
