@@ -151,7 +151,7 @@ class FaultDetail extends React.Component {
         let solveList = list.attachmentList || [];
         let solveTime = list.createTime;
         let solveName = list.createUsername;
-        let solveInfo = list.state || '';
+        let solveInfo = list.faultMessage || '';
         //调度人员
         let dispatcherList = list.dispatcherList || [];
         let dispatcherTime = list.dispatcherTime;
