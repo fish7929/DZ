@@ -189,7 +189,7 @@ class WorkOrder extends React.Component {
                 list: _list,
                 total: nextProps.total,
                 // month: [],
-                isSelected: false,
+                // isSelected: false,
                 isShow: false  //测试
             });
         }

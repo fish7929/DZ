@@ -67,7 +67,7 @@ class Message extends React.Component {
         let _content = this.getContent();
         return (
             <Page className="message-container">
-                <Header title={_content.title} isShowBack={true} />
+                <Header title={_content.title} isShowBack={true} backFn={() => hashHistory.push('/home/2')}/>
                 {list.length < 1 ? 
                     <NoMessage msg="暂无消息"/>: _content.content}
             </Page>
