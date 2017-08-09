@@ -9,7 +9,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
+import { hashHistory } from 'react-router';
 import Page from '../../component/page';
 import Header from '../../component/header';
 
