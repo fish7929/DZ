@@ -80,10 +80,12 @@ let getNoticeList = dispatch => {
 
 /**获取首页报警列表 */
 let getHomeAlarmList = dispatch => {
-    let url = Api.GetAlarmListByOption();
+    let url = Api.GetMessageDataByType();
     let opt = {
         page: 1,
         pagesize: 3,
+        isread: 0,
+        massageType: 1
     }
     dispatch(utils.sendMsg(url, opt, "GET")).then(data => {
         dispatch({
@@ -140,7 +142,7 @@ let getHomeWorkOrderCompletion = dispatch => {
             type: ActionType.HOME_INIT_WORKORDER_COMPLETION,
             data: data.map((obj, key)=>{
                 return {
-                    name: obj.time,
+                    name: utils.formatDate(obj.time, "MM-dd"),
                     value: obj.val
                 }
             })

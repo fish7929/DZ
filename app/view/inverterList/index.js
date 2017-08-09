@@ -23,10 +23,12 @@ class InverterList extends React.Component{
         super(props, context)
         this.state = {
             currentPage: 1,
+            searchTxt: ""
         }
     }
 
     componentDidMount(){
+        this.setState({searchTxt: ""})
         this.sendData(this.props.tabIndex, 1)
     }
 
@@ -50,12 +52,21 @@ class InverterList extends React.Component{
         })
     }
 
+    onSearchHandler(){
+        let obj = InverterTabs.find(obj => obj.id === this.props.tabIndex)
+        this.props.getInverterList(this.props.params.id, obj.value, this.state.currentPage, this.state.searchTxt)
+    }
+
+    onChangeHandler(e){
+        this.setState({searchTxt: e.target.value})
+    }
+
     render(){
-        let {tabIndex, inverterList} = this.props
+        let {tabIndex, inverterList, searchTxt} = this.props
         return(
             <Page className="inverter-list-container">
                 <Header title="逆变器列表" isShowBack={true} />
-                <div className="search-div"><input type="text" placeholder="搜索"></input><span className="search-icon" /></div>
+                <div className="search-div"><input type="text" placeholder="搜索" value={searchTxt} onChange={(e)=>this.onChangeHandler(e)} /><span className="search-icon" onClick={()=>this.onSearchHandler()} /></div>
                 <div className="tab-div">
                     {InverterTabs.map((obj,key)=><div key={key} className={"button tab-item " + (tabIndex == obj.id ? "selected" : "")} onClick={()=>this.onChangeTabIndex(obj.id)}><span>{obj.name}</span></div>)}
                 </div>

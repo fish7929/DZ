@@ -182,11 +182,6 @@ class ChartItem extends React.Component {
                 type: 'category',
                 boundaryGap: false,
                 data: data.map(obj => obj.name),
-                axisLabel: {
-                    formatter: (value)=>{
-                        return value.substring(value.length-2, value.length)
-                    }
-                }
             },
             yAxis: {
                 axisLine: {
@@ -217,6 +212,94 @@ class ChartItem extends React.Component {
                     }
                 }
             ],
+            grid: {
+                left: '5%',
+                right: '5%',
+                bottom: '5%',
+                top: '5%',
+                containLabel: true
+            }
+        }
+
+        if(dataZoom){
+            opt.dataZoom = [
+                {
+                    show: false,
+                    realtime: true,
+                    start: 0,
+                    end: 20,
+                    zoomLock: true,
+                },
+                {
+                    type: 'inside',
+                    realtime: true,
+                    start: 0,
+                    end: 20,
+                    zoomLock: true,
+                }
+            ]
+        }
+  
+        return opt;
+    }
+
+    getDoubleLineOption(){
+        let { unitY, lineColor, shadowColor, dataZoom, data, legend } = this.props;
+        let opt =  {
+            xAxis:  {
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                type: 'category',
+                boundaryGap: false,
+                data: data.map(obj => obj.name),
+            },
+            yAxis: [
+                {
+                    axisLine: {
+                        show: false
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    type: 'value',
+                    axisLabel: {
+                        formatter: '{value}' + "kW"
+                    }
+                },
+                {
+                    axisLine: {
+                        show: false
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    type: 'value',
+                    axisLabel: {
+                        formatter: '{value}' + "℃"
+                    }
+                }
+            ],
+            series: legend.map((obj, index) => ({
+                name: obj,
+                type: 'line',
+                symbol: "none",
+                smooth: true,
+                yAxisIndex: index,
+                data: data.map(obj=>obj.value[index]),
+                lineStyle: {
+                    normal: {
+                        color: lineColor[index] || "#F18905",
+                        width: 6,
+                        shadowColor: shadowColor[index] || '#F08806',
+                        shadowBlur: 12,
+                        shadowOffsetY: 20,
+                    }
+                }
+            })),
             grid: {
                 left: '5%',
                 right: '5%',
@@ -354,6 +437,9 @@ class ChartItem extends React.Component {
             else if(type === "doubleBar"){
                 opts = this.getDoubleBarOption()
             }
+            else if(type === "doubleLine"){
+                opts = this.getDoubleLineOption()
+            }
             else {
                 opts = this.getBarOption(data)
             }
@@ -374,8 +460,8 @@ ChartItem.PropTypes = {
     unitY: PropTypes.string,
     barBgColor: PropTypes.string,
     barColors: PropTypes.array,
-    lineColor: PropTypes.string,
-    shadowColor: PropTypes.string,
+    lineColor: PropTypes.any,
+    shadowColor: PropTypes.any,
     legend: PropTypes.array,
     dataZoom: PropTypes.bottom
 }

@@ -11,7 +11,7 @@
         border-bottom: calc-rem(1) solid #eeeeee;
 
         input {
-            padding: 0 calc-rem(50);
+            padding: 0 calc-rem(20);
             width: 100%;
             height: 100%;
             background: #F5F5F5;
@@ -24,8 +24,8 @@
         .search-icon{
             position: absolute;
             top: 0;
-            left: calc-rem(36);
-            width: calc-rem(32);
+            right: calc-rem(36);
+            width: calc-rem(60);
             height: 100%;
             background: url(../../static/images/input-search.png) no-repeat center;
             background-size: calc-rem(32);
@@ -74,7 +74,7 @@
 
     .inverter-list{
         padding: calc-rem(20) calc-rem(40);
-        height: calc(100% - #{calc-rem(160)});
+        max-height: calc(100% - #{calc-rem(160)});
         overflow: auto;
         display: flex;
         flex-wrap: wrap;

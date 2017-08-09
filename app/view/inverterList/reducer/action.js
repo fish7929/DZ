@@ -13,13 +13,16 @@ const receiveListData = (data) => ({
     data: data
 })
 
-export const getInverterList = (id, tabIndex, page) => (dispatch, getState) =>{
+export const getInverterList = (id, tabIndex, page, searchTxt) => (dispatch, getState) =>{
     let url = Api.GetInverterInfo()
     let opt = {
         powerStationId: id,
         equipmentStatus: tabIndex,
         page: page,
         pagesize: 20
+    }
+    if(searchTxt){
+        opt.name = searchTxt
     }
     return new Promise((resolve, reject) => {
         dispatch(utils.sendMsg(url, opt, "POST")).then(data => {

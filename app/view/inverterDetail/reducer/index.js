@@ -34,17 +34,6 @@ const initialState = {
         ],
         //温度功率时间曲线
         powerTemperatureTime: [
-            {
-                // 温度功率
-                powerTemperature: [
-                    1,
-                    2,
-                    3,
-                    4,
-                    5
-                ],
-                time: 0
-            }
         ],
         //逆变器温度
         temperature: 0,

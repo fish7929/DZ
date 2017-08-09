@@ -60,7 +60,7 @@ class PowerStationMonitorMapContainer extends React.Component{
             let marker = new BMap.Marker(p, {icon: icon});  // 创建标注\
             let content = "<div class='baiduPopWin-p'><p>运维人员</p>" +
                             "<p>" + username +"</p>" +
-                            "<p>"+ mobile +"</p></div>"
+                            "<a class='btnPhoneIcon' href='tel:"+mobile+"'>"+ mobile +"</a></div>"
             marker.addEventListener("click", e => {
                 this.openWinInfo(content,e)
             });

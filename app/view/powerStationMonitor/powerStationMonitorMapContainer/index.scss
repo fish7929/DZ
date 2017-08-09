@@ -21,5 +21,11 @@
         p{
             line-height: calc-rem(40);
         }
+
+        a{
+            line-height: calc-rem(40);
+            text-decoration: underline;
+            color: #000000;
+        }
     }
 }
