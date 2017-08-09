@@ -164,8 +164,8 @@ class FaultDetail extends React.Component {
             Base.formatTime(dispatcherTime, "yyyy-MM-dd HH:mm");
         let timeHint = type == FIRST ? '运维时间' : '调度时间';
 
-        let photos = list.solveList || [];   //处理人员
-        let explain = list.solveInfo || '';   //处理人员
+        let photos = type == FIRST ? solveList : dispatcherList;   //处理人员
+        let explain = type == FIRST ? solveInfo : dispatcherInfo;   //处理人员
         //故障状态
         let faultStatus = list.faultStatus;
         let faultStatusStr = '未分配';  //0 的状态
@@ -210,7 +210,7 @@ class FaultDetail extends React.Component {
      */
     renderDealResultSection() {
         let { list, isSolve } = this.state;
-        let dispatcherList = list.dispatcherList || [];
+        let dispatcherList = list.solveList || [];
         let dispatcherInfo = list.solveInfo || '';
         return (
             <div className="margin-top-20">
