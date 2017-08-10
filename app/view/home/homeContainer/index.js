@@ -11,9 +11,11 @@ import Notice from '../../../component/notice'
 import { getHomeData } from "../reducer/action"
 
 import * as RouterConst from '../../../static/const/routerConst'
+import * as Api from '../../../static/const/apiConst'
 import * as HomeConst from '../reducer/const'
 
 import WeiXinUtils from '../../../utils/WeiXinUtils'
+import * as utils from '../../../utils'
 
 import './index.scss'
 const MaxPS = 4
@@ -54,9 +56,21 @@ class HomeContianer extends React.Component {
         ))
     }
 
+    onAlarmClickHandler(alarmId){
+        let url = Api.ChangeMessageStatusById(alarmId);
+        utils.fetchUtils(url).then((res) => {
+            console.log('更新消息状态',  res);
+            if(res && res.data){
+                hashHistory.push(RouterConst.ROUTER_ALARM_DETAIL + "/" + alarmId)
+            }
+        }).catch((e) => console.log(e));
+
+        
+    }
+
     getAlarmItem(){
         let { alarmList } = this.props
-        return alarmList.map((obj, index) => <AlarmHomeItem onClick={()=>hashHistory.push(RouterConst.ROUTER_ALARM_DETAIL + "/" + obj.id)} data={obj} key={index} />)
+        return alarmList.map((obj, index) => <AlarmHomeItem onClick={()=>this.onAlarmClickHandler(obj.id)} data={obj} key={index} />)
     }
 
     render() {
