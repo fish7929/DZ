@@ -13,7 +13,7 @@ const receiveListData = (data) => ({
     data: {
         ...data,
         generationDailyList: data.generationDailyList.sort((a, b)=>{return a.time >= b.time }).map(obj=>({value: obj.value, name:utils.formatDate(obj.time, "yyyy-MM-dd")})),
-        powerTime: data.powerTime.sort((a, b)=>{return a.time >= b.time }).map(obj=>({value: obj.value, name: utils.formatDate(obj.time, "MM-dd HH:mm")}))
+        powerTime: data.powerTime.sort((a, b)=>{return a.time >= b.time }).map(obj=>({value: obj.value, name: utils.formatDate(obj.time, "HH:mm")}))
     }
 })
 

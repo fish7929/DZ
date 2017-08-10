@@ -226,15 +226,15 @@ class ChartItem extends React.Component {
                 {
                     show: false,
                     realtime: true,
-                    start: 0,
-                    end: 20,
+                    startValue: 0,
+                    endValue: 6,
                     zoomLock: true,
                 },
                 {
                     type: 'inside',
                     realtime: true,
-                    start: 0,
-                    end: 20,
+                    startValue: 0,
+                    endValue: 6,
                     zoomLock: true,
                 }
             ]
@@ -246,6 +246,10 @@ class ChartItem extends React.Component {
     getDoubleLineOption(){
         let { unitY, lineColor, shadowColor, dataZoom, data, legend } = this.props;
         let opt =  {
+            legend: {
+                data: legend,
+                bottom: 0
+            },
             xAxis:  {
                 axisLine: {
                     show: false
@@ -303,7 +307,7 @@ class ChartItem extends React.Component {
             grid: {
                 left: '5%',
                 right: '5%',
-                bottom: '5%',
+                bottom: '8%',
                 top: '5%',
                 containLabel: true
             }
@@ -314,15 +318,15 @@ class ChartItem extends React.Component {
                 {
                     show: false,
                     realtime: true,
-                    start: 0,
-                    end: 20,
+                    startValue: 0,
+                    endValue: 6,
                     zoomLock: true,
                 },
                 {
                     type: 'inside',
                     realtime: true,
-                    start: 0,
-                    end: 20,
+                    startValue: 0,
+                    endValue: 6,
                     zoomLock: true,
                 }
             ]
