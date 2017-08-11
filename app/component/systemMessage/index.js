@@ -60,7 +60,7 @@ class SystemMessage extends React.Component {
                 {this.state.list.map((item, index) => {
                     let readClass = item.isread == FIRST ? 'message-read' : '';
                     return (<li key={index} className={"system-message-item " + readClass}
-                        onClick={(e) => this.toMessageDetailHandler(e, item.id)}>
+                        onClick={(e) => this.toMessageDetailHandler(e, item.messageId)}>
                         <div><span>公告</span></div>
                         <div className="no-wrap">{item.content}</div>
                         <div>{Base.formatTime(item.createTime, "yyyy-MM-dd HH:mm:ss")}</div>

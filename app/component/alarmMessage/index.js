@@ -106,7 +106,7 @@ class AlarmMessage extends React.Component {
             if (res.data) {
                 AppModal.toast('删除成功');
                 let oldList = this.state.list;
-                let newList = oldList.filter((item, index) => item.id != id);
+                let newList = oldList.filter((item, index) => item.messageId != id);
                 this.setState({ list: newList });
             } else {
                 AppModal.toast('删除失败');
@@ -122,14 +122,14 @@ class AlarmMessage extends React.Component {
             // <ul className="message-content-wrapper">
             <ScrollList className="message-content-wrapper" onScroll={page => this.onScrollHandler(page)} currentPage={this.state.currentPage} pageTotal={this.props.total}>
                 {this.state.list.map((item, index) => {
-                    let _itemRef = item.id;
+                    let _itemRef = item.messageId;
                     return (<div className="alarm-message-swipe" key={_itemRef} ref={_itemRef}>
                         <SwipeWrapper 
-                            onClick={(e) => this.toMessageDetailHandler(e, item.id, item.massageStatus)}
+                            onClick={(e) => this.toMessageDetailHandler(e, item.messageId, item.massageStatus)}
                             onSwipeLeft={() => this.onSwipeLeftHandler(_itemRef)} onSwipeRight={() => this.onSwipeRightHandler(_itemRef)}>
                             <AlarmMessageItem data={item}/>
                         </SwipeWrapper>
-                        <span className="alarm-message-item-del common-active" onClick={(e) => this.onDeleteSiteMessageHandler(e, item.id)}>删除</span>
+                        <span className="alarm-message-item-del common-active" onClick={(e) => this.onDeleteSiteMessageHandler(e, item.messageId)}>删除</span>
                     </div>)
                 })}
             </ScrollList>

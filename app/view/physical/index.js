@@ -83,7 +83,8 @@ class Physical extends React.Component {
         //对应项目增加一条反馈
         let findItem = oldList.find((item, index) => item.examineId == param.examineId);
         AppModal.loading();
-        let url = param.isSolve == 1 ? Api.SavePhysicalExamine() : Api.insertFaultInfo();
+        let url = Api.SavePhysicalExamine();
+        
         /**
          *  { "id": 1, 
          * "examineId": 1, 
@@ -116,7 +117,8 @@ state  	说明	string
             fileInfo: param.attachmentList,
         };
         if(param.isSolve == 0){  
-            opt = {
+            let insetUrl = Api.insertFaultInfo();
+            let insetOpt = {
                 faultGrade: param.faultGrade,
                 equipmentId: param.equipmentId,
                 equipmentNumber: parseInt(param.equipmentNumber),
@@ -126,8 +128,14 @@ state  	说明	string
                 attachmentList: param.attachmentList,
                 powerStationId: this.param.powerstationId
             };
+            utils.fetchUtils(insetUrl, insetOpt, "POST").then((res) => {
+                if (res.data) {
+                    console.log('添加故障成功');
+                }else{
+                    console.log('添加故障失败');
+                }
+            }).catch((e) => AppModal.hide());
         }
-
         utils.fetchUtils(url, opt, "POST").then((res) => {
             AppModal.hide()
             if (res.data) {
@@ -143,8 +151,6 @@ state  	说明	string
             }
 
         }).catch((e) => AppModal.hide());
-
-        
         
     }
     /**
