@@ -22,8 +22,8 @@ class PhysicalFeedback extends React.Component {
             stationName: this.props.stationName,  //上报调度中心  电站名称
             currentPhysical: null,  //当前选择电站体检项目
             currentFacility: null,  //当前选择设备名称
-            facilityNumber: '',   //设备编号
-            faultLevel: '',  //故障级别
+            facilityNumber: this.props.facilityTypes[0] ? this.props.facilityTypes[0].equipmentId : '',   //设备编号
+            faultLevel: 'Ⅰ',  //故障级别
 
             isShowDialog: false,  //是否显示选择对话框 false
             dialogTitle: '',
@@ -261,7 +261,7 @@ class PhysicalFeedback extends React.Component {
     componentWillReceiveProps(nextProps) {
         let _facilityNumber = '';
         if (nextProps.facilityTypes && nextProps.facilityTypes.length > 0) {
-            _facilityNumber = nextProps.facilityTypes[0] && nextProps.facilityTypes[0].equipmentId;
+            _facilityNumber = nextProps.facilityTypes[0] ? nextProps.facilityTypes[0].equipmentId : '';
         }
         if (nextProps) {
             this.setState({

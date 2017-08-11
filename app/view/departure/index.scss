@@ -35,10 +35,12 @@
             background: url($uncheckIcon) center no-repeat;
             background-size: calc-rem(44); 
         }
+        /*
         input[type="radio"]:checked{
             background: url($checkIcon) center no-repeat;
             background-size: calc-rem(44);
         }
+        */
         label{
             width: -webkit-calc(100% - #{calc-rem(44)});
             width: calc(100% - #{calc-rem(44)});
@@ -50,6 +52,10 @@
             font-size: calc-rem(32);
         }
     }
+}
+.checked-input-radio{
+    background: url($checkIcon) center no-repeat !important;
+    background-size: calc-rem(44) !important;
 }
 
 .examine-item-last{

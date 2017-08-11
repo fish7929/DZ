@@ -126,8 +126,8 @@ class FaultDetail extends React.Component {
     }
     renderMineDealSection() {
         let { list } = this.state;
-        let photos = list.attachmentList || [];
-        let explain = list.state || '';
+        let photos = list.solveList || [];
+        let explain = list.solveInfo || '';
         let result = list.solveResult;
         let resultStr = result == FIRST ? "已解决" : '未解决';  //1 
         return (

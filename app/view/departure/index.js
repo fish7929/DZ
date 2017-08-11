@@ -96,18 +96,20 @@ class Departure extends React.Component {
             {departureExamine.map((examine, num) => {
                 let isQualified = examine.isQualified;
                 let lastClass = num == (departureExamine.length - 1) ? 'examine-item-last' : ''
+                let checkedClass1 = isQualified == FIRST ? "checked-input-radio" : '';
+                let checkedClass2 = (isQualified == ZERO || !isQualified) ? "checked-input-radio" : '';
                 return (<div className={"examine-item " + lastClass} key={num}>
                     <div className="examine-item-title">{(num + 1) + "." + examine.examineName}</div>
                     <span>
                         {this.status == 0 ? <input type="radio" id={examine.examineId + ' ' + FIRST} name={examine.examineId} checked={isQualified == FIRST}
-                            onChange={(e) => this.changeQualiHandler(e, examine.examineId, FIRST)} />
-                            : <input type="radio" id={examine.examineId + ' ' + FIRST} name={examine.examineId} checked={isQualified == FIRST} disabled />}
+                            onChange={(e) => this.changeQualiHandler(e, examine.examineId, FIRST)} className={checkedClass1} />
+                            : <input type="radio" id={examine.examineId + ' ' + FIRST} name={examine.examineId} checked={isQualified == FIRST} disabled className={checkedClass1} />}
                         <label htmlFor={examine.examineId + ' ' + FIRST}>合格</label>
                     </span>
                     <span>
-                        {this.status == 0 ? <input type="radio" id={examine.examineId + ' ' + ZERO} name={examine.examineId} checked={isQualified == ZERO || !isQualified}
+                        {this.status == 0 ? <input type="radio" className={checkedClass2} id={examine.examineId + ' ' + ZERO} name={examine.examineId} checked={isQualified == ZERO || !isQualified}
                             onChange={(e) => this.changeQualiHandler(e, examine.examineId, ZERO)} />
-                            : <input type="radio" id={examine.examineId + ' ' + ZERO} name={examine.examineId} checked={isQualified == ZERO || !isQualified} disabled />}
+                            : <input type="radio" id={examine.examineId + ' ' + ZERO} className={checkedClass2} name={examine.examineId} checked={isQualified == ZERO || !isQualified} disabled />}
                         <label htmlFor={examine.examineId + ' ' + ZERO}>不合格就地解决</label>
                     </span>
                 </div>)
