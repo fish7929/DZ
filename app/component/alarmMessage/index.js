@@ -48,22 +48,25 @@ class AlarmMessage extends React.Component {
     /**
      * 
      * @param {object} e 事件对象
-     * @param {string} id 消息id
-     * @param {number} status 消息类型
+     * @param {object} item 消息
      */
-    toMessageDetailHandler(e, id, status) {
+    toMessageDetailHandler(e, item) {
         // e.preventDefault();
         e.stopPropagation();
-        let url = Api.ChangeMessageStatusById(id);
+        let id =  item.messageId;
+        let status =  item.massageStatus;
+        let url = Api.ChangeMessageStatusById(item.id);
+        if (status === THREE) {
+            this.setItemIsRead(id);
+        } else {
+            console.log('/alarmDetail/' + id);
+            setTimeout(() => {hashHistory.push('/alarmDetail/' + id);}, 500);
+        }
         utils.fetchUtils(url).then((res) => {
-            console.log('更新消息状态失败',  res);
-            if(res && res.data){
-                if(status === THREE){
-                    this.setItemIsRead(id);
-                }else{
-                    console.log('/alarmDetail/' + id);
-                    hashHistory.push('/alarmDetail/' + id );
-                }
+            if (res && res.data) {
+                console.log('更新消息状态成功', res);
+            }else{
+                console.log('更新消息状态失败', res);
             }
         }).catch((e) => console.log(e));
     }
@@ -106,7 +109,7 @@ class AlarmMessage extends React.Component {
             if (res.data) {
                 AppModal.toast('删除成功');
                 let oldList = this.state.list;
-                let newList = oldList.filter((item, index) => item.messageId != id);
+                let newList = oldList.filter((item, index) => item.id != id);
                 this.setState({ list: newList });
             } else {
                 AppModal.toast('删除失败');
@@ -122,14 +125,14 @@ class AlarmMessage extends React.Component {
             // <ul className="message-content-wrapper">
             <ScrollList className="message-content-wrapper" onScroll={page => this.onScrollHandler(page)} currentPage={this.state.currentPage} pageTotal={this.props.total}>
                 {this.state.list.map((item, index) => {
-                    let _itemRef = item.messageId;
+                    let _itemRef = item.id;
                     return (<div className="alarm-message-swipe" key={_itemRef} ref={_itemRef}>
-                        <SwipeWrapper 
-                            onClick={(e) => this.toMessageDetailHandler(e, item.messageId, item.massageStatus)}
+                        <SwipeWrapper
+                            onClick={(e) => this.toMessageDetailHandler(e, item)}
                             onSwipeLeft={() => this.onSwipeLeftHandler(_itemRef)} onSwipeRight={() => this.onSwipeRightHandler(_itemRef)}>
-                            <AlarmMessageItem data={item}/>
+                            <AlarmMessageItem data={item} />
                         </SwipeWrapper>
-                        <span className="alarm-message-item-del common-active" onClick={(e) => this.onDeleteSiteMessageHandler(e, item.messageId)}>删除</span>
+                        <span className="alarm-message-item-del common-active" onClick={(e) => this.onDeleteSiteMessageHandler(e, item.id)}>删除</span>
                     </div>)
                 })}
             </ScrollList>

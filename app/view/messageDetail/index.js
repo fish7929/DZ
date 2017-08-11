@@ -20,8 +20,6 @@ import { fetchData } from './reducer/action';
 import './index.scss'
 
 import { FIRST, SECOND } from '../../static/const/constants';
-import * as utils from '../../utils';
-import * as Api from '../../static/const/apiConst';
 
 class MessageDetail extends React.Component {
 
@@ -69,10 +67,6 @@ class MessageDetail extends React.Component {
     componentDidMount() {
         let status = this.type == FIRST ? null : this.type;
         this.props.fetchData(this.id, status);
-        let url = Api.ChangeMessageStatusById(this.id);
-        utils.fetchUtils(url).then((res) => {
-            console.log('更新消息状态失败',  res);
-        }).catch((e) => console.log(e));
     }
 
 }

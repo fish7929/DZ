@@ -30,12 +30,16 @@ class SiteMessage extends React.Component {
     /**
      * 
      * @param {object} e 事件对象
-     * @param {string} id 消息id
+     * @param {object} item 消息
      */
-    toMessageDetailHandler(e, id) {
+    toMessageDetailHandler(e, item) {
         e.preventDefault();
         e.stopPropagation();
-        hashHistory.push('/messageDetail/' + id + '/1');
+        let url = Api.ChangeMessageStatusById(item.id);
+        utils.fetchUtils(url).then((res) => {
+            console.log('更新消息状态失败',  res);
+        }).catch((e) => console.log(e));
+        setTimeout(() => {hashHistory.push('/messageDetail/' + item.messageId + '/1');}, 500);
     }
     /**
      * 左滑动事件
@@ -82,7 +86,7 @@ class SiteMessage extends React.Component {
             if (res.data) {
                 AppModal.toast('删除成功');
                 let oldList = this.state.list;
-                let newList = oldList.filter((item, index) => item.messageId != id);
+                let newList = oldList.filter((item, index) => item.id != id);
                 this.setState({list: newList});
             }else{
                 AppModal.toast('删除失败');
@@ -119,16 +123,16 @@ class SiteMessage extends React.Component {
                 {list.map((item, index) => {
                     let readClass = item.isread == FIRST ? 'message-read' : '';
                     let userInfo = "调度中心 - " + item.addressUser;
-                    let _itemRef = item.messageId;
+                    let _itemRef = item.id;
                     return (<li key={_itemRef} className={"site-message-item " + readClass} ref={_itemRef}>
                         <SwipeWrapper className="site-message-swipe"
-                            onClick={(e) => this.toMessageDetailHandler(e, item.messageId)}
+                            onClick={(e) => this.toMessageDetailHandler(e, item)}
                             onSwipeLeft={() => this.onSwipeLeftHandler(_itemRef)} onSwipeRight={() => this.onSwipeRightHandler(_itemRef)}>
                             <div className="no-wrap">{item.title}</div>
                             <div className="no-wrap">{userInfo}</div>
                             <div>{Base.formatTime(item.createTime, "yyyy-MM-dd HH:mm:ss")}</div>
                         </SwipeWrapper>
-                        <span className="site-message-item-del common-active" onClick={(e) => this.onDeleteSiteMessageHandler(e, item.messageId)}>删除</span>
+                        <span className="site-message-item-del common-active" onClick={(e) => this.onDeleteSiteMessageHandler(e, item.id)}>删除</span>
                     </li>)
                 })}
             </ScrollList>
