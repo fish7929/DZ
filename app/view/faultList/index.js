@@ -91,8 +91,11 @@ class FaultList extends React.Component {
                     data-hint='第三方联系单' onClick={(e) => this.goToNextHandler(e, SECOND)}></div>
                 <div className="common-order-item-hint">任务列表</div>
                 {faultList.map((item, index) => {
-                    let statusClass = item.isSolve == FIRST ? "fault-dispose" : "fault-undispose";
-                    let statusHint = item.isSolve == FIRST ? "已处理" : "未处理";
+                    {/* let statusClass = item.isSolve == FIRST ? "fault-dispose" : "fault-undispose";
+                    let statusHint = item.isSolve == FIRST ? "已处理" : "未处理"; */}
+                    {/*根据工单判断*/}
+                    let statusClass = this.status == FIRST ? "fault-dispose" : (item.isSolve == FIRST ? "fault-dispose" : "fault-undispose");
+                    let statusHint = this.status == FIRST ? "已处理" : (item.isSolve == FIRST ? "已处理" : "未处理");
                     return (<div key={index} className="common-item common-pseudo common-active fault-item-logo fault-item-pseudo"
                         data-hint={item.fault_message} onClick={(e) => this.showFaultDetailHandler(e, item.faultId, item.isSolve, item.fault_message)}>
                         <span className={statusClass}>{statusHint}</span>

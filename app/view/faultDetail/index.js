@@ -39,15 +39,16 @@ class FaultDetail extends React.Component {
         } catch (e) {
             console.log(e);
         }
+        console.log(SECOND, 899);
         this.state = {
             list: this.props.list,
-            isSolve: SECOND
+            solveResult: SECOND
         }
     }
-    selectDealResultHandler(e, isSolve){
+    selectDealResultHandler(e, solveResult){
         e.preventDefault();
         e.stopPropagation();
-        this.setState({isSolve});
+        this.setState({solveResult});
     }
     /**
      * 提交离场申请保存.
@@ -62,7 +63,7 @@ class FaultDetail extends React.Component {
         let opt = {
             faultId: this.id,
             solveId: list.solveId, //？？？？？是什么
-            solveResult: this.state.isSolve
+            solveResult: this.state.solveResult
         }
         opt.solveInfo = upload.explain;
         opt.fileInfo = upload.photos;
@@ -209,19 +210,20 @@ class FaultDetail extends React.Component {
      * 渲染处理结果
      */
     renderDealResultSection() {
-        let { list, isSolve } = this.state;
+        let { list, solveResult } = this.state;
         let dispatcherList = list.solveList || [];
         let dispatcherInfo = list.solveInfo || '';
+        console.log(solveResult, 8999);
         return (
             <div className="margin-top-20">
                 <div className="common-divide deal-result">处理结果</div>
                 <div className="deal-result-select">
                     <label htmlFor="dealResult1"><input type="radio" name="dealResult"
-                        id="dealResult1" checked={isSolve == SECOND} onChange={(e) => this.selectDealResultHandler(e, SECOND)} />
+                        id="dealResult1" checked={solveResult == SECOND} onChange={(e) => this.selectDealResultHandler(e, SECOND)} />
                         已解决
                     </label>
                     <label htmlFor="dealResult0"><input type="radio" name="dealResult"
-                        id="dealResult0" checked={isSolve == THREE} onChange={(e) => this.selectDealResultHandler(e, THREE)} />
+                        id="dealResult0" checked={solveResult == THREE} onChange={(e) => this.selectDealResultHandler(e, THREE)} />
                         未解决
                     </label>
                 </div>
@@ -268,7 +270,7 @@ class FaultDetail extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps) {
-            this.setState({ list: nextProps.list, isSolve: SECOND });
+            this.setState({ list: nextProps.list, solveResult: nextProps.list.solveResult });
         }
     }
 
