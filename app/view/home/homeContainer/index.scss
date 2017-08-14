@@ -89,7 +89,7 @@
 
         .rp-echart-div, .work-order-echart-div, .alarm-fb-echart-div, .fd-echart-div{
             width: 100%;
-            height: calc-rem(630)
+            padding-bottom: calc-rem(20);
         }
     }
 

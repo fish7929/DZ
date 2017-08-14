@@ -48,6 +48,8 @@ class UploadComponent extends React.Component {
     choosePhotoHandler(e) {
         let file = e.target.files[0];
         if (file) {
+            console.log(file.type);
+            let fileType = file.type.indexOf("image") === 0 ? 0 : file.type.indexOf("video") === 0 ? 1 : 2;
             let state = {}
             let data = new FormData()
             data.append('fileDir', 'pvmtssys/' + this.props.uploadModule + '/')
@@ -58,7 +60,7 @@ class UploadComponent extends React.Component {
                 AppModal.hide()
                 if (data && data.url) {
                     let oldPhotos = this.state.photos;
-                    oldPhotos.push({ filepath: data.url, filename: file.name });
+                    oldPhotos.push({ filepath: data.url, filename: file.name, documentType: fileType});
                     state.photos = oldPhotos;
                 }
                 state.isShowPhotoSelect = false;
@@ -86,7 +88,7 @@ class UploadComponent extends React.Component {
         this.cancelFocus();
         let obj = {
             explain: this.state.explain,
-            photos: this.state.photos
+            photos: this.state.photos,
         };
         return obj;
     }
@@ -140,7 +142,7 @@ class UploadComponent extends React.Component {
                     <ul className={"upload-photo-content " + noPhotos}>
                         {photos.map((item, index) =>
                             <li key={index} className="upload-photo-item">
-                                <img src={item.filepath} />
+                                { item.documentType == 0 ? <img src={item.filepath} /> : item.documentType == 1 ? <video src={item.filepath} controls="controls">您的浏览器不支持 video 标签。</video> : 0}
                                 {_disabled ? null : <span className="photo-close"
                                     onClick={(e) => this.deletePhotoHandler(e, index)}></span>}
                             </li>

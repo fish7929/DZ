@@ -170,7 +170,7 @@ class ChartItem extends React.Component {
     }
 
     getLineOption(data) {
-        let { unitY, lineColor, shadowColor, dataZoom } = this.props;
+        let { unitY, lineColor, shadowColor, dataZoom, xAxis } = this.props;
         let opt =  {
             xAxis:  {
                 axisLine: {
@@ -181,7 +181,7 @@ class ChartItem extends React.Component {
                 },
                 type: 'category',
                 boundaryGap: false,
-                data: data.map(obj => obj.name),
+                data: xAxis ? xAxis.map(obj => obj) : data.map(obj => obj.name),
             },
             yAxis: {
                 axisLine: {
@@ -244,8 +244,9 @@ class ChartItem extends React.Component {
     }
 
     getDoubleLineOption(){
-        let { unitY, lineColor, shadowColor, dataZoom, data, legend } = this.props;
+        let { unitY, lineColor, shadowColor, dataZoom, data, legend, xAxis } = this.props;
         let opt =  {
+            color: lineColor,
             legend: {
                 data: legend,
                 bottom: 0
@@ -259,7 +260,7 @@ class ChartItem extends React.Component {
                 },
                 type: 'category',
                 boundaryGap: false,
-                data: data.map(obj => obj.name),
+                data: xAxis ? xAxis.map(obj => obj) : data.map(obj => obj.name)
             },
             yAxis: [
                 {
@@ -467,6 +468,7 @@ ChartItem.PropTypes = {
     lineColor: PropTypes.any,
     shadowColor: PropTypes.any,
     legend: PropTypes.array,
+    xAxis: PropTypes.array,
     dataZoom: PropTypes.bottom
 }
 

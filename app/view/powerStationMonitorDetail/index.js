@@ -25,6 +25,7 @@ class PowerStationMonitorDetail extends React.Component{
 
     render(){
         let { data } = this.props
+        let xAxis = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24];
         console.log(data)
         return (
             <Page className="psm-detail-container">
@@ -79,7 +80,7 @@ class PowerStationMonitorDetail extends React.Component{
                     <div className="day-power-div">
                         <div className="day-power-title">日功率曲线</div>
                         <div className="echart-day-power">
-                            <ChartItem type="line" data={data.powerTime} unitY="Kw" lineColor="#D76662" shadowColor="#D76561" dataZoom={true} />
+                            <ChartItem type="line" data={data.powerTime} unitY="Kw" lineColor="#D76662" shadowColor="#D76561" xAxis={xAxis} />
                         </div>
                     </div>
 

@@ -56,21 +56,19 @@ class HomeContianer extends React.Component {
         ))
     }
 
-    onAlarmClickHandler(alarmId){
-        let url = Api.ChangeMessageStatusById(alarmId);
+    onAlarmClickHandler(id, alarmId){
+        let url = Api.ChangeMessageStatusById(id);
         utils.fetchUtils(url).then((res) => {
             console.log('更新消息状态',  res);
-            if(res && res.data){
+            // if(res && res.data){
                 hashHistory.push(RouterConst.ROUTER_ALARM_DETAIL + "/" + alarmId)
-            }
+            // }
         }).catch((e) => console.log(e));
-
-        
     }
 
     getAlarmItem(){
         let { alarmList } = this.props
-        return alarmList.map((obj, index) => <AlarmHomeItem onClick={()=>this.onAlarmClickHandler(obj.id)} data={obj} key={index} />)
+        return alarmList.map((obj, index) => <AlarmHomeItem onClick={()=>this.onAlarmClickHandler(obj.id, obj.messageId)} data={obj} key={index} />)
     }
 
     render() {

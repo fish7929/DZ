@@ -30,7 +30,7 @@ class InverterDetail extends React.Component{
         return data.map((obj, key)=>{
             return (
                 <div className="table-tr" key={key}>
-                    <div className="table-td">{obj.key}</div>
+                    <div className="table-td">{obj.name}</div>
                     <div className="table-td"><span>{obj.value}</span></div>
                 </div>
             )
@@ -38,7 +38,8 @@ class InverterDetail extends React.Component{
     }
 
     render(){
-        let { data } = this.props 
+        let { data } = this.props;
+        let xAxis = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24];
         return(
             <Page className="inverter-detail-container">
                 <Header title="逆变器详情" isShowBack={true} />
@@ -66,7 +67,7 @@ class InverterDetail extends React.Component{
                 <div className="temperature-div">
                     <div className="temperature-title">逆变器功率-温度曲线</div>
                     <div className="temperature-echart-div">
-                        <ChartItem type="doubleLine" data={data.powerTemperatureTime} lineColor={["#45A5ED", "#D76662"]} shadowColor={["#45A6ED", "#D76561"]} dataZoom={true} legend={["温度曲线", "功率曲线"]} />
+                        <ChartItem type="doubleLine" data={data.powerTemperatureTime} lineColor={["#D76662", "#45A5ED"]} shadowColor={["#D76561", "#45A6ED"]} legend={["功率曲线", "温度曲线"]} xAxis={xAxis} />
                     </div>
                 </div>
                 <div className="table-div">

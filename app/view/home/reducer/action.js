@@ -83,7 +83,7 @@ let getHomeAlarmList = dispatch => {
     let url = Api.GetMessageDataByType();
     let opt = {
         page: 1,
-        pagesize: 3,
+        pagesize: 5,
         isread: 0,
         massageType: 1
     }
