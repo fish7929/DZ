@@ -33,8 +33,8 @@ class Home extends React.Component {
         let type = this.props.params && this.props.params.type;
         let tab = this.tab != undefined ? parseInt(this.tab) : this.props.tabIndex;
 
-        this.type = type == undefined ? 0 :  parseInt(type);
-
+        // this.type = type == undefined ? 0 :  parseInt(type);
+        this.type = this.getOrderStatus();
         //只是为了显示不同的标题
         this.state = {
             title: '光伏运维管理平台',  //Header组件标题
@@ -44,6 +44,10 @@ class Home extends React.Component {
             isShowRight: false,
             currentTab: tab
         };
+    }
+    getOrderStatus(){
+        let orderType = Base.getLocalStorageItem("CURRENT_ORDER_STATUS");
+        return orderType ? parseInt(orderType) : 0;
     }
     /**
      * 加载完成
@@ -92,7 +96,7 @@ class Home extends React.Component {
         let component;
         let{workOrder} = this.props;  //this.props.tabIndex
             console.log(workOrder, 8899666);
-        switch (this.state.currentTab) {
+        switch (this.props.tabIndex) {
             case ZERO:
                 component = <HomeContainer />
                 break
@@ -121,6 +125,7 @@ class Home extends React.Component {
         switch (tab) {
             case ZERO:
                 _title = '光伏运维管理平台';
+                Base.setLocalStorageItem("CURRENT_ORDER_STATUS", 0);
                 break
             case FIRST:
                 _title = '工单列表';
@@ -130,20 +135,23 @@ class Home extends React.Component {
                 break
             case SECOND:
                 _title = '消息中心';
+                Base.setLocalStorageItem("CURRENT_ORDER_STATUS", 0);
                 break
             case THREE:
                 _title = '我的';
+                Base.setLocalStorageItem("CURRENT_ORDER_STATUS", 0);
                 break
         }
         this.setState({
             title: _title,  //Header组件标题
             rightClass: _rightClass,
             rightContent: _rightContent,
-            isShowRight: _isShowRight,
-            currentTab: tab
+            isShowRight: _isShowRight
+            // currentTab: tab
         });
+        this.type = this.getOrderStatus();
         this.props.changeHomeTabIndex(tab)
-        this.props.fetchData(tab);
+        this.props.fetchData(tab, this.type);
     }
     render() {
         let { title, isShowRight, rightClass, rightContent, count, currentTab } = this.state;
@@ -156,7 +164,7 @@ class Home extends React.Component {
                 <div className="home-main">
                     {this.getContentSection()}
                 </div>
-                <HomeBottom tabIndex={currentTab} count={count} onTabClick={(tab) => this.changeTabHandler(tab)} />
+                <HomeBottom tabIndex={this.props.tabIndex} count={count} onTabClick={(tab) => this.changeTabHandler(tab)} />
             </Page>
         )
     }
