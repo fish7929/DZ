@@ -9,7 +9,7 @@ import PowerStationMonitorMap from './powerStationMonitorMapContainer'
 
 import * as ActionType from './reducer/actionType'
 
-import { getPSMList, changeShowType } from './reducer/action'
+import { getPSMList, changeShowType, getUserPowerList } from './reducer/action'
 
 import './index.scss'
 
@@ -23,7 +23,8 @@ class PowerStationMonitor extends React.Component{
     }
 
     componentDidMount(){
-        this.props.getPSMList()
+        this.props.getPSMList();
+        this.props.getUserPowerList();
         this.setState({
             showType: ActionType.SHOW_TYPE_LIST
         });
@@ -72,7 +73,7 @@ let mapStateToProps = state => ({
 })
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getPSMList, changeShowType }, dispatch)
+    return bindActionCreators({ getPSMList, changeShowType, getUserPowerList }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PowerStationMonitor)

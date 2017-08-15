@@ -22,3 +22,20 @@ export const changeShowType = (type) => dispatch =>{
         data: type
     })
 }
+
+export const getUserPowerList = () => dispatch => {
+    let url = Api.GetUserPowerList()
+    dispatch(utils.sendMsg(url, {}, "GET")).then(data => {
+        console.log(data)
+        data.results.map(obj => {
+            getUserTrack(obj, dispatch)
+        })
+    })
+}
+
+const getUserTrack = (user, dispatch) => {
+    let url = Api.GetUserTrack(user.id)
+    dispatch(utils.sendMsg(url, {}, "GET")).then(data => {
+
+    })
+}

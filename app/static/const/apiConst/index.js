@@ -113,3 +113,8 @@ export const AffirmAlarm = () => "/pvmtsys/alarmInfo/affirm"
 export const getEquipmentBy = () => "/pvmtsys/pointInfo/getEquipments.do"
 
 export const BindWEIXIN = () => "/pvmtsys/user/wechatBinding"
+
+
+export const GetUserPowerList = () => "/pvmtsys/userAndPower/userPowerListInfo";
+
+export const GetUserTrack = id => "/pvmtsys/userTrack/getUserTrack/" + id;
