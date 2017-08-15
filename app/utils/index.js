@@ -186,3 +186,17 @@ export const getCurrentPosition = () => {
             
     })
 }
+
+export const updateUserTrack = () => {
+    getCurrentPosition().then( r => {
+        let url = "http://api.map.baidu.com/geocoder/v2/?location=" + r.point.lat + "," + r.point.lng + "&output=json&pois=1&ak=3j6qn3gMTZgGCzOegAxyF3wP"
+        // fetch(url, {
+        //     method: "GET",
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json',
+        //         "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS"
+        //     }
+        // }).then(res=>res.json()).then(obj => console.log(obj));
+    })
+}

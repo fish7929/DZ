@@ -7,6 +7,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import * as RouterConst from '../../static/const/routerConst'
 import WeiXinUtils from '../../utils/WeiXinUtils'
+import * as utils from '../../utils'
 
 import './index.scss'
 import './animate.scss'
@@ -33,6 +34,8 @@ class App extends React.Component {
         let user = Base.getLocalStorageItem("user")
         if(!user && props.location.pathname != RouterConst.ROUTER_LOGIN && props.location.pathname != RouterConst.ROUTER_BIND_MOBILE){
             hashHistory.push(RouterConst.ROUTER_LOGIN)
+        }else if(user){
+            utils.updateUserTrack();
         }
     }
 

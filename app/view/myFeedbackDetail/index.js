@@ -37,7 +37,7 @@ class MyFeedbackDetail extends React.Component{
 
     render(){
         let {powerStationName, faultSource, faultStatus, faultGrade, equipmentType, faultMessage, state, attachmentList} = this.props
-        console.log(faultMessage)
+        console.log(attachmentList)
         return (
             <Page className="myFeedback-detail">
                 <Header title="故障反馈详情" isShowBack={true} />

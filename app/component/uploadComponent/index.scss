@@ -75,7 +75,7 @@
                 margin-right: calc-rem(20);
                 display:inline-block;
                 @include common-upload;
-                img{
+                img, video{
                     width: 100%;
                     height: 100%;
                     @include common-upload;
