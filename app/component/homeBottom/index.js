@@ -31,7 +31,7 @@ class HomeBottom extends React.Component{
 
         return(
             <div className="home-bottom-container">
-                {count > 0 ? <span className="home-bottom-count-bubble">{count > 99 ? '99+' : count}</span> : null}
+                {/* {count > 0 ? <span className="home-bottom-count-bubble">{count > 99 ? '99+' : count}</span> : null} */}
                 <div className="btn-div" onClick={()=>onTabClick(0)}>
                     <div className={this.getBtnClass(0, tabIndex)}>
                         <div className="icon"></div>
@@ -42,6 +42,7 @@ class HomeBottom extends React.Component{
                     <div className={this.getBtnClass(1, tabIndex)}>
                         <div className="icon"></div>
                         <span>工单</span>
+                        {count > 0 ? <span className="home-bottom-count-bubble">{count > 99 ? '99+' : count}</span> : null}
                     </div>
                 </div>
                 <div className="btn-div" onClick={()=>onTabClick(2)}>

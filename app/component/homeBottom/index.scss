@@ -51,6 +51,7 @@
     }
 
     .btn_order{
+        position: relative;
         .icon{
             background: url(./images/order.png) no-repeat center;
             background-size: calc-rem(50);
@@ -94,11 +95,14 @@
 }
 
 
-.home-bottom-count-bubble{
-    position: fixed;
+.home-bottom-container .btn-div .btn_order .home-bottom-count-bubble{
+    // position: fixed;
+    position: absolute;
     z-index: 9999;
-    bottom: calc-rem(42);
-    left: calc-rem(294);
+    // bottom: calc-rem(42);
+    // left: calc-rem(294);
+    top: calc-rem(-20);
+    left: calc-rem(42);
     color: $whiteColor !important;
     font-size: calc-rem(24);
     display: inline-block;
