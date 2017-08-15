@@ -99,9 +99,9 @@ class UploadComponent extends React.Component {
         this.setState({
             type: nextProps.type,    //消息框类型
             photoHint: nextProps.photoHint,
-            // photos: nextProps.photos ? [...nextProps.photos] : [],
+            photos: nextProps.photos ? [...nextProps.photos] : [],
             explainHint: nextProps.explainHint,
-            // explain: nextProps.explain || ""
+            explain: nextProps.explain || ""
         });
     }
 
@@ -142,7 +142,7 @@ class UploadComponent extends React.Component {
                     <ul className={"upload-photo-content " + noPhotos}>
                         {photos.map((item, index) =>
                             <li key={index} className="upload-photo-item">
-                                { item.documentType == 0 ? <img src={item.filepath} /> : item.documentType == 1 ? <video src={item.filepath} controls="controls">您的浏览器不支持 video 标签。</video> : 0}
+                                { item.documentType == 0 ? <img src={item.filepath} /> : item.documentType == 1 ? <video src={item.filepath} controls="controls" preload="auto">您的浏览器不支持 video 标签。</video> : ""}
                                 {_disabled ? null : <span className="photo-close"
                                     onClick={(e) => this.deletePhotoHandler(e, index)}></span>}
                             </li>

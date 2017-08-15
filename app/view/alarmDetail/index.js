@@ -103,7 +103,7 @@ class AlarmDetail extends React.Component{
                 </div>
                 
                 <div className="explain-div">
-                    <UploadComponent ref="dealUploadComponent" type={_disabled} uploadModule="alarmDetail" photos={alarmData.attachmentList} explain={alarmData.description || ""} />
+                    <UploadComponent ref="dealUploadComponent" type={_disabled} uploadModule="alarmDetail" photos={alarmData.attachmentList} explain={alarmData.state || ""} />
                 </div>
                 {_disabled == 0 ? <button className="btn-commit" onClick={()=>this.onClickHandler()}>提交</button> : ""}
             </Page>
@@ -112,7 +112,7 @@ class AlarmDetail extends React.Component{
 }
 
 AlarmDetail.PropTypes = {
-    alarmData: PropTypes.object.isRequired,
+    alarmData: PropTypes.object.isRequired
 }
 
 let mapStateToProps = state => ({
