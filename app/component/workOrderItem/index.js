@@ -41,6 +41,9 @@ class WorkOrderItem extends React.Component {
         e.stopPropagation();
         let { data } = this.props;
         let order = data.orderNumber;
+        let _state = data.state;
+        _state = !_state ? 0 : _state;
+        Base.setLocalStorageItem("CURRENT_ORDER_STATUS", _state);
         switch (type) {
             case FIRST:  //事故列表
                 let param = {
@@ -48,7 +51,7 @@ class WorkOrderItem extends React.Component {
                     powerstationName: data.powerstationName
                 };
                 param = JSON.stringify(param);
-                hashHistory.push('/faultList/' + order + "/" + data.state + "/" + Base.myEncodeURIComponent(param));
+                hashHistory.push('/faultList/' + order + "/" + _state + "/" + Base.myEncodeURIComponent(param));
                 break;
             case SECOND:  //电站体检
                 let physicalParam = {
@@ -56,11 +59,11 @@ class WorkOrderItem extends React.Component {
                     powerstationId: data.powerstationId,
                     orderId: data.orderId
                 };
-                hashHistory.push('/physical/' + order + "/" + data.state + "/" + Base.myEncodeURIComponent(physicalParam));
+                hashHistory.push('/physical/' + order + "/" + _state + "/" + Base.myEncodeURIComponent(physicalParam));
                 break;
             case THREE: //离场申请
                 console.log(33333);
-                hashHistory.push('/departure/' + order + "/" + data.state);
+                hashHistory.push('/departure/' + order + "/" + _state);
                 break;
         }
     }
