@@ -56,16 +56,16 @@ class Feedback extends React.Component{
     }
 
     componentWillReceiveProps(nextProps){
-        if(nextProps.powerStationList.length && this.props.powerStationList != nextProps.powerStationList && this.state.powerStationId==""){
+        if((nextProps.powerStationList.length && this.state.powerStationId=="") || (this.props.powerStationList != nextProps.powerStationList && this.state.powerStationId=="")){
             this.setState({powerStationId: nextProps.powerStationList[0].id})
         }
 
-        if(nextProps.deveiceTypes.length && this.props.deveiceTypes != nextProps.deveiceTypes && this.state.deviceTypeId==""){
+        if((nextProps.deveiceTypes.length && this.state.deviceTypeId=="") || (this.props.deveiceTypes != nextProps.deveiceTypes && this.state.deviceTypeId=="")){
             this.setState({deviceTypeId: nextProps.deveiceTypes[0].id})
         }
 
-        if(nextProps.deveiceNumbers.length && this.props.deveiceNumbers != nextProps.deveiceNumbers && this.state.deviceCode==""){
-            this.setState({deviceCode: nextProps.deveiceNumbers[0].id})
+        if((nextProps.deveiceNumbers.length && this.state.deviceCode=="") || (this.state.deviceCode=="" && this.props.deveiceNumbers != nextProps.deveiceNumbers)){
+            this.setState({deviceCode: nextProps.deveiceNumbers[0].equipmentId})
         }
     }
 
@@ -105,7 +105,7 @@ class Feedback extends React.Component{
 
         let opt = {
             // equipmentId: 0,
-            equipmentNumber: deviceCode,
+            equipmentId: deviceCode,
             equipmentType: deviceTypeId,
             faultGrade: alarmLevel,
             faultMessage: uploadObj.explain,
@@ -113,7 +113,7 @@ class Feedback extends React.Component{
             state: uploadObj.explain,
             attachmentList: uploadObj.photos
         }
-        
+        console.log(opt);
         this.props.pushFeedbackMessage(opt).then((data)=>{
             if(data){
                 AppModal.alert("提交成功！", "", ()=>{

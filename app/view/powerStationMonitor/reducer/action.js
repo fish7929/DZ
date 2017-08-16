@@ -23,19 +23,34 @@ export const changeShowType = (type) => dispatch =>{
     })
 }
 
-export const getUserPowerList = () => dispatch => {
+export const getUserPowerList = () => (dispatch, getState) => {
     let url = Api.GetUserPowerList()
     dispatch(utils.sendMsg(url, {}, "GET")).then(data => {
-        console.log(data)
-        data.results.map(obj => {
-            getUserTrack(obj, dispatch)
+        data.results.map((obj, index) => {
+            getUserTrack(obj, index, dispatch, getState)
         })
     })
 }
 
-const getUserTrack = (user, dispatch) => {
+const getUserTrack = (user, index, dispatch, getState) => {
     let url = Api.GetUserTrack(user.id)
     dispatch(utils.sendMsg(url, {}, "GET")).then(data => {
-
+        if(data.length > 0){
+            data = data[0]
+            let list;
+            if(index === 0){
+                list = []
+            }else{
+                let state = getState()
+                list = state.powerStationMonitorReducer.userList
+            }
+            list.push({ ...user, ...data})
+            dispatch(receiveUserTrack(list))
+        }
     })
 }
+
+const receiveUserTrack = data => ({
+    type: ActionType.PSM_USER_UPDATE,
+    data: data
+})

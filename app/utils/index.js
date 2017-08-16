@@ -188,15 +188,26 @@ export const getCurrentPosition = () => {
 }
 
 export const updateUserTrack = () => {
+    let customCallback = function(data){
+        console.log(data);
+    }
+
     getCurrentPosition().then( r => {
-        let url = "http://api.map.baidu.com/geocoder/v2/?location=" + r.point.lat + "," + r.point.lng + "&output=json&pois=1&ak=3j6qn3gMTZgGCzOegAxyF3wP"
-        // fetch(url, {
-        //     method: "GET",
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json',
-        //         "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS"
-        //     }
-        // }).then(res=>res.json()).then(obj => console.log(obj));
+        let url = "http://api.map.baidu.com/geocoder/v2/?location=" + r.point.lat + "," + r.point.lng + "&output=json&ak=3j6qn3gMTZgGCzOegAxyF3wP"
+        fetch(url, {
+            method: "GET",
+            mode: "no-cors",
+            headers: {
+                'Content-Type': 'json'
+            }
+        })
+        .then((res) => {
+            console.log(res);
+            return res.json();
+        })
+        .then((body) => {
+            console.log(body, "123123");
+        })
+        .catch((error) => {console.log("error:", error)})
     })
 }
