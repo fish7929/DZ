@@ -213,3 +213,18 @@ video::-webkit-media-controls {
 }
 video::-webkit-media-controls-fullscreen-button {display: none !important;}
 video::-internal-media-controls-overflow-button {display: none !important;}
+video::-webkit-media-controls-panel input[type=button]:last-child{
+    display: none !important;
+}
+
+video::-webkit-media-controls {
+    overflow: hidden !important
+}
+video::-webkit-media-controls-enclosure {
+    width: 48px;
+    height: 48px;
+    // margin-left: auto;
+}
+video::-webkit-media-controls-panel{
+    background-color: rgba(0,0,0,.3) !important;
+}
