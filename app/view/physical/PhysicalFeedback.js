@@ -199,7 +199,7 @@ class PhysicalFeedback extends React.Component {
                 equipmentId: currentFacility.id,
                 equipmentNumber: facilityNumber,
                 equipmentType: 3,
-                faultMessage: '',
+                faultMessage: uploadObj.explain,
                 explainInfo: uploadObj.explain,
                 attachmentList: uploadObj.photos,
                 examineId: currentPhysical.examineId   //创建 的时候默认值
