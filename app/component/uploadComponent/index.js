@@ -49,7 +49,6 @@ class UploadComponent extends React.Component {
     choosePhotoHandler(e) {
         let file = e.target.files[0];
         if (file) {
-            console.log(file.type);
             let fileType = file.type.indexOf("image") === 0 ? 0 : file.type.indexOf("video") === 0 ? 1 : 2;
             let state = {}
             let data = new FormData()
@@ -64,13 +63,13 @@ class UploadComponent extends React.Component {
                     oldPhotos.push({ filepath: data.url, filename: file.name, documentType: fileType });
                     state.photos = oldPhotos;
                 }
-                state.isShowPhotoSelect = false;
                 this.setState(state);
 
             }).catch((e) => AppModal.hide());
         }
-        //test 
 
+        this.setState({isShowPhotoSelect: false})
+        //test 
     }
     /**
      * 删除单张照片
