@@ -208,23 +208,27 @@
 }
 
 
-video::-webkit-media-controls {
-//   display:none !important;
-}
-video::-webkit-media-controls-fullscreen-button {display: none !important;}
-video::-internal-media-controls-overflow-button {display: none !important;}
-video::-webkit-media-controls-panel input[type=button]:last-child{
-    display: none !important;
-}
 
-video::-webkit-media-controls {
-    overflow: hidden !important
+.my-dz-video{
+    width: 100%;
+    height: 100%;
 }
-video::-webkit-media-controls-enclosure {
+.vjs-paused .vjs-big-play-button,
+.vjs-paused.vjs-has-started .vjs-big-play-button {
+    display: block;
     width: 48px;
     height: 48px;
-    // margin-left: auto;
+    margin: 0 auto;
+    line-height: 48px;
+    left: inherit;
+    position: relative;
+    top: calc(50% - 24px);
 }
-video::-webkit-media-controls-panel{
-    background-color: rgba(0,0,0,.3) !important;
+.video-js{
+    left: 0;
+    top: 0;
+    position: absolute;
+}
+.video-js.vjs-playing .vjs-tech {
+    pointer-events: auto;
 }
