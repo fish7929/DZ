@@ -10,6 +10,9 @@ export default class VideoPlayer extends React.Component {
             console.log(this.children_[0]);
             this.children_[0].setAttribute('x5-video-player-type','h5');
             this.children_[0].setAttribute('x5-video-player-fullscreen', true);
+            this.children_[0].setAttribute('playsinline', true);
+            this.children_[0].setAttribute('webkit-playsinline', true);
+            // playsinline="true" webkit-playsinline="true"
         });
     }
 
