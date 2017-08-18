@@ -7,6 +7,9 @@ export default class VideoPlayer extends React.Component {
         // instantiate video.js
         this.player = videojs(this.videoNode, this.props, function onPlayerReady() {
             console.log('onPlayerReady', this)
+            console.log(this.children_[0]);
+            this.children_[0].setAttribute('x5-video-player-type','h5');
+            this.children_[0].setAttribute('x5-video-player-fullscreen', true);
         });
     }
 
