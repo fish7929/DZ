@@ -64,7 +64,7 @@ export const getListByMapLevel = (opt) => dispatch =>{
     let url = Api.GetUserAndPowerStation()
     dispatch(utils.sendMsg(url, opt, "POST")).then(data => {
         if(data){
-            dispatch(reveiveMapLevel(data.data))
+            dispatch(reveiveMapLevel(data))
         }
     })
 }

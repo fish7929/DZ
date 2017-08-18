@@ -27,7 +27,7 @@ export default function update (state = initialState, action){
         case ActionType.PSM_MAPLEVEL_DATA:
             return {
                 ...state,
-                mapLevelData: action.data
+                mapLevelData: action.data || []
             }
         default:
             return state

@@ -5,10 +5,11 @@
  */
 'use strict'
 import 'whatwg-fetch';  // 可以引入fetch来进行Ajax
+import fetchJsonp from 'fetch-jsonp';
 import {size, each, assignIn} from "lodash";
 import { hashHistory } from 'react-router'
 import * as RouterConst from '../static/const/routerConst'
-
+console.log(fetchJsonp);
 const toExcString = function(array,type={":":"=",",":"&"}){
     let result ="";
     for(let temp in array){
@@ -188,10 +189,18 @@ export const getCurrentPosition = () => {
 }
 
 export const updateUserTrack = () => {
-
+    let callbackFn = function(data){
+        console.log("callbackFn:", data)
+    }
     getCurrentPosition().then( r => {
-        let url = "http://api.map.baidu.com/geocoder/v2/?location=" + r.point.lat + "," + r.point.lng + "&output=json&ak=3j6qn3gMTZgGCzOegAxyF3wP"
-        loadXMLDoc(url).then(data => {
+        let url = "http://api.map.baidu.com/geocoder/v2/?location=" + r.point.lat + "," + r.point.lng + "&output=json&ak=3j6qn3gMTZgGCzOegAxyF3wP&callback=callbackFn"
+        fetchJsonp(url, {
+            jsonpCallbackFunction: 'callbackFn'
+        })
+        .then((response) => {
+            return response.json();
+        })
+        .then(data => {
             if(data.status === 0){
                 let user = Base.getLocalStorageObject("user")
                 if(!user) return;
@@ -228,7 +237,47 @@ export const updateUserTrack = () => {
                 .catch((error) => {console.log(error)})
                 
             }
-        }, error=>console.log(error));
+        })
+        .catch(error => console.log(error))
+        
+        // loadXMLDoc(url).then(data => {
+        //     if(data.status === 0){
+        //         let user = Base.getLocalStorageObject("user")
+        //         if(!user) return;
+        //         let opt = {
+        //             address: data.result.formatted_address,
+        //             city: data.result.addressComponent.city,
+        //             cityCode: data.result.cityCode,
+        //             district: data.result.addressComponent.district,
+        //             lat: data.result.location.lat,
+        //             lng: data.result.location.lng,
+        //             province: data.result.addressComponent.district,
+        //             street: data.result.addressComponent.street,
+        //             streetNumber: data.result.addressComponent.street_number,
+        //             userId: user.userid
+        //         }
+        //         let url = "/pvmtsys/userTrack/updateUserTrack"
+        //         fetch(url, {
+        //             method: "POST",
+        //             headers: {
+        //                 'Accept': 'application/json',
+        //                 'Content-Type': 'application/json',
+        //                 "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS",
+        //                 "token": user.token,
+        //                 "fromType": 'app',
+        //             },
+        //             body: JSON.stringify(opt),
+        //         })
+        //         .then((res) => {
+        //             return res.json();
+        //         })
+        //         .then((data) => {
+        //             console.log(data);
+        //         })
+        //         .catch((error) => {console.log(error)})
+                
+        //     }
+        // }, error=>console.log(error));
     })
 }
 

@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react'
 
 import * as utils from '../../../utils'
+import '../../../lib/BMapLib_InfoBox';
 
 import './index.scss'
 import psmIcon from '../../../static/images/map-p.png'
 import operationIcon from '../../../static/images/operation_small.png'
+import closeIcon from '../../../static/images/close.png'
 
 class PowerStationMonitorMapContainer extends React.Component{
     constructor(props, context){
@@ -17,34 +19,31 @@ class PowerStationMonitorMapContainer extends React.Component{
     componentDidMount(){
         utils.getCurrentPosition().then((r)=>{
             this.currentP = r;
-            console.log(r);
             this.map = new BMap.Map("allMap", {minZoom: 5});
             this.map.addEventListener("onzoomend", ()=>this.onZoomHandler());
             this.map.addEventListener("dragstart", ()=>this.onDragStartHandler());
             this.map.addEventListener("dragend", ()=>this.onDragEndHandler());
-            let p = new BMap.Point(r.point.lng, r.point.lat)
-            let icon = new BMap.Icon(operationIcon, new BMap.Size(30, 36))
-            let marker = new BMap.Marker(p, {icon: icon});  // 创建标注\
-            this.map.addOverlay(marker);
-            this.map.centerAndZoom(p, 15);
+            this.currentP = new BMap.Point(r.point.lng, r.point.lat)
+            
+            this.map.centerAndZoom(this.currentP, 15);
             this.map.enableScrollWheelZoom();
             this.setState({mapIsReady: true})
         })
     }
 
     onZoomHandler(){
-        console.log(this.map.getZoom());
-        console.log(this.map.getBounds());
+        if(this.timer) clearInterval(this.timer)
         this.getData();
     }
 
 
     onDragStartHandler(){
-        this.timer = setInterval(()=>this.getData(), 500)
+        if(this.timer) clearInterval(this.timer)
+        this.timer = setInterval(()=>this.getData(), 1000)
     }
 
     onDragEndHandler(){
-        clearInterval(this.timer)
+        if(this.timer) clearInterval(this.timer)
         this.timer = null;
         this.getData();
     }
@@ -72,12 +71,19 @@ class PowerStationMonitorMapContainer extends React.Component{
             default:
                 break;
         }
+        // let opt = {
+        //     neLat: bounds.Ll.lat,
+        //     neLng: bounds.Ll.lng,
+        //     swLat: bounds.ul.lat,
+        //     swLng: bounds.ul.lng,
+        //     type: type
+        // }
         let opt = {
-            neLat: bounds.Ll.lat,
-            neLng: bounds.Ll.lng,
-            swLat: bounds.ul.lat,
-            swLng: bounds.ul.lng,
-            type: zoomLevel
+            neLat: "40",
+            neLng: "150",
+            swLat: "10",
+            swLng: "110",
+            type: type
         }
         this.props.getListByMapLevel(opt)
     }
@@ -87,22 +93,22 @@ class PowerStationMonitorMapContainer extends React.Component{
     }
 
     openWinInfo(content, e){
-        let opts = {
-            enableCloseOnClick: false
-        };
         var p = e.target;  
         var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);  
-        var infoWindow = new BMap.InfoWindow(content, opts);  // 创建信息窗口对象   
-        this.map.openInfoWindow(infoWindow, point);                //开启信息窗口  
+        var infoWindow = new BMapLib.InfoBox(this.map, content, {
+            closeIconUrl: closeIcon
+        });  // 创建信息窗口对象
+        infoWindow.open(point);
+        // this.map.openInfoWindow(infoWindow, point);                //开启信息窗口  
     }
 
     getPowerStationMarker(data, username){
-        let point = new BMap.Point(obj.lng, obj.lat)
+        let point = new BMap.Point(data.lng, data.lat)
         let icon = new BMap.Icon(psmIcon, new BMap.Size(30, 33))
         let marker = new BMap.Marker(point, {icon: icon});  // 创建标注\
-        let content = "<div class='baiduPopWin'><p>"+ obj.name +"</p>" +
+        let content = "<div class='baiduPopWin'><p>"+ data.name +"</p>" +
                         "<p>负责人：" + username +"</p>" +
-                        "<p>地址："+obj.address+"</p></div>"
+                        "<p>地址："+data.address+"</p></div>"
         marker.addEventListener("click", e => {
             this.openWinInfo(content,e)
         });
@@ -127,12 +133,14 @@ class PowerStationMonitorMapContainer extends React.Component{
     getLable(data){
         let p = new BMap.Point(data.lng, data.lat);
         let content = "<div class='baiduPopWin-p'><p>"+data.areaName+"</p>" +
-                        "<p>电站数量:"+data.persionCounts+"</p>" +
-                        "<p>人员数量:"+data.powerStationCounts+"</p>";
+                        "<p>电站数量:"+data.powerStationCounts+"</p>" +
+                        "<p>人员数量:"+data.persionCounts+"</p>";
         let label = new BMap.Label(content, {position: p});
         let style = {
             border: 0,
-            padding: "10px"
+            padding: "20px 80px 20px 20px",
+            background: "rgba(36,100,250,0.6)",
+            color: "#ffffff"
         }
         label.setStyle(style)
         return label;
@@ -144,7 +152,7 @@ class PowerStationMonitorMapContainer extends React.Component{
             this.map.clearOverlays();
             let user = Base.getLocalStorageObject("user")
             let { username, nickname, email, mobile, departmentName } = user;
-
+            console.log(mapLevelData)
             if(mapLevelData.length === 0){
                 data.map((obj, index)=>{
                     let marker = this.getPowerStationMarker(obj, username);
@@ -152,8 +160,10 @@ class PowerStationMonitorMapContainer extends React.Component{
                 })
 
                 userList.map(obj => {
-                    let marker = this.getPersonalMarket(obj);
-                    this.map.addOverlay(marker);
+                    if(obj.userId != user.userid){
+                        let marker = this.getPersonalMarket(obj);
+                        this.map.addOverlay(marker);
+                    }
                 })
             } else {
                 mapLevelData.map(obj=>{
@@ -161,6 +171,16 @@ class PowerStationMonitorMapContainer extends React.Component{
                     this.map.addOverlay(label);
                 })
             }
+
+            let icon = new BMap.Icon(operationIcon, new BMap.Size(30, 36))
+            let marker = new BMap.Marker(this.currentP, {icon: icon});  // 创建标注\
+            let content = "<div class='baiduPopWin-p'><p>运维人员</p>" +
+                        "<p>" + username +"</p>" +
+                        "<a class='btnPhoneIcon' href='tel:"+mobile+"'>"+ mobile +"</a></div>"
+            marker.addEventListener("click", e => {
+                this.openWinInfo(content,e)
+            });
+            this.map.addOverlay(marker);
         }
 
         return(

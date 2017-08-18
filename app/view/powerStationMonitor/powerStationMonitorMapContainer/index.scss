@@ -11,21 +11,28 @@
     }
 
     .baiduPopWin{
+        padding: calc-rem(20);
         padding-top: calc-rem(50);
+        background: rgba(0,0,0,0.6);
+        color: #fff;
         p{
             line-height: calc-rem(40);
         }
     }
 
     .baiduPopWin-p{
+        padding: calc-rem(20);
+        padding-top: calc-rem(50);
+        background: rgba(0,0,0,0.6);
         p{
             line-height: calc-rem(40);
+            color: #fff;
         }
 
         a{
             line-height: calc-rem(40);
             text-decoration: underline;
-            color: #000000;
+            color: #fff;
         }
     }
 }
