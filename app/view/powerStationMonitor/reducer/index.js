@@ -3,7 +3,8 @@ import * as ActionType from './actionType'
 const initialState = {
     showType: ActionType.SHOW_TYPE_LIST,
     list: [],
-    userList: []
+    userList: [],
+    mapLevelData: []
 }
 
 export default function update (state = initialState, action){
@@ -22,6 +23,11 @@ export default function update (state = initialState, action){
             return {
                 ...state,
                 userList: action.data
+            }
+        case ActionType.PSM_MAPLEVEL_DATA:
+            return {
+                ...state,
+                mapLevelData: action.data
             }
         default:
             return state

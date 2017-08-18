@@ -54,3 +54,22 @@ const receiveUserTrack = data => ({
     type: ActionType.PSM_USER_UPDATE,
     data: data
 })
+
+
+export const getListByMapLevel = (opt) => dispatch =>{
+    if(opt.type === 0){
+        dispatch(reveiveMapLevel([]))
+        return 
+    }
+    let url = Api.GetUserAndPowerStation()
+    dispatch(utils.sendMsg(url, opt, "POST")).then(data => {
+        if(data){
+            dispatch(reveiveMapLevel(data.data))
+        }
+    })
+}
+
+const reveiveMapLevel = data => ({
+    type:ActionType.PSM_MAPLEVEL_DATA,
+    data: data
+})

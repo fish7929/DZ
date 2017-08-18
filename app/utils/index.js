@@ -188,26 +188,77 @@ export const getCurrentPosition = () => {
 }
 
 export const updateUserTrack = () => {
-    let customCallback = function(data){
-        console.log(data);
-    }
 
     getCurrentPosition().then( r => {
         let url = "http://api.map.baidu.com/geocoder/v2/?location=" + r.point.lat + "," + r.point.lng + "&output=json&ak=3j6qn3gMTZgGCzOegAxyF3wP"
-        fetch(url, {
-            method: "GET",
-            mode: "no-cors",
-            headers: {
-                'Content-Type': 'json'
+        loadXMLDoc(url).then(data => {
+            if(data.status === 0){
+                let user = Base.getLocalStorageObject("user")
+                if(!user) return;
+                let opt = {
+                    address: data.result.formatted_address,
+                    city: data.result.addressComponent.city,
+                    cityCode: data.result.cityCode,
+                    district: data.result.addressComponent.district,
+                    lat: data.result.location.lat,
+                    lng: data.result.location.lng,
+                    province: data.result.addressComponent.district,
+                    street: data.result.addressComponent.street,
+                    streetNumber: data.result.addressComponent.street_number,
+                    userId: user.userid
+                }
+                let url = "/pvmtsys/userTrack/updateUserTrack"
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS",
+                        "token": user.token,
+                        "fromType": 'app',
+                    },
+                    body: JSON.stringify(opt),
+                })
+                .then((res) => {
+                    return res.json();
+                })
+                .then((data) => {
+                    console.log(data);
+                })
+                .catch((error) => {console.log(error)})
+                
             }
-        })
-        .then((res) => {
-            console.log(res);
-            return res.json();
-        })
-        .then((body) => {
-            console.log(body, "123123");
-        })
-        .catch((error) => {console.log("error:", error)})
+        }, error=>console.log(error));
+    })
+}
+
+const loadXMLDoc = url => {
+    return new Promise((resolve, reject) => {
+        let xmlhttp = null;
+        // code for IE7, Firefox, Opera, etc.
+        if (window.XMLHttpRequest) {
+            xmlhttp=new XMLHttpRequest();
+        }// code for IE6, IE5
+        else if (window.ActiveXObject) {
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        if (xmlhttp!=null) {
+            xmlhttp.onreadystatechange = (event) => {
+                if(event.target.readyState === 4){
+                    // 200 = "OK"
+                    if (event.target.status==200){
+                        resolve(JSON.parse(event.target.responseText));
+                    }
+                    else {
+                        reject("Problem retrieving XML data:" + xmlhttp.statusText)
+                    }
+                }
+            }
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send(null);
+        }
+        else {
+            reject("Your browser does not support XMLHTTP.")
+        }
     })
 }

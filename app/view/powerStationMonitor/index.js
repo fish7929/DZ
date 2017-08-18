@@ -9,7 +9,7 @@ import PowerStationMonitorMap from './powerStationMonitorMapContainer'
 
 import * as ActionType from './reducer/actionType'
 
-import { getPSMList, changeShowType, getUserPowerList } from './reducer/action'
+import { getPSMList, changeShowType, getUserPowerList, getListByMapLevel } from './reducer/action'
 
 import './index.scss'
 
@@ -50,7 +50,7 @@ class PowerStationMonitor extends React.Component{
             component = <PowerStationMonitorList data={this.props.data} />
             rightClass = "psm-header-map"
         }else{
-            component = <PowerStationMonitorMap data={this.props.data} />
+            component = <PowerStationMonitorMap data={this.props.data} userList={this.props.userList} mapLevelData={this.props.mapLevelData} getListByMapLevel={this.props.getListByMapLevel} />
             rightClass = "psm-header-list"
         }
         return(
@@ -70,10 +70,12 @@ PowerStationMonitor.PropTypes = {
 let mapStateToProps = state => ({
     showType: state.powerStationMonitorReducer.showType,
     data: state.powerStationMonitorReducer.list,
+    userList: state.powerStationMonitorReducer.userList,
+    mapLevelData: state.powerStationMonitorReducer.mapLevelData,
 })
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getPSMList, changeShowType, getUserPowerList }, dispatch)
+    return bindActionCreators({ getPSMList, changeShowType, getUserPowerList, getListByMapLevel }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PowerStationMonitor)
