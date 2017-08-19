@@ -94,11 +94,16 @@ class PowerStationMonitorMapContainer extends React.Component{
 
     openWinInfo(content, e){
         var p = e.target;  
-        var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);  
-        var infoWindow = new BMapLib.InfoBox(this.map, content, {
-            closeIconUrl: closeIcon
+        var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+        if(this.infoWindow){
+            this.infoWindow.close();
+            this.infoWindow = null;
+        }
+        this.infoWindow = new BMapLib.InfoBox(this.map, content, {
+            closeIconUrl: closeIcon,
+            offset: new BMap.Size(10, 10)
         });  // 创建信息窗口对象
-        infoWindow.open(point);
+        this.infoWindow.open(point);
         // this.map.openInfoWindow(infoWindow, point);                //开启信息窗口  
     }
 
@@ -132,13 +137,12 @@ class PowerStationMonitorMapContainer extends React.Component{
 
     getLable(data){
         let p = new BMap.Point(data.lng, data.lat);
-        let content = "<div class='baiduPopWin-p'><p>"+data.areaName+"</p>" +
+        let content = "<div class='baiduPopWin-label'><p>"+data.areaName+"</p>" +
                         "<p>电站数量:"+data.powerStationCounts+"</p>" +
                         "<p>人员数量:"+data.persionCounts+"</p>";
         let label = new BMap.Label(content, {position: p});
         let style = {
             border: 0,
-            padding: "20px 80px 20px 20px",
             background: "rgba(36,100,250,0.6)",
             color: "#ffffff"
         }
