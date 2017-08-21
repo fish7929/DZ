@@ -15,7 +15,8 @@ class UploadComponent extends React.Component {
             photos: this.props.photos ? [...this.props.photos] : [],
             explainHint: this.props.explainHint,
             explain: this.props.explain || '',
-            isShowPhotoSelect: false
+            isShowPhotoSelect: false,
+            isShowBigPhoto: false
         }
     }
 
@@ -26,7 +27,8 @@ class UploadComponent extends React.Component {
             photos: this.props.photos ? [...this.props.photos] : [],
             explainHint: this.props.explainHint,
             explain: this.props.explain || '',
-            isShowPhotoSelect: false
+            isShowPhotoSelect: false,
+            isShowBigPhoto: false
         }, () => console.log(this.state))
     }
     /**
@@ -118,6 +120,25 @@ class UploadComponent extends React.Component {
         )
     }
 
+    onShowBigPhoto(filepath){
+        let isShowBigPhoto = false, bigPhotoPath=filepath||"";
+        if(filepath){
+            isShowBigPhoto = true
+        }
+        this.setState({
+            isShowBigPhoto: isShowBigPhoto,
+            bigPhotoPath: bigPhotoPath
+        })
+    }
+
+    getBigPhotoComponent(){
+        return (
+            <div className="big-photo-container" onClick={()=>this.onShowBigPhoto()}>
+                <img src={this.state.bigPhotoPath} />
+            </div>
+        )
+    }
+
     render() {
         {/* <video src={item.filepath} controls="controls" x-webkit-airplay="true" webkit-playsinline="true" preload="auto">您的浏览器不支持 video 标签。</video> */ }
         let { type, photoHint, photos, explainHint, explain } = this.state
@@ -143,7 +164,7 @@ class UploadComponent extends React.Component {
                     <ul className={"upload-photo-content " + noPhotos}>
                         {photos.map((item, index) =>
                             <li key={index} className="upload-photo-item">
-                                {item.documentType == 0 ? <img src={item.filepath} /> : item.documentType == 1 ?
+                                {item.documentType == 0 ? <img src={item.filepath} onClick={()=>this.onShowBigPhoto(item.filepath)} /> : item.documentType == 1 ?
                                     <VideoPlayer {...{
                                         preload: 'auto',
                                         sources: [{
@@ -165,6 +186,7 @@ class UploadComponent extends React.Component {
                 </div>
 
                 {this.state.isShowPhotoSelect ? this.photoSelectComponent() : ""}
+                {this.state.isShowBigPhoto ? this.getBigPhotoComponent() : ""}
             </div >
         )
     }
