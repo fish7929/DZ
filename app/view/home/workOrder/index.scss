@@ -54,11 +54,11 @@
     pointer-events: none;
 }
 
-/****时间筛选器***/
+/****时间筛选器*  top: calc-rem(61); 有顶部导航的时候**/
 .work-order-filter{
     position: fixed;
     display: inline-block;
-    top: calc-rem(61);
+    top: calc-rem(31);
     right: calc-rem(30);
     font-size: calc-rem(24);
     padding: calc-rem(6) calc-rem(24) ;
