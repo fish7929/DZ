@@ -40,7 +40,7 @@
     "style-loader": "^0.13.2",
     "url-loader": "^0.5.8",
     "video.js": "^6.2.5",
-    "webpack": "^2.2.1",
+    "webpack": "^2.7.0",
     "webpack-dev-server": "^2.4.1",
     "webpack-md5-hash": "0.0.5",
     "whatwg-fetch": "^2.0.3"

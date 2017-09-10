@@ -24,7 +24,7 @@ class MyFeedbackItem extends React.Component{
                 </div>
                 <div className="device-div">
                     <span>设备编号</span>
-                    <span className="title-txt no-wrap">{data.equipmentNumber}</span>
+                    <span className="title-txt no-wrap">{data.invartername}</span>
                 </div>
                 <div className="info-div">
                     <span>{level}级</span>

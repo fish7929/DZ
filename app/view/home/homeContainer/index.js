@@ -35,15 +35,29 @@ class HomeContianer extends React.Component {
         if(link){
             hashHistory.push(link)
         }else{
-            WeiXinUtils.scanQRCode().then(data=>{
-                if(data.indexOf("http") === 0){
-                    window.location.href = data;
-                }else{
-                    AppModal.toast(data);
-                }
-            }, ()=>{
-                AppModal.toast('微信未授权');
-            })
+            if(window.cordova){
+                alert("window.cordova.plugins.spacekplugin.richscan")
+                window.cordova.plugins.spacekplugin.richscan("10", data=>{
+                    alert("扫一扫成功"+data);
+                    if(data.indexOf("http") === 0){
+                        window.location.href = data;
+                    }else{
+                        AppModal.toast(data);
+                    }
+                }, ()=>{
+                    AppModal.toast('扫一扫失败');
+                })
+            }else{
+                WeiXinUtils.scanQRCode().then(data=>{
+                    if(data.indexOf("http") === 0){
+                        window.location.href = data;
+                    }else{
+                        AppModal.toast(data);
+                    }
+                }, ()=>{
+                    AppModal.toast('微信未授权');
+                })
+            }
         }
     }
 

@@ -67,7 +67,21 @@ class Login extends React.Component{
     }
 
     onWXLoginHandler(){
-        window.open("http://www.yunengzhe.com/wechat/login/weixin?redirect_uri=http://www.yunengzhe.com/pvmts_app/files/wxLogin.html","_self");
+        if(window.cordova){
+            alert("调用window.cordova.plugins.spacekplugin.isThirdAppInstalled wx")
+            window.cordova.plugins.spacekplugin.isThirdAppInstalled("wx", ()=>{
+                alert("wx是否安装成功回调");
+                window.cordova.plugins.spacekplugin.thirdAppLogin("wx", data=>{
+                    alert("微信登陆成功"+ JSON.stringify(data))
+                }, error=>{
+                    AppModal.toast('微信登陆失败！');
+                })
+            }, error=>{
+                AppModal.toast('微信未安装');
+            })
+        }else{
+            window.open("http://www.yunengzhe.com/wechat/login/weixin?redirect_uri=http://www.yunengzhe.com/pvmts_app/files/wxLogin.html","_self");
+        }
     }
 
     render(){

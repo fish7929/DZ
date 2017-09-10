@@ -111,13 +111,38 @@ class UploadComponent extends React.Component {
         return (
             <div className="photo-select-container">
                 <div className="btns-div">
-                    <div className="inputBtn"><input type="file" accept="image/*" capture="camera" onChange={(e) => this.choosePhotoHandler(e)} />拍照</div>
-                    <div className="inputBtn"><input type="file" accept="video/mp4" capture="camcorder" onChange={(e) => this.choosePhotoHandler(e)} />摄像</div>
-                    <div className="inputBtn"><input type="file" accept="video/mp4,image/*" onChange={(e) => this.choosePhotoHandler(e)} />相册</div>
+                    {window.cordova ? <div className="inputBtn" onClick={()=>this.onAppChoosePhotoHandler(1)}>拍照</div> : <div className="inputBtn"><input type="file" accept="image/*" capture="camera" onChange={(e) => this.choosePhotoHandler(e)} />拍照</div>}
+                    {window.cordova ? <div className="inputBtn" onClick={()=>this.onAppChooseMedioHandler()}>摄像</div> : <div className="inputBtn"><input type="file" accept="video/mp4" capture="camcorder" onChange={(e) => this.choosePhotoHandler(e)} />摄像</div>}
+                    {window.cordova ? <div className="inputBtn" onClick={()=>this.onAppChoosePhotoHandler(0)}>相册</div> : <div className="inputBtn"><input type="file" accept="video/mp4,image/*" onChange={(e) => this.choosePhotoHandler(e)} />相册</div>}
                     <div className="inputBtn" onClick={() => this.setState({ isShowPhotoSelect: false })}>取消</div>
                 </div>
             </div>
         )
+    }
+
+    /**
+     * @param {*} type  0 相册 1 相机
+     */
+    onAppChoosePhotoHandler(type){
+        alert("调用cordova.plugins.spacekplugin.takePicture")
+        window.cordova.plugins.spacekplugin.takePicture({ type: type }, data=>{
+            alert("获取图片成功：" + data)
+        }, error=>{
+            alert("获取图片失败：" + error)
+        })
+    }
+
+    /**
+     * 
+     * @param {*} filepath 
+     */
+    onAppChooseMedioHandler(){
+        alert("调用cordova.plugins.spacekplugin.takeVideo")
+        window.cordova.plugins.spacekplugin.takeVideo("30", data => {
+            alert("视频拍摄成功")            
+        }, error=>{
+            alert("视频拍摄失败" + error)    
+        });
     }
 
     onShowBigPhoto(filepath){

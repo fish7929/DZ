@@ -9,7 +9,9 @@ import fetchJsonp from 'fetch-jsonp';
 import {size, each, assignIn} from "lodash";
 import { hashHistory } from 'react-router'
 import * as RouterConst from '../static/const/routerConst'
-console.log(fetchJsonp);
+
+const Host = "http://www.yunengzhe.com"
+
 const toExcString = function(array,type={":":"=",",":"&"}){
     let result ="";
     for(let temp in array){
@@ -51,6 +53,7 @@ export function fetchUtils(url, param, type = "GET", headers = {}, dataType = "j
         })
     }
     //TODO 可能需要在前面增加域名  Config.api
+    url = Host + url;
     return fetch(url, {
         method: type.toLocaleUpperCase(),
         headers: headers,
@@ -79,7 +82,8 @@ const fetchMsg = (url, param, type = "GET", headers={}, repType="json") => {
         return fetch(url, {
             method: type.toLocaleUpperCase(),
             headers: headers,
-            // credentials: 'same-origin',
+            mode: "cros",
+            credentials: 'credentials',
             body: type.toLocaleUpperCase()==="GET"? undefined : (repType=="json" ? JSON.stringify(param):param)
         })  
         .then((res) => {
@@ -116,6 +120,7 @@ export function sendMsg(url, param, type = "GET",headers={}, repType="json"){
     }
     return (dispatch, getState) => {
         return new Promise(function(resolve, reject){
+            url = Host + url;
             dispatch(fetchMsg(url, param, type, headers, repType))
             .then(data=>{
                 if(data.code === 1 || data.code === 0 || data.message){
