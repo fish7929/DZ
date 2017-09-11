@@ -53,6 +53,14 @@ class Home extends React.Component {
      * 加载完成
      */
     componentDidMount() {
+        if(window.cordova){
+            let user = Base.getLocalStorageObject("user")
+            if(user && user.hasOwnProperty('token')){
+                alert("window.cordova.plugins.spacekplugin.userToken: " + user.token )
+                window.cordova.plugins.spacekplugin.userToken(user.token, ()=>{}, ()=>{});
+            }
+        }
+        
         //测试
         // AppModal.loading();
         //加载默认数据

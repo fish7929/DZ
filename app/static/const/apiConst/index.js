@@ -121,3 +121,5 @@ export const GetUserTrack = id => "/pvmtsys/userTrack/getUserTrack/" + id;
 
 
 export const GetUserAndPowerStation = () => "/pvmtsys/userTrack/getUserAndPowerStation"
+
+export const checkMobileBind = () => "/pvmtsys/user/mobileBinding"

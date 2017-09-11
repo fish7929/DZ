@@ -10,7 +10,7 @@ import Header from '../../component/header'
 import * as RouterConst from '../../static/const/routerConst'
 import ErrorMessage from '../../static/const/errorMessage'
 
-import { userLogin } from './reducer/action'
+import { userLogin, checkBindWx } from './reducer/action'
 import { checkNumber, checkPhone } from '../../utils'
 
 import './index.scss'
@@ -67,12 +67,32 @@ class Login extends React.Component{
     }
 
     onWXLoginHandler(){
+        // let data = {
+        //     expires: 7200,
+        //     id: "oJqh40s6yjwVehm-qP2Ms0WSN7xU",
+        //     info: {
+        //         city: "Pudong New District",
+        //         country: "CN",
+        //         headimgurl: "http://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83ept2cKsf98r6r8kw025gKr99BEYza1ibHQkiaw6z5Q81djicJHn0QiabpIj5wBxFeCEc67eicc8XqsCd0g/0",
+        //         language: "zh_CN",
+        //         nickname: "BlackInter",
+        //         openid: "oJqh40s6yjwVehm-qP2Ms0WSN7xU",
+        //         privilege: "",
+        //         province: "Shanghai",
+        //         sex: "1",
+        //         unionid: "oRCUSwy016Y2F9RUt7sX233zpjGo",
+        //     },
+        //     token: "WGGfJkM6BTF2EV9WGdG_vzyLvmxx1Yy8AMXzktMgXMpTzH1Y4-wlpTXkoyfSMRYzWnxzj1pokc3ZByKo9gXIitc8eg2LpE1_Nx0IAZOMtrs"
+        // }
+        // this.props.checkBindWx(data.info)
+        // return;
         if(window.cordova){
-            alert("调用window.cordova.plugins.spacekplugin.isThirdAppInstalled wx")
+            // alert("调用window.cordova.plugins.spacekplugin.isThirdAppInstalled wx")
             window.cordova.plugins.spacekplugin.isThirdAppInstalled("wx", ()=>{
-                alert("wx是否安装成功回调");
+                // alert("wx是否安装成功回调");
                 window.cordova.plugins.spacekplugin.thirdAppLogin("wx", data=>{
-                    alert("微信登陆成功"+ JSON.stringify(data))
+                    // alert("微信登陆成功"+ JSON.stringify(data))
+                    this.props.checkBindWx(data.info)
                 }, error=>{
                     AppModal.toast('微信登陆失败！');
                 })
@@ -117,7 +137,7 @@ let mapStateToProps = state => ({
 })
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ userLogin }, dispatch)
+    return bindActionCreators({ userLogin, checkBindWx }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

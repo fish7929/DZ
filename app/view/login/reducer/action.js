@@ -33,3 +33,20 @@ export const userLogin = (userName, password) => dispatch => {
         hashHistory.push(RouterConst.ROUTER_HOME)
     })
 }
+
+export const checkBindWx = userinfo => dispatch => {
+    let url = Api.checkMobileBind();
+    let opt = {
+        wxopenId: userinfo.openid,
+        wxunionId: userinfo.unionid
+    }
+    dispatch(utils.sendMsg(url, opt, "POST")).then(data => {
+        if(data == null){
+            Base.setLocalStorageObject("user", JSON.stringify(userinfo))
+            hashHistory.push(RouterConst.ROUTER_BIND_MOBILE)
+        }else{
+            Base.setLocalStorageObject("user", data)
+            hashHistory.push(RouterConst.ROUTER_HOME)
+        }
+    })
+}

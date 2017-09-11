@@ -36,9 +36,9 @@ class HomeContianer extends React.Component {
             hashHistory.push(link)
         }else{
             if(window.cordova){
-                alert("window.cordova.plugins.spacekplugin.richscan")
+                // alert("window.cordova.plugins.spacekplugin.richscan")
                 window.cordova.plugins.spacekplugin.richscan("10", data=>{
-                    alert("扫一扫成功"+data);
+                    // alert("扫一扫成功"+data);
                     if(data.indexOf("http") === 0){
                         window.location.href = data;
                     }else{

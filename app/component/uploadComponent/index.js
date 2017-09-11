@@ -124,11 +124,16 @@ class UploadComponent extends React.Component {
      * @param {*} type  0 相册 1 相机
      */
     onAppChoosePhotoHandler(type){
-        alert("调用cordova.plugins.spacekplugin.takePicture")
+        // alert("调用cordova.plugins.spacekplugin.takePicture")
         window.cordova.plugins.spacekplugin.takePicture({ type: type }, data=>{
-            alert("获取图片成功：" + data)
+            // alert("获取图片成功：" + data)
+            let state = {};
+            let oldPhotos = this.state.photos;
+            oldPhotos.push({ filepath: data.url, filename: data.name, documentType: 0 });
+            state.photos = oldPhotos;
+            this.setState(state);
         }, error=>{
-            alert("获取图片失败：" + error)
+            // alert("获取图片失败：" + error)
         })
     }
 
@@ -137,11 +142,16 @@ class UploadComponent extends React.Component {
      * @param {*} filepath 
      */
     onAppChooseMedioHandler(){
-        alert("调用cordova.plugins.spacekplugin.takeVideo")
+        // alert("调用cordova.plugins.spacekplugin.takeVideo")
         window.cordova.plugins.spacekplugin.takeVideo("30", data => {
-            alert("视频拍摄成功")            
+            let state = {};
+            let oldPhotos = this.state.photos;
+            oldPhotos.push({ filepath: data.url, filename: data.name, documentType: 1 });
+            state.photos = oldPhotos;
+            this.setState(state);
+            // alert("视频拍摄成功")         
         }, error=>{
-            alert("视频拍摄失败" + error)    
+            // alert("视频拍摄失败" + error)    
         });
     }
 

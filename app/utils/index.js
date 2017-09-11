@@ -49,7 +49,7 @@ export function fetchUtils(url, param, type = "GET", headers = {}, dataType = "j
         headers = assignIn(headers, {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS"
+            // "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS"
         })
     }
     //TODO 可能需要在前面增加域名  Config.api
@@ -57,7 +57,9 @@ export function fetchUtils(url, param, type = "GET", headers = {}, dataType = "j
     return fetch(url, {
         method: type.toLocaleUpperCase(),
         headers: headers,
-        credentials: 'same-origin',
+        mode: "cors",
+        credentials: 'credentials',
+        redirect: 'follow',
         body: type.toLocaleUpperCase() === "GET" ? undefined : (dataType == "json" ? JSON.stringify(param) : param)
     })
         .then((res) => res.json())
@@ -76,13 +78,14 @@ const fetchMsg = (url, param, type = "GET", headers={}, repType="json") => {
             headers = assignIn(headers, {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS"
+                // "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS"
             })
         }
+
         return fetch(url, {
             method: type.toLocaleUpperCase(),
             headers: headers,
-            mode: "cros",
+            mode: "cors",
             credentials: 'credentials',
             body: type.toLocaleUpperCase()==="GET"? undefined : (repType=="json" ? JSON.stringify(param):param)
         })  
@@ -95,6 +98,32 @@ const fetchMsg = (url, param, type = "GET", headers={}, repType="json") => {
         .catch((error) => {console.log(error)})
     }
 }
+
+// const fetchMsg = (url, param, type = "Get", headers={}, repType="json") => {
+//     return (dispatch, getState) => {
+//         let user = Base.getLocalStorageObject("user")
+//         let token = '';
+//         if(user && user.hasOwnProperty('token')){
+//             token = user.token;
+//         } 
+//         return $.ajax({
+//                     url: url,
+//                     type: type,
+//                     data: param,
+//                     contentType: "application/json",
+//                     dataType: "json",
+//                     beforeSend: (request) => {
+//                         request.setRequestHeader("fromType", "app");
+//                         if(token){
+//                             request.setRequestHeader("token", token);
+//                         }
+//                     },
+//                     success: function(result) {
+//                         return result;
+//                     }
+//                 })
+//     }
+// }
 
 /**
  * sendMsg: 数据请求
@@ -221,7 +250,7 @@ export const updateUserTrack = () => {
                     streetNumber: data.result.addressComponent.street_number,
                     userId: user.userid
                 }
-                let url = "/pvmtsys/userTrack/updateUserTrack"
+                let url = Host + "/pvmtsys/userTrack/updateUserTrack"
                 fetch(url, {
                     method: "POST",
                     headers: {
