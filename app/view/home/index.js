@@ -56,7 +56,7 @@ class Home extends React.Component {
         if(window.cordova){
             let user = Base.getLocalStorageObject("user")
             if(user && user.hasOwnProperty('token')){
-                alert("window.cordova.plugins.spacekplugin.userToken: " + user.token )
+                // alert("window.cordova.plugins.spacekplugin.userToken: " + user.token )
                 window.cordova.plugins.spacekplugin.userToken(user.token, ()=>{}, ()=>{});
             }
         }
