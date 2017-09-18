@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Router, Route, IndexRoute } from 'react-router'
+import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 
 import * as RouterConst from '../static/const/routerConst'
 
@@ -52,18 +52,30 @@ const Physical = cb => require.ensure([], require => { cb(null, require('../view
 const FaultDetail = cb => require.ensure([], require => { cb(null, require('../view/faultDetail').default)}, "faultDetail")
 
 
+const checkLogin = (nextState, replace, next)=> {
+	let user = Base.getLocalStorageItem("user")
+	if(!user){
+		replace(RouterConst.ROUTER_LOGIN)
+	}
+	next()//如果有值直接下一步
+}
+
 const Routers = {
 	path: RouterConst.ROUTER_HOME,
 	getComponent(nextState, cb){ App(cb) },
 	indexRoute: {
-		getComponent(nextState, cb){ Home(cb) }
+		getComponent(nextState, cb){ Home(cb) },
+		onEnter:checkLogin
 	},
 	childRoutes: [
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_HOME_TAB + '/:tab',
 			getComponent(nextState, cb){ Home(cb) },
+			
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_HOME_TAB + '/:tab/:type',
 			getComponent(nextState, cb){ Home(cb) },
 		},
@@ -76,86 +88,107 @@ const Routers = {
 			getComponent(nextState, cb){ BindMobile(cb) },
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_REAL_TIME_ALARM,
 			getComponent(nextState, cb){ RealTimeAlarm(cb) }
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_ALARM_DETAIL + "/:id",
 			getComponent(nextState, cb){ AlarmDetail(cb) },
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.Router_AlARM_SEARCH,
 			getComponent(nextState, cb){ AlarmSearch(cb) },
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_POWER_STATION_MONITOR,
 			getComponent(nextState, cb){ PowerStationMonitor(cb) },
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_POWER_STATION_MONITOR_DETAIL + "/:id",
 			getComponent(nextState, cb){ PowerStationMonitorDetail(cb) },
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_INVERTER_LIST + "/:id",
 			getComponent(nextState, cb){ InverterList(cb) },
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_INVERTER_DETAIL + "/:id",
 			getComponent(nextState, cb){ InverterDetail(cb) },
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_AMMETER_LIST + "/:id",
 			getComponent(nextState, cb){ AmmeterList(cb) },
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_FEEDBACK,
 			getComponent(nextState, cb){ Feedback(cb) },
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_CHANGE_PASSWORD,
 			getComponent(nextState, cb){ ChangePw(cb) },
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_MY_FEEDBACK,
 			getComponent(nextState, cb){ MyFeedback(cb) },
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_MY_FEEDBACK_DETAIL + "/:id",
 			getComponent(nextState, cb){ MyFeedbackDetail(cb) },
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_MY_MESSAGE_SET,
 			getComponent(nextState, cb){ MyMessageSet(cb) },
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_MESSAGE + "/:type",
 			getComponent(nextState, cb){ Message(cb) },
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_MESSAGE_DETAIL + "/:id/:type",
 			getComponent(nextState, cb){ MessageDetail(cb) },
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_FAULT_LIST +  "/:order/:status/:param",
 			getComponent(nextState, cb){ FaultList(cb) },
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_SPAREPART + "/:order",
 			getComponent(nextState, cb){ Sparepart(cb) },
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_THIRD_CONTACT + "/:order",
 			getComponent(nextState, cb){ ThirdContact(cb) },
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_DEPARTURE + "/:order/:status",
 			getComponent(nextState, cb){ Departure(cb) },
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_PHYSICAL + "/:order/:status/:param",
 			getComponent(nextState, cb){ Physical(cb) },
 		},
 		{
+			onEnter:checkLogin,
 			path: RouterConst.ROUTER_FAULT_DETAIL + "/:id/:status/:param",
 			getComponent(nextState, cb){ FaultDetail(cb) },
 		}

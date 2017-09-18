@@ -28,102 +28,152 @@ const toExcString = function(array,type={":":"=",",":"&"}){
  * @param headers 头部额外配置
  * @param dataType 成功返回数据的格式dataType= "json"或dataType= "text"等ajax支持的格式
  */
+// export function fetchUtils(url, param, type = "GET", headers = {}, dataType = "json") {
+//     if(type.toLocaleUpperCase()==="GET"&&size(param)>0){
+//         url +="?"+toExcString(param)
+//     }
+//     let user = Base.getLocalStorageObject("user")
+//     let token = '';
+//     if(user && user.hasOwnProperty('token')){
+//         token = user.token;
+//     }
+//     if(token){
+//         //token = "DA58A5485E52B2A5DA3EA90F367A1636"
+//         headers = {
+//             ...headers,
+//             fromType: 'app',
+//             token
+//         }
+//     }
+//     if(dataType == "json"){
+//         headers = assignIn(headers, {
+//             'Accept': 'application/json',
+//             'Content-Type': 'application/json',
+//             // "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS"
+//         })
+//     }
+//     //TODO 可能需要在前面增加域名  Config.api
+//     url = Host + url;
+//     return fetch(url, {
+//         method: type.toLocaleUpperCase(),
+//         headers: headers,
+//         mode: "cors",
+//         credentials: 'credentials',
+//         redirect: 'follow',
+//         body: type.toLocaleUpperCase() === "GET" ? undefined : (dataType == "json" ? JSON.stringify(param) : param)
+//     })
+//         .then((res) => res.json())
+//         .then((data) => data)
+//         .catch((error) => error)
+// }
+
 export function fetchUtils(url, param, type = "GET", headers = {}, dataType = "json") {
-    if(type.toLocaleUpperCase()==="GET"&&size(param)>0){
-        url +="?"+toExcString(param)
-    }
-    let user = Base.getLocalStorageObject("user")
-    let token = '';
-    if(user && user.hasOwnProperty('token')){
-        token = user.token;
-    }
-    if(token){
-        //token = "DA58A5485E52B2A5DA3EA90F367A1636"
-        headers = {
-            ...headers,
-            fromType: 'app',
-            token
+    return new Promise((resolve, reject)=>{
+        url = Host + url;
+        let user = Base.getLocalStorageObject("user")
+        let token = '', contentType = "application/json";
+        if(user && user.hasOwnProperty('token')){
+            token = user.token;
         }
-    }
-    if(dataType == "json"){
-        headers = assignIn(headers, {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            // "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS"
-        })
-    }
-    //TODO 可能需要在前面增加域名  Config.api
-    url = Host + url;
-    return fetch(url, {
-        method: type.toLocaleUpperCase(),
-        headers: headers,
-        mode: "cors",
-        credentials: 'credentials',
-        redirect: 'follow',
-        body: type.toLocaleUpperCase() === "GET" ? undefined : (dataType == "json" ? JSON.stringify(param) : param)
+
+        if(type=="POST" && dataType == "json"){
+            param = JSON.stringify(param)
+        }
+        
+
+        let opt = {
+            url: url,
+            type: type,
+            data: param,
+            contentType: contentType,
+            beforeSend: (request) => {
+                request.setRequestHeader("fromType", "app");
+                if(token){
+                    request.setRequestHeader("token", token);
+                }
+            },
+            success: result => {
+                resolve(result);
+            },
+            error: error => {
+                reject(error);
+            }
+        }
+        if(dataType == "form"){
+            opt.processData = false;
+            opt.contentType = false;
+        }else{
+            opt.dataType = dataType;
+        }
+
+        return $.ajax(opt)
     })
-        .then((res) => res.json())
-        .then((data) => data)
-        .catch((error) => error)
 }
 
 
-const fetchMsg = (url, param, type = "GET", headers={}, repType="json") => {
-    return (dispatch, getState) => {
-        if(type.toLocaleUpperCase()==="GET"&&size(param)>0){
-            url +="?"+toExcString(param)
-        }
-
-        if(repType == "json"){
-            headers = assignIn(headers, {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                // "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS"
-            })
-        }
-
-        return fetch(url, {
-            method: type.toLocaleUpperCase(),
-            headers: headers,
-            mode: "cors",
-            credentials: 'credentials',
-            body: type.toLocaleUpperCase()==="GET"? undefined : (repType=="json" ? JSON.stringify(param):param)
-        })  
-        .then((res) => {
-            return res.json();
-        })
-        .then((data) => {
-            return data;
-        })
-        .catch((error) => {console.log(error)})
-    }
-}
-
-// const fetchMsg = (url, param, type = "Get", headers={}, repType="json") => {
+// const fetchMsg = (url, param, type = "GET", headers={}, repType="json") => {
 //     return (dispatch, getState) => {
-//         let user = Base.getLocalStorageObject("user")
-//         let token = '';
-//         if(user && user.hasOwnProperty('token')){
-//             token = user.token;
-//         } 
-//         return $.ajax({
-//                     url: url,
-//                     type: type,
-//                     data: param,
-//                     contentType: "application/json",
-//                     dataType: "json",
-//                     beforeSend: (request) => {
-//                         request.setRequestHeader("fromType", "app");
-//                         if(token){
-//                             request.setRequestHeader("token", token);
-//                         }
-//                     },
-//                     success: function(result) {
-//                         return result;
-//                     }
-//                 })
+//         if(type.toLocaleUpperCase()==="GET"&&size(param)>0){
+//             url +="?"+toExcString(param)
+//         }
+
+//         if(repType == "json"){
+//             headers = assignIn(headers, {
+//                 'Accept': 'application/json',
+//                 'Content-Type': 'application/json',
+//                 // "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS"
+//             })
+//         }
+
+//         return fetch(url, {
+//             method: type.toLocaleUpperCase(),
+//             headers: headers,
+//             mode: "cors",
+//             credentials: 'credentials',
+//             body: type.toLocaleUpperCase()==="GET"? undefined : (repType=="json" ? JSON.stringify(param):param)
+//         })  
+//         .then((res) => {
+//             return res.json();
+//         })
+//         .then((data) => {
+//             return data;
+//         })
+//         .catch((error) => {console.log(error)})
 //     }
 // }
+
+const fetchMsg = (url, param, type = "Get", headers={}, repType="json") => {
+    return (dispatch, getState) => {
+        let user = Base.getLocalStorageObject("user")
+        let token = '';
+        if(user && user.hasOwnProperty('token')){
+            token = user.token;
+        }
+
+        if(type=="POST"){
+            param = JSON.stringify(param)
+        }
+        return $.ajax({
+            url: url,
+            type: type,
+            data: param,
+            contentType: "application/json",
+            dataType: "json",
+            beforeSend: (request) => {
+                request.setRequestHeader("fromType", "app");
+                if(token){
+                    request.setRequestHeader("token", token);
+                }
+            },
+            success: result => {
+                return result;
+            },
+            error: error => {
+
+            }
+        })
+    }
+}
 
 /**
  * sendMsg: 数据请求
@@ -151,7 +201,7 @@ export function sendMsg(url, param, type = "GET",headers={}, repType="json"){
         return new Promise(function(resolve, reject){
             url = Host + url;
             dispatch(fetchMsg(url, param, type, headers, repType))
-            .then(data=>{
+            .then(data => {
                 if(data.code === 1 || data.code === 0 || data.message){
                     resolve&&resolve(data.result || data.data || data.url || null)
                 }else{
@@ -223,19 +273,14 @@ export const getCurrentPosition = () => {
 }
 
 export const updateUserTrack = () => {
-    let callbackFn = function(data){
-        console.log("callbackFn:", data)
-    }
     getCurrentPosition().then( r => {
         let url = "http://api.map.baidu.com/geocoder/v2/?location=" + r.point.lat + "," + r.point.lng + "&output=json&ak=3j6qn3gMTZgGCzOegAxyF3wP&callback=callbackFn"
-        fetchJsonp(url, {
-            jsonpCallbackFunction: 'callbackFn'
-        })
-        .then((response) => {
-            return response.json();
-        })
-        .then(data => {
-            if(data.status === 0){
+        $.ajax({
+            url: url,
+            type: "get",
+            contentType: "application/json",
+            dataType: "jsonp",
+            success: data => {
                 let user = Base.getLocalStorageObject("user")
                 if(!user) return;
                 let opt = {
@@ -250,31 +295,37 @@ export const updateUserTrack = () => {
                     streetNumber: data.result.addressComponent.street_number,
                     userId: user.userid
                 }
-                let url = Host + "/pvmtsys/userTrack/updateUserTrack"
-                fetch(url, {
-                    method: "POST",
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS",
-                        "token": user.token,
-                        "fromType": 'app',
+                let url = Host + "/pvmtsys/userTrack/updateUserTrack";
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: JSON.stringify(opt),
+                    contentType: "application/json",
+                    dataType: "json",
+                    beforeSend: (request) => {
+                        request.setRequestHeader("fromType", "app");
+                        request.setRequestHeader("token", user.token);
                     },
-                    body: JSON.stringify(opt),
+                    success: result => {
+                        console.log(result)
+                    },
+                    error: error => {
+        
+                    }
                 })
-                .then((res) => {
-                    return res.json();
-                })
-                .then((data) => {
-                    console.log(data);
-                })
-                .catch((error) => {console.log(error)})
-                
+            },
+            error: error => {
+
             }
         })
-        .catch(error => console.log(error))
         
-        // loadXMLDoc(url).then(data => {
+        // fetchJsonp(url, {
+        //     jsonpCallbackFunction: 'callbackFn'
+        // })
+        // .then((response) => {
+        //     return response.json();
+        // })
+        // .then(data => {
         //     if(data.status === 0){
         //         let user = Base.getLocalStorageObject("user")
         //         if(!user) return;
@@ -290,7 +341,7 @@ export const updateUserTrack = () => {
         //             streetNumber: data.result.addressComponent.street_number,
         //             userId: user.userid
         //         }
-        //         let url = "/pvmtsys/userTrack/updateUserTrack"
+        //         let url = Host + "/pvmtsys/userTrack/updateUserTrack"
         //         fetch(url, {
         //             method: "POST",
         //             headers: {
@@ -311,37 +362,7 @@ export const updateUserTrack = () => {
         //         .catch((error) => {console.log(error)})
                 
         //     }
-        // }, error=>console.log(error));
-    })
-}
-
-const loadXMLDoc = url => {
-    return new Promise((resolve, reject) => {
-        let xmlhttp = null;
-        // code for IE7, Firefox, Opera, etc.
-        if (window.XMLHttpRequest) {
-            xmlhttp=new XMLHttpRequest();
-        }// code for IE6, IE5
-        else if (window.ActiveXObject) {
-            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        if (xmlhttp!=null) {
-            xmlhttp.onreadystatechange = (event) => {
-                if(event.target.readyState === 4){
-                    // 200 = "OK"
-                    if (event.target.status==200){
-                        resolve(JSON.parse(event.target.responseText));
-                    }
-                    else {
-                        reject("Problem retrieving XML data:" + xmlhttp.statusText)
-                    }
-                }
-            }
-            xmlhttp.open("GET", url, true);
-            xmlhttp.send(null);
-        }
-        else {
-            reject("Your browser does not support XMLHTTP.")
-        }
+        // })
+        // .catch(error => console.log(error))
     })
 }
