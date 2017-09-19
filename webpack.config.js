@@ -5,6 +5,7 @@ var WebpackMd5Hash = require('webpack-md5-hash');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var CleanPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+var autoprefixer = require('autoprefixer');
 
 // 项目根路径
 var ROOT_PATH = path.resolve(__dirname, './');
@@ -59,19 +60,17 @@ plugins.push(
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || 'dev')
     })
 )
-plugins.push(
-  new webpack.LoaderOptionsPlugin({
-            options: {
-                postcss: function(){
-                    return [
-                        require("autoprefixer")({
-                            browsers: ['ie>=8','>1% in CN']
-                        })
-                    ]
-                }
-            }
-        })
-)
+// plugins.push(
+//   new webpack.LoaderOptionsPlugin({
+//             options: {
+//                 postcss: function(){
+//                     return [
+//                         require("autoprefixer")()
+//                     ]
+//                 }
+//             }
+//         })
+// )
 // html 页面
 var HtmlwebpackPlugin = require('html-webpack-plugin');
 
@@ -111,7 +110,8 @@ var config = {
     chunkFilename: '[name].[chunkhash].chunk.js',
   },
   module: {
-      loaders : loaders
+      loaders : loaders,
+      // postcss: [autoprefixer]
   },
   
  
