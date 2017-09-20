@@ -44,10 +44,8 @@ var WeiXinUtils = {
                                     //隐藏加载
                                     AppModal.hide();
                                     if (json.status === 0) {
-                                        // alert("调用成功-->"+ JSON.stringify(json));
                                         success(json.data);
                                     } else {
-                                        // alert("调用返回不正确-->"+ JSON.stringify(json));
                                         console.log(json.msg);
                                     }
                                 })

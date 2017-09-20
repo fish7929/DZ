@@ -16,7 +16,6 @@ const receiveListData = (data) => ({
 export const bindWeiXin = (opt) => dispatch =>{
     let url = Api.BindWEIXIN()
     dispatch(utils.sendMsg(url, opt, "POST")).then(data => {
-        console.log(data);
         if(data){
             Base.setLocalStorageObject("user", data)
             hashHistory.push(RouterConst.ROUTER_HOME)

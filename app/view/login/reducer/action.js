@@ -42,7 +42,7 @@ export const checkBindWx = userinfo => dispatch => {
     }
     dispatch(utils.sendMsg(url, opt, "POST")).then(data => {
         if(data == null){
-            Base.setLocalStorageObject("weixinInfo", JSON.stringify(userinfo))
+            Base.setLocalStorageObject("weixinInfo", userinfo)
             hashHistory.push(RouterConst.ROUTER_BIND_MOBILE)
         }else{
             Base.setLocalStorageObject("user", data)
