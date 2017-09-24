@@ -65,7 +65,7 @@
             width: 100%;
             height: calc-rem(300);
             overflow-x: auto;
-            overflow-y: hidden;
+            // overflow-y: hidden;
             white-space: nowrap;
             @include common-upload;
             .upload-photo-item{
@@ -214,6 +214,8 @@
     left: 0;
     background-color: rgba(0,0,0, 0.75);
     z-index: 999;
+    display: flex;
+    align-items: center;
 
     img{
         width: 100%;

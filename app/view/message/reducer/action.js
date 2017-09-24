@@ -54,3 +54,8 @@ export const fetchData = (type, currentPage = 1) => dispatch => {
         dispatch(receiveData(data, currentPage));
     })
 }
+
+
+export const clearList = () => dispatch =>{
+    dispatch(receiveData({results:[], total: 0}, 1));
+}

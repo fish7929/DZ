@@ -9,7 +9,6 @@ import fetchJsonp from 'fetch-jsonp';
 import {size, each, assignIn} from "lodash";
 import { hashHistory } from 'react-router'
 import * as RouterConst from '../static/const/routerConst'
-
 const Host = "http://www.yunengzhe.com"
 
 const toExcString = function(array,type={":":"=",",":"&"}){
@@ -93,9 +92,11 @@ export function fetchUtils(url, param, type = "GET", headers = {}, dataType = "j
                 }
             },
             success: result => {
+                AppModal.hide();
                 resolve(result);
             },
             error: error => {
+                AppModal.hide();
                 reject(error);
             }
         }
@@ -106,6 +107,7 @@ export function fetchUtils(url, param, type = "GET", headers = {}, dataType = "j
             opt.dataType = dataType;
         }
 
+        AppModal.loading();
         return $.ajax(opt)
     })
 }
@@ -144,6 +146,11 @@ export function fetchUtils(url, param, type = "GET", headers = {}, dataType = "j
 
 const fetchMsg = (url, param, type = "Get", headers={}, repType="json") => {
     return (dispatch, getState) => {
+        if(checkConnection() == false){
+            AppModal.toast("无网络连接！");
+            return null
+        }
+
         let user = Base.getLocalStorageObject("user")
         let token = '';
         if(user && user.hasOwnProperty('token')){
@@ -153,6 +160,7 @@ const fetchMsg = (url, param, type = "Get", headers={}, repType="json") => {
         if(type=="POST"){
             param = JSON.stringify(param)
         }
+        AppModal.loading();
         return $.ajax({
             url: url,
             type: type,
@@ -166,10 +174,12 @@ const fetchMsg = (url, param, type = "Get", headers={}, repType="json") => {
                 }
             },
             success: result => {
+                AppModal.hide();
                 return result;
             },
             error: error => {
-
+                AppModal.hide();
+                return null;
             }
         })
     }
@@ -365,4 +375,24 @@ export const updateUserTrack = () => {
         // })
         // .catch(error => console.log(error))
     })
+}
+
+/**phoneGap检测网络状态 */
+const checkConnection = () => {
+    if(!window.Connection) return true;
+    if(!navigator.connection) return true;
+    var networkState = navigator.connection.type;
+    // states[Connection.UNKNOWN]  = 'Unknown connection';
+    // states[Connection.ETHERNET] = 'Ethernet connection';
+    // states[Connection.WIFI]     = 'WiFi connection';
+    // states[Connection.CELL_2G]  = 'Cell 2G connection';
+    // states[Connection.CELL_3G]  = 'Cell 3G connection';
+    // states[Connection.CELL_4G]  = 'Cell 4G connection';
+    // states[Connection.CELL]     = 'Cell generic connection';
+    // states[Connection.NONE]     = 'No network connection';
+
+    if(networkState == Connection.NONE){
+        return false;
+    }
+    return true;
 }

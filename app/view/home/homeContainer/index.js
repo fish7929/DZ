@@ -99,7 +99,7 @@ class HomeContianer extends React.Component {
                     <div className="home-alarm-list">{this.getAlarmItem()}</div>
                     {
                         alarmCount > 0 ? 
-                            <button className="btn-alarm-more" onClick={()=>hashHistory.push(RouterConst.ROUTER_MESSAGE_ALARM)}>查看{alarmCount}条未读消息</button> 
+                            <div className="btn-alarm-more" onClick={()=>hashHistory.push(RouterConst.ROUTER_MESSAGE_ALARM)}>查看{alarmCount}条未读消息</div> 
                         : 
                             <div className="btn-alarm-more">没有未读消息</div> 
                     }

@@ -11,6 +11,7 @@ export const changePassword = opt => dispatch => {
             AppModal.toast('原始密码不正确！')
             return
         }
+        AppModal.toast('密码修改成功！')
         hashHistory.goBack()
     })
 }

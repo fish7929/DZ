@@ -6,7 +6,7 @@
     height: calc-rem($topHeight);
     padding-top: calc-rem($toolbarHeight);
     background: #fff;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 88;

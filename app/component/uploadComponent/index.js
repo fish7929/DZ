@@ -59,6 +59,7 @@ class UploadComponent extends React.Component {
             AppModal.loading();
             let url = Api.GetUploadApi();
             utils.fetchUtils(url, data, "POST", {}, "form").then((data) => {
+                console.log(data);
                 AppModal.hide()
                 if (data && data.url) {
                     let oldPhotos = this.state.photos;
@@ -98,13 +99,14 @@ class UploadComponent extends React.Component {
      * 更新属性
      */
     componentWillReceiveProps(nextProps) {
-        this.setState({
+        let state = {
             type: nextProps.type,    //消息框类型
             photoHint: nextProps.photoHint,
-            photos: nextProps.photos ? [...nextProps.photos] : [],
             explainHint: nextProps.explainHint,
-            explain: nextProps.explain || ""
-        });
+            photos: nextProps.hasOwnProperty("photos") ? nextProps.photos : this.state.photos,
+            explain: nextProps.hasOwnProperty("explain") ? nextProps.explain : this.state.explain,
+        }
+        this.setState(state);
     }
 
     photoSelectComponent() {
@@ -129,9 +131,11 @@ class UploadComponent extends React.Component {
             let oldPhotos = this.state.photos;
             oldPhotos.push({ filepath: data.url, filename: data.name, documentType: 0 });
             state.photos = oldPhotos;
+            state.isShowPhotoSelect = false;
             this.setState(state);
         }, error=>{
-            // alert("获取图片失败：" + error)
+            this.setState({isShowPhotoSelect: false});
+            AppModal.toast("获取图片失败：" + error);
         })
     }
 
@@ -145,9 +149,11 @@ class UploadComponent extends React.Component {
             let oldPhotos = this.state.photos;
             oldPhotos.push({ filepath: data.url, filename: data.name, documentType: 1 });
             state.photos = oldPhotos;
+            state.isShowPhotoSelect = false;
             this.setState(state);
         }, error=>{
-            // alert("视频拍摄失败" + error)    
+            this.setState({isShowPhotoSelect: false});
+            AppModal.toast("视频拍摄失败" + error);
         });
     }
 
@@ -240,9 +246,9 @@ UploadComponent.PropTypes = {
 }
 
 UploadComponent.defaultProps = {
-    photos: [],
+    // photos: [],
     photoHint: '上传附件',
-    explain: '',
+    // explain: '',
     explainHint: '说明',
     uploadModule: 'physical'
 }

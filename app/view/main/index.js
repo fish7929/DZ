@@ -15,6 +15,8 @@ import './animate.scss'
 class App extends React.Component {
     constructor(props) {
         super(props)
+
+        this.isUpdata = false;
     }
 
     componentDidMount() {
@@ -35,7 +37,10 @@ class App extends React.Component {
         if(!user && props.location.pathname != RouterConst.ROUTER_LOGIN && props.location.pathname != RouterConst.ROUTER_BIND_MOBILE){
             hashHistory.push(RouterConst.ROUTER_LOGIN)
         }else if(user){
-            utils.updateUserTrack();
+            if(this.isUpdata==false){
+                utils.updateUserTrack();
+            }
+            this.isUpdata=true;
         }
     }
 

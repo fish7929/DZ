@@ -84,7 +84,7 @@ class FaultDetail extends React.Component {
             if (res.data) {
                 AppModal.toast('保存成功');
                 setTimeout(() => {
-                    AppModal.hide()
+                    AppModal.hide() 
                     hashHistory.goBack();
                 }, 1000);
             }else{

@@ -1,6 +1,7 @@
 @import '../../static/css/_mixins.scss';
 
 .login-container{
+    overflow: hidden !important;
 
     .input-user-div, .input-pw-div{
         width: 100%;

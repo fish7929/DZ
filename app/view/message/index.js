@@ -18,7 +18,7 @@ import SiteMessage from '../../component/siteMessage';
 import SystemMessage from '../../component/systemMessage';
 import NoMessage from '../../component/noMessage';
 
-import { fetchData } from './reducer/action';
+import { fetchData, clearList } from './reducer/action';
 
 import './index.scss'
 
@@ -78,8 +78,11 @@ class Message extends React.Component {
      * 加载完成
      */
     componentDidMount() {
+        this.props.clearList();
         this.props.fetchData(this.type);
     }
+
+    
 
 }
 
@@ -92,7 +95,7 @@ let mapStateToProps = state => {
 }
 
 let mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ fetchData }, dispatch)
+    return bindActionCreators({ fetchData, clearList }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Message)

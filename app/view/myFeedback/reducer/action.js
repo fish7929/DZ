@@ -17,7 +17,7 @@ export const getMyFeedbackList = (opt) => (dispatch, getState) => {
         let url = Api.GetUserFaultList()
         dispatch(utils.sendMsg(url, opt, "GET")).then(data =>{
             let state = getState();
-            if(opt.page != 0){
+            if(opt.page != 1){
                 data.results = state.myFeedbackReducer.myFeedbackList.concat(data.results)
             }
             dispatch(receiveData(data))
