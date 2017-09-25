@@ -46,8 +46,8 @@ class FaultDetail extends React.Component {
         }
     }
     selectDealResultHandler(e, solveResult){
-        e.preventDefault();
-        e.stopPropagation();
+        // e.preventDefault();
+        // e.stopPropagation();
         this.setState({solveResult});
     }
     /**
@@ -219,11 +219,11 @@ class FaultDetail extends React.Component {
                 <div className="common-divide deal-result">处理结果</div>
                 <div className="deal-result-select">
                     <label htmlFor="dealResult1"><input type="radio" name="dealResult"
-                        id="dealResult1" checked={solveResult == SECOND} onChange={(e) => this.selectDealResultHandler(e, SECOND)} />
+                        id="dealResult1" checked={solveResult == SECOND ? true : false} onChange={(e) => this.selectDealResultHandler(e, SECOND)} />
                         已解决
                     </label>
                     <label htmlFor="dealResult0"><input type="radio" name="dealResult"
-                        id="dealResult0" checked={solveResult == THREE} onChange={(e) => this.selectDealResultHandler(e, THREE)} />
+                        id="dealResult0" checked={solveResult == THREE ? true : false} onChange={(e) => this.selectDealResultHandler(e, THREE)} />
                         未解决
                     </label>
                 </div>
@@ -231,6 +231,7 @@ class FaultDetail extends React.Component {
             </div>
         );
     }
+
     renderContentSection() {
         let { list } = this.state;
         return (
@@ -256,7 +257,9 @@ class FaultDetail extends React.Component {
         return (
             <Page>
                 <Header title="故障处理反馈" isShowBack={true} />
-                {Base.isEmptyObject(list) ? <NoMessage msg="暂无信息" /> : this.renderContentSection()}
+                <div className="main-content">
+                    {Base.isEmptyObject(list) ? <NoMessage msg="暂无信息" /> : this.renderContentSection()}
+                </div>
             </Page>
         )
     }

@@ -44,9 +44,11 @@ class MyFeedback extends React.Component{
         return(
             <Page className="my-feedback-container">
                 <Header title="我的故障反馈" isShowBack={true} />
-                <ScrollList className="my-feedback-list" onScroll={ page=>this.onLoaderData(page) } currentPage={ currentPage } pageTotal={ pageTotal }>
-                    { list.map((obj, key) => <MyFeedbackItem data={obj} key={key} onClick={()=>hashHistory.push(RouterConst.ROUTER_MY_FEEDBACK_DETAIL + "/" + obj.id)} />) }
-                </ScrollList>
+                <div className="main-content">
+                    <ScrollList className="my-feedback-list" onScroll={ page=>this.onLoaderData(page) } currentPage={ currentPage } pageTotal={ pageTotal }>
+                        { list.map((obj, key) => <MyFeedbackItem data={obj} key={key} onClick={()=>hashHistory.push(RouterConst.ROUTER_MY_FEEDBACK_DETAIL + "/" + obj.id)} />) }
+                    </ScrollList>
+                </div>
             </Page>
         )
     }

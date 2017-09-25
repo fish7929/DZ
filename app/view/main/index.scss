@@ -24,7 +24,7 @@ html, body{
     height: 100%;
     font-size: $baseSize + px;
     color: #5c5c5c;
-    overflow: hidden;
+    
     @include adaptive;
 }
 
@@ -35,8 +35,16 @@ html, body{
     top: 0;
     left: 0;
     background: #f5f5f5;
-    padding-top: calc-rem($topHeight);
-    overflow: auto;
+    overflow: hidden;
+}
+
+.main-content{
+    position: absolute;
+    top: calc-rem($topHeight);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow-y: auto;
 }
 
 .no-wrap{

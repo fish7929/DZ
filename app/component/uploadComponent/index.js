@@ -9,6 +9,7 @@ import TestPhoto from '../../static/images/test.png';
 class UploadComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
+        this.isChange = false;
         this.state = {
             type: this.props.type,
             photoHint: this.props.photoHint,
@@ -43,6 +44,8 @@ class UploadComponent extends React.Component {
         let val = e.target.value;
         obj[key] = val;
         this.setState(obj);
+
+        this.isChange = true;
     }
     /**
      * 选择图片
@@ -67,6 +70,7 @@ class UploadComponent extends React.Component {
                     state.photos = oldPhotos;
                 }
                 this.setState(state);
+                this.isChange = true;
 
             }).catch((e) => AppModal.hide());
         }
@@ -86,6 +90,7 @@ class UploadComponent extends React.Component {
         let oldPhotos = this.state.photos;
         let newPhotos = oldPhotos.filter((item, index) => index != key);
         this.setState({ photos: newPhotos });
+        this.isChange = true;
     }
     getUploadContent() {
         this.cancelFocus();
@@ -105,6 +110,11 @@ class UploadComponent extends React.Component {
             explainHint: nextProps.explainHint,
             photos: nextProps.hasOwnProperty("photos") ? nextProps.photos : this.state.photos,
             explain: nextProps.hasOwnProperty("explain") ? nextProps.explain : this.state.explain,
+        }
+
+        if(this.isChange){
+            delete state.photos;
+            delete state.explain;
         }
         this.setState(state);
     }
@@ -133,6 +143,8 @@ class UploadComponent extends React.Component {
             state.photos = oldPhotos;
             state.isShowPhotoSelect = false;
             this.setState(state);
+
+            this.isChange = true;
         }, error=>{
             this.setState({isShowPhotoSelect: false});
             AppModal.toast("获取图片失败：" + error);
@@ -151,6 +163,8 @@ class UploadComponent extends React.Component {
             state.photos = oldPhotos;
             state.isShowPhotoSelect = false;
             this.setState(state);
+
+            this.isChange = true;
         }, error=>{
             this.setState({isShowPhotoSelect: false});
             AppModal.toast("视频拍摄失败" + error);
@@ -179,6 +193,7 @@ class UploadComponent extends React.Component {
     render() {
         {/* <video src={item.filepath} controls="controls" x-webkit-airplay="true" webkit-playsinline="true" preload="auto">您的浏览器不支持 video 标签。</video> */ }
         let { type, photoHint, photos, explainHint, explain } = this.state
+        photos = photos || [];
         let _disabled = type == 1 ? "upload-disabled" : ""; //0未处理，  1 已处理
         let _hint = type == 1 ? '附件' : photoHint;
         let photoBtn = photos.length == 0 ? 'upload-photo-btn-init' : '';

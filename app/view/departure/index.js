@@ -127,7 +127,9 @@ class Departure extends React.Component {
         return (
             <Page className="third-contact-container">
                 <Header title="离场申请" isShowBack={true} />
-                {Base.isEmptyObject(list) ? <NoMessage msg="暂无信息" /> : this.renderContentSection()}
+                <div className="main-content">
+                    {Base.isEmptyObject(list) ? <NoMessage msg="暂无信息" /> : this.renderContentSection()}
+                </div>
             </Page>
         )
     }

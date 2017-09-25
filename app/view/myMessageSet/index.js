@@ -32,21 +32,23 @@ class MyMessageSet extends React.Component{
         return(
             <Page className="my-message-set-container">
                 <Header title="推送消息" isShowBack={true} />
-                <div className="btn-item">
-                    <span>II级报警消息推送</span>
-                    <ButtonIOS checked={twoAlarm === 1 ? true : false} onChangeHandler={(e)=>this.onItemChange(e, 'twoAlarm')} />
-                </div>
-                <div className="btn-item">
-                    <span>III级报警消息推送</span>
-                    <ButtonIOS checked={threeAlarm === 1 ? true : false} onChangeHandler={(e)=>this.onItemChange(e, 'threeAlarm')} />
-                </div>
-                <div className="btn-item">
-                    <span>站内消息推送</span>
-                    <ButtonIOS checked={letter === 1 ? true : false} onChangeHandler={(e)=>this.onItemChange(e, 'letter')} />
-                </div>
-                <div className="btn-item">
-                    <span>系统消息推送</span>
-                    <ButtonIOS checked={system === 1 ? true : false} onChangeHandler={(e)=>this.onItemChange(e, 'system')} />
+                <div className="main-content">
+                    <div className="btn-item">
+                        <span>II级报警消息推送</span>
+                        <ButtonIOS checked={twoAlarm === 1 ? true : false} onChangeHandler={(e)=>this.onItemChange(e, 'twoAlarm')} />
+                    </div>
+                    <div className="btn-item">
+                        <span>III级报警消息推送</span>
+                        <ButtonIOS checked={threeAlarm === 1 ? true : false} onChangeHandler={(e)=>this.onItemChange(e, 'threeAlarm')} />
+                    </div>
+                    <div className="btn-item">
+                        <span>站内消息推送</span>
+                        <ButtonIOS checked={letter === 1 ? true : false} onChangeHandler={(e)=>this.onItemChange(e, 'letter')} />
+                    </div>
+                    <div className="btn-item">
+                        <span>系统消息推送</span>
+                        <ButtonIOS checked={system === 1 ? true : false} onChangeHandler={(e)=>this.onItemChange(e, 'system')} />
+                    </div>
                 </div>
             </Page>
         )

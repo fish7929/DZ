@@ -124,58 +124,60 @@ class AlarmSearch extends React.Component{
         return(
             <Page className="alarm-search-container">
                 <Header title="搜索" isShowBack={true} />
-                {
-                    showResult == false
-                        ? 
-                        <div>
-                            <div className="name-div">
-                                <span>电站名称</span>
-                                <select onChange={(e)=>this.onChangeHandler(e, "powerStationId")} defaultValue={powerStationId} >
-                                    { powerStationList.map((obj, index) => <option key={index} value={obj.id}>{obj.name}</option>) }
-                                </select>
-                            </div>
-
-                            <div className="alarm-item alarm-status">
-                                <span>报警状态</span>
-                                <select onChange={(e)=>this.onChangeHandler(e, "alarmStatus")} defaultValue={alarmStatus} >
-                                    <option value="null">全部</option>
-                                    <option value="1">已提交</option>
-                                    <option value="0">未提交</option>
-                                </select>
-                            </div>
-
-                            <div className="alarm-item">
-                                    <span>报警原因</span>
-                                    <input type="text" placeholder="请输入报警原因" value={alarmMessage} onChange={(e)=>this.onChangeHandler(e, "alarmMessage")} />
-                            </div>
-
-                            <div className="alarm-item">
-                                    <span>报警级别</span>
-                                    <select onChange={(e)=>this.onChangeHandler(e, "alarmLevel")} defaultValue={alarmLevel}>
-                                        <option value="1">Ⅰ级报警</option>
-                                        <option value="2">Ⅱ级报警</option>
-                                        <option value="3">Ⅲ级报警</option>
+                <div className="main-content">
+                    {
+                        showResult == false
+                            ? 
+                            <div>
+                                <div className="name-div">
+                                    <span>电站名称</span>
+                                    <select onChange={(e)=>this.onChangeHandler(e, "powerStationId")} defaultValue={powerStationId} >
+                                        { powerStationList.map((obj, index) => <option key={index} value={obj.id}>{obj.name}</option>) }
                                     </select>
-                            </div>
-                            <div className="time-div">
-                                <span>报警时间范围</span>
-                                <div>
-                                    <input type="date" placeholder="起始时间" onChange={(e)=>this.onChangeDateHandler(e, "startTime")} value={startTime} />
-                                    <span>至</span>
-                                    <input type="date" placeholder="结束时间" onChange={(e)=>this.onChangeDateHandler(e, "endTime")} value={endTime} />
                                 </div>
-                            </div>
 
-                            <button className="btn-search" onClick={()=>this.onSearchHandler()}>搜索</button>
-                        </div>
-                        :
-                        <div className="search-result-div">
-                            <ScrollList className="search-result-list" onScroll={ page=>this.onLoaderSearchData(page) } currentPage={ currentPage } pageTotal={ pageTotal }>
-                                {this.getSearchItems()}
-                            </ScrollList>
-                            <button onClick={()=>this.onReChoseHandler()}>重新选择</button>
-                        </div>
-                }
+                                <div className="alarm-item alarm-status">
+                                    <span>报警状态</span>
+                                    <select onChange={(e)=>this.onChangeHandler(e, "alarmStatus")} defaultValue={alarmStatus} >
+                                        <option value="null">全部</option>
+                                        <option value="1">已提交</option>
+                                        <option value="0">未提交</option>
+                                    </select>
+                                </div>
+
+                                <div className="alarm-item">
+                                        <span>报警原因</span>
+                                        <input type="text" placeholder="请输入报警原因" value={alarmMessage} onChange={(e)=>this.onChangeHandler(e, "alarmMessage")} />
+                                </div>
+
+                                <div className="alarm-item">
+                                        <span>报警级别</span>
+                                        <select onChange={(e)=>this.onChangeHandler(e, "alarmLevel")} defaultValue={alarmLevel}>
+                                            <option value="1">Ⅰ级报警</option>
+                                            <option value="2">Ⅱ级报警</option>
+                                            <option value="3">Ⅲ级报警</option>
+                                        </select>
+                                </div>
+                                <div className="time-div">
+                                    <span>报警时间范围</span>
+                                    <div>
+                                        <input type="date" placeholder="起始时间" onChange={(e)=>this.onChangeDateHandler(e, "startTime")} value={startTime} />
+                                        <span>至</span>
+                                        <input type="date" placeholder="结束时间" onChange={(e)=>this.onChangeDateHandler(e, "endTime")} value={endTime} />
+                                    </div>
+                                </div>
+
+                                <button className="btn-search" onClick={()=>this.onSearchHandler()}>搜索</button>
+                            </div>
+                            :
+                            <div className="search-result-div">
+                                <ScrollList className="search-result-list" onScroll={ page=>this.onLoaderSearchData(page) } currentPage={ currentPage } pageTotal={ pageTotal }>
+                                    {this.getSearchItems()}
+                                </ScrollList>
+                                <button onClick={()=>this.onReChoseHandler()}>重新选择</button>
+                            </div>
+                    }
+                </div>
             </Page>
         )
     }

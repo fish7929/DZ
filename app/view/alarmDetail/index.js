@@ -90,22 +90,24 @@ class AlarmDetail extends React.Component{
         return(
             <Page className="alarm-detail-container">
                 <Header title="报警详情" isShowBack={true} />
-                <AlarmItem data={alarmData} type="detail" />
-                <div className="power-site-div">
-                    <p className="power-title">电站位置</p>
-                    <p className="power-name">{alarmData.powerStationBaseInfo.address}</p>
-                    <div id="allMap" className="power-map-div"></div>
+                <div className="main-content">
+                    <AlarmItem data={alarmData} type="detail" />
+                    <div className="power-site-div">
+                        <p className="power-title">电站位置</p>
+                        <p className="power-name">{alarmData.powerStationBaseInfo.address}</p>
+                        <div id="allMap" className="power-map-div"></div>
+                    </div>
+                    <div className="power-history-div">
+                        <FlipListComponent title="本设备近3个月报警历史">
+                            {this.getHistoryItems()}
+                        </FlipListComponent>
+                    </div>
+                    
+                    <div className="explain-div">
+                        <UploadComponent ref="dealUploadComponent" type={_disabled} uploadModule="alarmDetail" photos={alarmData.attachmentList} explain={alarmData.state || ""} />
+                    </div>
+                    {_disabled == 0 ? <button className="btn-commit" onClick={()=>this.onClickHandler()}>提交</button> : ""}
                 </div>
-                <div className="power-history-div">
-                    <FlipListComponent title="本设备近3个月报警历史">
-                        {this.getHistoryItems()}
-                    </FlipListComponent>
-                </div>
-                
-                <div className="explain-div">
-                    <UploadComponent ref="dealUploadComponent" type={_disabled} uploadModule="alarmDetail" photos={alarmData.attachmentList} explain={alarmData.state || ""} />
-                </div>
-                {_disabled == 0 ? <button className="btn-commit" onClick={()=>this.onClickHandler()}>提交</button> : ""}
             </Page>
         )
     }

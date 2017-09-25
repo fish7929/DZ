@@ -136,41 +136,43 @@ class Feedback extends React.Component{
         return(
             <Page className="feedback-container">
                 <Header title="故障反馈" isShowBack={true} />
-                <div className="feedback-select-div name-div">
-                    <span>电站名称</span>
-                    <select onChange={(e)=>this.onChangeHandler(e, "powerStationId")} defaultValue={powerStationId} >
-                        { powerStationList.map((obj, index) => <option key={index} value={obj.id}>{obj.name}</option>) }
-                    </select>
-                </div>
-
-                <div className="feedback-select-div name-div">
-                    <span>设备类型</span>
-                    <select onChange={(e)=>this.onChangeHandler(e, "deviceTypeId")} defaultValue={deviceTypeId} >
-                        { deveiceTypes.map((obj, index) => <option key={index} value={obj.id}>{obj.name}</option>) }
-                    </select>
-                </div>
-
-                <div className="feedback-main">
-                    <div className="feedback-item">
-                        <span>设备编号</span>
-                        <select onChange={(e)=>this.onChangeHandler(e, "deviceCode")} defaultValue={deviceCode} >
-                            { deveiceNumbers.map((obj, index) => <option key={index} value={obj.equipmentId}>{obj.equipmentcontainerName}</option>) }
+                <div className="main-content">
+                    <div className="feedback-select-div name-div">
+                        <span>电站名称</span>
+                        <select onChange={(e)=>this.onChangeHandler(e, "powerStationId")} defaultValue={powerStationId} >
+                            { powerStationList.map((obj, index) => <option key={index} value={obj.id}>{obj.name}</option>) }
                         </select>
                     </div>
-                    <div className="feedback-item">
-                        <span>故障级别</span>
-                        <select onChange={(e)=>this.onChangeHandler(e, "alarmLevel")} defaultValue={alarmLevel} >
-                            <option value="1">Ⅰ级报警</option>
-                            <option value="2">Ⅱ级报警</option>
-                            <option value="3">Ⅲ级报警</option>
+
+                    <div className="feedback-select-div name-div">
+                        <span>设备类型</span>
+                        <select onChange={(e)=>this.onChangeHandler(e, "deviceTypeId")} defaultValue={deviceTypeId} >
+                            { deveiceTypes.map((obj, index) => <option key={index} value={obj.id}>{obj.name}</option>) }
                         </select>
                     </div>
-                    <UploadComponent ref="dealUploadComponent" type={0} uploadModule="feedback" />
-                </div>
 
-                <div className="button-div">
-                    <button onClick={()=>this.onPushInfo()}>提交</button>
-                    <button onClick={()=>this.onPushInfo(1)}>提交并创建</button>
+                    <div className="feedback-main">
+                        <div className="feedback-item">
+                            <span>设备编号</span>
+                            <select onChange={(e)=>this.onChangeHandler(e, "deviceCode")} defaultValue={deviceCode} >
+                                { deveiceNumbers.map((obj, index) => <option key={index} value={obj.equipmentId}>{obj.equipmentcontainerName}</option>) }
+                            </select>
+                        </div>
+                        <div className="feedback-item">
+                            <span>故障级别</span>
+                            <select onChange={(e)=>this.onChangeHandler(e, "alarmLevel")} defaultValue={alarmLevel} >
+                                <option value="1">Ⅰ级报警</option>
+                                <option value="2">Ⅱ级报警</option>
+                                <option value="3">Ⅲ级报警</option>
+                            </select>
+                        </div>
+                        <UploadComponent ref="dealUploadComponent" type={0} uploadModule="feedback" />
+                    </div>
+
+                    <div className="button-div">
+                        <button onClick={()=>this.onPushInfo()}>提交</button>
+                        <button onClick={()=>this.onPushInfo(1)}>提交并创建</button>
+                    </div>
                 </div>
             </Page>
         )

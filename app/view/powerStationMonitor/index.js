@@ -56,7 +56,9 @@ class PowerStationMonitor extends React.Component{
         return(
             <Page className="psm-container">
                 <Header title="电站监控" isShowBack={true} isShowRight={true} rightClass={rightClass} rightFn={()=>this.onHeaderRightHandler()} />
-                { component }
+                <div className="main-content">
+                    { component }
+                </div>
             </Page>
         )
     }

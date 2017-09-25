@@ -34,7 +34,7 @@ class Login extends React.Component{
     }
 
     onPhoneChange(e){
-        let value = e.currentTarget.value.replace(/\s/g,'')
+        let value = e.currentTarget.value
         // if(checkNumber(value)){
             this.setState({username: value})
         // }
@@ -42,7 +42,7 @@ class Login extends React.Component{
 
     /**输入框改变事件 */
     onPasswordChange(e){
-        let value = e.currentTarget.value.replace(/\s/g,'')
+        let value = e.currentTarget.value
         this.setState({password: value})
     }
 
@@ -109,23 +109,23 @@ class Login extends React.Component{
         return(
             <Page className="login-container">
                 <Header title="登录" isShowBack={false} />
-
-                <div className="input-user-div">
-                    <span className="icon"></span>
-                    <input type="text"  className="ime-disabled" value={username} onChange={(e)=>this.onPhoneChange(e)} placeholder="请输入手机号" />
-                </div>
-                <div className="input-pw-div">
-                    <span className="icon"></span>
-                    <input type="password" value={password} onChange={(e)=>this.onPasswordChange(e)} placeholder="请输入密码" />
-                </div>
-                <div className="btn-div">
-                    <button onClick={()=>this.onLoginHandler()}>登录</button>
-                    <button onClick={()=>this.onWXLoginHandler()}><span className="icon-wx" />微信登录</button>
+                <div className="main-content">
+                    <div className="input-user-div">
+                        <span className="icon"></span>
+                        <input type="text"  className="ime-disabled" style="ime-mode: disabled;" value={username} onChange={(e)=>this.onPhoneChange(e)} placeholder="请输入手机号" />
+                    </div>
+                    <div className="input-pw-div">
+                        <span className="icon"></span>
+                        <input type="password" value={password} onChange={(e)=>this.onPasswordChange(e)} placeholder="请输入密码" />
+                    </div>
+                    <div className="btn-div">
+                        <button onClick={()=>this.onLoginHandler()}>登录</button>
+                        <button onClick={()=>this.onWXLoginHandler()}><span className="icon-wx" />微信登录</button>
+                    </div>
                 </div>
             </Page>
         )
     }
-
 }
 
 Login.PropTypes = {

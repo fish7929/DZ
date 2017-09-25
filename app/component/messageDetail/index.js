@@ -7,6 +7,7 @@
 'use strict';
 import React, { PropTypes } from 'react';
 import { FIRST } from '../../static/const/constants';
+import * as utils from '../../utils'
 
 import './index.scss'
 
@@ -38,7 +39,7 @@ class CommonMessageDetail extends React.Component {
                 <div className="message-detail-title">
                     <div className="no-wrap">{_title}</div>
                     {_userInfo ? <div className="message-detail-user-info no-wrap">{_userInfo}</div> : null}
-                    <div>{_time}</div>
+                    <div>{utils.formatDate(_time, "yyyy-MM-dd HH:mm:ss")}</div>
                 </div>
                 <div className="message-detail-content">
                     <div>尊敬的业主您好：</div>

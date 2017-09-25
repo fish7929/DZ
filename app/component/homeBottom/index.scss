@@ -1,6 +1,8 @@
 @import '../../static/css/_mixins.scss';
 
 .home-bottom-container{
+    position: absolute;
+    bottom: 0;
     width: 100%;
     height: calc-rem(98);
     background: #fff;
@@ -8,13 +10,16 @@
     justify-content: space-around;
     padding: 0 calc-rem(40);
     box-shadow: 0 -2px 2px 0 #EEEEEE;
+    border-top: 1px solid #EEEEEE;
 
     .btn-div{
-        width: 25%;
         height: 100%;
-        padding-top: calc-rem(15);
+        // padding-top: calc-rem(15);
         display: inline-block;
         text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .btn_item.selected{

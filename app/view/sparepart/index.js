@@ -104,8 +104,10 @@ class Sparepart extends React.Component {
         return (
             <Page className="sparepart-container">
                 <Header title="备品备件" isShowBack={true} />
-                {list.length < 1 ?
-                    <NoMessage msg="暂无信息" /> : _content}
+                <div className="main-content">
+                    {list.length < 1 ?
+                        <NoMessage msg="暂无信息" /> : _content}
+                </div>
             </Page>
         )
     }

@@ -73,12 +73,14 @@ class RealTimeAlarm extends React.Component{
         return(
             <Page className="realTime-alarm-container">
                 <Header title="实时报警" isShowBack={true} isShowRight={true} rightClass="btnSearch" rightFn={()=>hashHistory.push(RouterConst.Router_AlARM_SEARCH)} />
-                <div className="tab-div">
-                    {Const.TabList.map((obj, key)=><li key={key} onClick={()=>this.onTabHandler(obj.id)} className={obj.id==tabIndex ? "selected" : ""}><div>{obj.name}</div></li>)}
+                <div className="main-content">
+                    <div className="tab-div">
+                        {Const.TabList.map((obj, key)=><li key={key} onClick={()=>this.onTabHandler(obj.id)} className={obj.id==tabIndex ? "selected" : ""}><div>{obj.name}</div></li>)}
+                    </div>
+                    <ScrollList className="realTime-alarm-list" onScroll={ page=>this.onLoaderData(page, tabIndex) } currentPage={ currentPage } pageTotal={ pageTotal }>
+                        {this.getRealTimeAlarmItems()}
+                    </ScrollList>
                 </div>
-                <ScrollList className="realTime-alarm-list" onScroll={ page=>this.onLoaderData(page, tabIndex) } currentPage={ currentPage } pageTotal={ pageTotal }>
-                    {this.getRealTimeAlarmItems()}
-                </ScrollList>
             </Page>
         )
     }

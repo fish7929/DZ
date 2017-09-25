@@ -83,8 +83,10 @@ class ThirdContact extends React.Component {
         return (
             <Page className="third-contact-container">
                 <Header title="第三方联系单" isShowBack={true} />
-                {list.length < 1 ?
-                    <NoMessage msg="暂无信息" /> : _content}
+                <div className="main-content">
+                    {list.length < 1 ?
+                        <NoMessage msg="暂无信息" /> : _content}
+                </div>
             </Page>
         )
     }

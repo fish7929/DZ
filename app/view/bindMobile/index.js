@@ -71,16 +71,18 @@ class BindMobile extends React.Component{
         return(
             <Page className="bind-mobile-container">
                 <Header title="绑定运维账号" isShowBack={false} />
-                <div className="input-mobile-div">
-                    <span className="icon"></span>
-                    <input type="text" value={mobile} onChange={(e)=>this.onMobileChange(e, "mobile")} placeholder="请输入账号"  />
-                </div>
-                <div className="input-code-div">
-                    <span className="icon"></span>
-                    <input type="text" value={code} onChange={(e)=>this.onMobileChange(e, "code")} placeholder="请输入密码"  />
-                </div>
-                <div className="btn-div"> 
-                    <button onClick={()=>this.onBindHandler()}>绑定账号</button>
+                <div className="main-content">
+                    <div className="input-mobile-div">
+                        <span className="icon"></span>
+                        <input type="text" value={mobile} onChange={(e)=>this.onMobileChange(e, "mobile")} placeholder="请输入账号"  />
+                    </div>
+                    <div className="input-code-div">
+                        <span className="icon"></span>
+                        <input type="text" value={code} onChange={(e)=>this.onMobileChange(e, "code")} placeholder="请输入密码"  />
+                    </div>
+                    <div className="btn-div"> 
+                        <button onClick={()=>this.onBindHandler()}>绑定账号</button>
+                    </div>
                 </div>
             </Page>
         )

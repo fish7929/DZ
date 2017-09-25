@@ -169,7 +169,7 @@ class Home extends React.Component {
                 <Header title={title} isShowRight={isShowRight}
                     rightClass={rightClass} rightContent={rightContent}
                     rightFn={() => this.clickHeaderRightHandler()} />
-                <div className="home-main">
+                <div className="home-main main-content">
                     {this.getContentSection()}
                 </div>
                 <HomeBottom tabIndex={this.props.tabIndex} count={count} onTabClick={(tab) => this.changeTabHandler(tab)} />

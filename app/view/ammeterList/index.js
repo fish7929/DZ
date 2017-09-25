@@ -43,11 +43,13 @@ class AmmeterList extends React.Component{
         return(
             <Page className="ammeter-list-container">
                 <Header title="电表列表" isShowBack={true} />
-                <ScrollList className="ammeter-list" onScroll={page => this.sendData(page)} currentPage={this.state.currentPage} pageTotal={this.props.total}>
-                    {
-                        list.map((obj, key) => <AmmeterItem key={key} data={obj} />)
-                    }
-                </ScrollList>
+                <div className="main-content">
+                    <ScrollList className="ammeter-list" onScroll={page => this.sendData(page)} currentPage={this.state.currentPage} pageTotal={this.props.total}>
+                        {
+                            list.map((obj, key) => <AmmeterItem key={key} data={obj} />)
+                        }
+                    </ScrollList>
+                </div>
             </Page>
         )
     }

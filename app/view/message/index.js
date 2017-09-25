@@ -68,8 +68,10 @@ class Message extends React.Component {
         return (
             <Page className="message-container">
                 <Header title={_content.title} isShowBack={true} />
-                {list.length < 1 ? 
-                    <NoMessage msg="暂无消息"/>: _content.content}
+                <div className="main-content">
+                    {list.length < 1 ? 
+                        <NoMessage msg={isFetching ? "消息加载中" : "暂无消息"}/>: _content.content}
+                </div>
             </Page>
         )
     }
@@ -81,8 +83,6 @@ class Message extends React.Component {
         this.props.clearList();
         this.props.fetchData(this.type);
     }
-
-    
 
 }
 

@@ -66,13 +66,15 @@ class InverterList extends React.Component{
         return(
             <Page className="inverter-list-container">
                 <Header title="逆变器列表" isShowBack={true} />
-                <div className="search-div"><input type="text" placeholder="搜索" value={searchTxt} onChange={(e)=>this.onChangeHandler(e)} /><span className="search-icon" onClick={()=>this.onSearchHandler()} /></div>
-                <div className="tab-div">
-                    {InverterTabs.map((obj,key)=><div key={key} className={"button tab-item " + (tabIndex == obj.id ? "selected" : "")} onClick={()=>this.onChangeTabIndex(obj.id)}><span>{obj.name}</span></div>)}
+                <div className="main-content">
+                    <div className="search-div"><input type="text" placeholder="搜索" value={searchTxt} onChange={(e)=>this.onChangeHandler(e)} /><span className="search-icon" onClick={()=>this.onSearchHandler()} /></div>
+                    <div className="tab-div">
+                        {InverterTabs.map((obj,key)=><div key={key} className={"button tab-item " + (tabIndex == obj.id ? "selected" : "")} onClick={()=>this.onChangeTabIndex(obj.id)}><span>{obj.name}</span></div>)}
+                    </div>
+                    <ScrollList className="inverter-list" onScroll={page => this.sendData(tabIndex, page)} currentPage={this.state.currentPage} pageTotal={this.props.total}>
+                        { inverterList.map((obj, key) => <InverterItem key={key} data={obj} onClick={()=>this.onItemClick(obj.id)} />) }
+                    </ScrollList>
                 </div>
-                <ScrollList className="inverter-list" onScroll={page => this.sendData(tabIndex, page)} currentPage={this.state.currentPage} pageTotal={this.props.total}>
-                    { inverterList.map((obj, key) => <InverterItem key={key} data={obj} onClick={()=>this.onItemClick(obj.id)} />) }
-                </ScrollList>
             </Page>
         )
     }

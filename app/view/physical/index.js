@@ -277,7 +277,9 @@ state  	说明	string
         return (
             <Page className="third-contact-container">
                 <Header title="电站体检" isShowBack={true} />
-                {Base.isEmptyObject(list) ? <NoMessage msg="暂无信息" /> : this.renderContentSection()}
+                <div className="main-content">
+                    {Base.isEmptyObject(list) ? <NoMessage msg="暂无信息" /> : this.renderContentSection()}
+                </div>
             </Page>
         )
     }

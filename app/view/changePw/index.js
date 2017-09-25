@@ -59,16 +59,17 @@ class ChangePw extends React.Component{
         return(
             <Page className="change-pw-container">
                 <Header title="修改密码" isShowBack={true} />
-
-                <div className="main-div">
-                    <div className="password-div">
-                        <div><span></span><input type="password" placeholder="请输入旧密码" value={oldPw} onChange={(e)=>this.onInputChange(e, "oldPw")} /></div>
+                <div className="main-content">
+                    <div className="main-div">
+                        <div className="password-div">
+                            <div><span></span><input type="password" placeholder="请输入旧密码" value={oldPw} onChange={(e)=>this.onInputChange(e, "oldPw")} /></div>
+                        </div>
+                        <div className="password-div">
+                            <div><span></span><input type="password" placeholder="请输入新密码" value={newPw} onChange={(e)=>this.onInputChange(e, "newPw")} /></div>
+                        </div>
                     </div>
-                    <div className="password-div">
-                        <div><span></span><input type="password" placeholder="请输入新密码" value={newPw} onChange={(e)=>this.onInputChange(e, "newPw")} /></div>
-                    </div>
+                    <button className="btn-comfirm" onClick={()=>this.onClickHandler()}>确认修改</button>
                 </div>
-                <button className="btn-comfirm" onClick={()=>this.onClickHandler()}>确认修改</button>
             </Page>
         )
     }

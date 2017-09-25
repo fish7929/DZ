@@ -4,9 +4,7 @@
     background:  #f5f5f5;
 
     .home-main{
-        width: 100%;
-        height: calc(100% - #{calc-rem(98)});
-        overflow: auto;
+        bottom: calc-rem(98);
     }
 }
 

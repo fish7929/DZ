@@ -4,18 +4,22 @@
 .header-container{
     width: 100%;
     height: calc-rem($topHeight);
-    padding-top: calc-rem($toolbarHeight);
     background: #fff;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 88;
     border-bottom: calc-rem(1) solid #eeeeee;
 
+    .toolbar{
+        width: 100%;
+        height: calc-rem($toolbarHeight);
+    }
+
     .title-div{
         text-align: center;
         width: 100%;
-        height: 100%;
+        height: calc-rem($headerHeight);
         position: relative;
         line-height: calc-rem($headerHeight);
         font-family: "PingFang-SC-Medium";

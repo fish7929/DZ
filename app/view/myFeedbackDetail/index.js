@@ -41,37 +41,38 @@ class MyFeedbackDetail extends React.Component{
         return (
             <Page className="myFeedback-detail">
                 <Header title="故障反馈详情" isShowBack={true} />
-
-                <div className="name-div">
-                    <span>电站名称</span>
-                    <div className="no-wrap powerStationName">{powerStationName}</div>
-                </div>
-
-                <div className="item-div div-top">
-                    <span>提交方式</span>
-                    <span>{faultSource == 1 ? "报警提交" : "现场提交"}</span>
-                </div>
-
-                <div className="item-div">
-                    <span>故障状态</span>
-                    <span>{this.getFaultState(faultStatus)}</span>
-                </div>
-
-                <div className="name-div">
-                    <span>设备类型</span>
-                    <div>{equipmentType}</div>
-                </div>
-                <div className="name-div">
-                    <span>故障等级</span>
-                    <div>{faultGrade == 1 ? "I" : faultGrade == 2 ? "II" : "III"}级故障</div>
-                </div>
-                <div className="info-div">
-                    <span>故障信息</span>
-                    <div>
-                        {faultMessage}
+                <div className="main-content">
+                    <div className="name-div">
+                        <span>电站名称</span>
+                        <div className="no-wrap powerStationName">{powerStationName}</div>
                     </div>
+
+                    <div className="item-div div-top">
+                        <span>提交方式</span>
+                        <span>{faultSource == 1 ? "报警提交" : "现场提交"}</span>
+                    </div>
+
+                    <div className="item-div">
+                        <span>故障状态</span>
+                        <span>{this.getFaultState(faultStatus)}</span>
+                    </div>
+
+                    <div className="name-div">
+                        <span>设备类型</span>
+                        <div>{equipmentType}</div>
+                    </div>
+                    <div className="name-div">
+                        <span>故障等级</span>
+                        <div>{faultGrade == 1 ? "I" : faultGrade == 2 ? "II" : "III"}级故障</div>
+                    </div>
+                    <div className="info-div">
+                        <span>故障信息</span>
+                        <div>
+                            {faultMessage}
+                        </div>
+                    </div>
+                    <UploadComponent type={1} uploadModule="feedbackDetail" photos={attachmentList || []} explain={state || ""} />
                 </div>
-                <UploadComponent type={1} uploadModule="feedbackDetail" photos={attachmentList || []} explain={state || ""} />
             </Page>
         )
     }

@@ -56,7 +56,9 @@ class MessageDetail extends React.Component {
         return (
             <Page className="login-container">
                 <Header title={_content.title} isShowBack={true} />
-                {_content.content}
+                <div className="main-content">
+                    {_content.content}
+                </div>
             </Page>
         )
     }

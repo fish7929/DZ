@@ -27,6 +27,7 @@ class Header extends React.Component{
         let {backFn} = this.props;
         return(
             <div className="header-container">
+                <div className="toolbar"></div>
                 <div className="title-div">
                     {this.props.title}
                     {
