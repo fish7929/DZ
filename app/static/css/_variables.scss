@@ -8,8 +8,8 @@ $baseSize: 14; /*默认字体*/
 $ratio: 2; /*缩放比*/
 $factor: 320/375;  /*屏幕和设计稿的比例（750尺寸）*/
 $headerHeight: 88;  /*头部实际的高度*/
-$toolbarHeight: 40; /*时间栏的高度*/
-$topHeight: 128;  /*顶部高度*/
+$toolbarHeight: 0; /*时间栏的高度*/
+$topHeight: 88;  /*顶部高度*/
 
 $greyColor: #fff;  /*全局背景色*/
 $yellowColor: #FE5A0B;  /*黄色*/

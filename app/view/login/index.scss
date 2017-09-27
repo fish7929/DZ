@@ -9,15 +9,21 @@
         background: #fff;
         border-bottom: calc-rem(1) solid #eeeeee;
         padding: 0 calc-rem(40);
+        display: flex;
+        align-items: center;
 
         input{
             border: 0;
-            height: 100%;
-            width: 100% - calc-rem(32);
+            height: calc-rem(40);
             padding: 0 calc-rem(24);
-            vertical-align: top;
             font-size: calc-rem(28);
+            line-height: calc-rem(40);
             color: #999;
+            flex: 1;
+        }
+
+        input:-webkit-autofill {  
+            -webkit-box-shadow: 0 0 0px 1000px white inset !important;  
         }
     }
 

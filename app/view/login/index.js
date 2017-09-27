@@ -112,7 +112,7 @@ class Login extends React.Component{
                 <div className="main-content">
                     <div className="input-user-div">
                         <span className="icon"></span>
-                        <input type="text"  className="ime-disabled" style="ime-mode: disabled;" value={username} onChange={(e)=>this.onPhoneChange(e)} placeholder="请输入手机号" />
+                        <input type="text"  className="ime-disabled" value={username} onChange={(e)=>this.onPhoneChange(e)} placeholder="请输入手机号" />
                     </div>
                     <div className="input-pw-div">
                         <span className="icon"></span>
