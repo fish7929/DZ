@@ -13,6 +13,8 @@ import ReactDOM from 'react-dom';
 import UploadComponent from '../../component/uploadComponent';
 import ChooseDialog from '../../component/chooseDialog';
 import { ZERO, FIRST } from '../../static/const/constants';
+import * as utils from '../../utils'
+import * as Api from '../../static/const/apiConst';
 const Level = ['', 'Ⅰ', 'Ⅱ', 'Ⅲ'];
 class PhysicalFeedback extends React.Component {
     constructor(props, context) {
@@ -24,7 +26,7 @@ class PhysicalFeedback extends React.Component {
             currentFacility: null,  //当前选择设备名称
             facilityNumber: this.props.facilityTypes[0] ? this.props.facilityTypes[0].equipmentId : '',   //设备编号
             faultLevel: 'Ⅰ',  //故障级别
-
+            facilityTypes: this.props.facilityTypes || [],
             isShowDialog: false,  //是否显示选择对话框 false
             dialogTitle: '',
             dialogType: ZERO,   //选择对话框类型
@@ -77,6 +79,9 @@ class PhysicalFeedback extends React.Component {
         if (data) {
             obj[_key] = data;
         }
+        if(type){
+            this.loadFacilityTypes(data.id);
+        }
         this.setState(obj);
     }
     /**
@@ -125,7 +130,7 @@ class PhysicalFeedback extends React.Component {
         let { currentFacility, type, facilityNumber, faultLevel } = this.state;
         let _name = currentFacility ? currentFacility.name : '';
         let slectHint = faultLevel ? '' : 'physical-feedback-select-hint';
-        let { facilityTypes } = this.props;
+        let { facilityTypes } = this.state;
         let slectHint1 = facilityNumber ? '' : 'physical-feedback-select-hint';
         return (
             <div className="physical-feedback-dispatch-wrapper">
@@ -245,7 +250,14 @@ class PhysicalFeedback extends React.Component {
     componentDidMount() {
 
     }
-
+    loadFacilityTypes(type) {
+        let _url = Api.getEquipmentBy();
+        utils.fetchUtils(_url, {powerStationId: this.props.powerstationId, equipmentType: type}).then((res) => {
+            if (res.data) {
+                this.setState({ facilityTypes: res.data });
+            }
+        }).catch((e) => console.log(e, 77777));
+    }
     /**
      * 卸载
      */
@@ -260,14 +272,17 @@ class PhysicalFeedback extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         let _facilityNumber = '';
+        let _facilityTypes = this.state.facilityTypes;
         if (nextProps.facilityTypes && nextProps.facilityTypes.length > 0) {
-            _facilityNumber = nextProps.facilityTypes[0] ? nextProps.facilityTypes[0].equipmentId : '';
+            _facilityTypes = nextProps.facilityTypes;
+            _facilityNumber = _facilityTypes[0] ? _facilityTypes[0].equipmentId : '';
         }
         if (nextProps) {
             this.setState({
                 type: FIRST,  // 就地解决， 0上报调度中心
                 stationName: nextProps.stationName,  //上报调度中心  电站名称
-                facilityNumber: _facilityNumber
+                facilityNumber: _facilityNumber,
+                facilityTypes: _facilityTypes
             });
         }
     }

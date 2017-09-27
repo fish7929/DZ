@@ -250,7 +250,7 @@ state  	说明	string
         return (
             isAdd ? <PhysicalFeedback physicalList={filter} stationName={this.param.stationName || ''}
                 callBack={(param) => this.onSaveHandler(param)} facilityList={facilityList} 
-                facilityTypes={facilityTypes} /> : null
+                facilityTypes={facilityTypes} powerstationId={this.param.powerstationId}/> : null
         );
     }
     renderContentSection() {
@@ -292,18 +292,21 @@ state  	说明	string
         console.log(this.param);
         let url = Api.GetFacilityList(this.param.powerstationId);
         console.log(url, 852);
+        let _url = Api.getEquipmentBy();
         utils.fetchUtils(url).then((res) => {
             if (res.data) {
                 this.setState({ facilityList: res.data });
+                let initEquipmentType = res.data[0].id;
+                utils.fetchUtils(_url, {powerStationId: this.param.powerstationId, equipmentType: initEquipmentType}).then((res) => {
+                    if (res.data) {
+                        this.setState({ facilityTypes: res.data });
+                    }
+                }).catch((e) => console.log(e, 77777));
             }
         }).catch((e) => console.log(e, 77777));
 
-        let _url = Api.getEquipmentBy();
-        utils.fetchUtils(_url, {powerStationId: this.param.powerstationId, equipmentType: 3}).then((res) => {
-            if (res.data) {
-                this.setState({ facilityTypes: res.data });
-            }
-        }).catch((e) => console.log(e, 77777));
+        
+        
     }
 
     componentWillReceiveProps(nextProps) {
