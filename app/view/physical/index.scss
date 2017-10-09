@@ -249,16 +249,20 @@
         width: -webkit-calc(100% - #{calc-rem(80)});
         width: calc(100% - #{calc-rem(80)});
         height: 100%;
-        padding-left: 80%; 
+        // padding-left: 80%; 
         // color: #999;
+        direction: rtl;
+        padding-right: calc-rem(45);
         text-align: right;
         background: url($arrowIcon) right center no-repeat transparent;
         background-size: calc-rem(44);
     }
 }
-.facility-types-select{
-    padding-left: 50% !important; 
-}
+/*
+ .facility-types-select{
+     padding-left: 50% !important; 
+ }
+*/
 
 .physical-feedback-select-hint{
     &:after{

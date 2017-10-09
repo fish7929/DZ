@@ -8,7 +8,7 @@ import * as ActionType from './actionType'
 
 const initialState = {
     isFetching: false, //是否正在加载
-    list: [],
+    list: null,
     total: 1   //总页数
 }
 
@@ -37,7 +37,7 @@ export default function messageData(state = initialState, action) {
                 state,
                 {
                     isFetching: false, //是否正在加载
-                    list: []
+                    list: null
                 }
             );
         default:

@@ -43,17 +43,17 @@ class Message extends React.Component {
         switch (this.type) {
             case FIRST:
                 obj.title = "报警消息";
-                obj.content = <AlarmMessage data={list}  total={total}
+                obj.content = list== null ? null :<AlarmMessage data={list}  total={total}
                 onScroll={(page) => fetchData(this.type, page)}/>
                 break;
             case SECOND:
                 obj.title = "站内消息";
-                obj.content = <SiteMessage data={list}  total={total}
+                obj.content = list== null ? null :<SiteMessage data={list}  total={total}
                 onScroll={(page) => fetchData(this.type, page)} />
                 break;
             case THREE:
                 obj.title = "系统消息";
-                obj.content = <SystemMessage data={list}  total={total}
+                obj.content = list== null ? null :<SystemMessage data={list}  total={total}
                 onScroll={(page) => fetchData(this.type, page)} />
                 break;
         }
@@ -65,12 +65,12 @@ class Message extends React.Component {
     render() {
         let { isFetching, list } = this.props;
         let _content = this.getContent();
+        console.log(list);
         return (
             <Page className="message-container">
                 <Header title={_content.title} isShowBack={true} />
                 <div className="main-content">
-                    {list.length < 1 ? 
-                        <NoMessage msg={isFetching ? "消息加载中" : "暂无消息"}/>: _content.content}
+                    {_content.content}
                 </div>
             </Page>
         )

@@ -57,13 +57,17 @@ class FaultDetail extends React.Component {
     onSaveHandler(e) {
         e.preventDefault();
         e.stopPropagation();
-        let { list } = this.state;
+        let { list ,solveResult } = this.state;
+        if(solveResult == null){
+            AppModal.toast("请选择处理结果");
+            return;
+        }
         let uploadComponent = this.refs.dealUploadComponent;
         let upload = uploadComponent.getUploadContent();
         let opt = {
             faultId: this.id,
             solveId: list.solveId, //？？？？？是什么
-            solveResult: this.state.solveResult
+            solveResult: solveResult
         }
         opt.solveInfo = upload.explain;
         opt.fileInfo = upload.photos;
