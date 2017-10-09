@@ -160,7 +160,10 @@ const fetchMsg = (url, param, type = "Get", headers={}, repType="json") => {
         if(type=="POST"){
             param = JSON.stringify(param)
         }
-        AppModal.loading();
+        let isLoading = param&&param.hasOwnProperty("isLoading") ? param.isLoading : true;
+        if(isLoading){
+            AppModal.loading();
+        }
         return $.ajax({
             url: url,
             type: type,
@@ -193,7 +196,7 @@ const fetchMsg = (url, param, type = "Get", headers={}, repType="json") => {
  * @param {*} headers 请求头部信息
  * @param {*} repType 
  */
-export function sendMsg(url, param, type = "GET",headers={}, repType="json"){
+export function sendMsg(url, param, type = "GET", headers={}, repType="json"){
     let user = Base.getLocalStorageObject("user")
     let token = '';
     if(user && user.hasOwnProperty('token')){

@@ -23,7 +23,7 @@ class AmmeterItem extends React.Component{
                 <div className="ammeter-content">
                     <div className="info-item">
                         <span className="txt1">有功功率：</span>
-                        <span className="txt2">{data.threePhaseActivePower.toFixed(2)}KW</span>
+                        <span className="txt2">{data.threePhaseActivePower.toFixed(2)}kW</span>
                     </div>
                     <div className="info-item">
                         <span className="txt1">总电能：</span>

@@ -35,7 +35,7 @@ class PowerStationMonitorDetail extends React.Component{
                         <div className="title-div">{ data.name }</div>
                         <div className="power-info-div">
                             <div className="titleTxt">实时数据</div>
-                            <div className="desc-txt"><span className="txt1">总功率</span><span className="txt2">{data.generatedActivePower.toFixed(2)}KW</span></div>
+                            <div className="desc-txt"><span className="txt1">总功率</span><span className="txt2">{data.generatedActivePower.toFixed(2)}kW</span></div>
                             <div className="info-div">
                                 <div className="info-table">
                                     <div className="table-td">
@@ -81,7 +81,7 @@ class PowerStationMonitorDetail extends React.Component{
                         <div className="day-power-div">
                             <div className="day-power-title">日功率曲线</div>
                             <div className="echart-day-power">
-                                <ChartItem type="line" data={data.powerTime} unitY="Kw" lineColor="#D76662" shadowColor="#D76561" xAxis={xAxis} />
+                                <ChartItem type="line" data={data.powerTime} unitY="kW" lineColor="#D76662" shadowColor="#D76561" xAxis={xAxis} />
                             </div>
                         </div>
 

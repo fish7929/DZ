@@ -83,7 +83,8 @@ class PowerStationMonitorMapContainer extends React.Component{
             neLng: "150",
             swLat: "10",
             swLng: "110",
-            type: type
+            type: type,
+            isLoading: false
         }
         this.props.getListByMapLevel(opt)
     }

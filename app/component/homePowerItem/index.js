@@ -19,7 +19,7 @@ class HomePowerItem extends React.Component{
                 <div className="home-power-content">
                     <div className="zgl-div">
                         <div className="title-txt">总功率</div>
-                        <div className="value-txt">{data.generatedActivePower.toFixed(2)}KW</div>
+                        <div className="value-txt">{data.generatedActivePower.toFixed(2)}kW</div>
                     </div>
                     <div className="list-div">
                         <div className="list-item">
