@@ -170,7 +170,7 @@ class ChartItem extends React.Component {
     }
 
     getLineOption(data) {
-        let { unitY, lineColor, shadowColor, dataZoom, xAxis } = this.props;
+        let { unitY, lineColor, shadowColor, dataZoom, xAxis, toolTip } = this.props;
         let opt =  {
             xAxis:  {
                 axisLine: {
@@ -238,6 +238,20 @@ class ChartItem extends React.Component {
                     zoomLock: true,
                 }
             ]
+        }
+
+        if(toolTip){
+            opt.tooltip = {
+                trigger: 'axis',
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                    type: 'line',        // 默认为直线，可选为：'line' | 'shadow'
+                },
+                formatter: function (params) {
+                    console.log("aaaaaaaaaaaaaaaaaaaaaaa: ",params)
+                    return "日&nbsp;&nbsp;&nbsp;期：" + params[0].name + "<br />完成量：" + params[0].data;
+                },
+                confine: true,
+            }
         }
   
         return opt;
@@ -469,7 +483,8 @@ ChartItem.PropTypes = {
     shadowColor: PropTypes.any,
     legend: PropTypes.array,
     xAxis: PropTypes.array,
-    dataZoom: PropTypes.bottom
+    dataZoom: PropTypes.bottom,
+    toolTip: PropTypes.bool
 }
 
 export default ChartItem

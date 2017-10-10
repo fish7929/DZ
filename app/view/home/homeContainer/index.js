@@ -148,7 +148,7 @@ class HomeContianer extends React.Component {
                         <span></span>7天工单完成量
                     </div>
                     <div className="work-order-echart-div">
-                        <ChartItem data={workOrderCompletionList} type="line" />
+                        <ChartItem data={workOrderCompletionList} type="line" toolTip={true} />
                     </div>
                 </div>
 

@@ -25,6 +25,7 @@ class InverterItem extends React.Component{
                 statusClass = ""
                 break;
         }
+        
         return(
             <div className="inverter-item" onClick={onClick}>
                 <div className="inverter-header">

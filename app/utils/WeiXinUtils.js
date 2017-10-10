@@ -142,6 +142,7 @@ var WeiXinUtils = {
         var pageurl = window.location.href.replace(window.location.hash, '');
         let data = new URLSearchParams();
         data.set("share_url", encodeURIComponent(pageurl))
+        // alert(pageurl);
         fetch(authUri, {
             method: "POST",
             headers: {
@@ -165,6 +166,7 @@ var WeiXinUtils = {
 
                     wx.ready(function () {
                         window.weixinReady = true;
+                        // alert("ready");
                     });
                     wx.error(function (res) {
                         // alert("config信息验证失败")

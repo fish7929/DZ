@@ -26,6 +26,7 @@
 			url: "http://www.yunengzhe.com/wechat/share/weixin.do" ,  
 			data: opt,
 			success: function(obj){
+                alert(obj);
                 obj = JSON.parse(obj);
                 if(obj.share){
                     wx.config({
