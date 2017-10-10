@@ -100,6 +100,13 @@ class UploadComponent extends React.Component {
         };
         return obj;
     }
+
+    resetContent(){
+        this.setState({
+            explain: "",
+            photos: [],
+        })
+    }
     /**
      * 更新属性
      */

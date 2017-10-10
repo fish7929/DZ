@@ -52,7 +52,11 @@ class Feedback extends React.Component{
             deviceTypeId: deviceTypeId,
             deviceCode: deviceCode,
             alarmLevel: 1,
+
         })
+
+        let uploadComponent = this.refs.dealUploadComponent;
+        uploadComponent.resetContent();
     }
 
     componentWillReceiveProps(nextProps){
