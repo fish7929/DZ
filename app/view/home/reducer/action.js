@@ -124,7 +124,7 @@ let getUserPowerStation = dispatch => {
                 psList: data.map(obj => { return { ...obj }}),
                 prList: data.map(obj => { return {name: obj.name, value: obj.pr.toFixed(2)}}),
                 fbList: data.map(obj => { return {name: obj.name, value: obj.alarms}}),
-                fdList: data.map(obj => { return {name: obj.name, value: [obj.installCapacity, obj.generationDaily]}})
+                fdList: data.map(obj => { return {name: obj.name, value: [obj.installCapacity.toFixed(2), obj.generationDaily.toFixed(2)]}})
             }
         })
     })

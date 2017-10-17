@@ -57,6 +57,8 @@ class AlarmMessageItem extends React.Component {
             massageStatus = '已提交';
         } if (data.massageStatus == THREE) {
             massageStatus = '已解除';
+        } else{
+            massageStatus = '未解除';
         }
         let readClass = data && data.isread == FIRST ? 'message-read' : '';
         let level = data.alarmgrade || 1;

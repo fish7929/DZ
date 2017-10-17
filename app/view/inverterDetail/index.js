@@ -75,17 +75,17 @@ class InverterDetail extends React.Component{
                         <div className="table-header">发电量</div>
                         <div className="info-div">
                             <div className="info-left">
-                                <span className="big-txt">{data.generationDaily.toFixed(2)}kW/h</span>
+                                <span className="big-txt">{data.generationDaily.toFixed(2)}kWh</span>
                                 <span className="normal-txt">当日发电量</span>
                             </div>
                             <div className="info-right">
                                 <div className="right-item">
                                     <span className="txt-1">当月发电量</span>
-                                    <span className="txt-2">{data.generationMonth.toFixed(2)}kW/h</span>
+                                    <span className="txt-2">{data.generationMonth.toFixed(2)}kWh</span>
                                 </div>
                                 <div className="right-item">
                                     <span className="txt-1">累计发电量</span>
-                                    <span className="txt-2">{data.generationGross.toFixed(2)}kW/h</span>
+                                    <span className="txt-2">{data.generationGross.toFixed(2)}kWh</span>
                                 </div>
                             </div>
                         </div>

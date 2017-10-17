@@ -21,7 +21,7 @@ class MyFeedbackDetail extends React.Component{
     }
 
     getFaultState(val){
-        switch (val) {
+        switch (val + "") {
             case "0":
                 return "未分配"
             case "1":

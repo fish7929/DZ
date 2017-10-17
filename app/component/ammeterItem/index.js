@@ -31,7 +31,7 @@ class AmmeterItem extends React.Component{
                     </div>
                     <div className="info-item">
                         <span className="txt1">更新时间：</span>
-                        <span className="txt2 data-txt">{utils.formatDate(data.updateTime, "yyyy-MM-dd")}</span>
+                        <span className="txt2 data-txt">{utils.formatDate(data.updateTime, "dd/MM/yyyy")}</span>
                     </div>
                 </div>
             </div>

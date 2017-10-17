@@ -384,7 +384,7 @@ class ChartItem extends React.Component {
                             color: '#999'
                         },
                         formatter: (value, index) => {
-                            return value + "kwp"
+                            return value + "kWp"
                         }
                     },
                     type : 'value',
@@ -402,7 +402,7 @@ class ChartItem extends React.Component {
                             color: '#999'
                         },
                         formatter: (value, index) => {
-                            return value + "kwh"
+                            return value + "kWh"
                         }
                     },
                     type : 'value',

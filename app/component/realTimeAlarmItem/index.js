@@ -26,7 +26,7 @@ class RealTimeAlarmItem extends React.Component{
                 <div className="txt-div">
                     <div className="name-txt no-wrap">{data.name}</div>
                     <div className="desc-txt no-wrap">{data.alarmMessage}</div>
-                    <div className="date-txt no-wrap">{utils.formatDate(data.eventTime, "yyyy-MM-dd HH:mm:ss")}</div>
+                    <div className="date-txt no-wrap">{utils.formatDate(data.eventTime, "dd/MM/yyyy HH:mm:ss")}</div>
                 </div>
             </div>
         )
