@@ -245,9 +245,9 @@
         -webkit-appearance: none;
         appearance: none;
         outline: none;
-        left: calc-rem(40);
-        width: -webkit-calc(100% - #{calc-rem(80)});
-        width: calc(100% - #{calc-rem(80)});
+        left: calc-rem(180);
+        width: -webkit-calc(100% - #{calc-rem(220)});
+        width: calc(100% - #{calc-rem(220)});
         height: 100%;
         // padding-left: 80%; 
         // color: #999;
@@ -256,6 +256,9 @@
         text-align: right;
         background: url($arrowIcon) right center no-repeat transparent;
         background-size: calc-rem(44);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 }
 /*
