@@ -34,6 +34,9 @@ class RealTimeAlarm extends React.Component{
         let opt = {
             page: currentPage,
             pagesize: this.state.pagesize,
+            status: "",
+            beforeTime: "",
+            lateTime: ""
         }
         if(status !== null){
             opt.status = status

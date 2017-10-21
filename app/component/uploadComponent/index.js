@@ -65,10 +65,11 @@ class UploadComponent extends React.Component {
                 console.log(data);
                 AppModal.hide()
                 if (data && data.url) {
-                    let oldPhotos = this.state.photos;
+                    let oldPhotos = this.state.photos || [];
                     oldPhotos.push({ filepath: data.url, filename: file.name, documentType: fileType });
                     state.photos = oldPhotos;
                 }
+                console.log("state", state)
                 this.setState(state);
                 this.isChange = true;
 
@@ -87,7 +88,7 @@ class UploadComponent extends React.Component {
         e.preventDefault();
         e.stopPropagation();
         //test 
-        let oldPhotos = this.state.photos;
+        let oldPhotos = this.state.photos || [];
         let newPhotos = oldPhotos.filter((item, index) => index != key);
         this.setState({ photos: newPhotos });
         this.isChange = true;
@@ -145,7 +146,7 @@ class UploadComponent extends React.Component {
     onAppChoosePhotoHandler(type){
         window.cordova.plugins.spacekplugin.takePicture({ type: type }, data=>{
             let state = {};
-            let oldPhotos = this.state.photos;
+            let oldPhotos = this.state.photos || [];
             oldPhotos.push({ filepath: data.url, filename: data.name, documentType: 0 });
             state.photos = oldPhotos;
             state.isShowPhotoSelect = false;
@@ -165,9 +166,9 @@ class UploadComponent extends React.Component {
     onAppChooseMedioHandler(){
         window.cordova.plugins.spacekplugin.takeVideo("30", data => {
             let state = {};
-            let oldPhotos = this.state.photos;
+            let oldPhotos = this.state.photos || [];
             oldPhotos.push({ filepath: data.url, filename: data.name, documentType: 1 });
-            state.photos = oldPhotos;
+            this.setState(state);
             state.isShowPhotoSelect = false;
             this.setState(state);
 
@@ -201,12 +202,14 @@ class UploadComponent extends React.Component {
         {/* <video src={item.filepath} controls="controls" x-webkit-airplay="true" webkit-playsinline="true" preload="auto">您的浏览器不支持 video 标签。</video> */ }
         let { type, photoHint, photos, explainHint, explain } = this.state
         photos = photos || [];
+        
         let _disabled = type == 1 ? "upload-disabled" : ""; //0未处理，  1 已处理
         let _hint = type == 1 ? '附件' : photoHint;
         let photoBtn = photos.length == 0 ? 'upload-photo-btn-init' : '';
         let noExplain = type == 1 && !explain ? 'no-explain-style' : '';
         explain = type == 1 && !explain ? '无' : explain;
         let noPhotos = (type == 1 && photos.length === 0) ? 'no-photos-style' : '';
+        console.log(photos,"222222222222222222")
         return (
             <div className={"upload-component-wrapper " + _disabled}>
                 <div className={"upload-explain-component " + noExplain}>

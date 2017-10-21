@@ -8,6 +8,8 @@ import UploadComponent from '../../component/uploadComponent'
 
 import { getMyFeedbackDetail } from './reducer/action'
 
+import * as utils from '../../utils'
+
 import './index.scss'
 
 class MyFeedbackDetail extends React.Component{
@@ -59,7 +61,7 @@ class MyFeedbackDetail extends React.Component{
 
                     <div className="name-div">
                         <span>设备类型</span>
-                        <div>{equipmentType}</div>
+                        <div>{utils.getEquipmentName(equipmentType)}</div>
                     </div>
                     <div className="name-div">
                         <span>故障等级</span>

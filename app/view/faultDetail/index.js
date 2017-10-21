@@ -115,7 +115,7 @@ class FaultDetail extends React.Component {
             <div className="margin-bottom-20">
                 <div className="common-divide">基本信息</div>
                 <div className="common-order-item-hint">
-                    设备类型<span className="no-wrap">{list.equipmentType}</span>
+                    设备类型<span className="no-wrap">{utils.getEquipmentName(list.equipmentType)}</span>
                 </div>
                 <div className="common-order-item-hint">
                     {faultSource == FIRST ? "故障信息" : "设备编号"}
@@ -175,11 +175,11 @@ class FaultDetail extends React.Component {
         let faultStatus = list.faultStatus;
         let faultStatusStr = '未分配';  //0 的状态
         if(faultStatus == FIRST){
-            faultStatusStr = '以分配';
+            faultStatusStr = '已分配';
         }else if(faultStatus == SECOND){
             faultStatusStr = '已解决';
         }else if(faultStatus == THREE){
-            faultStatusStr = '未解决';
+            faultStatusStr = '不成立';
         }
         return (
             <div>

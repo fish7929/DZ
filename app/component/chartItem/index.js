@@ -90,7 +90,6 @@ class ChartItem extends React.Component {
                 axisLine: {
                     show: false
                 },
-                z: 10,
             },
             yAxis: {
                 axisLine: {
@@ -148,7 +147,7 @@ class ChartItem extends React.Component {
                     type: 'shadow',        // 默认为直线，可选为：'line' | 'shadow'
                     shadowStyle: {
                         opacity:0
-                    }
+                    },
                 },
                 confine: true,
                 // position: function (pos, params, dom, rect, size) {
@@ -247,7 +246,6 @@ class ChartItem extends React.Component {
                     type: 'line',        // 默认为直线，可选为：'line' | 'shadow'
                 },
                 formatter: function (params) {
-                    console.log("aaaaaaaaaaaaaaaaaaaaaaa: ",params)
                     return "日&nbsp;&nbsp;&nbsp;期：" + params[0].name + "<br />完成量：" + params[0].data;
                 },
                 confine: true,
@@ -369,7 +367,6 @@ class ChartItem extends React.Component {
                 axisLine: {
                     show: false
                 },
-                z: 10,
             },
             yAxis: [
                 {

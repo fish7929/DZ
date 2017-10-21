@@ -399,3 +399,19 @@ const checkConnection = () => {
     }
     return true;
 }
+
+
+export const getEquipmentName = (val) => {
+    switch(val + ""){
+        case "0":
+            return "电站"
+        case "3":
+            return "逆变器"
+        case "5":
+            return "电表"
+        case "8":
+            return "气象站"
+        default:
+            return ""
+    }
+}

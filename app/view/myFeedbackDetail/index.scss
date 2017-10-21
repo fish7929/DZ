@@ -74,6 +74,8 @@
             color: #333333;
             letter-spacing: calc-rem(1.53);
             line-height: calc-rem(44);
+            word-break: break-all;
+            overflow: auto;
         }
     }
 
