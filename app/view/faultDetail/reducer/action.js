@@ -35,10 +35,11 @@ function receiveData(result) {
  * 请求远程数据
  * @param {number} orderNumber  工单编号
  */
-export const fetchData = (id) => dispatch => {
+export const fetchData = (id, cb) => dispatch => {
     dispatch(requestData(id));
     let _url = Api.GetFaultDetailById(id);
     dispatch(utils.sendMsg(_url, null, "GET")).then(data => {
         dispatch(receiveData(data));
+        cb && cb(data);
     })
 }
