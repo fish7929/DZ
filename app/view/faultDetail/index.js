@@ -42,7 +42,9 @@ class FaultDetail extends React.Component {
         console.log(SECOND, 899);
         this.state = {
             list: this.props.list,
-            solveResult: SECOND
+            solveResult: SECOND,
+            equipmentTypes: null,  //设备类型
+            equipments: null     //设备编号
         }
     }
     selectDealResultHandler(e, solveResult){
@@ -98,6 +100,24 @@ class FaultDetail extends React.Component {
 
         }).catch((e) => AppModal.hide());
     }
+    getEquipmentType(equipmentType){
+        const {equipmentTypes} = this.state;
+        if(equipmentTypes){
+            const curr = equipmentTypes.find((item) => item.id == equipmentType);
+            return curr.name;
+        }else{
+            return equipmentType;
+        }
+    }
+    getEquipmentId(equipmentId){
+        const {equipments} = this.state;
+        if(equipments){
+            const curr = equipments.find((item) => item.equipmentId == equipmentId);
+            return curr.equipmentcontainerName;
+        }else{
+            return equipmentId;
+        }
+    }
     /**
      * 渲染基本信息
      */
@@ -115,11 +135,11 @@ class FaultDetail extends React.Component {
             <div className="margin-bottom-20">
                 <div className="common-divide">基本信息</div>
                 <div className="common-order-item-hint">
-                    设备类型<span className="no-wrap">{utils.getEquipmentName(list.equipmentType)}</span>
+                    设备类型<span className="no-wrap">{this.getEquipmentType(list.equipmentType)}</span>
                 </div>
                 <div className="common-order-item-hint">
                     {faultSource == FIRST ? "故障信息" : "设备编号"}
-                    <span className="no-wrap">{faultSource == FIRST ? list.faultMessage : list.equipmentId}</span>
+                    <span className="no-wrap">{faultSource == FIRST ? list.faultMessage : this.getEquipmentId(list.equipmentId)}</span>
                 </div>
                 <div className="common-order-item-hint">
                     故障级别
@@ -272,7 +292,23 @@ class FaultDetail extends React.Component {
      * 加载完成
      */
     componentDidMount() {
-        this.props.fetchData(this.id);
+        this.props.fetchData(this.id, (data) => {
+            if(data){
+                let url = Api.GetFacilityList(data.powerStationId);
+                let _url = Api.getEquipmentBy();
+                utils.fetchUtils(url).then((res) => {
+                    if (res.data) {
+                        this.setState({ equipmentTypes: res.data });
+                    }
+                }).catch((e) => console.log(e, 77777));
+                utils.fetchUtils(_url, {powerStationId: data.powerStationId, equipmentType: data.equipmentType}).then((res) => {
+                    if (res.data) {
+                        this.setState({ equipments: res.data });
+                    }
+                }).catch((e) => console.log(e, 77777));
+            }
+        });
+        
     }
 
     componentWillReceiveProps(nextProps) {
