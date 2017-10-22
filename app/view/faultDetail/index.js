@@ -137,10 +137,12 @@ class FaultDetail extends React.Component {
                 <div className="common-order-item-hint">
                     设备类型<span className="no-wrap">{this.getEquipmentType(list.equipmentType)}</span>
                 </div>
-                <div className="common-order-item-hint">
-                    {faultSource == FIRST ? "故障信息" : "设备编号"}
-                    <span className="no-wrap">{faultSource == FIRST ? list.faultMessage : this.getEquipmentId(list.equipmentId)}</span>
-                </div>
+                {
+                    faultSource == FIRST ? 
+                        <div className="common-order-item-hint-flex"><div>故障信息</div><div>{list.faultMessage}</div></div>
+                        :
+                        <div className="common-order-item-hint">设备编号<span className="no-wrap">{this.getEquipmentId(list.equipmentId)}}</span></div>
+                }
                 <div className="common-order-item-hint">
                     故障级别
                     <span className="no-wrap">{_level}</span>

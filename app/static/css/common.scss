@@ -108,6 +108,39 @@
     }
 }
 
+.common-order-item-hint-flex{
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    padding: calc-rem(36) calc-rem(40);
+    color: #333;
+    border-bottom: $commonBorder;
+    background: $whiteColor;
+    min-height: calc-rem(100);
+    line-height: calc-rem(24);
+    font-size: calc-rem(24);
+    color: #666;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    div:first-child{
+        font-size: calc-rem(24);
+        color: #666;
+    }
+
+    div:nth-child(2){
+        width: 68%;
+        height: 100%;
+        font-size: calc-rem(32);
+        line-height: calc-rem(40);
+        padding: 0;
+        color: #333;
+        text-align: right;
+        word-break: break-word;
+    }
+}
+
 .margin-bottom-20{
     margin-bottom: calc-rem(20);
 }

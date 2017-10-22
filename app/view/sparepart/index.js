@@ -46,6 +46,20 @@ class Sparepart extends React.Component {
             _parent.className = _className;
         }
     }
+
+    getReceiveTypeName(type){
+        switch(type){
+            case 1:
+                return "投资方保管"
+            case 2:
+                return "运维公司保管"
+            case 3:
+                return "外购"
+            default:
+                return ""
+        } 
+    }
+
     /**
      * 根据路由不同获取不同对象
      */
@@ -61,11 +75,11 @@ class Sparepart extends React.Component {
                 <div className="sparepart-detail-wrapper">
                     <div className="common-order-item-hint">
                         名称
-                        <span className="no-wrap">{item.sparepartName}</span>
+                        <span className="no-wrap">{item.sparepartname}</span>
                     </div>
                     <div className="common-order-item-hint">
                         规格型号
-                        <span className="no-wrap">{item.specificationName}</span>
+                        <span className="no-wrap">{item.specificationname}</span>
                     </div>
                     <div className="common-order-item-hint">
                         领用数量
@@ -73,15 +87,15 @@ class Sparepart extends React.Component {
                     </div>
                     <div className="common-order-item-hint">
                         领用形式
-                        <span className="no-wrap">{item.receivetype == FIRST ? "投资方保管" : ""}</span>
+                        <span className="no-wrap">{this.getReceiveTypeName(item.receivetype)}</span>
                     </div>
                     <div className="common-order-item-hint">
                         领用人
-                        <span className="no-wrap">{item.receiveuserName}</span>
+                        <span className="no-wrap">{item.receiveuser}</span>
                     </div>
                     <div className="common-order-item-hint">
                         备注
-                        <span className="no-wrap">{item.comments}</span>
+                        <span className="no-wrap">{item.remarks}</span>
                     </div>
                 </div>
             </li>)

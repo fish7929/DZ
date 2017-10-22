@@ -68,7 +68,6 @@ class AlarmSearch extends React.Component{
             startTime = new Date(this.state.startTime).getTime();
             endTime = new Date(e.target.value).getTime();
         }
-        console.log(startTime, endTime);
         if(endTime < startTime){
             AppModal.toast('结束时间不能早于开始时间');
             return
