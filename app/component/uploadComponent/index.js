@@ -133,7 +133,7 @@ class UploadComponent extends React.Component {
                 <div className="btns-div">
                     {window.cordova ? <div className="inputBtn" onClick={()=>this.onAppChoosePhotoHandler(1)}>拍照</div> : <div className="inputBtn"><input type="file" accept="image/*" capture="camera" onChange={(e) => this.choosePhotoHandler(e)} />拍照</div>}
                     {window.cordova ? <div className="inputBtn" onClick={()=>this.onAppChooseMedioHandler()}>摄像</div> : <div className="inputBtn"><input type="file" accept="video/mp4" capture="camcorder" onChange={(e) => this.choosePhotoHandler(e)} />摄像</div>}
-                    {window.cordova ? <div className="inputBtn" onClick={()=>this.onAppChoosePhotoHandler(0)}>相册</div> : <div className="inputBtn"><input type="file" accept="video/mp4,image/*" onChange={(e) => this.choosePhotoHandler(e)} />相册</div>}
+                    {window.cordova ? <div className="inputBtn" onClick={()=>this.onAppChoosePhotoHandler(0)}>相册</div> : <div className="inputBtn">相册</div>}
                     <div className="inputBtn" onClick={() => this.setState({ isShowPhotoSelect: false })}>取消</div>
                 </div>
             </div>
@@ -221,7 +221,7 @@ class UploadComponent extends React.Component {
                 </div>
                 <div className={"upload-photo-component " + noPhotos}>
                     <div className="upload-photo-hint">{_hint}
-                        {_disabled ? null : <span>视频拍摄长度需小于30秒</span>}
+                        {_disabled ? null : <span>如需上传视频，请在app中操作</span>}
                     </div>
                     <ul className={"upload-photo-content " + noPhotos}>
                         {photos.map((item, index) =>
@@ -241,7 +241,12 @@ class UploadComponent extends React.Component {
                         )}
                         {_disabled || photos.length >= 5 ? null : <li key={photos.length}
                             className={"upload-photo-item upload-photo-btn " + photoBtn}>
-                            <span className="upload-photo-btn-span xy-center" onClick={() => this.setState({ isShowPhotoSelect: true })}></span>
+                            {
+                                window.cordova ? 
+                                    <span className="upload-photo-btn-span xy-center" onClick={() => this.setState({ isShowPhotoSelect: true })}></span>
+                                    :
+                                    <span className="upload-photo-btn-span xy-center"><input type="file" accept="image/*" onChange={(e) => this.choosePhotoHandler(e)} /></span>
+                            }
                         </li>}
                         {_disabled && photos.length === 0 ? '无' : null}
                     </ul>

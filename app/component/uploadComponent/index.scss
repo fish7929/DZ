@@ -121,6 +121,13 @@
     background: transparent; 
     width: calc-rem(180);
     height: calc-rem(180);
+    position: relative;
+
+    input{
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+    }
 }
 .upload-disabled{
     textarea, .upload-photo-content{

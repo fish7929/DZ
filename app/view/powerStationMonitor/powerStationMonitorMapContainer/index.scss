@@ -23,16 +23,23 @@
     .baiduPopWin-p{
         padding: calc-rem(20);
         padding-top: calc-rem(50);
+        padding-right: calc-rem(100);
         background: rgba(0,0,0,0.6);
         p{
             line-height: calc-rem(40);
             color: #fff;
+            white-space:nowrap; 
         }
 
         a{
-            line-height: calc-rem(40);
-            text-decoration: underline;
-            color: #fff;
+            display: inline-block;
+            position: absolute;
+            width: calc-rem(60);
+            height: calc-rem(60);
+            right: calc-rem(24);
+            bottom: calc-rem(20);
+            background: url(../../../static/images/phoneIcon.png) no-repeat center;
+            background-size: 100%;
         }
     }
 

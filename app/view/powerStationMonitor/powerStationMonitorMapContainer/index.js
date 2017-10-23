@@ -181,7 +181,8 @@ class PowerStationMonitorMapContainer extends React.Component{
             let marker = new BMap.Marker(this.currentP, {icon: icon});  // 创建标注\
             let content = "<div class='baiduPopWin-p'><p>运维人员</p>" +
                         "<p>" + username +"</p>" +
-                        "<a class='btnPhoneIcon' href='tel:"+mobile+"'>"+ mobile +"</a></div>"
+                        "<p>" + mobile +"</p>" +
+                        "<a class='btnPhoneIcon' href='tel:"+mobile+"'></a></div>"
             marker.addEventListener("click", e => {
                 this.openWinInfo(content,e)
             });
