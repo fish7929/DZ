@@ -9,6 +9,7 @@ import * as utils from '../../../utils';
 import * as ActionType from './actionType';
 import * as Api from '../../../static/const/apiConst'
 
+
 // 获取远程数据
 /**
  * 获取远程数据
@@ -40,7 +41,9 @@ function receiveData(result, currentPage) {
  * @param {number} type  消息数据类型， 1，2，3
  * @param {number} currentPage 分页参数
  */
+let messageType = ""
 export const fetchData = (type, currentPage = 1) => dispatch => {
+    messageType = type;
     dispatch(requestData(type));
     //这里组分页查询，pagesize每页查询个数
     let _opt = {
@@ -51,7 +54,10 @@ export const fetchData = (type, currentPage = 1) => dispatch => {
     // let _url = Api.GetMessageDataByType(type);
     let _url = Api.GetMessageDataByType();
     dispatch(utils.sendMsg(_url, _opt, "GET")).then(data => {
-        dispatch(receiveData(data, currentPage));
+        console.log(_opt, messageType, 2222222222222222);
+        if(messageType == _opt.massageType){
+            dispatch(receiveData(data, currentPage));
+        }
     })
 }
 

@@ -88,12 +88,12 @@ class AlarmSearch extends React.Component{
             alarmGrade: alarmLevel,
             powerStationId: powerStationId,
             page: currentPage,
-            pageSize: this.state.pageSize
+            pagesize: this.state.pageSize
         }
 
-        if(alarmStatus != "null" && alarmStatus != null) opt.status = alarmStatus
-        if(endTime != "") opt.beforeTime = endTime
-        if(startTime != "") opt.lateTime = startTime
+        opt.status = alarmStatus || ""
+        if(endTime != "") opt.lateTime = endTime
+        if(startTime != "") opt.beforeTime = startTime
         if(alarmMessage != "") opt.alarmMessage = alarmMessage
 
         this.props.searchAlarmList(opt).then(()=>this.setState({currentPage: currentPage, showResult: true}))

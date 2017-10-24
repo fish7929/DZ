@@ -11,6 +11,7 @@
             width: 25%;
             padding: 0 calc-rem(14);
             padding-top: calc-rem(30);
+            position: relative;
 
 
             .tab-title{
@@ -48,6 +49,23 @@
                 height: calc-rem(80);
                 background: url(../images/patrol.png) no-repeat center;
                 background-size: calc-rem(80);
+            }
+
+            .tab-bubble{
+                position: absolute;
+                z-index: 99;
+                top: calc-rem(20);
+                right: calc-rem(20);
+                color: $whiteColor !important;
+                font-size: calc-rem(24);
+                display: inline-block;
+                line-height: calc-rem(56);
+                text-align: center;
+                width: calc-rem(56);
+                height: calc-rem(56);
+                background: $yellowColor;
+                border-radius: 100%;
+                pointer-events: none;
             }
         }
     }

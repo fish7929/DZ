@@ -62,10 +62,16 @@ class HomeContianer extends React.Component {
     }
 
     getHomeTabs(){
+        let { alarmCount } = this.props;
         return HomeConst.HOME_BTN_TABS.map((obj, index) => (
             <div className="btn-tab-item button" key={index} onClick={()=>this.onTabHandler(obj.link)}>
                 <div className={obj.icon}></div>
                 <div className="tab-title">{obj.title}</div>
+                {
+                    index === 0 && alarmCount>0 ? 
+                        <span className="tab-bubble">{ alarmCount > 99 ? '99+' : alarmCount}</span>
+                    : null
+                }
             </div>
         ))
     }
