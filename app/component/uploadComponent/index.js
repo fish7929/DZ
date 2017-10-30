@@ -62,14 +62,12 @@ class UploadComponent extends React.Component {
             AppModal.loading();
             let url = Api.GetUploadApi();
             utils.fetchUtils(url, data, "POST", {}, "form").then((data) => {
-                console.log(data);
                 AppModal.hide()
                 if (data && data.url) {
                     let oldPhotos = this.state.photos || [];
                     oldPhotos.push({ filepath: data.url, filename: file.name, documentType: fileType });
                     state.photos = oldPhotos;
                 }
-                console.log("state", state)
                 this.setState(state);
                 this.isChange = true;
 
@@ -209,7 +207,6 @@ class UploadComponent extends React.Component {
         let noExplain = type == 1 && !explain ? 'no-explain-style' : '';
         explain = type == 1 && !explain ? '无' : explain;
         let noPhotos = (type == 1 && photos.length === 0) ? 'no-photos-style' : '';
-        console.log(photos,"222222222222222222")
         return (
             <div className={"upload-component-wrapper " + _disabled}>
                 <div className={"upload-explain-component " + noExplain}>

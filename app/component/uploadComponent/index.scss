@@ -65,15 +65,18 @@
             width: 100%;
             height: calc-rem(300);
             overflow-x: auto;
-            // overflow-y: hidden;
+            overflow-y: hidden;
             white-space: nowrap;
+            display: flex;
+            
             @include common-upload;
             .upload-photo-item{
                 position: relative;
                 width: calc-rem(240);
                 height: 100%;
                 margin-right: calc-rem(20);
-                display:inline-block;
+                display: table;
+                overflow: hidden;
                 @include common-upload;
                 img, video{
                     width: 100%;
@@ -87,6 +90,7 @@
                     height: calc-rem(52);
                     background: url($closeIcon) center no-repeat rgba(255,255,255,.3);
                     background-size: calc-rem(32); 
+                    z-index: 999;
                 }
             }
             .upload-photo-btn{
@@ -121,7 +125,6 @@
     background: transparent; 
     width: calc-rem(180);
     height: calc-rem(180);
-    position: relative;
 
     input{
         opacity: 0;

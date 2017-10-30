@@ -3,11 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html"  />
+<script src="http://code.jquery.com/jquery-2.1.0.js"></script>
 </head>
 <body>
 
-拍照<input name="file" className="upload-inpu-file" type="file" accept="image/*" capture="camera" />
-录像<input name="file" className="upload-inpu-file" type="file" accept="video/*" capture="camcorder" />
-相册<input name="file" className="upload-inpu-file" type="file" accept="video/*,image/*" />
+拍照<input name="file" className="upload-inpu-file" type="file" accept="image/*" capture="camera" onchange="onClickHandler(event)" />
+<img id="showImage" />
 </body>
+<script>
+function onClickHandler(e){
+    var file = e.target.files[0]
+    var data = new FormData()
+    data.append('fileDir', 'pvmtssys/physical/')
+    data.append('file', file)
+    upload("/tools/file/upload", data, "POST", {}, "form")
+    // var reader = new FileReader();
+    // reader.onload = (function (file) {
+    //     return function (e) {
+    //        console.info(this.result); //这个就是base64的数据了
+    //        document.getElementById("showImage").src =  this.result;
+    //     };
+    // })(e.target.files[0]);
+
+    // reader.readAsDataURL(e.target.files[0]);
+}
+
+function upload(url, param, type = "GET", headers = {}, dataType = "json"){
+    url = "http://www.yunengzhe.com" + url;
+    var user = window.localStorage.getItem("user");
+    user = JSON.parse(user) || null;
+    var token = '', contentType = "application/json";
+    if(user && user.hasOwnProperty('token')){
+        token = user.token;
+    }
+
+    if(type=="POST" && dataType == "json"){
+        param = JSON.stringify(param)
+    }
+
+    var opt = {
+        url: url,
+        type: type,
+        data: param,
+        contentType: contentType,
+        beforeSend: (request) => {
+            request.setRequestHeader("fromType", "app");
+            if(token){
+                request.setRequestHeader("token", token);
+            }
+        },
+        success: result => {
+            alert("success" + JSON.stringify(result))
+        },
+        error: error => {
+            alert("error" + JSON.stringify(error))
+        }
+    }
+    if(dataType == "form"){
+        opt.processData = false;
+        opt.contentType = false;
+    }else{
+        opt.dataType = dataType;
+    }
+
+    return $.ajax(opt)
+}
+</script>
 </html>

@@ -103,7 +103,7 @@ class Home extends React.Component {
     getContentSection() {
         let component;
         let{workOrder} = this.props;  //this.props.tabIndex
-            console.log(workOrder, 8899666);
+        let c = ""
         switch (this.props.tabIndex) {
             case ZERO:
                 component = <HomeContainer />
@@ -111,6 +111,7 @@ class Home extends React.Component {
             case FIRST:
                 component = <WorkOrder data={workOrder.list} total={workOrder.total} type={this.type} 
                     onChange={(status, page) => this.reloadWorkOrderListHandler(status, page)} />;
+                c = "home-main-work-order"
                 break
             case SECOND:
                 component = <MessageCenter data={this.props.messageCenterList} />
@@ -119,7 +120,7 @@ class Home extends React.Component {
                 component = <MyContainer />
                 break
         }
-        return component
+        return <div className={"home-main main-content " + c}>{component}</div>
     }
     /**
      * 切换标签事件
@@ -169,9 +170,8 @@ class Home extends React.Component {
                 <Header title={title} isShowRight={isShowRight}
                     rightClass={rightClass} rightContent={rightContent}
                     rightFn={() => this.clickHeaderRightHandler()} />
-                <div className="home-main main-content">
+                
                     {this.getContentSection()}
-                </div>
                 <HomeBottom tabIndex={this.props.tabIndex} count={count} onTabClick={(tab) => this.changeTabHandler(tab)} />
             </Page>
         )

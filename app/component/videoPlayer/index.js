@@ -6,8 +6,6 @@ export default class VideoPlayer extends React.Component {
     componentDidMount() {
         // instantiate video.js
         this.player = videojs(this.videoNode, this.props, function onPlayerReady() {
-            console.log('onPlayerReady', this)
-            console.log(this.children_[0]);
             this.children_[0].setAttribute('x5-video-player-type','h5');
             this.children_[0].setAttribute('x5-video-player-fullscreen', true);
             this.children_[0].setAttribute('playsinline', true);
@@ -19,7 +17,8 @@ export default class VideoPlayer extends React.Component {
     // destroy player on unmount
     componentWillUnmount() {
         if (this.player) {
-            this.player.dispose()
+            this.player.dispose();
+            this.player = null;
         }
     }
 
@@ -28,7 +27,7 @@ export default class VideoPlayer extends React.Component {
     // see https://github.com/videojs/video.js/pull/3856
     render() {
         return (
-            <div data-vjs-player>
+            <div>
                 <video ref={node => this.videoNode = node} className="video-js vjs-big-play-centered my-dz-video"></video>
             </div>
         )
