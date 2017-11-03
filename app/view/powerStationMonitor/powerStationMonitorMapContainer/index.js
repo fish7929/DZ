@@ -8,6 +8,7 @@ import psmIcon from '../../../static/images/map-p.png'
 import operationIcon from '../../../static/images/operation_small.png'
 import closeIcon from '../../../static/images/close.png'
 
+
 class PowerStationMonitorMapContainer extends React.Component{
     constructor(props, context){
         super(props, context)
@@ -36,10 +37,9 @@ class PowerStationMonitorMapContainer extends React.Component{
         this.getData();
     }
 
-
     onDragStartHandler(){
         if(this.timer) clearInterval(this.timer)
-        this.timer = setInterval(()=>this.getData(), 1000)
+        // this.timer = setInterval(()=>this.getData(), 1000)
     }
 
     onDragEndHandler(){
@@ -157,7 +157,6 @@ class PowerStationMonitorMapContainer extends React.Component{
             this.map.clearOverlays();
             let user = Base.getLocalStorageObject("user")
             let { username, nickname, email, mobile, departmentName } = user;
-            console.log(mapLevelData)
             if(mapLevelData.length === 0){
                 data.map((obj, index)=>{
                     let marker = this.getPowerStationMarker(obj, username);

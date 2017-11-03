@@ -75,7 +75,7 @@ class WorkOrder extends React.Component {
         // e.preventDefault();
         e.stopPropagation();
         //todo 选择时间区间
-        console.log('choose time', this.defaultMonth);
+        // console.log('choose time', this.defaultMonth);
         this.setState({isShow: true});
     }
     handleChangeMonth(month) {
@@ -83,7 +83,6 @@ class WorkOrder extends React.Component {
     }
 
     closeMonthRange(month) {
-        console.log(this.defaultMonth, 88888);
         if ((month[0].year == month[1].year && month[0].month <= month[1].month)  || month[0].year < month[1].year) {
             this.defaultMonth = month.concat();
             this.setState({
@@ -99,17 +98,21 @@ class WorkOrder extends React.Component {
     }
 
     cancelMonthRange() {
-        console.log(this.defaultMonth, 9999999);
         this.setState({isShow: false, month: this.defaultMonth});
     }
+
     filterListByMonth(month) {
         let obj = {};
         let filter = this.state.list;
+        console.log(this.metaData);
         if (this.metaData.length > 0) {
-            let fromMonth = new Date(month[0].year, month[0].month);
-            let toMonth = new Date(month[1].year, month[1].month);
+            let fromMonth = new Date(month[0].year, month[0].month-1);
+            let toMonth = new Date(month[1].year, month[1].month-1);
+            toMonth.setDate(0);
+            toMonth = new Date(month[1].year, month[1].month-1, toMonth.getDate());
             let _fromTime = fromMonth.getTime();
             let _toTime = toMonth.getTime();
+            console.log(_fromTime, _toTime, "22222222222");
             filter = this.metaData.filter((item, index) => (item.createTime >= _fromTime && item.createTime <= _toTime));
         } 
         obj['list'] = filter;
@@ -121,7 +124,6 @@ class WorkOrder extends React.Component {
     getMonthHint() {
         let hint = "选择时间";
         let { month } = this.state;
-        console.log(month, 8999);
         if (this.state.isSelected && month && month.length > 0 ) {
             let names = month.map((item) => {
                 return item.year + '.' + item.month
@@ -184,7 +186,6 @@ class WorkOrder extends React.Component {
             }
             this.metaData = _list;
             // this.defaultMonth = [];
-            console.log(this.defaultMonth, 44444);
             this.setState({
                 list: _list,
                 total: nextProps.total,

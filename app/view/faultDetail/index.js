@@ -141,7 +141,7 @@ class FaultDetail extends React.Component {
                     faultSource == FIRST ? 
                         <div className="common-order-item-hint-flex"><div>故障信息</div><div>{list.faultMessage}</div></div>
                         :
-                        <div className="common-order-item-hint">设备编号<span className="no-wrap">{this.getEquipmentId(list.equipmentId)}}</span></div>
+                        <div className="common-order-item-hint">设备编号<span className="no-wrap">{this.getEquipmentId(list.equipmentId)}</span></div>
                 }
                 <div className="common-order-item-hint">
                     故障级别

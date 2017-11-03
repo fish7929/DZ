@@ -33,7 +33,7 @@ class CommonMessageDetail extends React.Component {
         let _content = type == FIRST ? data.content : data.contentHtml;
         let _title = type == FIRST ? data.topic : data.name;
         let _time = type == FIRST ? data.sendTime : data.publishTime;
-        let _userInfo = type == FIRST ? '调度中心|' + data.consigneeName : '';
+        let _userInfo = type == FIRST ? '调度中心|' + (data.consigneeName || data.senderName) :  "";
         return (
             <div className="message-detail-wrapper">
                 <div className="message-detail-title">

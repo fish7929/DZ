@@ -13,7 +13,7 @@ export const GetNoticeList = () => "/pvmtsys/noticeReader/queryNoticeList"
 /**MessageDetail api GetMessageDetailByIdAndStatus */
 export const GetMessageDetailByIdAndStatus = (id, status) => {
     if(!status){
-        return "/pvmtsys/sender/readLetter/" + id;
+        return "/pvmtsys/consignee/readLetter/" + id;
     }else {
         return "/pvmtsys/noticeReader/queryNoticeOne/" + id ;
     } 
