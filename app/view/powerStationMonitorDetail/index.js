@@ -81,7 +81,7 @@ class PowerStationMonitorDetail extends React.Component{
                         <div className="day-power-div">
                             <div className="day-power-title">日功率曲线</div>
                             <div className="echart-day-power">
-                                <ChartItem type="line" data={data.powerTime} unitY="kW" lineColor="#D76662" shadowColor="#D76561" xAxis={xAxis} />
+                                <ChartItem type="line" toolTip={true} tipFormatter={(params)=>{return "小时：" + params[0].name + "<br />功率：" + params[0].data.toFixed(2)}} data={data.powerTime} unitY="kW" lineColor="#D76662" shadowColor="#D76561" xAxis={xAxis} />
                             </div>
                         </div>
 

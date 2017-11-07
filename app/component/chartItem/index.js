@@ -170,6 +170,7 @@ class ChartItem extends React.Component {
 
     getLineOption(data) {
         let { unitY, lineColor, shadowColor, dataZoom, xAxis, toolTip } = this.props;
+        console.log(data)
         let opt =  {
             xAxis:  {
                 axisLine: {
@@ -249,6 +250,10 @@ class ChartItem extends React.Component {
                     return "日&nbsp;&nbsp;&nbsp;期：" + params[0].name + "<br />完成量：" + params[0].data;
                 },
                 confine: true,
+            }
+
+            if(this.props.tipFormatter){
+                opt.tooltip.formatter = this.props.tipFormatter;
             }
         }
   
@@ -481,7 +486,8 @@ ChartItem.PropTypes = {
     legend: PropTypes.array,
     xAxis: PropTypes.array,
     dataZoom: PropTypes.bottom,
-    toolTip: PropTypes.bool
+    toolTip: PropTypes.bool,
+    tipFormatter: PropTypes.func
 }
 
 export default ChartItem

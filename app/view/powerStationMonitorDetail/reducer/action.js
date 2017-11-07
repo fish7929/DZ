@@ -12,8 +12,8 @@ const receiveListData = (data) => ({
     type: ActionType.PSM_DETAIL_INIT,
     data: {
         ...data,
-        generationDailyList: data.generationDailyList.sort((a, b)=>{return a.time >= b.time }).map(obj=>({value: obj.value, name:utils.formatDate(obj.time, "dd/MM/yyyy")})),
-        powerTime: data.powerTime.sort((a, b)=>{return a.time >= b.time }).map(obj=>({value: obj.value, name: utils.formatDate(obj.time, "HH:mm")}))
+        generationDailyList: data.generationDailyList.sort((a, b)=>{return a.time - b.time }).map(obj=>({value: obj.value, name:utils.formatDate(obj.time, "dd/MM/yyyy")})),
+        powerTime: data.powerTime.filter(a=>(a.time/1000%3600) === 0 && (a.time/1000/3600%2) === 0).sort((a, b)=>{return a.time - b.time }).map(obj=>({value: obj.value, name: utils.formatDate(obj.time, "HH")}))
     }
 })
 
