@@ -68,7 +68,7 @@
             overflow-y: hidden;
             white-space: nowrap;
             display: flex;
-            
+
             @include common-upload;
             .upload-photo-item{
                 position: relative;

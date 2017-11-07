@@ -68,7 +68,11 @@ class InverterDetail extends React.Component{
                     <div className="temperature-div">
                         <div className="temperature-title">逆变器功率-温度曲线</div>
                         <div className="temperature-echart-div">
-                            <ChartItem type="doubleLine" data={data.powerTemperatureTime} lineColor={["#D76662", "#45A5ED"]} shadowColor={["#D76561", "#45A6ED"]} legend={["功率曲线", "温度曲线"]} xAxis={xAxis} />
+                            <ChartItem type="doubleLine" data={data.powerTemperatureTime}
+                                       lineColor={["#D76662", "#45A5ED"]}
+                                       toolTip = {true}
+                                       tipFormatter={(params)=>{return "温度：" +params[1].data.toFixed(2) + "<br />功率：" + params[0].data.toFixed(2)}}
+                                       shadowColor={["#D76561", "#45A6ED"]} legend={["功率曲线", "温度曲线"]} xAxis={xAxis} />
                         </div>
                     </div>
                     <div className="table-div">
