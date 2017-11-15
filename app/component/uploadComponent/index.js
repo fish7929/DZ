@@ -147,14 +147,14 @@ class UploadComponent extends React.Component {
             let oldPhotos = this.state.photos || [];
             oldPhotos.push({ filepath: data.url, filename: data.name, documentType: 0 });
             state.photos = oldPhotos;
-            state.isShowPhotoSelect = false;
             this.setState(state);
 
             this.isChange = true;
         }, error=>{
-            this.setState({isShowPhotoSelect: false});
             AppModal.toast("获取图片失败：" + error);
         })
+
+        this.setState({isShowPhotoSelect: false});
     }
 
     /**
@@ -167,14 +167,12 @@ class UploadComponent extends React.Component {
             let oldPhotos = this.state.photos || [];
             oldPhotos.push({ filepath: data.url, filename: data.name, documentType: 1 });
             this.setState(state);
-            state.isShowPhotoSelect = false;
-            this.setState(state);
 
             this.isChange = true;
         }, error=>{
-            this.setState({isShowPhotoSelect: false});
             AppModal.toast("视频拍摄失败" + error);
         });
+        this.setState({isShowPhotoSelect: false});
     }
 
     onShowBigPhoto(filepath){

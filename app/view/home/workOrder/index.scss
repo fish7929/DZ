@@ -56,7 +56,7 @@
 .work-order-filter{
     position: fixed;
     display: inline-block;
-    top: calc-rem(31);
+    top: calc-rem(31 + $toolbarHeight);
     right: calc-rem(30);
     font-size: calc-rem(24);
     padding: calc-rem(6) calc-rem(24) ;
