@@ -151,7 +151,7 @@ class UploadComponent extends React.Component {
 
             this.isChange = true;
         }, error=>{
-            AppModal.toast("获取图片失败：" + error);
+            // AppModal.toast("获取图片失败：" + error);
         })
 
         this.setState({isShowPhotoSelect: false});
@@ -170,7 +170,7 @@ class UploadComponent extends React.Component {
 
             this.isChange = true;
         }, error=>{
-            AppModal.toast("视频拍摄失败" + error);
+            // AppModal.toast("视频拍摄失败" + error);
         });
         this.setState({isShowPhotoSelect: false});
     }
