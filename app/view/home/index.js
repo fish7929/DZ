@@ -65,10 +65,11 @@ class Home extends React.Component {
         // AppModal.loading();
         //加载默认数据
         let tab = this.tab != undefined ? parseInt(this.tab) : this.props.tabIndex;
-        this.props.fetchData(tab, this.type);
+        
         //获取未完成工单的数量
         let url = Api.GetWorkOrdrDataByStatus(0);
         utils.fetchUtils(url, {page: 1, pagesize: 10}).then((res) => {
+            this.props.fetchData(tab, this.type);
             // console.log(res, 88999999);
             //设置未完成工单的数量
             if (res && res.hasOwnProperty('counts')) {
