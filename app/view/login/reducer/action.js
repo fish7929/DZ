@@ -30,6 +30,10 @@ export const userLogin = (userName, password) => dispatch => {
             return
         }
         Base.setLocalStorageObject("user", data)
+
+        //如果是app登陆绑定设备ID
+        utils.bindDeviceId()
+
         hashHistory.push(RouterConst.ROUTER_HOME)
     })
 }
@@ -46,7 +50,11 @@ export const checkBindWx = userinfo => dispatch => {
             hashHistory.push(RouterConst.ROUTER_BIND_MOBILE)
         }else{
             Base.setLocalStorageObject("user", data)
+            //如果是app登陆绑定设备ID
+            utils.bindDeviceId()
             hashHistory.push(RouterConst.ROUTER_HOME)
         }
     })
 }
+
+

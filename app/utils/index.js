@@ -415,3 +415,22 @@ export const getEquipmentName = (val) => {
             return ""
     }
 }
+
+
+export const bindDeviceId = ()=>{
+    if(window.cordova){
+        window.cordova.plugins.spacekplugin.userPushID(null, data=>{
+            // alert("userPushID" + JSON.stringify(data));
+            if(data){
+                let url = '/pvmtsys/userGetui/setClientID';
+                let opt = {
+                    clientId: data.clientId,
+                    clientType: data.appType == 0 ? 'androd' : 'ios'
+                }
+                fetchUtils(url, opt, "POST").then(data => {
+                    console.log(data);
+                })
+            }
+        })
+    }
+}

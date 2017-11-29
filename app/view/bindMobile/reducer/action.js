@@ -18,6 +18,8 @@ export const bindWeiXin = (opt) => dispatch =>{
     dispatch(utils.sendMsg(url, opt, "POST")).then(data => {
         if(data){
             Base.setLocalStorageObject("user", data)
+            //如果是app登陆绑定设备ID
+            utils.bindDeviceId()
             hashHistory.push(RouterConst.ROUTER_HOME)
         }else{
             AppModal.toast("微信号绑定失败！")
