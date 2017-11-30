@@ -420,14 +420,11 @@ export const getEquipmentName = (val) => {
 export const bindDeviceId = ()=>{
     if(window.cordova){
         window.cordova.plugins.spacekplugin.userPushID(null, data=>{
-            // alert("userPushID" + JSON.stringify(data));
+            alert("userPushID" + JSON.stringify(data));
+            // let data = {clientId : "fdgsdfgsd32423424234"}
             if(data){
-                let url = '/pvmtsys/userGetui/setClientID';
-                let opt = {
-                    clientId: data.clientId,
-                    clientType: data.appType == 0 ? 'androd' : 'ios'
-                }
-                fetchUtils(url, opt, "POST").then(data => {
+                let url = '/pvmtsys/gexin/bindingGexin/' + data.clientId;
+                fetchUtils(url, {}, "GET").then(data => {
                     console.log(data);
                 })
             }
