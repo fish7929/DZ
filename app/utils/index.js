@@ -420,7 +420,7 @@ export const getEquipmentName = (val) => {
 export const bindDeviceId = ()=>{
     if(window.cordova){
         window.cordova.plugins.spacekplugin.userPushID(null, data=>{
-            alert("userPushID" + JSON.stringify(data));
+            // alert("userPushID" + JSON.stringify(data));
             // let data = {clientId : "fdgsdfgsd32423424234"}
             if(data){
                 let url = '/pvmtsys/gexin/bindingGexin/' + data.clientId;
